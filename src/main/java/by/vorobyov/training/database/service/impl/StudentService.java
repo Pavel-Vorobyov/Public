@@ -1,7 +1,7 @@
 package by.vorobyov.training.database.service.impl;
 
 import by.vorobyov.training.database.connectionpool.ConnectionPool;
-import by.vorobyov.training.database.service.CommonDAO;
+import by.vorobyov.training.database.service.CommonService;
 import by.vorobyov.training.database.dao.preparedquery.UserHasCourseQuery;
 import by.vorobyov.training.database.dao.preparedquery.UserTaskQuery;
 import by.vorobyov.training.database.exception.DAOException;
@@ -12,7 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class StudentDAO extends CommonDAO {
+public class StudentService extends CommonService {
     public static final Integer TASK_STATUS_COMPLETE = 1;
 
 //    public User singIn(Account account) {

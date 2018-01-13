@@ -10,7 +10,7 @@ import java.io.IOException;
 public class ApplyForCourse implements ICommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        StudentDAO studentDAO = new StudentDAO();
+//        StudentService studentDAO = new StudentService();
 //
 //        Integer userId = Integer.valueOf(request.getParameter(UserParameterName.USER_ID));
 //        Integer courseId = Integer.valueOf(request.getParameter(CourseParameterName.COURSE_ID));

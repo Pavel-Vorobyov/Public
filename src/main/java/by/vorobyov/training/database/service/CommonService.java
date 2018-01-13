@@ -11,7 +11,7 @@ import by.vorobyov.training.entity.*;
 import java.sql.*;
 import java.util.List;
 
-public class CommonDAO extends AbstractDAO {
+public class CommonService extends AbstractDAO {
 
 //    public Account getAccountByLoginPassword(String login, String password) {
 //        Connection connection = null;

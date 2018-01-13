@@ -4,7 +4,7 @@ import by.vorobyov.training.database.connectionpool.ConnectionPool;
 import by.vorobyov.training.database.creator.CourseCreator;
 import by.vorobyov.training.database.creator.UserCreator;
 import by.vorobyov.training.database.creator.WorkGroupCreator;
-import by.vorobyov.training.database.service.CommonDAO;
+import by.vorobyov.training.database.service.CommonService;
 import by.vorobyov.training.database.dao.preparedquery.*;
 import by.vorobyov.training.database.exception.DAOException;
 import by.vorobyov.training.entity.Course;
@@ -14,7 +14,7 @@ import by.vorobyov.training.entity.WorkGroup;
 import java.sql.*;
 import java.util.List;
 
-public class AdminDAO extends CommonDAO {
+public class AdminService extends CommonService {
 
     public List<User> takeUserList() {
         Connection connection = null;

@@ -1,6 +1,6 @@
 package by.vorobyov.training.database.dao.impl;
 
-import by.vorobyov.training.database.service.CommonDAO;
+import by.vorobyov.training.database.service.CommonService;
 import by.vorobyov.training.entity.Course;
 import org.junit.After;
 import org.junit.Before;
@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class StudentDAOTest {
+public class StudentServiceTest {
     StudentDAO studentDAO = null;
 
     @Before
@@ -25,9 +25,9 @@ public class StudentDAOTest {
     public void testApplyForCourse() throws Exception {
         StudentDAO studentDAO = new StudentDAO();
         studentDAO.applyForCourse(11, 5);
-        CommonDAO commonDAO = new CommonDAO();
+        CommonService commonService = new CommonService();
 
-        List<Course> courseList = commonDAO.takeCourseList();
+        List<Course> courseList = commonService.takeCourseList();
         for (Course course:courseList) {
             System.out.println(course);
         }

@@ -4,7 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.testng.annotations.Test;
 
-public class CommonDAOTest {
+public class CommonServiceTest {
 
     @Before
     public void setUp() throws Exception {
@@ -17,7 +17,7 @@ public class CommonDAOTest {
     @Test
     public void testAddAccount() throws Exception {
 //        ConnectionPool.getInstance().init();
-//        CommonDAO commonDAO = new CommonDAO();
+//        CommonService commonDAO = new CommonService();
 //        commonDAO.addAccount(new Account("bob3", "bob3", 0));
 //        System.out.println(commonDAO.getAccount(24));
     }

@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.testng.Assert.*;
 
-public class AdminDAOTest {
+public class AdminServiceTest {
     @Test
     public void testTakeUserListByStatus() throws Exception {
         AdminDAO adminDAO = new AdminDAO();

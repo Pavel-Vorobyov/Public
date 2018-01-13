@@ -2,7 +2,7 @@ package by.vorobyov.training.controller.command.impl.Common;
 
 import by.vorobyov.training.controller.command.ICommand;
 import by.vorobyov.training.controller.command.URLCommand;
-import by.vorobyov.training.database.service.CommonDAO;
+import by.vorobyov.training.database.service.CommonService;
 import by.vorobyov.training.entity.Account;
 import by.vorobyov.training.entity.User;
 import by.vorobyov.training.resource.AttributeName;
@@ -24,9 +24,9 @@ public class SingIn implements ICommand{
         account.setPassword(request.getParameter(AccountParameterName.PASSWORD));
 
 
-            CommonDAO commonDAO = new CommonDAO();
+            CommonService commonService = new CommonService();
 
-            User user = commonDAO.singIn(account);
+            User user = commonService.singIn(account);
             if (user != null) {
                 request.getSession(true).setAttribute(AttributeName.USER, user);
 

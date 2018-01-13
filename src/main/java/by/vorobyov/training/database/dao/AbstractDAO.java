@@ -11,11 +11,19 @@ import java.util.List;
 
 public abstract class AbstractDAO<E> {
 
-    public abstract List<E> getAll();
-    public abstract E update(E entity);
-    public abstract E getEntityById(Integer entityId);
-    public abstract boolean delete(E entity);
-    public abstract boolean create(E entity);
+    public abstract List<E> getAll() throws DAOException, SQLException;
+    public abstract E update(E entity) throws DAOException;
+    public abstract E getEntityById(Integer entityId) throws DAOException;
+    public abstract boolean delete(E entity) throws DAOException;
+    public abstract boolean create(E entity) throws DAOException;
+
+    public void rollback(Connection connection) throws DAOException {
+        try {
+            connection.rollback();
+        } catch (SQLException e) {
+            throw new DAOException("Transaction hasn't benn rolled back!");
+        }
+    }
 
     public Connection getConnection() throws DAOException {
         Connection connection = ConnectionPool.getInstance().getConnection();

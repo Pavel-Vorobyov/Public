@@ -1,7 +1,7 @@
 package by.vorobyov.training.database.service.impl;
 
 import by.vorobyov.training.database.connectionpool.ConnectionPool;
-import by.vorobyov.training.database.service.CommonDAO;
+import by.vorobyov.training.database.service.CommonService;
 import by.vorobyov.training.database.dao.preparedquery.CommentQuery;
 import by.vorobyov.training.database.dao.preparedquery.TaskQuery;
 import by.vorobyov.training.database.dao.preparedquery.UserTaskQuery;
@@ -14,7 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class LecturerDAO extends CommonDAO {
+public class LecturerService extends CommonService {
 
     public void createTask (Task task) {
         Connection connection = null;
