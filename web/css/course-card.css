@@ -1,0 +1,69 @@
+.course-list-wrapper {
+  padding: 65px;
+
+}
+
+.course-list-conteiner {
+  margin: auto;
+}
+
+.column {
+  width: 280px;
+  height: 300px;
+  padding-top: 20px;
+
+  float: left;
+}
+
+.card {
+  width: 250px;
+  height: 300px;
+  background-color: #fff;
+  border: 1px solid;
+  border-radius: 0;
+  border-color: #ccc9c9;
+}
+
+.title {
+  height: 190px;
+
+}
+
+.logo {
+  height: 140px;
+}
+
+.location {
+  color: #adadad;
+  font-size: 16px;
+  font-family: 'Source Sans Pro Regular',Tahoma,sans-serif;
+  text-align: center;
+}
+
+.status {
+  height: 40px;
+
+  padding-top: 10px;
+  color: #adadad;
+  font-size: 16px;
+  font-family: 'Source Sans Pro Regular',Tahoma,sans-serif;
+  text-align: center;
+}
+
+.course-registration {
+  width: 100px;
+  height: 30px;
+  padding: 7px;
+  padding-left: 60px;
+  padding-right: 60px;
+
+  color: black;
+  font-size: 24px;
+  font-family: 'Source Sans Pro Regular',Tahoma,sans-serif;
+  text-decoration: none;
+  background-color: #ebebeb;
+}
+
+.course-registration:hover {
+  background-color: #f0f2f4;
+}
