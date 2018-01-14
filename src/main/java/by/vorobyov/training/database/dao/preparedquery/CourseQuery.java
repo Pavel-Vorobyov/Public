@@ -6,7 +6,7 @@ public class CourseQuery {
 
     public final static String SELECT_ALL_COURSES = "SELECT * FROM course";
 
-    public final static String SELECT_ALL_COURSES_BY_ID = "SELECT * FROM course WHERE id = ?";
+    public final static String SELECT_COURSE_BY_ID = "SELECT * FROM course WHERE id = ?";
 
     public final static String SELECT_COURSE_BY_STATUS = "SELECT * FROM course WHERE status = ?";
 

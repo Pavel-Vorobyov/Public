@@ -1,5 +1,6 @@
-package by.vorobyov.training.database.creator;
+package by.vorobyov.training.database.creator.impl;
 
+import by.vorobyov.training.database.creator.ICreator;
 import by.vorobyov.training.database.dao.util.columnname.UserTaskColumnName;
 import by.vorobyov.training.database.dao.util.columnname.WorkGroupColumnName;
 import by.vorobyov.training.entity.User;
@@ -11,22 +12,24 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class UserTaskCreator {
+public class UserTaskCreator  implements ICreator<UserTask> {
     public UserTaskCreator() {
     }
 
-    public List<UserTask> createUserTaskList(ResultSet resultSet) throws SQLException {
+    @Override
+    public List<UserTask> createEntityList(ResultSet resultSet) throws SQLException {
         List<UserTask> userTaskList = new LinkedList<>();
 
         while (resultSet.next()) {
-            UserTask userTask = createUserTask(resultSet);
+            UserTask userTask = createEntity(resultSet);
             userTaskList.add(userTask);
         }
 
         return userTaskList;
     }
 
-    public UserTask createUserTask(ResultSet resultSet) throws SQLException {
+    @Override
+    public UserTask createEntity(ResultSet resultSet) throws SQLException {
         UserTask userTask = new UserTask();
 
         userTask.setUserTaskId(resultSet.getInt(UserTaskColumnName.ID));

@@ -1,17 +1,12 @@
 package by.vorobyov.training.database.dao.impl;
 
-import by.vorobyov.training.database.connectionpool.ConnectionPool;
-import by.vorobyov.training.database.creator.CourseCreator;
+import by.vorobyov.training.database.creator.impl.CourseCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
 import by.vorobyov.training.database.dao.preparedquery.CourseQuery;
 import by.vorobyov.training.database.exception.DAOException;
 import by.vorobyov.training.entity.Course;
-import com.mysql.cj.api.mysqla.result.Resultset;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.List;
 
 public class CourseDAO extends AbstractDAO<Course> {
@@ -30,6 +25,7 @@ public class CourseDAO extends AbstractDAO<Course> {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(CourseQuery.SELECT_ALL_COURSES);
 
+            connection.commit();
             return resultSet != null ? courseCreator.createCourseList(resultSet) : null; // resultSet != null ????????
 
         } catch (SQLException e) {
@@ -42,22 +38,112 @@ public class CourseDAO extends AbstractDAO<Course> {
     }
 
     @Override
-    public Course update(Course entity) {
-        return null;
+    public boolean update(Course entity) throws DAOException, SQLException {
+        Connection connection;
+        connection = getConnection();
+        PreparedStatement preparedStatement = null;
+
+        connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        connection.setAutoCommit(false);
+
+        try {
+            preparedStatement = connection.prepareStatement(CourseQuery.UPDATE_COURSE);
+            preparedStatement.setString(1, entity.getTitle());
+            preparedStatement.setString(2, entity.getRegion());
+            preparedStatement.setString(3, entity.getDescription());
+            preparedStatement.setInt(4, entity.getCourseId());
+
+            preparedStatement.executeUpdate();
+            connection.commit();
+            return true;
+
+        } catch (SQLException e) {
+            rollback(connection);
+            throw  new DAOException(e);
+        } finally {
+            closePreparedStatement(preparedStatement);
+            closeConnection(connection);
+        }
     }
 
     @Override
-    public Course getEntityById(Integer entityId) {
-        return null;
+    public Course getEntityById(Integer entityId) throws SQLException, DAOException {
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet;
+        CourseCreator courseCreator = new CourseCreator();
+
+        connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        connection.setAutoCommit(false);
+        try {
+            preparedStatement = connection.prepareStatement(CourseQuery.SELECT_COURSE_BY_ID);
+            preparedStatement.setInt(1, entityId);
+
+            resultSet = preparedStatement.executeQuery();
+            connection.commit();
+            return resultSet != null ? courseCreator.createCourse(resultSet) : null; // resultSet != null ????????
+
+        } catch (SQLException e) {
+            rollback(connection);
+            throw new DAOException(e);
+        } finally {
+            closePreparedStatement(preparedStatement);
+            closeConnection(connection);
+        }
     }
 
     @Override
-    public boolean delete(Course entity) {
-        return false;
+    public boolean delete(Course entity) throws SQLException, DAOException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        connection.setAutoCommit(false);
+
+        try {
+            preparedStatement = connection.prepareStatement(CourseQuery.DELETE_COURSE);
+
+            preparedStatement.setInt(1, entity.getCourseId());
+
+            preparedStatement.executeUpdate();
+            connection.commit();
+            return true;
+
+        } catch (SQLException e) {
+            rollback(connection);
+            throw new DAOException(e);
+        } finally {
+            closePreparedStatement(preparedStatement);
+            closeConnection(connection);
+        }
     }
 
     @Override
-    public boolean create(Course entity) {
-        return false;
+    public boolean create(Course entity) throws SQLException, DAOException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        connection.setAutoCommit(false);
+
+        try {
+            preparedStatement = connection.prepareStatement(CourseQuery.COURSE_INSERT);
+
+            preparedStatement.setString(1, entity.getTitle());
+            preparedStatement.setString(2, entity.getRegion());
+            preparedStatement.setString(3, entity.getDescription());
+            preparedStatement.setInt(4, entity.getLeadId());
+
+            preparedStatement.executeUpdate();
+            connection.commit();
+            return true;
+
+        } catch (SQLException e) {
+            rollback(connection);
+            throw new DAOException(e);
+        } finally {
+            closePreparedStatement(preparedStatement);
+            closeConnection(connection);
+        }
     }
 }

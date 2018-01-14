@@ -1,5 +1,6 @@
-package by.vorobyov.training.database.creator;
+package by.vorobyov.training.database.creator.impl;
 
+import by.vorobyov.training.database.creator.ICreator;
 import by.vorobyov.training.database.dao.util.columnname.UserColumnName;
 import by.vorobyov.training.database.dao.util.columnname.UserDataColumnName;
 import by.vorobyov.training.database.dao.util.columnname.WorkGroupColumnName;
@@ -11,22 +12,24 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class WorkGroupCreator {
+public class WorkGroupCreator implements ICreator<WorkGroup> {
     public WorkGroupCreator() {
     }
 
-    public List<WorkGroup> createWorkGroupList(ResultSet resultSet) throws SQLException {
+    @Override
+    public List<WorkGroup> createEntityList(ResultSet resultSet) throws SQLException {
         List<WorkGroup> workGroupList = new LinkedList<>();
 
         while (resultSet.next()) {
-            WorkGroup workGroup = createWorkGroup(resultSet);
+            WorkGroup workGroup = createEntity(resultSet);
             workGroupList.add(workGroup);
         }
 
         return workGroupList;
     }
 
-    public WorkGroup createWorkGroup(ResultSet resultSet) throws SQLException {
+    @Override
+    public WorkGroup createEntity(ResultSet resultSet) throws SQLException {
         WorkGroup workGroup = new WorkGroup();
 
         workGroup.setWorkGroupId(resultSet.getInt(WorkGroupColumnName.ID));

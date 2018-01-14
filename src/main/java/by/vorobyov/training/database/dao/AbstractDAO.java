@@ -12,10 +12,10 @@ import java.util.List;
 public abstract class AbstractDAO<E> {
 
     public abstract List<E> getAll() throws DAOException, SQLException;
-    public abstract E update(E entity) throws DAOException;
-    public abstract E getEntityById(Integer entityId) throws DAOException;
-    public abstract boolean delete(E entity) throws DAOException;
-    public abstract boolean create(E entity) throws DAOException;
+    public abstract boolean update(E entity) throws DAOException, SQLException;
+    public abstract E getEntityById(Integer entityId) throws DAOException, SQLException;
+    public abstract boolean delete(E entity) throws DAOException, SQLException;
+    public abstract boolean create(E entity) throws DAOException, SQLException;
 
     public void rollback(Connection connection) throws DAOException {
         try {

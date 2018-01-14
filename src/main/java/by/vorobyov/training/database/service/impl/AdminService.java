@@ -1,9 +1,9 @@
 package by.vorobyov.training.database.service.impl;
 
 import by.vorobyov.training.database.connectionpool.ConnectionPool;
-import by.vorobyov.training.database.creator.CourseCreator;
-import by.vorobyov.training.database.creator.UserCreator;
-import by.vorobyov.training.database.creator.WorkGroupCreator;
+import by.vorobyov.training.database.creator.impl.CourseCreator;
+import by.vorobyov.training.database.creator.impl.UserCreator;
+import by.vorobyov.training.database.creator.impl.WorkGroupCreator;
 import by.vorobyov.training.database.service.CommonService;
 import by.vorobyov.training.database.dao.preparedquery.*;
 import by.vorobyov.training.database.exception.DAOException;

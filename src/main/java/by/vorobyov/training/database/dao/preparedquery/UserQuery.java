@@ -6,7 +6,11 @@ public class UserQuery {
 
     public final static String SELECT_ID_AND_STATUS = "SELECT id, status FROM user";
 
-    public final static String SELECT_USER_BY_ID = "SELECT * FROM user WHERE login = ?, password = ?";
+    public static final String SELECT_USER_BY_ID = "SELECT * FROM user WHERE id = ?";
+
+    public static final String SELECT_USER_STATUS_BETWEEN = "SELECT * FROM user WHERE status BETWEEN ? AND ?";
+
+    public final static String SELECT_USER_BY_LOG_PASS = "SELECT * FROM user WHERE login = ?, password = ?";
 
     public final static String SELECT_ID_AND_STATUS_BY_STATUS = "SELECT id, status FROM user WHERE status = ?";
 

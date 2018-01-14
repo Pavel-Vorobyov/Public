@@ -1,5 +1,6 @@
-package by.vorobyov.training.database.creator;
+package by.vorobyov.training.database.creator.impl;
 
+import by.vorobyov.training.database.creator.ICreator;
 import by.vorobyov.training.database.dao.util.columnname.UserColumnName;
 import by.vorobyov.training.database.dao.util.columnname.UserDataColumnName;
 import by.vorobyov.training.entity.User;
@@ -9,20 +10,24 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class UserCreator {
+public class UserCreator implements ICreator<User> {
+    public UserCreator() {
+    }
 
-    public List<User> createUsersList(ResultSet resultSet) throws SQLException {
+    @Override
+    public List<User> createEntityList(ResultSet resultSet) throws SQLException {
         List<User> usersList = new LinkedList<>();
 
         while (resultSet.next()) {
-            User user = createUser(resultSet);
+            User user = createEntity(resultSet);
             usersList.add(user);
         }
 
         return usersList;
     }
 
-    public User createUser(ResultSet resultSet) throws SQLException {
+    @Override
+    public User createEntity(ResultSet resultSet) throws SQLException {
         User user = new User();
 
         user.setUserId(resultSet.getInt(UserColumnName.ID));

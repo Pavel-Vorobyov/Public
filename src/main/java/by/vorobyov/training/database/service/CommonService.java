@@ -1,7 +1,10 @@
 package by.vorobyov.training.database.service;
 
 import by.vorobyov.training.database.connectionpool.ConnectionPool;
-import by.vorobyov.training.database.creator.*;
+import by.vorobyov.training.database.creator.impl.CourseCreator;
+import by.vorobyov.training.database.creator.impl.UserCreator;
+import by.vorobyov.training.database.creator.impl.UserTaskCreator;
+import by.vorobyov.training.database.creator.impl.WorkGroupCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
 import by.vorobyov.training.database.dao.preparedquery.*;
 import by.vorobyov.training.database.dao.util.columnname.UserColumnName;
@@ -150,7 +153,7 @@ public class CommonService extends AbstractDAO {
 
         try {
             connection = ConnectionPool.getInstance().getConnection();
-            preparedStatement = connection.prepareStatement(CourseQuery.SELECT_ALL_COURSES_BY_ID);
+            preparedStatement = connection.prepareStatement(CourseQuery.SELECT_COURSE_BY_ID);
             preparedStatement.setInt(1, userId);
 
             resultSet = preparedStatement.executeQuery();

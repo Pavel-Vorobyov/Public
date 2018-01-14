@@ -1,5 +1,6 @@
-package by.vorobyov.training.database.creator;
+package by.vorobyov.training.database.creator.impl;
 
+import by.vorobyov.training.database.creator.ICreator;
 import by.vorobyov.training.database.dao.util.columnname.CourseColumnName;
 import by.vorobyov.training.entity.Course;
 
@@ -8,21 +9,23 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class CourseCreator {
+public class CourseCreator implements ICreator<Course> {
     public CourseCreator() {
     }
 
-    public List<Course> createCourseList(ResultSet resultSet) throws SQLException {
+    @Override
+    public List<Course> createEntityList(ResultSet resultSet) throws SQLException {
         List<Course> courseList = new LinkedList<>();
 
         while (resultSet.next()) {
-            Course course = createCourse(resultSet);
+            Course course = createEntity(resultSet);
             courseList.add(course);
         }
         return courseList;
     }
 
-    public Course createCourse(ResultSet resultSet) throws SQLException {
+    @Override
+    public Course createEntity(ResultSet resultSet) throws SQLException {
         Course course = new Course();
 
         course.setCourseId(resultSet.getInt(CourseColumnName.ID));
