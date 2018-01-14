@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class CommandStorage {
     private final static CommandStorage INSTANCE = new CommandStorage();
-    private final Map<CommandName, ICommand> commandStorage = new HashMap<>();
+    private final Map<String, ICommand> commandStorage = new HashMap<>();
 
     public static CommandStorage getInstance() {
         return INSTANCE;
@@ -19,8 +19,7 @@ public class CommandStorage {
     }
 
     public ICommand getCommand(String commandName) {
-        CommandName upperCommandName = CommandName.valueOf(commandName.toUpperCase());
-        ICommand command = commandStorage.get(upperCommandName);
+        ICommand command = commandStorage.get(commandName);
 
         return command;
     }

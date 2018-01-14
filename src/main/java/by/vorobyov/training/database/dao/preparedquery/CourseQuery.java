@@ -8,6 +8,9 @@ public class CourseQuery {
 
     public final static String SELECT_COURSE_BY_ID = "SELECT * FROM course WHERE id = ?";
 
+    public static final String SELECT_COURSE_BY_USER_ID = "SELECT course.id, course.title, course.region, course.status, course.description, course.lead_id FROM course, user_has_course" +
+            " WHERE course.id = user_has_course.course_id AND user_has_course.user_id = ?";
+
     public final static String SELECT_COURSE_BY_STATUS = "SELECT * FROM course WHERE status = ?";
 
     public final static String SELECT_COURSE_BY_LEAD_ID = "SELECT * FROM course WHERE lead_id = ?";

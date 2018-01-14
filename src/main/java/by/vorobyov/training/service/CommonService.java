@@ -59,114 +59,29 @@ public class CommonService {
     }
 
     public List<Course> takeCourseListByUserId(Integer userId) throws ServiceException{
+        CourseDAO courseDAO = new CourseDAO();
 
+        try {
+            return courseDAO.getCourseListByUserId(userId);
+        } catch (DAOException | SQLException e) {
+            throw  new ServiceException(e);
+        }
     }
 
     public List<WorkGroup> takeWorkGroupListByUserId(Integer userId) throws ServiceException{
-        Connection connection = null;
-        Statement statement = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-
-        WorkGroupCreator workGroupCreator = new WorkGroupCreator();
-
-        try {
-            connection = ConnectionPool.getInstance().getConnection();
-            preparedStatement = connection.prepareStatement(UserHasGroupQuery.SELECT_All_GROUP_BY_USER_ID);
-            preparedStatement.setInt(1, userId);
-
-            resultSet = preparedStatement.executeQuery();
-
-            return resultSet != null ? workGroupCreator.createWorkGroupList(resultSet) : null; // resultSet != null ????????
-
-        } catch (SQLException | DAOException e) {
-            e.printStackTrace();       //Залогировать
-        } finally {
-            super.closeStatement(statement);
-            super.closeConnection(connection);
-        }
         return null;
     }
 
     public List<UserTask> takeUserTaskListByUserId(Integer userId) throws ServiceException{
-        Connection connection = null;
-        Statement statement = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-
-        UserTaskCreator userTaskCreator = new UserTaskCreator();
-
-        try {
-            connection = ConnectionPool.getInstance().getConnection();
-            preparedStatement = connection.prepareStatement(UserTaskQuery.SELECT_USER_TASK_BY_ID);
-
-            preparedStatement.setInt(1, userId);
-
-            resultSet = preparedStatement.executeQuery();
-
-            return resultSet != null ? userTaskCreator.createUserTaskList(resultSet) : null; // resultSet != null ????????
-
-        } catch (SQLException | DAOException e) {
-            e.printStackTrace();       //Залогировать
-        } finally {
-            super.closeStatement(statement);
-            super.closeConnection(connection);
-        }
         return null;
     }
 
     public List<User1> takeStudentListByGroupId(Integer workGroupId) throws ServiceException{
-        Connection connection = null;
-        Statement statement = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-
-        UserCreator1 userCreator1 = new UserCreator1();
-
-        try {
-            connection = ConnectionPool.getInstance().getConnection();
-            preparedStatement = connection.prepareStatement(UserDataQuery.SELECT_USER_DATA_BY_WORK_GROUP_ID);
-
-            preparedStatement.setInt(1, workGroupId);
-
-            resultSet = preparedStatement.executeQuery();
-
-            return resultSet != null ? userCreator1.createUsersList(resultSet) : null; // resultSet != null ????????
-
-        } catch (SQLException | DAOException e) {
-            e.printStackTrace();       //Залогировать
-        } finally {
-            super.closeStatement(statement);
-            super.closeConnection(connection);
-        }
         return null;
     }
 
-    public void updateUserData(User1 user1) throws ServiceException{
-        Connection connection = null;
-        Statement statement = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-
-        try {
-            connection = ConnectionPool.getInstance().getConnection();
-            preparedStatement = connection.prepareStatement(UserDataQuery.UPDATE_USER_DATA_BY_USER_ID);
-
-            preparedStatement.setString(1, user1.getUserName());
-            preparedStatement.setString(2, user1.getUserSurname());
-            preparedStatement.setString(3, user1.getUserEmail());
-            preparedStatement.setInt(4, user1.getCreationTime());
-            preparedStatement.setString(5, user1.getDescription());
-            preparedStatement.setInt(6, user1.getUserId());
-
-            preparedStatement.executeQuery();
-
-        } catch (SQLException | DAOException e) {
-            e.printStackTrace();       //Залогировать
-        } finally {
-            super.closeStatement(statement);
-            super.closeConnection(connection);
-        }
+    public boolean updateUserData(User1 user1) throws ServiceException{
+        return false;
     }
 
 }

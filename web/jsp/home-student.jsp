@@ -27,7 +27,7 @@
           <li><a href="#">Training Portal</a></li>
           <li><a href="#">News</a></li>
           <li><a href="#">About</a></li>
-          <li id="header-nav-left"><a href="sing-in.jsp">Login</a></li>
+          <li id="header-nav-left"><a href="../WEB-INF/singIn.jsp">Login</a></li>
           <li id="header-nav-left"><a href="sing-up.jsp">Register</a></li>
         </ul>
       </div>

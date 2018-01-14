@@ -24,13 +24,15 @@ public class Controller extends HttpServlet{
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        CommandStorage commandStorage = CommandStorage.getInstance();
+//        CommandStorage commandStorage = CommandStorage.getInstance();
+//
+//        String commandName = request.getParameter(ControllerParameterName.COMMAND);
+//
+//        ICommand command = commandStorage.getCommand(commandName);
 
-        String commandName = request.getParameter(ControllerParameterName.COMMAND);
+        request.getRequestDispatcher("singIn.jsp").forward(request, response);
 
-        ICommand command = commandStorage.getCommand(commandName);
-
-        command.execute(request, response);
+//        command.execute(request, response);
     }
 
 }

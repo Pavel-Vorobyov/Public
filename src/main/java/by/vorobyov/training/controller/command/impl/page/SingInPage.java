@@ -13,7 +13,7 @@ public class SingInPage implements ICommand {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String pageName = JspPageName.SING_IN_PAGE;
-        request.getRequestDispatcher(pageName).forward(request, response);
+
+        request.getRequestDispatcher("").include(request, response);
     }
 }

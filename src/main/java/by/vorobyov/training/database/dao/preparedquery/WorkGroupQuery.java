@@ -6,9 +6,11 @@ public class WorkGroupQuery {
 
     public final static String SELECT_WORK_GROUP_BY_ID = "SELECT * FROM work_group WHERE id = ?";
 
+    public static final String SELECT_ALL_WORK_GROUPS = "SELECT * FROM work_group";
+
     public final static String SELECT_WORK_GROUP_BY_LEAD_ID = "SELECT * FROM work_group WHERE lead_id = ?";
 
-    public final static String UPDATE_TITLE_BY_ID = "UPDATE work_group SET title = ? WHERE id = ?";
+    public final static String UPDATE_WORK_GROUP_BY_ID = "UPDATE work_group SET title = ?, description = ?, lead_id = ?, course_id = ? WHERE id = ?";
 
     public final static String UPDATE_DESCRIPTION_BY_ID = "UPDATE work_group SET description = ? WHERE id = ?";
 

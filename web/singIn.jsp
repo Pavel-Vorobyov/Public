@@ -1,16 +1,17 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8" http-equiv="content-type" content="text/html">
   <title>Welcome page!</title>
-  <link rel="stylesheet" type="text/css" href="../css/reset.css">
-  <link rel="stylesheet" type="text/css" href="../css/default.css">
-  <link rel="stylesheet" type="text/css" href="../css/sing-up-in.css">
+  <link rel="stylesheet" type="text/css" href="css/reset.css">
+  <link rel="stylesheet" type="text/css" href="css/default.css">
+  <link rel="stylesheet" type="text/css" href="css/sing-up-in.css">
 </head>
 <body>
   <div align="center">
 
-    <%@ include file="util/nav.jsp"%>
+    <%@ include file="jsp/util/nav.jsp"%>
 
     <div class="td-main-content-wrapper">
 
@@ -33,7 +34,7 @@
 
     </div>
 
-    <%@ include file="util/footer.jsp"%>
+    <%@ include file="jsp/util/footer.jsp"%>
 
   </div>
 </body>

@@ -1,6 +1,6 @@
 package by.vorobyov.training.resource;
 
-public enum CommandName {
+public class CommandName {
     //page
-    SING_IN_PAGE
+    public static final String SING_IN_PAGE = "sing-in-page";
 }

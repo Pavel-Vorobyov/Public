@@ -146,4 +146,33 @@ public class CourseDAO extends AbstractDAO<Course> {
             closeConnection(connection);
         }
     }
+
+    public List<Course> getCourseListByUserId(Integer userId) throws DAOException, SQLException {
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet;
+        CourseCreator courseCreator = new CourseCreator();
+
+        connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        connection.setAutoCommit(false);
+
+        try {
+            preparedStatement = connection.prepareStatement(CourseQuery.SELECT_COURSE_BY_USER_ID);
+            preparedStatement.setInt(1, userId);
+
+            resultSet = preparedStatement.executeQuery();
+            connection.commit();
+            if (resultSet != null) {
+                return courseCreator.createEntityList(resultSet);
+            } else {
+                throw new DAOException("ResultSet is null! -> CourseQuery.SELECT_COURSE_BY_USER_ID ");
+            }
+        } catch (SQLException e) {
+            rollback(connection);
+            throw new DAOException(e);
+        } finally {
+            closePreparedStatement(preparedStatement);
+            closeConnection(connection);
+        }
+    }
 }
