@@ -10,14 +10,14 @@ public class UserTask implements Serializable {
     private Integer deadLine;
     private Integer estimate;
     private Integer status;
-    private Integer comment;
-    private Integer workGroup;
+    private Integer commentId;
+    private Integer workGroupId;
 
     public UserTask() {
     }
 
     public UserTask(Integer userTaskId, Integer userId, Integer taskId, Integer creationTime
-        , Integer deadLine, Integer estimate, Integer status, Integer comment, Integer workGroup) {
+        , Integer deadLine, Integer estimate, Integer status, Integer commentId, Integer workGroupId) {
         this.userTaskId = userTaskId;
         this.userId = userId;
         this.taskId = taskId;
@@ -25,8 +25,8 @@ public class UserTask implements Serializable {
         this.deadLine = deadLine;
         this.estimate = estimate;
         this.status = status;
-        this.comment = comment;
-        this.workGroup = workGroup;
+        this.commentId = commentId;
+        this.workGroupId = workGroupId;
     }
 
     public Integer getUserTaskId() {
@@ -57,12 +57,12 @@ public class UserTask implements Serializable {
         return status;
     }
 
-    public Integer getComment() {
-        return comment;
+    public Integer getCommentId() {
+        return commentId;
     }
 
-    public Integer getWorkGroup() {
-        return workGroup;
+    public Integer getWorkGroupId() {
+        return workGroupId;
     }
 
     public void setUserId(Integer userId) {
@@ -89,12 +89,12 @@ public class UserTask implements Serializable {
         this.status = status;
     }
 
-    public void setComment(Integer comment) {
-        this.comment = comment;
+    public void setCommentId(Integer commentId) {
+        this.commentId = commentId;
     }
 
-    public void setWorkGroup(Integer workGroup) {
-        this.workGroup = workGroup;
+    public void setWorkGroupId(Integer workGroupId) {
+        this.workGroupId = workGroupId;
     }
 
     public void setUserTaskId(Integer userTaskId) {
@@ -115,8 +115,8 @@ public class UserTask implements Serializable {
         if (!deadLine.equals(userTask.deadLine)) return false;
         if (estimate != null ? !estimate.equals(userTask.estimate) : userTask.estimate != null) return false;
         if (!status.equals(userTask.status)) return false;
-        if (comment != null ? !comment.equals(userTask.comment) : userTask.comment != null) return false;
-        return workGroup.equals(userTask.workGroup);
+        if (commentId != null ? !commentId.equals(userTask.commentId) : userTask.commentId != null) return false;
+        return workGroupId.equals(userTask.workGroupId);
     }
 
     @Override
@@ -128,8 +128,8 @@ public class UserTask implements Serializable {
         result = 31 * result + deadLine.hashCode();
         result = 31 * result + (estimate != null ? estimate.hashCode() : 0);
         result = 31 * result + status.hashCode();
-        result = 31 * result + (comment != null ? comment.hashCode() : 0);
-        result = 31 * result + workGroup.hashCode();
+        result = 31 * result + (commentId != null ? commentId.hashCode() : 0);
+        result = 31 * result + workGroupId.hashCode();
         return result;
     }
 
@@ -143,8 +143,8 @@ public class UserTask implements Serializable {
                 ", deadLine=" + deadLine +
                 ", estimate=" + estimate +
                 ", status=" + status +
-                ", comment=" + comment +
-                ", workGroup=" + workGroup +
+                ", commentId=" + commentId +
+                ", workGroupId=" + workGroupId +
                 '}';
     }
 }

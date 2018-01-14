@@ -1,31 +1,27 @@
 package by.vorobyov.training.database.dao.impl;
 
-import by.vorobyov.training.database.connectionpool.ConnectionPool;
-import by.vorobyov.training.database.creator.impl.AccountCreator;
-import by.vorobyov.training.database.creator.impl.UserCreator;
+import by.vorobyov.training.creator.impl.UserCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
-import by.vorobyov.training.database.dao.preparedquery.UserDataQuery;
 import by.vorobyov.training.database.dao.preparedquery.UserQuery;
-import by.vorobyov.training.database.exception.DAOException;
-import by.vorobyov.training.entity.Account;
+import by.vorobyov.training.exception.DAOException;
+import by.vorobyov.training.entity.User;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class UserDAO extends AbstractDAO<Account> {
+public class UserDAO extends AbstractDAO<User> {
     public static final Integer START_STATUS_VALUE = 0;
     public static final Integer END_STATUS_VALUE = 1;
 
     @Override
-    public List<Account> getAll() throws DAOException, SQLException {
+    public List<User> getAll() throws DAOException, SQLException {
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet;
-        AccountCreator accountCreator = new AccountCreator();
+        UserCreator userCreator = new UserCreator();
 
         connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         connection.setAutoCommit(false);
@@ -38,7 +34,7 @@ public class UserDAO extends AbstractDAO<Account> {
 
             resultSet = preparedStatement.executeQuery();
             connection.commit();
-            return resultSet != null ? accountCreator.createEntityList(resultSet) : null;
+            return resultSet != null ? userCreator.createEntityList(resultSet) : null;
 
         } catch (SQLException  e) {
             rollback(connection);
@@ -50,7 +46,7 @@ public class UserDAO extends AbstractDAO<Account> {
     }
 
     @Override
-    public boolean update(Account entity) throws DAOException, SQLException {
+    public boolean update(User entity) throws DAOException, SQLException {
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
 
@@ -78,11 +74,11 @@ public class UserDAO extends AbstractDAO<Account> {
     }
 
     @Override
-    public Account getEntityById(Integer entityId) throws DAOException, SQLException {
+    public User getEntityById(Integer entityId) throws DAOException, SQLException {
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet;
-        AccountCreator accountCreator = new AccountCreator();
+        UserCreator userCreator = new UserCreator();
 
         connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         connection.setAutoCommit(false);
@@ -94,7 +90,7 @@ public class UserDAO extends AbstractDAO<Account> {
             resultSet = preparedStatement.executeQuery();
             connection.commit();
             if (resultSet != null) {
-                return accountCreator.createEntity(resultSet);
+                return userCreator.createEntity(resultSet);
             } else {
                 throw new DAOException("ResultSet is null! -> UserQuery.SELECT_USER_BY_ID ");
             }
@@ -108,7 +104,7 @@ public class UserDAO extends AbstractDAO<Account> {
     }
 
     @Override
-    public boolean delete(Account entity) throws DAOException, SQLException {
+    public boolean delete(User entity) throws DAOException, SQLException {
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
 
@@ -134,7 +130,7 @@ public class UserDAO extends AbstractDAO<Account> {
     }
 
     @Override
-    public boolean create(Account entity) throws DAOException, SQLException {
+    public boolean create(User entity) throws DAOException, SQLException {
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
 
@@ -161,15 +157,15 @@ public class UserDAO extends AbstractDAO<Account> {
         }
     }
 
-    public List<Account> getAccountListByStatus(Integer status) throws SQLException, DAOException {
+    public List<User> getAccountListByStatus(Integer status) throws SQLException, DAOException {
         return getAccountListByStatus(status, status);
     }
 
-    public List<Account> getAccountListByStatus(Integer firstStatus, Integer secondStatus) throws SQLException, DAOException {
+    public List<User> getAccountListByStatus(Integer firstStatus, Integer secondStatus) throws SQLException, DAOException {
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet;
-        AccountCreator accountCreator = new AccountCreator();
+        UserCreator userCreator = new UserCreator();
 
         connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         connection.setAutoCommit(false);
@@ -183,9 +179,37 @@ public class UserDAO extends AbstractDAO<Account> {
             connection.commit();
 
             if (resultSet != null) {
-                return accountCreator.createEntityList(resultSet);
+                return userCreator.createEntityList(resultSet);
             } else {
                 throw new DAOException("ResultSet is null! -> UserQuery.SELECT_USER_BY_ID ");
+            }
+        } catch (SQLException e) {
+            rollback(connection);
+            throw new DAOException(e);
+        } finally {
+            closePreparedStatement(preparedStatement);
+            closeConnection(connection);
+        }
+    }
+
+    public User getUserByLogPass(User user) throws SQLException, DAOException {
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet;
+        UserCreator userCreator = new UserCreator();
+
+        connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        connection.setAutoCommit(false);
+
+        try {
+            preparedStatement = connection.prepareStatement(UserQuery.SELECT_PASSWORD_BY_LOGIN);
+            preparedStatement.setString(1, user.getLogin());
+
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet != null) {
+                return userCreator.createEntity(resultSet);
+            } else {
+                throw new DAOException("ResultSet is null! -> UserQuery.SELECT_USER_BY_LOG_PASS ");
             }
         } catch (SQLException e) {
             rollback(connection);

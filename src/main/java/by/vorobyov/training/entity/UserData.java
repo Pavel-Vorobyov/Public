@@ -4,17 +4,19 @@ public class UserData {
     private Integer userId;
     private String name;
     private String surname;
+    private String email;
     private Integer creationTime;
     private String description;
 
     public UserData() {
     }
 
-    public UserData(Integer userId, String name, String surname, Integer creationTime
-        , String description) {
+    public UserData(Integer userId, String name, String surname, String email
+            , Integer creationTime, String description) {
         this.userId = userId;
         this.name = name;
         this.surname = surname;
+        this.email = email;
         this.creationTime = creationTime;
         this.description = description;
     }
@@ -43,6 +45,14 @@ public class UserData {
         this.surname = surname;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Integer getCreationTime() {
         return creationTime;
     }
@@ -69,6 +79,7 @@ public class UserData {
         if (!userId.equals(userData.userId)) return false;
         if (!name.equals(userData.name)) return false;
         if (!surname.equals(userData.surname)) return false;
+        if (!email.equals(userData.email)) return false;
         if (!creationTime.equals(userData.creationTime)) return false;
         return description.equals(userData.description);
     }
@@ -78,6 +89,7 @@ public class UserData {
         int result = userId.hashCode();
         result = 31 * result + name.hashCode();
         result = 31 * result + surname.hashCode();
+        result = 31 * result + email.hashCode();
         result = 31 * result + creationTime.hashCode();
         result = 31 * result + description.hashCode();
         return result;
@@ -89,6 +101,7 @@ public class UserData {
                 "userId=" + userId +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
                 ", creationTime=" + creationTime +
                 ", description='" + description + '\'' +
                 '}';

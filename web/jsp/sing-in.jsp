@@ -16,7 +16,7 @@
 
       <section class="container">
         <div class="login">
-          <h1>Login to your account</h1>
+          <h1>Login to your user</h1>
           <form method="post" action="index.html">
             <p><input type="text" name="login" value="" placeholder="Enter login" pattern="([\w]{3,16})"
                       placeholder="Вевиде от 3 до 16 символов!"></p>

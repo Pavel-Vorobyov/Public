@@ -1,14 +1,14 @@
-package by.vorobyov.training.database.service.impl;
+package by.vorobyov.training.service.impl;
 
 import by.vorobyov.training.database.connectionpool.ConnectionPool;
-import by.vorobyov.training.database.service.CommonService;
+import by.vorobyov.training.entity.User1;
+import by.vorobyov.training.service.CommonService;
 import by.vorobyov.training.database.dao.preparedquery.CommentQuery;
 import by.vorobyov.training.database.dao.preparedquery.TaskQuery;
 import by.vorobyov.training.database.dao.preparedquery.UserTaskQuery;
-import by.vorobyov.training.database.exception.DAOException;
+import by.vorobyov.training.exception.DAOException;
 import by.vorobyov.training.entity.Comment;
 import by.vorobyov.training.entity.Task;
-import by.vorobyov.training.entity.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -36,7 +36,7 @@ public class LecturerService extends CommonService {
         }
     }
 
-    public void setEstimate(User user, Task task, Integer estimate) {
+    public void setEstimate(User1 user1, Task task, Integer estimate) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
@@ -44,7 +44,7 @@ public class LecturerService extends CommonService {
 
             preparedStatement = connection.prepareStatement(UserTaskQuery.UPDATE_ESTIMATE_BY_ID);
             preparedStatement.setInt(1, estimate);
-            preparedStatement.setInt(2, user.getUserId());
+            preparedStatement.setInt(2, user1.getUserId());
             preparedStatement.setInt(3, task.getTaskId());
             preparedStatement.executeUpdate();
 

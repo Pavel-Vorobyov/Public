@@ -22,7 +22,7 @@ public class CourseQuery {
 
     public final static String UPDATE_COURSE = "UPDATE course SET title = ?, region = ?, description = ?, lead_id = ? WHERE course.id = ?";
 
-    public final static String COURSE_INSERT = "INSERT INTO course(title, region, description, lead) VALUES (?, ?, ?, ?)";
+    public final static String COURSE_INSERT = "INSERT INTO course(title, region, description, lead_id) VALUES (?, ?, ?, ?)";
 
     public final static String DELETE_COURSE = "DELETE FROM course WHERE id = ?";
 }

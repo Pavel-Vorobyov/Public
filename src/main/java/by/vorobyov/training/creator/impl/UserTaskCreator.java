@@ -1,11 +1,8 @@
-package by.vorobyov.training.database.creator.impl;
+package by.vorobyov.training.creator.impl;
 
-import by.vorobyov.training.database.creator.ICreator;
+import by.vorobyov.training.creator.ICreator;
 import by.vorobyov.training.database.dao.util.columnname.UserTaskColumnName;
-import by.vorobyov.training.database.dao.util.columnname.WorkGroupColumnName;
-import by.vorobyov.training.entity.User;
 import by.vorobyov.training.entity.UserTask;
-import by.vorobyov.training.entity.WorkGroup;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -38,7 +35,7 @@ public class UserTaskCreator  implements ICreator<UserTask> {
         userTask.setCreationTime(resultSet.getInt(UserTaskColumnName.CREATION_TIME));
         userTask.setDeadLine(resultSet.getInt(UserTaskColumnName.DEADLINE));
         userTask.setStatus(resultSet.getInt(UserTaskColumnName.STATUS));
-        userTask.setWorkGroup(resultSet.getInt(UserTaskColumnName.WORK_GROUP_ID));
+        userTask.setWorkGroupId(resultSet.getInt(UserTaskColumnName.WORK_GROUP_ID));
 
         return userTask;
     }

@@ -1,7 +1,7 @@
 package by.vorobyov.training.database.dao;
 
 import by.vorobyov.training.database.connectionpool.ConnectionPool;
-import by.vorobyov.training.database.exception.DAOException;
+import by.vorobyov.training.exception.DAOException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

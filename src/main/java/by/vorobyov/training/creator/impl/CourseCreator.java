@@ -1,6 +1,6 @@
-package by.vorobyov.training.database.creator.impl;
+package by.vorobyov.training.creator.impl;
 
-import by.vorobyov.training.database.creator.ICreator;
+import by.vorobyov.training.creator.ICreator;
 import by.vorobyov.training.database.dao.util.columnname.CourseColumnName;
 import by.vorobyov.training.entity.Course;
 

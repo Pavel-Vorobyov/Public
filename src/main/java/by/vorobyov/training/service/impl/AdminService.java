@@ -1,14 +1,14 @@
-package by.vorobyov.training.database.service.impl;
+package by.vorobyov.training.service.impl;
 
+import by.vorobyov.training.creator.impl.UserCreator1;
 import by.vorobyov.training.database.connectionpool.ConnectionPool;
-import by.vorobyov.training.database.creator.impl.CourseCreator;
-import by.vorobyov.training.database.creator.impl.UserCreator;
-import by.vorobyov.training.database.creator.impl.WorkGroupCreator;
-import by.vorobyov.training.database.service.CommonService;
+import by.vorobyov.training.creator.impl.CourseCreator;
+import by.vorobyov.training.creator.impl.WorkGroupCreator;
+import by.vorobyov.training.entity.User1;
+import by.vorobyov.training.service.CommonService;
 import by.vorobyov.training.database.dao.preparedquery.*;
-import by.vorobyov.training.database.exception.DAOException;
+import by.vorobyov.training.exception.DAOException;
 import by.vorobyov.training.entity.Course;
-import by.vorobyov.training.entity.User;
 import by.vorobyov.training.entity.WorkGroup;
 
 import java.sql.*;
@@ -16,38 +16,15 @@ import java.util.List;
 
 public class AdminService extends CommonService {
 
-    public List<User> takeUserList() {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet;
-        UserCreator userCreator = new UserCreator();
+    public List<User1> takeUserList() {
 
-        try {
-            connection = ConnectionPool.getInstance().getConnection();
-            preparedStatement = connection.prepareStatement(UserDataQuery.SELECT_ALL_USER_DATA_BY_STATUS_BETWEEN);
-
-            preparedStatement.setInt(1, 0);
-            preparedStatement.setInt(2, 1);
-
-            resultSet = preparedStatement.executeQuery();
-
-            return userCreator.createUsersList(resultSet);
-
-        } catch (SQLException | DAOException e) {
-            e.printStackTrace();       //Залогировать
-        } finally {
-            super.closePreparedStatement(preparedStatement);
-            super.closeConnection(connection);
-
-        }
-        return null;
     }
 
-    public List<User> takeUserListByStatus(Integer status) {
+    public List<User1> takeUserListByStatus(Integer status) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        UserCreator userCreator = new UserCreator();
+        UserCreator1 userCreator1 = new UserCreator1();
 
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -58,7 +35,7 @@ public class AdminService extends CommonService {
 
             resultSet = preparedStatement.executeQuery();
 
-            return userCreator.createUsersList(resultSet);
+            return userCreator1.createUsersList(resultSet);
 
         } catch (DAOException |SQLException e) {
             e.printStackTrace();                //Залогировать
@@ -73,7 +50,7 @@ public class AdminService extends CommonService {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        UserCreator userCreator = new UserCreator();
+        UserCreator1 userCreator1 = new UserCreator1();
 
         try {
             connection = ConnectionPool.getInstance().getConnection();

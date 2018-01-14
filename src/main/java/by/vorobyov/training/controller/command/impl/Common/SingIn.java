@@ -2,9 +2,9 @@ package by.vorobyov.training.controller.command.impl.Common;
 
 import by.vorobyov.training.controller.command.ICommand;
 import by.vorobyov.training.controller.command.URLCommand;
-import by.vorobyov.training.database.service.CommonService;
-import by.vorobyov.training.entity.Account;
 import by.vorobyov.training.entity.User;
+import by.vorobyov.training.service.CommonService;
+import by.vorobyov.training.entity.User1;
 import by.vorobyov.training.resource.AttributeName;
 import by.vorobyov.training.resource.UserStatus;
 import by.vorobyov.training.resource.parametername.AccountParameterName;
@@ -18,25 +18,25 @@ public class SingIn implements ICommand{
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Account account = new Account();
+        User user = new User();
 
-        account.setLogin(request.getParameter(AccountParameterName.LOGIN));
-        account.setPassword(request.getParameter(AccountParameterName.PASSWORD));
+        user.setLogin(request.getParameter(AccountParameterName.LOGIN));
+        user.setPassword(request.getParameter(AccountParameterName.PASSWORD));
 
 
             CommonService commonService = new CommonService();
 
-            User user = commonService.singIn(account);
-            if (user != null) {
-                request.getSession(true).setAttribute(AttributeName.USER, user);
+            User1 user1 = commonService.singIn(user);
+            if (user1 != null) {
+                request.getSession(true).setAttribute(AttributeName.USER, user1);
 
-                if (user.getStatus().equals(UserStatus.STATUS_STUDENT)) {
+                if (user1.getStatus().equals(UserStatus.STATUS_STUDENT)) {
                     response.sendRedirect(URLCommand.HOME_STUDENT);
                 }
-                if (user.getStatus().equals(UserStatus.STATUS_LECTURE)) {
+                if (user1.getStatus().equals(UserStatus.STATUS_LECTURE)) {
 //                    response.sendRedirect();
                 }
-                if (user.getStatus().equals(UserStatus.STATUS_ADMIN)) {
+                if (user1.getStatus().equals(UserStatus.STATUS_ADMIN)) {
 //                    response.sendRedirect();
                 }
             } else {

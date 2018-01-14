@@ -3,82 +3,51 @@ package by.vorobyov.training.entity;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    private Integer userId;
+    private Integer accountId;
+    private String login;
+    private String password;
     private Integer status;
-    private String userName;
-    private String userSurname;
-    private String userEmail;
-    private String description;
-    private Integer creationTime;
 
     public User() {
     }
 
-    public User(Integer userId, Integer status, String userName, String userSurname
-            , String userEmail, Integer creationTime, String description) {
-        this.userId = userId;
+
+    public User(String login, String password, Integer status) {
+        this.login = login;
+        this.password = password;
         this.status = status;
-        this.userName = userName;
-        this.userSurname = userSurname;
-        this.userEmail = userEmail;
-        this.description = description;
-        this.creationTime = creationTime;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getAccountId() {
+        return accountId;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public Integer getStatus() {
         return status;
     }
 
-    public String getUserName() {
-        return userName;
+    public void setAccountId(Integer accountId) {
+        this.accountId = accountId;
     }
 
-    public String getUserSurname() {
-        return userSurname;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public Integer getCreationTime() {
-        return creationTime;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public void setUserSurname(String userSurname) {
-        this.userSurname = userSurname;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setCreationTime(Integer creationTime) {
-        this.creationTime = creationTime;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
     }
 
     @Override
@@ -88,37 +57,28 @@ public class User implements Serializable {
 
         User user = (User) o;
 
-        if (!userId.equals(user.userId)) return false;
-        if (!status.equals(user.status)) return false;
-        if (!userName.equals(user.userName)) return false;
-        if (!userSurname.equals(user.userSurname)) return false;
-        if (!userEmail.equals(user.userEmail)) return false;
-        if (!description.equals(user.description)) return false;
-        return creationTime.equals(user.creationTime);
+        if (!accountId.equals(user.accountId)) return false;
+        if (!login.equals(user.login)) return false;
+        if (!password.equals(user.password)) return false;
+        return status.equals(user.status);
     }
 
     @Override
     public int hashCode() {
-        int result = userId.hashCode();
+        int result = accountId.hashCode();
+        result = 31 * result + login.hashCode();
+        result = 31 * result + password.hashCode();
         result = 31 * result + status.hashCode();
-        result = 31 * result + userName.hashCode();
-        result = 31 * result + userSurname.hashCode();
-        result = 31 * result + userEmail.hashCode();
-        result = 31 * result + description.hashCode();
-        result = 31 * result + creationTime.hashCode();
         return result;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "userId=" + userId +
+                "accountId=" + accountId +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
                 ", status=" + status +
-                ", userName='" + userName + '\'' +
-                ", userSurname='" + userSurname + '\'' +
-                ", userEmail='" + userEmail + '\'' +
-                ", description='" + description + '\'' +
-                ", creationTime=" + creationTime +
                 '}';
     }
 }

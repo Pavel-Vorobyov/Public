@@ -1,9 +1,9 @@
 package by.vorobyov.training.database.dao.impl;
 
-import by.vorobyov.training.database.creator.impl.CourseCreator;
+import by.vorobyov.training.creator.impl.CourseCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
 import by.vorobyov.training.database.dao.preparedquery.CourseQuery;
-import by.vorobyov.training.database.exception.DAOException;
+import by.vorobyov.training.exception.DAOException;
 import by.vorobyov.training.entity.Course;
 
 import java.sql.*;
@@ -26,7 +26,7 @@ public class CourseDAO extends AbstractDAO<Course> {
             resultSet = statement.executeQuery(CourseQuery.SELECT_ALL_COURSES);
 
             connection.commit();
-            return resultSet != null ? courseCreator.createCourseList(resultSet) : null; // resultSet != null ????????
+            return resultSet != null ? courseCreator.createEntityList(resultSet) : null; // resultSet != null ????????
 
         } catch (SQLException e) {
             rollback(connection);
@@ -81,7 +81,7 @@ public class CourseDAO extends AbstractDAO<Course> {
 
             resultSet = preparedStatement.executeQuery();
             connection.commit();
-            return resultSet != null ? courseCreator.createCourse(resultSet) : null; // resultSet != null ????????
+            return resultSet != null ? courseCreator.createEntity(resultSet) : null; // resultSet != null ????????
 
         } catch (SQLException e) {
             rollback(connection);

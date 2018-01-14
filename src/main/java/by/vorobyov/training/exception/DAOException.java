@@ -1,4 +1,4 @@
-package by.vorobyov.training.database.exception;
+package by.vorobyov.training.exception;
 
 public class DAOException extends Exception {
     public DAOException(String message) {

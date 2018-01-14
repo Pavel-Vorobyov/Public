@@ -1,6 +1,6 @@
 package by.vorobyov.training.database.connectionpool;
 
-import by.vorobyov.training.database.exception.DAOException;
+import by.vorobyov.training.exception.DAOException;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

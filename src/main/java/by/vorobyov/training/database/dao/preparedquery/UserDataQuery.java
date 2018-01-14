@@ -4,13 +4,13 @@ public class UserDataQuery {
     private UserDataQuery() {
     }
 
-    public final static String ALL_USER_DATA_SELECT = "SELECT * FROM user";
+    public final static String SELECT_USER_DATA_BY_ID = "SELECT * FROM user_data WHERE user_id = ?";
 
     public final static String SELECT_ALL_USER_DATA_BY_STATUS_BETWEEN = "SELECT id, status, name, surname, creationtime, description" +
             " FROM user_data, user" +
             " WHERE user.id = user_data.user_id and user.status BETWEEN ? AND ?";
 
-    public final static String SELECT_USER_DATA_BY_USER_ID = "SELECT user.id, user.status, user_data.name, user_data.surname, user_data.email, user_data.creationtime, user_data.description" +
+    public final static String SELECT_ALL_USER_DATA_BY_USER_ID = "SELECT user.id, user.status, user_data.name, user_data.surname, user_data.email, user_data.creationtime, user_data.description" +
             " FROM user, user_data WHERE user_data.user_id = user.id AND user.id = ?";
 
     public final static String SELECT_USER_DATA_BY_WORK_GROUP_ID = "SELECT user.id, user.status, user_data.name, user_data.surname, user_data.email, user_data.creationtime, user_data.description" +
@@ -34,7 +34,7 @@ public class UserDataQuery {
 
     public final static String DESCRIPTION_UPDATE = "UPDATE user_data SET description = ? WHERE id = ?";
 
-    public final static String USER_DATA_INSERT = "INSERT INTO user_data (user_id, name, surname, creationtime, description) VALUES (?, ?, ?, ?, ?)";
+    public final static String INSERT_USER_DATA = "INSERT INTO user_data (user_id, name, surname, creationtime, description) VALUES (?, ?, ?, ?, ?)";
 
-    public final static String DELETE_USER_DATA = "DELETE FROM user_data WHERE id = ?";
+    public final static String DELETE_USER_DATA_BY_ID = "DELETE FROM user_data WHERE id = ?";
 }

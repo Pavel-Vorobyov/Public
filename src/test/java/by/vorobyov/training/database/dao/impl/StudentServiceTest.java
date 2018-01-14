@@ -1,6 +1,6 @@
 package by.vorobyov.training.database.dao.impl;
 
-import by.vorobyov.training.database.service.CommonService;
+import by.vorobyov.training.service.CommonService;
 import by.vorobyov.training.entity.Course;
 import org.junit.After;
 import org.junit.Before;

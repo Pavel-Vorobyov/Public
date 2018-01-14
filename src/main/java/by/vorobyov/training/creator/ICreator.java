@@ -1,4 +1,4 @@
-package by.vorobyov.training.database.creator;
+package by.vorobyov.training.creator;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

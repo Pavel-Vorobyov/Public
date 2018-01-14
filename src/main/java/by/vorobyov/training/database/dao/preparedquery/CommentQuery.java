@@ -10,7 +10,7 @@ public class CommentQuery {
 
     public final static String UPDATE_TEXT = "UPDATE comment SET text = ? WHERE id = ?";
 
-    public final static String INSERT_COMMENT = "INSERT INTO comment(status, creationtime, text, author) VALUES (?, ?, ?, ?)";
+    public final static String INSERT_COMMENT = "INSERT INTO comment(status, creationtime, text, author_id) VALUES (?, ?, ?, ?)";
 
     public final static String DELETE_COMMENT_BY_ID = "DELETE FROM comment WHERE id = ?";
 }

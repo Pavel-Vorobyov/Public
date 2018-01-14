@@ -1,10 +1,7 @@
-package by.vorobyov.training.database.creator.impl;
+package by.vorobyov.training.creator.impl;
 
-import by.vorobyov.training.database.creator.ICreator;
-import by.vorobyov.training.database.dao.util.columnname.UserColumnName;
-import by.vorobyov.training.database.dao.util.columnname.UserDataColumnName;
+import by.vorobyov.training.creator.ICreator;
 import by.vorobyov.training.database.dao.util.columnname.WorkGroupColumnName;
-import by.vorobyov.training.entity.User;
 import by.vorobyov.training.entity.WorkGroup;
 
 import java.sql.ResultSet;

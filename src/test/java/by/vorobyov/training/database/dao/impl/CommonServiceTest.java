@@ -18,7 +18,7 @@ public class CommonServiceTest {
     public void testAddAccount() throws Exception {
 //        ConnectionPool.getInstance().init();
 //        CommonService commonDAO = new CommonService();
-//        commonDAO.addAccount(new Account("bob3", "bob3", 0));
+//        commonDAO.addAccount(new User("bob3", "bob3", 0));
 //        System.out.println(commonDAO.getAccount(24));
     }
 

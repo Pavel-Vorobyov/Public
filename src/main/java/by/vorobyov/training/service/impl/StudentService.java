@@ -1,12 +1,12 @@
-package by.vorobyov.training.database.service.impl;
+package by.vorobyov.training.service.impl;
 
 import by.vorobyov.training.database.connectionpool.ConnectionPool;
-import by.vorobyov.training.database.service.CommonService;
+import by.vorobyov.training.entity.User1;
+import by.vorobyov.training.service.CommonService;
 import by.vorobyov.training.database.dao.preparedquery.UserHasCourseQuery;
 import by.vorobyov.training.database.dao.preparedquery.UserTaskQuery;
-import by.vorobyov.training.database.exception.DAOException;
+import by.vorobyov.training.exception.DAOException;
 import by.vorobyov.training.entity.Task;
-import by.vorobyov.training.entity.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,11 +15,11 @@ import java.sql.SQLException;
 public class StudentService extends CommonService {
     public static final Integer TASK_STATUS_COMPLETE = 1;
 
-//    public User singIn(Account account) {
+//    public User1 singIn(User account) {
 //        Connection connection = null;
 //        PreparedStatement preparedStatement = null;
 //        ResultSet resultSet = null;
-//        UserCreator userCreator = new UserCreator();
+//        UserCreator1 userCreator = new UserCreator1();
 //
 //        try {
 //
@@ -31,7 +31,7 @@ public class StudentService extends CommonService {
 //            resultSet = preparedStatement.executeQuery();
 //
 //            if (resultSet != null && account.getPassword() == resultSet.getString(UserColumnName.PASSWORD)) {
-//                preparedStatement = connection.prepareStatement(UserDataQuery.SELECT_USER_DATA_BY_USER_ID);
+//                preparedStatement = connection.prepareStatement(UserDataQuery.SELECT_ALL_USER_DATA_BY_USER_ID);
 //                preparedStatement.setInt(1, account.getAccountId());
 //
 //                resultSet = preparedStatement.executeQuery();
@@ -48,7 +48,7 @@ public class StudentService extends CommonService {
 //        return null;
 //    }
 
-//    public void register(Account account) {
+//    public void register(User account) {
 //        super.addAccount(account);
 //    }
 //
@@ -108,7 +108,7 @@ public class StudentService extends CommonService {
         }
     }
 
-    public void performTask(User user, Task task) {
+    public void performTask(User1 user1, Task task) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -117,7 +117,7 @@ public class StudentService extends CommonService {
 
             preparedStatement = connection.prepareStatement(UserTaskQuery.UPDATE_STATUS_BY_ID);
             preparedStatement.setInt(1, TASK_STATUS_COMPLETE);
-            preparedStatement.setInt(2, user.getUserId());
+            preparedStatement.setInt(2, user1.getUserId());
             preparedStatement.setInt(3, task.getTaskId());
             preparedStatement.executeUpdate();
 
