@@ -10,13 +10,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 public class CommentDAO extends AbstractDAO<Comment> {
 
     @Override
     public List<Comment> getAll() throws DAOException, SQLException {
-        return null;
+        return Collections.emptyList();
     }
 
     @Override

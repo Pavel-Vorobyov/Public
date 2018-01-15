@@ -10,6 +10,7 @@ import java.sql.*;
 import java.util.List;
 
 public class CourseDAO extends AbstractDAO<Course> {
+    public static final String SELECT_COURSE_BY_STATUS = "SELECT * FROM course WHERE status = ?";
 
     @Override
     public List<Course> getAll() throws DAOException, SQLException {
@@ -167,6 +168,31 @@ public class CourseDAO extends AbstractDAO<Course> {
             } else {
                 throw new DAOException("ResultSet is null! -> CourseQuery.SELECT_COURSE_BY_USER_ID ");
             }
+        } catch (SQLException e) {
+            rollback(connection);
+            throw new DAOException(e);
+        } finally {
+            closePreparedStatement(preparedStatement);
+            closeConnection(connection);
+        }
+    }
+
+    public List<Course> getCourseListByStatus(Integer status) throws SQLException, DAOException {
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet;
+        CourseCreator courseCreator = new CourseCreator();
+
+        connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        connection.setAutoCommit(false);
+
+        try {
+            preparedStatement = connection.prepareStatement(SELECT_COURSE_BY_STATUS);
+            preparedStatement.setInt(1, status);
+
+            resultSet = preparedStatement.executeQuery();
+            connection.commit();
+            return courseCreator.createEntityList(resultSet);
         } catch (SQLException e) {
             rollback(connection);
             throw new DAOException(e);

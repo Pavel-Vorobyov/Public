@@ -5,10 +5,15 @@ import by.vorobyov.training.controller.command.ICommand;
 import by.vorobyov.training.resource.parametername.ControllerParameterName;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
+@WebServlet(
+        urlPatterns = "/command"
+)
 
 public class Controller extends HttpServlet{
 
@@ -24,15 +29,13 @@ public class Controller extends HttpServlet{
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-//        CommandStorage commandStorage = CommandStorage.getInstance();
-//
-//        String commandName = request.getParameter(ControllerParameterName.COMMAND);
-//
-//        ICommand command = commandStorage.getCommand(commandName);
+        CommandStorage commandStorage = CommandStorage.getInstance();
 
-        request.getRequestDispatcher("singIn.jsp").forward(request, response);
+        String commandName = request.getParameter(ControllerParameterName.COMMAND);
+//
+        ICommand command = commandStorage.getCommand(commandName);
 
-//        command.execute(request, response);
+        command.execute(request, response);
     }
 
 }

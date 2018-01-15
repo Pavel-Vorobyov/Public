@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="/WEB-INF/tag/CourseCard.tld" prefix="crCard"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,29 +20,31 @@
 <body>
   <div align="center">
 
-    <div class="td-header-nav-wrap" align="center">
-      <div class="td-header-nav">
-        <input type="checkbox" name="Menu" id="btn-nav" />
-        <label for="btn-nav">Menu</label>
-        <ul align="right">
-          <li><a href="../index.jsp">Home</a></li>
-          <li><a href="#">Training Portal</a></li>
-          <li><a href="#">News</a></li>
-          <li><a href="#">About</a></li>
-          <li id="header-nav-left"><a href="../WEB-INF/singIn.jsp">Login</a></li>
-          <li id="header-nav-left"><a href="sing-up.jsp">Register</a></li>
-        </ul>
-      </div>
-    </div>
+    <jsp:include page="util/nav.jsp"/>
+
 
     <div class="td-main-content-wrapper">
       <div class="td-main-content-conteiner">
         <div class="filters">
-            <h1>Trainint list</h1>
+            <h1>Training list</h1>
             <div class="horizontal-group">
-              <a class="uui-button" href="#">All</a>
-              <a class="uui-button" href="#">Planed</a>
-              <a class="uui-button" href="#">Started</a>
+              <c:choose>
+                <c:when test="${sessionScope.courseStatus == 2}">
+                  <a class="uui-button" href="#">All</a>
+                  <a class="uui-button" href="command?command=training-portal-page&courseStatus=0">Planing</a>
+                  <a class="uui-button" href="command?command=training-portal-page&courseStatus=1">Started</a>
+                </c:when>
+                <c:when test="${sessionScope.courseStatus == 1}">
+                  <a class="uui-button" href="command?command=training-portal-page&courseStatus=2">All</a>
+                  <a class="uui-button" href="command?command=training-portal-page&courseStatus=0">Planing</a>
+                  <a class="uui-button" href="#">Started</a>
+                </c:when>
+                <c:when test="${sessionScope.courseStatus == 0}">
+                  <a class="uui-button" href="command?command=training-portal-page&courseStatus=2">All</a>
+                  <a class="uui-button" href="#">Planing</a>
+                  <a class="uui-button" href="command?command=training-portal-page&courseStatus=1">Started</a>
+                </c:when>
+              </c:choose>
              </div>
             <div class="form-filter">
               <form name="form-filter" action="#">
@@ -66,154 +70,26 @@
           <div class="course-list-wrapper">
             <div class="course-list-conteiner">
 
-            <div class="column">
-              <div class="card">
-                <div class="title">
-                  <div class="logo">
-                    <img src="../img/logo.png" width="170px" alt="Course logo">
-                  </div>
-                  <a href="#">Card Title</a>
-                </div>
-                <div class="location">
-                  <span>Lolli Lolli, Lolli Bomb</span>
-                </div>
-                <div class="training-registration">
-                  <div class="status">
-                    <span>Training is plaining</span>
-                  </div>
-                  <a class="course-registration" href="#">Apply</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="column">
-              <div class="card">
-                <div class="title">
-                  <div class="logo">
-                    <img src="../img/logo.png" width="170px" alt="Course logo">
-                  </div>
-                  <a href="#">Card Title</a>
-                </div>
-                <div class="location">
-                  <span>Lolli Lolli, Lolli Bomb</span>
-                </div>
-                <div class="training-registration">
-                  <div class="status">
-                    <span>Training is plaining</span>
-                  </div>
-                  <a class="course-registration" href="#">Apply</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="column">
-              <div class="card">
-                <div class="title">
-                  <div class="logo">
-                    <img src="../img/logo.png" width="170px" alt="Course logo">
-                  </div>
-                  <a href="#">Card Title</a>
-                </div>
-                <div class="location">
-                  <span>Lolli Lolli, Lolli Bomb</span>
-                </div>
-                <div class="training-registration">
-                  <div class="status">
-                    <span>Training is plaining</span>
-                  </div>
-                  <a class="course-registration" href="#">Apply</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="column">
-              <div class="card">
-                <div class="title">
-                  <div class="logo">
-                    <img src="../img/logo.png" width="170px" alt="Course logo">
-                  </div>
-                  <a href="#">Card Title</a>
-                </div>
-                <div class="location">
-                  <span>Lolli Lolli, Lolli Bomb</span>
-                </div>
-                <div class="training-registration">
-                  <div class="status">
-                    <span>Training is plaining</span>
-                  </div>
-                  <a class="course-registration" href="#">Apply</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="column">
-              <div class="card">
-                <div class="title">
-                  <div class="logo">
-                    <img src="../img/logo.png" width="170px" alt="Course logo">
-                  </div>
-                  <a href="#">Card Title</a>
-                </div>
-                <div class="location">
-                  <span>Lolli Lolli, Lolli Bomb</span>
-                </div>
-                <div class="training-registration">
-                  <div class="status">
-                    <span>Training is plaining</span>
-                  </div>
-                  <a class="course-registration" href="#">Apply</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="column">
-              <div class="card">
-                <div class="title">
-                  <div class="logo">
-                    <img src="../img/logo.png" width="170px" alt="Course logo">
-                  </div>
-                  <a href="#">Card Title</a>
-                </div>
-                <div class="location">
-                  <span>Lolli Lolli, Lolli Bomb</span>
-                </div>
-                <div class="training-registration">
-                  <div class="status">
-                    <span>Training is plaining</span>
-                  </div>
-                  <a class="course-registration" href="#">Apply</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="column">
-              <div class="card">
-                <div class="title">
-                  <div class="logo">
-                    <img src="../img/logo.png" width="170px" alt="Course logo">
-                  </div>
-                  <a href="#">Card Title</a>
-                </div>
-                <div class="location">
-                  <span>Lolli Lolli, Lolli Bomb</span>
-                </div>
-                <div class="training-registration">
-                  <div class="status">
-                    <span>Training is plaining</span>
-                  </div>
-                  <a class="course-registration" href="#">Apply</a>
-                </div>
-              </div>
-            </div>
+              <c:forEach var="course" items="${sessionScope.courseList}">
+                <c:choose>
+                  <c:when test="${course.status == 0}">
+                    <crCard:courseCard cardTitle="${course.title}" location="${course.region}"
+                                       status="Avalible fo apply" buttonName="Apply"/>
+                  </c:when>
+                  <c:otherwise>
+                    <crCard:courseCard cardTitle="${course.title}" location="${course.region}"
+                                       status="Started" buttonName="Apply"/>
+                  </c:otherwise>
+                </c:choose>
+            </c:forEach>
 
           </div>
         </div>
       </div>
     </div>
 
-    <div class="td-footer">
+    <jsp:include page="util/footer.jsp"/>
 
-    </div>
 
   </div>
 </body>

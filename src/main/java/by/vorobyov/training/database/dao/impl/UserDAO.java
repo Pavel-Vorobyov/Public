@@ -204,12 +204,14 @@ public class UserDAO extends AbstractDAO<User> {
         try {
             preparedStatement = connection.prepareStatement(UserQuery.SELECT_PASSWORD_BY_LOGIN);
             preparedStatement.setString(1, user.getLogin());
+            preparedStatement.setString(2, user.getPassword());
 
             resultSet = preparedStatement.executeQuery();
-            if (resultSet != null) {
+            if (resultSet.next()) {
                 return userCreator.createEntity(resultSet);
             } else {
-                throw new DAOException("ResultSet is null! -> UserQuery.SELECT_USER_BY_LOG_PASS ");
+//                throw new DAOException("ResultSet is null! -> UserQuery.SELECT_USER_BY_LOG_PASS ");
+                return User.emptyUser();
             }
         } catch (SQLException e) {
             rollback(connection);

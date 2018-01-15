@@ -23,6 +23,11 @@ public class CommonService {
         try {
             User checkedUser = userDAO.getUserByLogPass(user);
             return checkedUser;
+//            if (checkedUser.isUserExist()) {
+//                return checkedUser;
+//            } else {
+//                return User.emptyUser();
+//            }
         } catch (SQLException | DAOException e) {
             throw new ServiceException(e);
         }
@@ -55,6 +60,16 @@ public class CommonService {
             return courseDAO.getAll();
         } catch (DAOException | SQLException e) {
             throw  new ServiceException(e);
+        }
+    }
+
+    public List<Course> takeCourseListByStatus(Integer status) throws ServiceException {
+        CourseDAO courseDAO = new CourseDAO();
+
+        try {
+            return courseDAO.getCourseListByStatus(status);
+        } catch (SQLException | DAOException e) {
+            throw new ServiceException(e);
         }
     }
 

@@ -26,15 +26,16 @@ type - тип, к чему относятся (frontend, backend)
 description - описание курса
 lead - преподаватель, который ведёт курс</Comment>
     </table>
-    <table id="8" parent="2" name="task">
+    <table id="8" parent="2" name="course_has_work_group"/>
+    <table id="9" parent="2" name="task">
       <Comment>Таблица хранящая задания.
 title - название задания
 description - описание задания.</Comment>
     </table>
-    <table id="9" parent="2" name="user">
-      <Comment>Таблица хранит уникальный айди пользователя, логин, пароль и статус (студент, преподаватель или модератор, 0, 1 или 2)</Comment>
+    <table id="10" parent="2" name="user">
+      <Comment>Таблица хранит уникальный айди пользователя, логин, пароль и статус (студент, преподаватель или модератор, 0, 1 или 2)																																																</Comment>
     </table>
-    <table id="10" parent="2" name="user_data">
+    <table id="11" parent="2" name="user_data">
       <Comment>Таблица, содержащая расширенные данные о пользователе.
 name - имя пользователя
 surname - фамилия
@@ -43,13 +44,14 @@ description - описание пользователя
 Связь с user :
 	user_id - указывает, кому пренадлежит информация.</Comment>
     </table>
-    <table id="11" parent="2" name="user_has_course">
+    <table id="12" parent="2" name="user_has_course">
       <Comment>Отношение многие ко многим. 1 студент может быть записан на несколько курсов, так же как и много студентов могут быть записаны на 1 кур.</Comment>
     </table>
-    <table id="12" parent="2" name="user_has_group">
+    <table id="13" parent="2" name="user_has_group">
       <Comment>Отношение сногик ко многим. В одной группе может быть несколько студентов, так же как и один студент может пренадлежать нескольким группам.</Comment>
     </table>
-    <table id="13" parent="2" name="user_task">
+    <table id="14" parent="2" name="user_has_work_group"/>
+    <table id="15" parent="2" name="user_task">
       <Comment>Таблица, содержащая конкретные данные по заданию для каждого студента.
 createtime - время выдачи задания.
 deadline - крайний срок сдачи задания.
@@ -63,423 +65,479 @@ comment - комментарий преподавателя к выполнен�
 Связь с group :
 	group_id - к какой группе относится</Comment>
     </table>
-    <table id="14" parent="2" name="work_group">
+    <table id="16" parent="2" name="work_group">
       <Comment>Таблица, содержащая группы студентов.
 title - название группы
 description - описание группы
 Связь с user :
 	lead - куратор группы </Comment>
     </table>
-    <column id="15" parent="6" name="id">
+    <column id="17" parent="6" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="16" parent="6" name="status">
+    <column id="18" parent="6" name="status">
       <Position>2</Position>
       <DataType>int(1)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="17" parent="6" name="creationtime">
+    <column id="19" parent="6" name="creationtime">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="18" parent="6" name="text">
+    <column id="20" parent="6" name="text">
       <Position>4</Position>
       <DataType>longtext|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="19" parent="6" name="author_id">
+    <column id="21" parent="6" name="author_id">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="20" parent="6" name="author_id_idx">
+    <index id="22" parent="6" name="author_id_idx">
       <ColNames>author_id</ColNames>
     </index>
-    <key id="21" parent="6" name="PRIMARY">
+    <key id="23" parent="6" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="22" parent="6" name="author_id">
+    <foreign-key id="24" parent="6" name="author_id">
       <ColNames>author_id</ColNames>
       <RefSchemaName>TrainingDB</RefSchemaName>
       <RefTableName>user</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="23" parent="7" name="id">
+    <column id="25" parent="7" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="24" parent="7" name="title">
+    <column id="26" parent="7" name="title">
       <Position>2</Position>
       <DataType>varchar(60)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="25" parent="7" name="region">
+    <column id="27" parent="7" name="region">
       <Position>3</Position>
       <DataType>varchar(60)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="26" parent="7" name="description">
+    <column id="28" parent="7" name="description">
       <Position>4</Position>
       <DataType>mediumtext|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="27" parent="7" name="lead_id">
+    <column id="29" parent="7" name="lead_id">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="28" parent="7" name="status">
+    <column id="30" parent="7" name="status">
       <Position>6</Position>
       <DataType>int(11)|0</DataType>
-      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <index id="29" parent="7" name="fk_course_user1_idx">
+    <index id="31" parent="7" name="fk_course_user1_idx">
       <ColNames>lead_id</ColNames>
     </index>
-    <key id="30" parent="7" name="PRIMARY">
+    <key id="32" parent="7" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="31" parent="7" name="fk_course_user1">
+    <foreign-key id="33" parent="7" name="fk_course_user1">
       <ColNames>lead_id</ColNames>
       <RefSchemaName>TrainingDB</RefSchemaName>
       <RefTableName>user</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="32" parent="8" name="id">
+    <column id="34" parent="8" name="course_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="35" parent="8" name="work_group_id">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="36" parent="8" name="fk_course_has_work_group_course1_idx">
+      <ColNames>course_id</ColNames>
+    </index>
+    <index id="37" parent="8" name="fk_course_has_work_group_work_group1_idx">
+      <ColNames>work_group_id</ColNames>
+    </index>
+    <key id="38" parent="8" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>course_id
+work_group_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="39" parent="8" name="fk_course_has_work_group_course1">
+      <ColNames>course_id</ColNames>
+      <RefSchemaName>TrainingDB</RefSchemaName>
+      <RefTableName>course</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="40" parent="8" name="fk_course_has_work_group_work_group1">
+      <ColNames>work_group_id</ColNames>
+      <RefSchemaName>TrainingDB</RefSchemaName>
+      <RefTableName>work_group</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="41" parent="9" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="33" parent="8" name="title">
+    <column id="42" parent="9" name="title">
       <Position>2</Position>
       <DataType>varchar(60)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="34" parent="8" name="description">
+    <column id="43" parent="9" name="description">
       <Position>3</Position>
       <DataType>longtext|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="35" parent="8" name="author_id">
+    <column id="44" parent="9" name="author_id">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="36" parent="8" name="author_id_idx">
+    <index id="45" parent="9" name="author_id_idx">
       <ColNames>author_id</ColNames>
     </index>
-    <key id="37" parent="8" name="PRIMARY">
+    <key id="46" parent="9" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="38" parent="8" name="author_id_task">
+    <foreign-key id="47" parent="9" name="author_id_task">
       <ColNames>author_id</ColNames>
+      <RefSchemaName>TrainingDB</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="48" parent="10" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="49" parent="10" name="login">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="50" parent="10" name="password">
+      <Position>3</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="51" parent="10" name="status">
+      <Position>4</Position>
+      <DataType>tinyint(1)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <index id="52" parent="10" name="id_UNIQUE">
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="53" parent="10" name="login_UNIQUE">
+      <ColNames>login</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="54" parent="10" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="55" parent="10" name="id_UNIQUE">
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>id_UNIQUE</UnderlyingIndexName>
+    </key>
+    <key id="56" parent="10" name="login_UNIQUE">
+      <ColNames>login</ColNames>
+      <UnderlyingIndexName>login_UNIQUE</UnderlyingIndexName>
+    </key>
+    <column id="57" parent="11" name="user_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="58" parent="11" name="name">
+      <Position>2</Position>
+      <DataType>varchar(60)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="59" parent="11" name="surname">
+      <Position>3</Position>
+      <DataType>varchar(60)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="60" parent="11" name="createtime">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="61" parent="11" name="description">
+      <Position>5</Position>
+      <DataType>mediumtext|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="62" parent="11" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>user_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="63" parent="11" name="fk_user_data_user1">
+      <ColNames>user_id</ColNames>
+      <RefSchemaName>TrainingDB</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="64" parent="12" name="user_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="65" parent="12" name="course_id">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="66" parent="12" name="fk_user_has_course_course1_idx">
+      <ColNames>course_id</ColNames>
+    </index>
+    <index id="67" parent="12" name="fk_user_has_course_user1_idx">
+      <ColNames>user_id</ColNames>
+    </index>
+    <key id="68" parent="12" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>user_id
+course_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="69" parent="12" name="fk_user_has_course_user1">
+      <ColNames>user_id</ColNames>
+      <RefSchemaName>TrainingDB</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="70" parent="12" name="fk_user_has_course_course1">
+      <ColNames>course_id</ColNames>
+      <RefSchemaName>TrainingDB</RefSchemaName>
+      <RefTableName>course</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="71" parent="13" name="user_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="72" parent="13" name="group_id">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="73" parent="13" name="fk_user_has_group_group1_idx">
+      <ColNames>group_id</ColNames>
+    </index>
+    <index id="74" parent="13" name="fk_user_has_group_user1_idx">
+      <ColNames>user_id</ColNames>
+    </index>
+    <key id="75" parent="13" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>user_id
+group_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="76" parent="13" name="fk_user_has_group_user1">
+      <ColNames>user_id</ColNames>
+      <RefSchemaName>TrainingDB</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="77" parent="13" name="fk_user_has_group_group1">
+      <ColNames>group_id</ColNames>
+      <RefSchemaName>TrainingDB</RefSchemaName>
+      <RefTableName>work_group</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="78" parent="14" name="user_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="79" parent="14" name="work_group_id">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="80" parent="14" name="fk_user_has_work_group_user1_idx">
+      <ColNames>user_id</ColNames>
+    </index>
+    <index id="81" parent="14" name="fk_user_has_work_group_work_group1_idx">
+      <ColNames>work_group_id</ColNames>
+    </index>
+    <key id="82" parent="14" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>user_id
+work_group_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="83" parent="14" name="fk_user_has_work_group_user1">
+      <ColNames>user_id</ColNames>
+      <RefSchemaName>TrainingDB</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="84" parent="14" name="fk_user_has_work_group_work_group1">
+      <ColNames>work_group_id</ColNames>
+      <RefSchemaName>TrainingDB</RefSchemaName>
+      <RefTableName>work_group</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="85" parent="15" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="86" parent="15" name="user_id">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="87" parent="15" name="creationtime">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="88" parent="15" name="deadline">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="89" parent="15" name="estimate">
+      <Position>5</Position>
+      <DataType>int(2)|0</DataType>
+    </column>
+    <column id="90" parent="15" name="status">
+      <Position>6</Position>
+      <DataType>tinyint(1)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="91" parent="15" name="work_group_id">
+      <Position>7</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="92" parent="15" name="task_id">
+      <Position>8</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="93" parent="15" name="comment_id">
+      <Position>9</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="94" parent="15" name="fk_user_task_task1_idx">
+      <ColNames>task_id</ColNames>
+    </index>
+    <index id="95" parent="15" name="fk_user_task_group1_idx">
+      <ColNames>work_group_id</ColNames>
+    </index>
+    <index id="96" parent="15" name="fk_user_task_comment1_idx">
+      <ColNames>comment_id</ColNames>
+    </index>
+    <index id="97" parent="15" name="fk_user_task_user1_idx">
+      <ColNames>user_id</ColNames>
+    </index>
+    <key id="98" parent="15" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="99" parent="15" name="fk_user_task_user1">
+      <ColNames>user_id</ColNames>
       <RefSchemaName>TrainingDB</RefSchemaName>
       <RefTableName>user</RefTableName>
       <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="39" parent="9" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-    </column>
-    <column id="40" parent="9" name="login">
-      <Position>2</Position>
-      <DataType>varchar(45)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="41" parent="9" name="password">
-      <Position>3</Position>
-      <DataType>varchar(45)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="42" parent="9" name="status">
-      <Position>4</Position>
-      <DataType>tinyint(1)|0</DataType>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-    </column>
-    <index id="43" parent="9" name="id_UNIQUE">
-      <ColNames>id</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <index id="44" parent="9" name="login_UNIQUE">
-      <ColNames>login</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="45" parent="9" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <key id="46" parent="9" name="id_UNIQUE">
-      <ColNames>id</ColNames>
-      <UnderlyingIndexName>id_UNIQUE</UnderlyingIndexName>
-    </key>
-    <key id="47" parent="9" name="login_UNIQUE">
-      <ColNames>login</ColNames>
-      <UnderlyingIndexName>login_UNIQUE</UnderlyingIndexName>
-    </key>
-    <column id="48" parent="10" name="user_id">
-      <Position>1</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="49" parent="10" name="name">
-      <Position>2</Position>
-      <DataType>varchar(60)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="50" parent="10" name="surname">
-      <Position>3</Position>
-      <DataType>varchar(60)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="51" parent="10" name="email">
-      <Position>4</Position>
-      <DataType>varchar(60)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="52" parent="10" name="creationtime">
-      <Position>5</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="53" parent="10" name="description">
-      <Position>6</Position>
-      <DataType>mediumtext|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <index id="54" parent="10" name="email_UNIQUE">
-      <ColNames>email</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="55" parent="10" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>user_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <key id="56" parent="10" name="email_UNIQUE">
-      <ColNames>email</ColNames>
-      <UnderlyingIndexName>email_UNIQUE</UnderlyingIndexName>
-    </key>
-    <foreign-key id="57" parent="10" name="fk_user_data_user1">
-      <ColNames>user_id</ColNames>
-      <RefSchemaName>TrainingDB</RefSchemaName>
-      <RefTableName>user</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <column id="58" parent="11" name="user_id">
-      <Position>1</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="59" parent="11" name="course_id">
-      <Position>2</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <index id="60" parent="11" name="fk_user_has_course_course1_idx">
-      <ColNames>course_id</ColNames>
-    </index>
-    <index id="61" parent="11" name="fk_user_has_course_user1_idx">
-      <ColNames>user_id</ColNames>
-    </index>
-    <key id="62" parent="11" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>user_id
-course_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="63" parent="11" name="fk_user_has_course_user1">
-      <ColNames>user_id</ColNames>
-      <RefSchemaName>TrainingDB</RefSchemaName>
-      <RefTableName>user</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <foreign-key id="64" parent="11" name="fk_user_has_course_course1">
-      <ColNames>course_id</ColNames>
-      <RefSchemaName>TrainingDB</RefSchemaName>
-      <RefTableName>course</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <column id="65" parent="12" name="user_id">
-      <Position>1</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="66" parent="12" name="work_group_id">
-      <Position>2</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <index id="67" parent="12" name="fk_user_has_group_group1_idx">
-      <ColNames>work_group_id</ColNames>
-    </index>
-    <index id="68" parent="12" name="fk_user_has_group_user1_idx">
-      <ColNames>user_id</ColNames>
-    </index>
-    <key id="69" parent="12" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>user_id
-work_group_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="70" parent="12" name="fk_user_has_group_user1">
-      <ColNames>user_id</ColNames>
-      <RefSchemaName>TrainingDB</RefSchemaName>
-      <RefTableName>user</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <foreign-key id="71" parent="12" name="fk_user_has_group_group1">
+    <foreign-key id="100" parent="15" name="fk_user_task_group1">
       <ColNames>work_group_id</ColNames>
       <RefSchemaName>TrainingDB</RefSchemaName>
       <RefTableName>work_group</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="72" parent="13" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-    </column>
-    <column id="73" parent="13" name="user_id">
-      <Position>2</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="74" parent="13" name="task_id">
-      <Position>3</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="75" parent="13" name="creationtime">
-      <Position>4</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="76" parent="13" name="deadline">
-      <Position>5</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="77" parent="13" name="estimate">
-      <Position>6</Position>
-      <DataType>int(2)|0</DataType>
-    </column>
-    <column id="78" parent="13" name="status">
-      <Position>7</Position>
-      <DataType>tinyint(1)|0</DataType>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-    </column>
-    <column id="79" parent="13" name="comment">
-      <Position>8</Position>
-      <DataType>int(11)|0</DataType>
-    </column>
-    <column id="80" parent="13" name="work_group_id">
-      <Position>9</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <index id="81" parent="13" name="commen_id_idx">
-      <ColNames>comment</ColNames>
-    </index>
-    <index id="82" parent="13" name="fk_user_task_task1_idx">
-      <ColNames>task_id</ColNames>
-    </index>
-    <index id="83" parent="13" name="fk_user_task_group1_idx">
-      <ColNames>work_group_id</ColNames>
-    </index>
-    <index id="84" parent="13" name="fk_user_task_user1">
-      <ColNames>user_id</ColNames>
-    </index>
-    <key id="85" parent="13" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="86" parent="13" name="fk_user_task_user1">
-      <ColNames>user_id</ColNames>
-      <RefSchemaName>TrainingDB</RefSchemaName>
-      <RefTableName>user</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <foreign-key id="87" parent="13" name="fk_user_task_task1">
+    <foreign-key id="101" parent="15" name="fk_user_task_task1">
       <ColNames>task_id</ColNames>
       <RefSchemaName>TrainingDB</RefSchemaName>
       <RefTableName>task</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="88" parent="13" name="commen_id">
-      <ColNames>comment</ColNames>
+    <foreign-key id="102" parent="15" name="fk_user_task_comment1">
+      <ColNames>comment_id</ColNames>
       <RefSchemaName>TrainingDB</RefSchemaName>
       <RefTableName>comment</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="89" parent="13" name="fk_user_task_group1">
-      <ColNames>work_group_id</ColNames>
-      <RefSchemaName>TrainingDB</RefSchemaName>
-      <RefTableName>work_group</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <column id="90" parent="14" name="id">
+    <column id="103" parent="16" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="91" parent="14" name="title">
+    <column id="104" parent="16" name="title">
       <Position>2</Position>
       <DataType>varchar(60)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="92" parent="14" name="description">
+    <column id="105" parent="16" name="description">
       <Position>3</Position>
       <DataType>mediumtext|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="93" parent="14" name="lead_id">
+    <column id="106" parent="16" name="lead_id">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="94" parent="14" name="course_id">
+    <column id="107" parent="16" name="course_id">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="95" parent="14" name="lead_id_idx">
+    <index id="108" parent="16" name="lead_id_idx">
       <ColNames>lead_id</ColNames>
     </index>
-    <index id="96" parent="14" name="fk_work_group_course1_idx">
+    <index id="109" parent="16" name="fk_work_group_course1_idx">
       <ColNames>course_id</ColNames>
     </index>
-    <key id="97" parent="14" name="PRIMARY">
+    <key id="110" parent="16" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="98" parent="14" name="lead_id">
+    <foreign-key id="111" parent="16" name="lead_id">
       <ColNames>lead_id</ColNames>
       <RefSchemaName>TrainingDB</RefSchemaName>
       <RefTableName>user</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="99" parent="14" name="fk_work_group_course1">
+    <foreign-key id="112" parent="16" name="fk_work_group_course1">
       <ColNames>course_id</ColNames>
       <RefSchemaName>TrainingDB</RefSchemaName>
       <RefTableName>course</RefTableName>

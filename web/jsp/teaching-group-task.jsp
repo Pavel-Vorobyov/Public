@@ -18,20 +18,8 @@
 <body>
   <div align="center">
 
-    <div class="td-header-nav-wrap" align="center">
-      <div class="td-header-nav">
-        <input type="checkbox" name="Menu" id="btn-nav" />
-        <label for="btn-nav">Menu</label>
-        <ul align="right">
-          <li><a href="../index.jsp">Home</a></li>
-          <li><a href="#">Training Portal</a></li>
-          <li><a href="#">News</a></li>
-          <li><a href="#">About</a></li>
-          <li id="header-nav-left"><a href="../WEB-INF/singIn.jsp">Login</a></li>
-          <li id="header-nav-left"><a href="sing-up.jsp">Register</a></li>
-        </ul>
-      </div>
-    </div>
+    <jsp:include page="util/nav.jsp"/>
+
 
     <div class="td-main-content-wrapper">
       <div class="td-main-content-conteiner">
@@ -72,9 +60,8 @@
       </div>
     </div>
 
-    <div class="td-footer">
+    <jsp:include page="util/footer.jsp"/>
 
-    </div>
 
   </div>
 </body>

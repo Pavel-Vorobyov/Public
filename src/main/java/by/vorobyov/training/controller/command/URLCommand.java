@@ -5,5 +5,6 @@ public class URLCommand {
     }
 
     public final static String HOME_STUDENT = "/jsp/home-student.jsp";
+    public final static String TRAINING_PORTAL = "/command?command=training-portal-page";
 
 }

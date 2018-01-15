@@ -5,20 +5,21 @@
         <label for="btn-nav">Menu</label>
         <ul align="right">
             <c:choose>
-                <c:when test="${session != null}">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="jsp/training-portal-student.jsp">Training Portal</a></li>
-                    <li><a href="#">News</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#" >Lolllol</a></li>
+                <c:when test="${sessionScope.user != null}">
+                    <li><a href="/command?command=home-page">Home</a></li>
+                    <li><a href="/command?command=training-portal-page">Training Portal</a></li>
+                    <li><a href="/command?command=news-page">News</a></li>
+                    <li><a href="command?command=about-page">About</a></li>
+                    <li><a href="#" >Training...</a></li>
+                    <li><p id="header-nav-left" href="#">Hello, ${sessionScope.user.login}</> </li>
                 </c:when>
                 <c:otherwise>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="jsp/training-portal-student.jsp">Training Portal</a></li>
-                    <li><a href="#">News</a></li>
-                    <li><a href="#">About</a></li>
-                    <li id="header-nav-left"><a href="jsp/sing-in.jsp">Login</a></li>
-                    <li id="header-nav-left"><a href="jsp/sing-up.jsp">Register</a></li>
+                    <li><a href="/command?command=home-page">Home</a></li>
+                    <li><a href="/command?command=training-portal-page">Training Portal</a></li>
+                    <li><a href="/command?command=news-page">News</a></li>
+                    <li><a href="/command?command=about-page">About</a></li>
+                    <li id="header-nav-left"><a href="/command?command=sing-in-page">Login</a></li>
+                    <li id="header-nav-left"><a href="/command?command=sing-up-page">Register</a></li>
                 </c:otherwise>
             </c:choose>
         </ul>

@@ -14,7 +14,7 @@ public class UserQuery {
 
     public final static String SELECT_ID_AND_STATUS_BY_STATUS = "SELECT id, status FROM user WHERE status = ?";
 
-    public final static String SELECT_PASSWORD_BY_LOGIN = "SELECT password FROM user WHERE login = ?";
+    public final static String SELECT_PASSWORD_BY_LOGIN = "SELECT * FROM user WHERE login = ? AND password = ?";
 
     public final static String IS_UNIQUE_LOGIN_SELECT = "SELECT login FROM user WHERE login = ?";
 

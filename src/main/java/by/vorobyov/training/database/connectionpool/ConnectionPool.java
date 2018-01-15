@@ -46,10 +46,11 @@ public class ConnectionPool {
         usedConnections = new ArrayBlockingQueue<Connection>(poolSize);
 
         try {
+            Class.forName("com.mysql.jdbc.Driver");
             for (int i = 0; i < poolSize; i++) {
                 availableConnections.add(DriverManager.getConnection(url, user, password));
             }
-        } catch (SQLException e) {
+        } catch (SQLException |ClassNotFoundException e) {
             throw new DAOException("Connection hasn't been created!" + e);
         }
     }

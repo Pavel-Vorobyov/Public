@@ -9,12 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class SingInPage implements ICommand {
+public class SingUpPage implements ICommand {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        String singInPagePath = JspPageName.SING_IN_PAGE;
-        request.getRequestDispatcher(singInPagePath).include(request, response);
+        String pagePath = JspPageName.SING_UP_PAGE;
+        request.getRequestDispatcher(pagePath).forward(request, response);
     }
 }
