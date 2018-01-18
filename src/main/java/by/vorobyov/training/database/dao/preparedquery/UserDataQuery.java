@@ -19,7 +19,7 @@ public class UserDataQuery {
             "      AND user.id = user_has_group.user_id" +
             "      AND user_has_group.work_group_id = ?";
 
-    public final static String UPDATE_USER_DATA_BY_USER_ID = "UPDATE user_data SET name = ?, surname = ?, email = ?, creationtime = ?, description = ?" +
+    public final static String UPDATE_USER_DATA_BY_USER_ID = "UPDATE user_data SET name = ?, surname = ?, creationtime = ?, description = ?" +
             " WHERE user_id = ?";
 
     public final static String NAME_SELECT = "SELECT name FROM user_data";

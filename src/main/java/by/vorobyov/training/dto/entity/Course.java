@@ -1,4 +1,4 @@
-package by.vorobyov.training.entity;
+package by.vorobyov.training.dto.entity;
 
 import java.io.Serializable;
 
@@ -9,6 +9,7 @@ public class Course implements Serializable {
     private String description;
     private Integer leadId;
     private Integer status;
+    private boolean courseEmpty = false;
 
     public Course(){
     }
@@ -21,6 +22,20 @@ public class Course implements Serializable {
         this.description = description;
         this.leadId = leadId;
         this.status = status;
+    }
+
+    public static Course emptyEntity() {
+        Course course = new Course();
+        course.setCourseEmpty(true);
+        return course;
+    }
+
+    public boolean isCourseEmpty() {
+        return courseEmpty;
+    }
+
+    public void setCourseEmpty(boolean courseEmpty) {
+        this.courseEmpty = courseEmpty;
     }
 
     public Integer getCourseId() {

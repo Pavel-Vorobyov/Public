@@ -1,15 +1,11 @@
 package by.vorobyov.training.service;
 
-import by.vorobyov.training.creator.impl.UserCreator1;
-import by.vorobyov.training.database.connectionpool.ConnectionPool;
-import by.vorobyov.training.creator.impl.CourseCreator;
-import by.vorobyov.training.creator.impl.UserTaskCreator;
-import by.vorobyov.training.creator.impl.WorkGroupCreator;
 import by.vorobyov.training.database.dao.impl.CourseDAO;
 import by.vorobyov.training.database.dao.impl.UserDAO;
-import by.vorobyov.training.database.dao.preparedquery.*;
+import by.vorobyov.training.database.dao.impl.UserDataDAO;
+import by.vorobyov.training.database.dao.impl.WorkGroupDAO;
 import by.vorobyov.training.exception.DAOException;
-import by.vorobyov.training.entity.*;
+import by.vorobyov.training.dto.entity.*;
 import by.vorobyov.training.exception.ServiceException;
 
 import java.sql.*;
@@ -17,23 +13,45 @@ import java.util.List;
 
 public class CommonService {
 
-    public User singIn(User user) throws ServiceException {
+    public User checkUser(User user) throws ServiceException {
         UserDAO userDAO = new UserDAO();
 
         try {
+
             User checkedUser = userDAO.getUserByLogPass(user);
             return checkedUser;
-//            if (checkedUser.isUserExist()) {
-//                return checkedUser;
-//            } else {
-//                return User.emptyUser();
-//            }
+
         } catch (SQLException | DAOException e) {
             throw new ServiceException(e);
         }
     }
 
-    public boolean addAccount(User user) throws ServiceException {
+    public boolean addUserData(UserData userData) throws ServiceException {
+        UserDataDAO userDataDAO = new UserDataDAO();
+
+        try {
+
+            return userDataDAO.create(userData);
+
+        } catch (DAOException | SQLException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    public UserData getUserDataById(Integer userId) throws ServiceException {
+        UserDataDAO userDataDAO = new UserDataDAO();
+
+        try {
+
+            UserData userData = userDataDAO.getEntityById(userId);
+            return userData;
+
+        } catch (DAOException | SQLException e) {
+            throw  new ServiceException(e);
+        }
+    }
+
+    public boolean addUser(User user) throws ServiceException {
         UserDAO userDAO = new UserDAO();
 
         try {
@@ -83,20 +101,37 @@ public class CommonService {
         }
     }
 
-    public List<WorkGroup> takeWorkGroupListByUserId(Integer userId) throws ServiceException{
-        return null;
+    public Course takeCourseByCourseId(Integer courseId) throws ServiceException {
+        CourseDAO courseDAO = new CourseDAO();
+
+        try {
+            return courseDAO.getEntityById(courseId);
+        } catch (SQLException | DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    public List<WorkGroup> takeWorkGroupListByLeadId(Integer userId) throws ServiceException{
+        WorkGroupDAO workGroupDAO = new WorkGroupDAO();
+
+        try {
+            return workGroupDAO.getWorkGroupListByLeadId(userId);
+        } catch (SQLException |DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    public WorkGroup takeWorkGroupById(Integer workGroupId) throws ServiceException {
+        WorkGroupDAO workGroupDAO = new WorkGroupDAO();
+
+        try {
+            return workGroupDAO.getEntityById(workGroupId);
+        } catch (DAOException | SQLException e) {
+            throw new ServiceException(e);
+        }
     }
 
     public List<UserTask> takeUserTaskListByUserId(Integer userId) throws ServiceException{
         return null;
     }
-
-    public List<User1> takeStudentListByGroupId(Integer workGroupId) throws ServiceException{
-        return null;
-    }
-
-    public boolean updateUserData(User1 user1) throws ServiceException{
-        return false;
-    }
-
 }

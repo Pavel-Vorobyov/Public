@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="/WEB-INF/tag/CourseCard.tld" prefix="lnTask"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,16 +40,18 @@
                   <h2 class="task-item">Task name:</h2>
                   <h2 class="start-time-item">Start time:</h2>
                   <h2 class="deadline-item">Deadline:</h2>
-                  <h2 class="description-item">Description:</h2>
+                  <h2 class="courseDescription-item">Description:</h2>
                 </li>
                 <li class="item-body">
                   <a href="#">
-                  <span class="tk-task-name" title="Lolli">:dsdfsfadasdasdadadasdasdasdadasdasdadsdadsadadadasdasdasdadsd</span>
-                  <span class="tk-start-time" title="Lololol">dsdfsfadasdasdadadasdasdasdadasdasdadsdadsadadadasdasdasdadsd</span>
-                  <span class="tk-deadline" title="Lololol">dsdfsfadasdasdadadasdasdasdadasdasdadsdadsadadadasdasdasdadsd</span>
-                  <span class="tk-description" title="Kffsdf">dsdfsfadasdasdadadasdasdasdadasdasdadsdadsadadadasdasdasdadsd  </span>
+                  <span class="tk-task-name" title="Lolli">sss</span>
+                  <span class="tk-start-time" title="Lololol">s</span>
+                  <span class="tk-deadline" title="Lololol">ss</span>
+                  <span class="tk-courseDescription" title="Kffsdf">ss</span>
                 </a>
                 </li>
+
+                <lnTask:taskLine taskTitle="rr" startTime="rr" deadline="rr" description="rr"/>
 
               </ul>
             </div>

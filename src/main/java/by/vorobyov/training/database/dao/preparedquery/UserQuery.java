@@ -22,7 +22,7 @@ public class UserQuery {
 
     public final static String UPDATE_USER_STATUS_BY_ID = "UPDATE user SET status = ? WHERE id = ?";
 
-    public final static String INSERT_USER = "INSERT INTO user (login, password, status) VALUES (?, ?, ?)";
+    public final static String INSERT_USER = "INSERT INTO user (login, password) VALUES (?, ?)";
 
     public final static String DELETE_USER_BY_ID = "DELETE FROM user WHERE id = ?";
 

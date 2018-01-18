@@ -17,11 +17,12 @@
       <section class="container">
         <div class="login">
           <h1>Registration</h1>
-          <form method="post" action="index.html">
+          <form method="post" action="command">
+            <input type="hidden" name="command" value="add-user"/>
             <p><input type="text" name="login" value="" placeholder="Enter login"></p>
             <p><input type="password" name="password" value="" placeholder="Enter password"></p>
-            <p><input type="password" name="password" value="" placeholder="Confirm password"></p>
-    				<p><input type="text" name="login" value="" placeholder="Enter email"></p>
+            <p><input type="password" name="password2" value="" placeholder="Confirm password"></p>
+            <p><input type="text" name="email" value="" placeholder="Enter email"></p>
             <p class="submit"><input type="submit" name="commit" value="Register"></p>
           </form>
         </div>

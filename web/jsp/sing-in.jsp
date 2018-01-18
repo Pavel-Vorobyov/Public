@@ -22,7 +22,7 @@
             <input type="hidden" name="command" value="sing-in"/>
             <p><input type="text" name="login" id="login" value="" placeholder="Enter login" pattern="([\w]{3,16})"
                       placeholder="Вевиде от 3 до 16 символов!"></p>
-            <p><input type="password" name="password" id="password" value="" placeholder="Enter password" pattern="([\w]{8,16})"
+            <p><input type="password" name="password" id="password" value="" placeholder="Enter password" pattern="([\w]{7,16})"
                       placeholder="Вевиде от 3 до 16 символов!"></p>
             <p class="submit">
               <input class="sb-register" type="submit" name="register" value="Register">

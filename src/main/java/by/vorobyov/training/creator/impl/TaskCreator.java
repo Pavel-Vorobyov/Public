@@ -2,7 +2,7 @@ package by.vorobyov.training.creator.impl;
 
 import by.vorobyov.training.creator.ICreator;
 import by.vorobyov.training.database.dao.util.columnname.TaskColumnName;
-import by.vorobyov.training.entity.Task;
+import by.vorobyov.training.dto.entity.Task;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -1,7 +1,7 @@
 package by.vorobyov.training.controller.command.impl.page;
 
 import by.vorobyov.training.controller.command.ICommand;
-import by.vorobyov.training.entity.Course;
+import by.vorobyov.training.dto.entity.Course;
 import by.vorobyov.training.exception.ServiceException;
 import by.vorobyov.training.resource.AttributeName;
 import by.vorobyov.training.resource.JspPageName;

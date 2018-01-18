@@ -47,7 +47,7 @@
                 </div>
             </div>
       </div>
-      <div class="st-description">
+      <div class="st-courseDescription">
         <h1>Description:</h1>
         <div class="st-commentId">
           aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

@@ -2,10 +2,11 @@ package by.vorobyov.training.creator.impl;
 
 import by.vorobyov.training.creator.ICreator;
 import by.vorobyov.training.database.dao.util.columnname.WorkGroupColumnName;
-import by.vorobyov.training.entity.WorkGroup;
+import by.vorobyov.training.dto.entity.WorkGroup;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,9 +18,13 @@ public class WorkGroupCreator implements ICreator<WorkGroup> {
     public List<WorkGroup> createEntityList(ResultSet resultSet) throws SQLException {
         List<WorkGroup> workGroupList = new LinkedList<>();
 
-        while (resultSet.next()) {
-            WorkGroup workGroup = createEntity(resultSet);
-            workGroupList.add(workGroup);
+        if (resultSet.next()) {
+            do {
+                WorkGroup workGroup = createEntity(resultSet);
+                workGroupList.add(workGroup);
+            } while (resultSet.next());
+        } else {
+            return Collections.emptyList();
         }
 
         return workGroupList;

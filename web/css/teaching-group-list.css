@@ -124,7 +124,7 @@ height: 27px;
 }
 
 .uui-item-list .item-body-header .region-item {
-  width: 27.5%;
+  width: 12.5%;
   float: left;
     text-align: left;
 }
@@ -135,7 +135,7 @@ height: 27px;
   text-align: left;
 }
 
-.uui-item-list .item-body-header .lng-item {
+.uui-item-list .item-body-header .description-item {
   float: left;
   text-align: left;
 }
@@ -181,7 +181,7 @@ height: 27px;
 }
 
 .group-region {
-  width: 26%;
+  width: 12%;
   position: relative;
   left: -3px;
 
@@ -206,7 +206,7 @@ height: 27px;
   padding-right: 10px;
 }
 
-.group-lng {
+.group-description {
   width: 15%;
 
   margin-top: 20px;

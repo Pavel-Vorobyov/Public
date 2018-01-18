@@ -4,7 +4,7 @@ import by.vorobyov.training.creator.impl.UserDataCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
 import by.vorobyov.training.database.dao.preparedquery.UserDataQuery;
 import by.vorobyov.training.exception.DAOException;
-import by.vorobyov.training.entity.UserData;
+import by.vorobyov.training.dto.entity.UserData;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -41,10 +41,9 @@ public class UserDataDAO extends AbstractDAO<UserData> {
             preparedStatement = connection.prepareStatement(UserDataQuery.UPDATE_USER_DATA_BY_USER_ID);
             preparedStatement.setString(1, entity.getName());
             preparedStatement.setString(2, entity.getSurname());
-            preparedStatement.setString(3, entity.getEmail());
-            preparedStatement.setInt(4, entity.getCreationTime());
-            preparedStatement.setString(5, entity.getDescription());
-            preparedStatement.setInt(6, entity.getUserId());
+            preparedStatement.setInt(3, entity.getCreationTime());
+            preparedStatement.setString(4, entity.getDescription());
+            preparedStatement.setInt(5, entity.getUserId());
 
             preparedStatement.executeUpdate();
             connection.commit();
@@ -75,13 +74,14 @@ public class UserDataDAO extends AbstractDAO<UserData> {
 
             resultSet = preparedStatement.executeQuery();
             connection.commit();
-            if (resultSet != null) {
+            if (resultSet.next()) {
                 return userDataCreator.createEntity(resultSet);
             } else {
-                throw new DAOException("ResultSet is null! -> UserDataQuery.SELECT_USER_DATA_BY_ID ");
+                return UserData.emptyUserData(); //Залогировать!!!!!!
             }
         } catch (SQLException e) {
             rollback(connection);
+            System.out.println(e);
             throw new DAOException(e);
         } finally {
             closePreparedStatement(preparedStatement);

@@ -1,4 +1,4 @@
-package by.vorobyov.training.entity;
+package by.vorobyov.training.dto.entity;
 
 import java.io.Serializable;
 
@@ -8,6 +8,7 @@ public class WorkGroup implements Serializable {
     private String description;
     private Integer leadId;
     private Integer courseId;
+    private boolean groupEmpty = false;
 
     public WorkGroup() {
     }
@@ -19,6 +20,20 @@ public class WorkGroup implements Serializable {
         this.description = description;
         this.leadId = leadId;
         this.courseId =courseId;
+    }
+
+    public static WorkGroup emptyEntity() {
+        WorkGroup workGroup = new WorkGroup();
+        workGroup.setGroupEmpty(true);
+        return workGroup;
+    }
+
+    public boolean isGroupEmpty() {
+        return groupEmpty;
+    }
+
+    public void setGroupEmpty(boolean groupEmpty) {
+        this.groupEmpty = groupEmpty;
     }
 
     public Integer getWorkGroupId() {

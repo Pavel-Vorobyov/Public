@@ -1,24 +1,38 @@
-package by.vorobyov.training.entity;
+package by.vorobyov.training.dto.entity;
 
 public class UserData {
     private Integer userId;
     private String name;
     private String surname;
-    private String email;
     private Integer creationTime;
     private String description;
+    private boolean userDataEmpty = false;
 
     public UserData() {
     }
 
-    public UserData(Integer userId, String name, String surname, String email
+    public UserData(Integer userId, String name, String surname
             , Integer creationTime, String description) {
         this.userId = userId;
         this.name = name;
         this.surname = surname;
-        this.email = email;
         this.creationTime = creationTime;
         this.description = description;
+    }
+
+    public static UserData emptyUserData() {
+        UserData userData = new UserData();
+        userData.setUserDataEmpty(true);
+
+        return userData;
+    }
+
+    public boolean isUserDataEmpty() {
+        return userDataEmpty;
+    }
+
+    public void setUserDataEmpty(boolean userDataEmpty) {
+        this.userDataEmpty = userDataEmpty;
     }
 
     public Integer getUserId() {
@@ -45,14 +59,6 @@ public class UserData {
         this.surname = surname;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public Integer getCreationTime() {
         return creationTime;
     }
@@ -76,10 +82,10 @@ public class UserData {
 
         UserData userData = (UserData) o;
 
+        if (userDataEmpty != userData.userDataEmpty) return false;
         if (!userId.equals(userData.userId)) return false;
         if (!name.equals(userData.name)) return false;
         if (!surname.equals(userData.surname)) return false;
-        if (!email.equals(userData.email)) return false;
         if (!creationTime.equals(userData.creationTime)) return false;
         return description.equals(userData.description);
     }
@@ -89,9 +95,9 @@ public class UserData {
         int result = userId.hashCode();
         result = 31 * result + name.hashCode();
         result = 31 * result + surname.hashCode();
-        result = 31 * result + email.hashCode();
         result = 31 * result + creationTime.hashCode();
         result = 31 * result + description.hashCode();
+        result = 31 * result + (userDataEmpty ? 1 : 0);
         return result;
     }
 
@@ -101,9 +107,9 @@ public class UserData {
                 "userId=" + userId +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", email='" + email + '\'' +
                 ", creationTime=" + creationTime +
                 ", description='" + description + '\'' +
+                ", userDataEmpty=" + userDataEmpty +
                 '}';
     }
 }

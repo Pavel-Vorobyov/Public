@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="/WEB-INF/tag/CourseCard.tld" prefix="lnGroup"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +7,6 @@
   <title>Group list</title>
   <link rel="stylesheet" type="text/css" href="../css/reset.css">
   <link rel="stylesheet" type="text/css" href="../css/default.css">
-  <link rel="stylesheet" type="text/css" href="../css/training-portal-student.css">
   <link rel="stylesheet" type="text/css" href="../css/teaching-group-list.css">
 
   <script type="text/javascript">
@@ -38,16 +39,13 @@
                   <h2 class="name-item">Group name:</h2>
                   <h2 class="region-item">Place:</h2>
                   <h2 class="course-item">Course:</h2>
-                  <h2 class="lng-item">Ln:</h2>
+                  <h2 class="ln-item">Description:</h2>
                 </li>
-                <li class="item-body">
-                  <a href="#">
-                  <span class="group-name" title="Lolli">:dsdfsfadasdasdadadasdasdasdadasdasdadsdadsadadadasdasdasdadsd</span>
-                  <span class="group-region" title="Lololol">dsdfsfadasdasdadadasdasdasdadasdasdadsdadsadadadasdasdasdadsd</span>
-                  <span class="group-course" title="Lololol">dsdfsfadasdasdadadasdasdasdadasdasdadsdadsadadadasdasdasdadsd</span>
-                  <span class="group-lng" title="Kffsdf">dsdfsfadasdasdadadasdasdasdadasdasdadsdadsadadadasdasdasdadsd  </span>
-                </a>
-                </li>
+
+                <c:forEach var="teachingGroup" items="${requestScope.teachingGroupList}">
+                  <lnGroup:groupLine groupHerf="${teachingGroup.groupHerf}" groupTitle="${teachingGroup.workGroupTitle}" courseLocation="${teachingGroup.courseRegion}"
+                                     courseCourse="${teachingGroup.courseTitle}" courseDescription="${teachingGroup.courseDescription}"/>
+                </c:forEach>
 
               </ul>
             </div>

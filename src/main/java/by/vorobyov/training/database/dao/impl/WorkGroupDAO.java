@@ -3,7 +3,7 @@ package by.vorobyov.training.database.dao.impl;
 import by.vorobyov.training.creator.impl.WorkGroupCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
 import by.vorobyov.training.database.dao.preparedquery.WorkGroupQuery;
-import by.vorobyov.training.entity.WorkGroup;
+import by.vorobyov.training.dto.entity.WorkGroup;
 import by.vorobyov.training.exception.DAOException;
 
 import java.sql.*;
@@ -80,7 +80,8 @@ public class WorkGroupDAO extends AbstractDAO<WorkGroup> {
 
             resultSet = preparedStatement.executeQuery();
             connection.commit();
-            return workGroupCreator.createEntity(resultSet);
+
+            return resultSet.next() ? workGroupCreator.createEntity(resultSet) : WorkGroup.emptyEntity();
 
         } catch (SQLException e) {
             rollback(connection);
@@ -99,5 +100,29 @@ public class WorkGroupDAO extends AbstractDAO<WorkGroup> {
     @Override
     public boolean create(WorkGroup entity) throws DAOException, SQLException {
         return false;
+    }
+
+    public List<WorkGroup> getWorkGroupListByLeadId(Integer leadId) throws SQLException, DAOException {
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet;
+        WorkGroupCreator workGroupCreator = new WorkGroupCreator();
+
+        connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        connection.setAutoCommit(false);
+
+        try {
+            preparedStatement = connection.prepareStatement(WorkGroupQuery.SELECT_WORK_GROUP_BY_LEAD_ID);
+            preparedStatement.setInt(1, leadId);
+
+            resultSet = preparedStatement.executeQuery();
+            return workGroupCreator.createEntityList(resultSet);
+        } catch (SQLException e) {
+            rollback(connection);
+            throw new DAOException(e);
+        } finally {
+            closePreparedStatement(preparedStatement);
+            closeConnection(connection);
+        }
     }
 }

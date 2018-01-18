@@ -1,4 +1,4 @@
-package by.vorobyov.training.entity;
+package by.vorobyov.training.dto.entity;
 
 import java.io.Serializable;
 

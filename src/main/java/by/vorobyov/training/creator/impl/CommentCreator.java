@@ -2,7 +2,7 @@ package by.vorobyov.training.creator.impl;
 
 import by.vorobyov.training.creator.ICreator;
 import by.vorobyov.training.database.dao.util.columnname.CommentColumnName;
-import by.vorobyov.training.entity.Comment;
+import by.vorobyov.training.dto.entity.Comment;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

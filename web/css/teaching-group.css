@@ -189,7 +189,7 @@ height: 27px;
 }
 
 .tk-start-time {
-  width: 15%;
+  width: 16%;
   position: relative;
   left: -3px;
 
@@ -203,7 +203,7 @@ height: 27px;
 }
 
 .tk-deadline {
-  width: 15%;
+  width: 16%;
 
   margin-top: 20px;
   font-size: 16px;
@@ -215,7 +215,7 @@ height: 27px;
 }
 
 .tk-description {
-  width: 34%;
+  width: 45%;
 
   margin-top: 20px;
   font-size: 16px;

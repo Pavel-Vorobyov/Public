@@ -1,21 +1,11 @@
-//package by.vorobyov.training.service.impl;
-//
-//import by.vorobyov.training.database.connectionpool.ConnectionPool;
-//import by.vorobyov.training.entity.User1;
-//import by.vorobyov.training.service.CommonService;
-//import by.vorobyov.training.database.dao.preparedquery.CommentQuery;
-//import by.vorobyov.training.database.dao.preparedquery.TaskQuery;
-//import by.vorobyov.training.database.dao.preparedquery.UserTaskQuery;
-//import by.vorobyov.training.exception.DAOException;
-//import by.vorobyov.training.entity.Comment;
-//import by.vorobyov.training.entity.Task;
-//
-//import java.sql.Connection;
-//import java.sql.PreparedStatement;
-//import java.sql.SQLException;
-//
-//public class LecturerService extends CommonService {
-//
+package by.vorobyov.training.service.impl;
+
+import by.vorobyov.training.service.CommonService;
+
+public class TeaacherService extends CommonService {
+
+
+
 //    public void createTask (Task task) {
 //        Connection connection = null;
 //        PreparedStatement preparedStatement = null;
@@ -24,7 +14,7 @@
 //
 //            preparedStatement = connection.prepareStatement(TaskQuery.TASK_INSERT);
 //            preparedStatement.setString(1, task.getTitle());
-//            preparedStatement.setString(2, task.getDescription());
+//            preparedStatement.setString(2, task.getCourseDescription());
 //            preparedStatement.setInt(3, task.getAuthorId());
 //            preparedStatement.executeUpdate();
 //
@@ -104,4 +94,4 @@
 //            super.closeConnection(connection);
 //        }
 //    }
-//}
+}

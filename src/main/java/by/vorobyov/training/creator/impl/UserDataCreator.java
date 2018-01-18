@@ -2,7 +2,7 @@ package by.vorobyov.training.creator.impl;
 
 import by.vorobyov.training.creator.ICreator;
 import by.vorobyov.training.database.dao.util.columnname.UserDataColumnName;
-import by.vorobyov.training.entity.UserData;
+import by.vorobyov.training.dto.entity.UserData;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,7 +29,6 @@ public class UserDataCreator implements ICreator<UserData> {
         userData.setUserId(resultSet.getInt(UserDataColumnName.USER_ID));
         userData.setName(resultSet.getString(UserDataColumnName.NAME));
         userData.setSurname(resultSet.getString(UserDataColumnName.SURNAME));
-        userData.setEmail(resultSet.getString(UserDataColumnName.EMAIL));
         userData.setCreationTime(resultSet.getInt(UserDataColumnName.CREATION_TIME));
         userData.setDescription(resultSet.getString(UserDataColumnName.DESCRIPTION));
 

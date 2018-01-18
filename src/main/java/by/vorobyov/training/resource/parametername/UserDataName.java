@@ -1,11 +1,10 @@
 package by.vorobyov.training.resource.parametername;
 
-public class UserParameterName {
-    private UserParameterName() {
+public class UserDataName {
+    private UserDataName() {
     }
 
     public final static String USER_ID = "userId";
-    public final static String STATUS = "status";
     public final static String USER_NAME = "userName";
     public final static String USER_SURNAME = "userSurname";
     public final static String USER_EMAIL = "userEmail";

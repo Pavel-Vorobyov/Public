@@ -4,7 +4,7 @@ import by.vorobyov.training.creator.impl.CommentCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
 import by.vorobyov.training.database.dao.preparedquery.CommentQuery;
 import by.vorobyov.training.exception.DAOException;
-import by.vorobyov.training.entity.Comment;
+import by.vorobyov.training.dto.entity.Comment;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -4,12 +4,12 @@
 //import by.vorobyov.training.database.connectionpool.ConnectionPool;
 //import by.vorobyov.training.creator.impl.CourseCreator;
 //import by.vorobyov.training.creator.impl.WorkGroupCreator;
-//import by.vorobyov.training.entity.User1;
+//import by.vorobyov.training.dto.entity.User1;
 //import by.vorobyov.training.service.CommonService;
 //import by.vorobyov.training.database.dao.preparedquery.*;
 //import by.vorobyov.training.exception.DAOException;
-//import by.vorobyov.training.entity.Course;
-//import by.vorobyov.training.entity.WorkGroup;
+//import by.vorobyov.training.dto.entity.Course;
+//import by.vorobyov.training.dto.entity.WorkGroup;
 //
 //import java.sql.*;
 //import java.util.List;
@@ -102,7 +102,7 @@
 //
 //            preparedStatement.setString(1, course.getTitle());
 //            preparedStatement.setString(2, course.getRegion());
-//            preparedStatement.setString(3, course.getDescription());
+//            preparedStatement.setString(3, course.getCourseDescription());
 //            preparedStatement.setInt(4, course.getLeadId());
 //
 //            preparedStatement.executeUpdate();
@@ -125,7 +125,7 @@
 //
 //            preparedStatement.setString(1, course.getTitle());
 //            preparedStatement.setString(2, course.getRegion());
-//            preparedStatement.setString(3, course.getDescription());
+//            preparedStatement.setString(3, course.getCourseDescription());
 //            preparedStatement.setInt(4, course.getCourseId());
 //
 //            preparedStatement.executeUpdate();
@@ -171,7 +171,7 @@
 //            preparedStatement = connection.prepareStatement(WorkGroupQuery.WORK_GROUP_INSERT);
 //
 //            preparedStatement.setString(1, workGroup.getTitle());
-//            preparedStatement.setString(2, workGroup.getDescription());
+//            preparedStatement.setString(2, workGroup.getCourseDescription());
 //            preparedStatement.setInt(3, workGroup.getLeadId());
 //            preparedStatement.setInt(4, workGroup.getCourseId());
 //
@@ -194,7 +194,7 @@
 //            preparedStatement = connection.prepareStatement(CourseQuery.UPDATE_COURSE);
 //
 //            preparedStatement.setString(1, workGroup.getTitle());
-//            preparedStatement.setString(2, workGroup.getDescription());
+//            preparedStatement.setString(2, workGroup.getCourseDescription());
 //            preparedStatement.setInt(3, workGroup.getLeadId());
 //            preparedStatement.setInt(4, workGroup.getCourseId());
 //

@@ -1,31 +1,51 @@
-package by.vorobyov.training.entity;
+package by.vorobyov.training.dto.entity;
 
 import java.io.Serializable;
 
 public class User implements Serializable {
-    private Integer accountId;
+    private Integer userId;
     private String login;
     private String password;
+    private String email;
     private Integer status;
-    private boolean userExist = true;
+    private boolean userEmpty = false;
 
     public User() {
     }
 
 
-    public User(String login, String password, Integer status, boolean userExist) {
+    public User(String login, String password, String email, Integer status, boolean userEmpty) {
         this.login = login;
         this.password = password;
+        this.email = email;
         this.status = status;
-        this.userExist = userExist;
+        this.userEmpty = userEmpty;
     }
 
-    public Integer getAccountId() {
-        return accountId;
+    public static User emptyUser() {
+        User user = new User();
+        user.setUserEmpty(true);
+        return user;
     }
 
-    public void setAccountId(Integer accountId) {
-        this.accountId = accountId;
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public boolean isUserEmpty() {
+        return userEmpty;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getLogin() {
@@ -52,18 +72,12 @@ public class User implements Serializable {
         this.status = status;
     }
 
-    public boolean isUserExist() {
-        return userExist;
+    public boolean isEmpty() {
+        return userEmpty;
     }
 
-    public void setUserExist(boolean userExist) {
-        this.userExist = userExist;
-    }
-
-    public static User emptyUser() {
-        User user = new User();
-        user.setUserExist(false);
-        return user;
+    public void setUserEmpty(boolean userEmpty) {
+        this.userEmpty = userEmpty;
     }
 
     @Override
@@ -73,31 +87,34 @@ public class User implements Serializable {
 
         User user = (User) o;
 
-        if (userExist != user.userExist) return false;
-        if (!accountId.equals(user.accountId)) return false;
+        if (userEmpty != user.userEmpty) return false;
+        if (!userId.equals(user.userId)) return false;
         if (!login.equals(user.login)) return false;
         if (!password.equals(user.password)) return false;
+        if (!email.equals(user.email)) return false;
         return status.equals(user.status);
     }
 
     @Override
     public int hashCode() {
-        int result = accountId.hashCode();
+        int result = userId.hashCode();
         result = 31 * result + login.hashCode();
         result = 31 * result + password.hashCode();
+        result = 31 * result + email.hashCode();
         result = 31 * result + status.hashCode();
-        result = 31 * result + (userExist ? 1 : 0);
+        result = 31 * result + (userEmpty ? 1 : 0);
         return result;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "accountId=" + accountId +
+                "userId=" + userId +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
                 ", status=" + status +
-                ", userExist=" + userExist +
+                ", userEmpty=" + userEmpty +
                 '}';
     }
 }

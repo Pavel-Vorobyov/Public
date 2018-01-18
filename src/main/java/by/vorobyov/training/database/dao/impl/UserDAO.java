@@ -4,7 +4,7 @@ import by.vorobyov.training.creator.impl.UserCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
 import by.vorobyov.training.database.dao.preparedquery.UserQuery;
 import by.vorobyov.training.exception.DAOException;
-import by.vorobyov.training.entity.User;
+import by.vorobyov.training.dto.entity.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -58,7 +58,7 @@ public class UserDAO extends AbstractDAO<User> {
             preparedStatement.setString(1, entity.getLogin());
             preparedStatement.setString(2, entity.getPassword());
             preparedStatement.setInt(3, entity.getStatus());
-            preparedStatement.setInt(4, entity.getAccountId());
+            preparedStatement.setInt(4, entity.getUserId());
 
             preparedStatement.executeUpdate();
             connection.commit();
@@ -114,7 +114,7 @@ public class UserDAO extends AbstractDAO<User> {
         try {
             preparedStatement = connection.prepareStatement(UserQuery.DELETE_USER_BY_ID);
 
-            preparedStatement.setInt(1, entity.getAccountId());
+            preparedStatement.setInt(1, entity.getUserId());
 
             preparedStatement.executeUpdate();
             connection.commit();
@@ -140,9 +140,12 @@ public class UserDAO extends AbstractDAO<User> {
         try {
             preparedStatement = connection.prepareStatement(UserQuery.INSERT_USER);
 
-            preparedStatement.setString(1, entity.getLogin());
-            preparedStatement.setString(2, entity.getPassword());
-            preparedStatement.setInt(3, entity.getStatus());
+            String login = String.valueOf(entity.getLogin());
+            String password = String.valueOf(entity.getPassword());
+//            String email = String.valueOf(entity.getEmail());
+            preparedStatement.setString(1, login);
+            preparedStatement.setString(2, password);
+//            preparedStatement.setString(3, email);
 
             preparedStatement.executeUpdate();
             connection.commit();
@@ -150,6 +153,7 @@ public class UserDAO extends AbstractDAO<User> {
 
         } catch (SQLException e) {
             rollback(connection);
+            System.out.println(e);
             throw new DAOException(e);
         } finally {
             closePreparedStatement(preparedStatement);
@@ -210,7 +214,6 @@ public class UserDAO extends AbstractDAO<User> {
             if (resultSet.next()) {
                 return userCreator.createEntity(resultSet);
             } else {
-//                throw new DAOException("ResultSet is null! -> UserQuery.SELECT_USER_BY_LOG_PASS ");
                 return User.emptyUser();
             }
         } catch (SQLException e) {

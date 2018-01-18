@@ -1,6 +1,6 @@
 package by.vorobyov.training.database.dao.impl;
 
-import by.vorobyov.training.entity.User;
+import by.vorobyov.training.dto.entity.User;
 import by.vorobyov.training.exception.DAOException;
 import org.junit.After;
 import org.junit.Before;

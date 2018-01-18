@@ -1,12 +1,12 @@
 //package by.vorobyov.training.service.impl;
 //
 //import by.vorobyov.training.database.connectionpool.ConnectionPool;
-//import by.vorobyov.training.entity.User1;
+//import by.vorobyov.training.dto.entity.User1;
 //import by.vorobyov.training.service.CommonService;
 //import by.vorobyov.training.database.dao.preparedquery.UserHasCourseQuery;
 //import by.vorobyov.training.database.dao.preparedquery.UserTaskQuery;
 //import by.vorobyov.training.exception.DAOException;
-//import by.vorobyov.training.entity.Task;
+//import by.vorobyov.training.dto.entity.Task;
 //
 //import java.sql.Connection;
 //import java.sql.PreparedStatement;
@@ -15,7 +15,7 @@
 //public class StudentService extends CommonService {
 //    public static final Integer TASK_STATUS_COMPLETE = 1;
 //
-////    public User1 singIn(User account) {
+////    public User1 checkUser(User account) {
 ////        Connection connection = null;
 ////        PreparedStatement preparedStatement = null;
 ////        ResultSet resultSet = null;
@@ -49,7 +49,7 @@
 ////    }
 //
 ////    public void register(User account) {
-////        super.addAccount(account);
+////        super.addUser(account);
 ////    }
 ////
 ////    public List<Course> takeCourseList() {

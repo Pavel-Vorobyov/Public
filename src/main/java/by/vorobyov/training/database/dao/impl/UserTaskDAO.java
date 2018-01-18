@@ -4,7 +4,7 @@ import by.vorobyov.training.creator.impl.UserTaskCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
 import by.vorobyov.training.database.dao.preparedquery.UserTaskQuery;
 import by.vorobyov.training.exception.DAOException;
-import by.vorobyov.training.entity.UserTask;
+import by.vorobyov.training.dto.entity.UserTask;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
