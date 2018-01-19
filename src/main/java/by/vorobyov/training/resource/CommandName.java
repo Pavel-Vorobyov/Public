@@ -9,6 +9,7 @@ public class CommandName {
     public static final String TRAINING_PAGE = "training-page";
     public static final String TRAINING_GROUP_LIST_PAGE = "training-group-list-page";
     public static final String TRAINING_GROUP_PAGE = "training-group-page";
+    public static final String GROUP_TASK_PAGE = "training-task-page";
 
 
     //common

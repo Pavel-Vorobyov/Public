@@ -29,6 +29,7 @@ public class CommandStorage {
         commandStorage.put(CommandName.ADD_USER, new AddUser());
         commandStorage.put(CommandName.TRAINING_GROUP_LIST_PAGE, new TrainingGroupListPage());
         commandStorage.put(CommandName.TRAINING_GROUP_PAGE, new TeachingGroupPage());
+        commandStorage.put(CommandName.GROUP_TASK_PAGE, new TrainingGroupTaskPage());
     }
 
     public ICommand getCommand(String commandName) {

@@ -1,14 +1,13 @@
 package by.vorobyov.training.service;
 
-import by.vorobyov.training.database.dao.impl.CourseDAO;
-import by.vorobyov.training.database.dao.impl.UserDAO;
-import by.vorobyov.training.database.dao.impl.UserDataDAO;
-import by.vorobyov.training.database.dao.impl.WorkGroupDAO;
+import by.vorobyov.training.database.dao.impl.*;
+import by.vorobyov.training.dto.TeachingUserTask;
 import by.vorobyov.training.exception.DAOException;
 import by.vorobyov.training.dto.entity.*;
 import by.vorobyov.training.exception.ServiceException;
 
 import java.sql.*;
+import java.util.LinkedList;
 import java.util.List;
 
 public class CommonService {
@@ -50,6 +49,17 @@ public class CommonService {
             throw  new ServiceException(e);
         }
     }
+
+    public List<TeachingUserTask> takeTeacherUserTask(Integer taskId, Integer groupId) throws ServiceException {
+        TaskDAO taskDAO = new TaskDAO();
+
+        try {
+            return taskDAO.getUserTaskListByTaskId(taskId, groupId);
+        } catch (SQLException | DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
 
     public boolean addUser(User user) throws ServiceException {
         UserDAO userDAO = new UserDAO();
@@ -131,7 +141,19 @@ public class CommonService {
         }
     }
 
+    public List<Task> takeGroupTaskListByGroupId(Integer groupId) throws ServiceException {
+        TaskDAO taskDAO = new TaskDAO();
+
+        try {
+            return taskDAO.getGroupTaskByGroupId(groupId);
+        } catch (SQLException | DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
     public List<UserTask> takeUserTaskListByUserId(Integer userId) throws ServiceException{
         return null;
     }
+
+
 }

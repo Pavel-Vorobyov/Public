@@ -15,5 +15,6 @@ public class JspPageName {
     public static final String TEACHER_COURSE_PAGE = "jsp/teaching-group.jsp";
     public static final String TEACHING_GROUP_LIST_PAGE = "jsp/teaching-group-list.jsp";
     public static final String TEACHING_GROUP_PAGE = "jsp/teaching-group.jsp";
+    public static final String TEACHING_TASK_PAGE = "jsp/teaching-group-task.jsp";
 
 }

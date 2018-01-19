@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="/WEB-INF/tag/CourseCard.tld" prefix="lnUserTask"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +7,6 @@
   <title>Task</title>
   <link rel="stylesheet" type="text/css" href="../css/reset.css">
   <link rel="stylesheet" type="text/css" href="../css/default.css">
-  <link rel="stylesheet" type="text/css" href="../css/training-portal-student.css">
   <link rel="stylesheet" type="text/css" href="../css/teaching-group-task.css">
 
   <script type="text/javascript">
@@ -41,15 +42,10 @@
                   <h2 class="estimate-item">Estimate:</h2>
                   <h2 class="status-item">Status:</h2>
                 </li>
-                <li class="item-body">
-                  <a href="#">
-                  <span class="tk-student-name" title="Lolli">:dsdfsfadasdasdadadasdasdasdadasdasdadsdadsadadadasdasdasdadsd</span>
-                  <span class="tk-start-time" title="Lololol">dsdfsfadasdasdadadasdasdasdadasdasdadsdadsadadadasdasdasdadsd</span>
-                  <span class="tk-deadline" title="Lololol">dsdfsfadasdasdadadasdasdasdadasdasdadsdadsadadadasdasdasdadsd</span>
-                  <span class="tk-estimate" title="Kffsdf">dsdfsfadasdasdadadasdasdasdadasdasdadsdadsadadadasdasdasdadsd  </span>
-                  <span class="tk-status" title="Kffsdf">dsdfsfadasdasdadadasdasdasdadasdasdadsdadsadadadasdasdasdadsd  </span>
-                </a>
-                </li>
+                <c:forEach var="userTask" items="${requestScope.teachingUserTask}">
+                  <lnUserTask:userTaskLine name="${userTask.studentName}" creationTime="${userTask.startTime}"
+                                           deadline="" estimate="" status=""/>
+                </c:forEach>
 
               </ul>
             </div>

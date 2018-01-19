@@ -14,9 +14,11 @@ public class TaskCreator implements ICreator<Task> {
     public List<Task> createEntityList(ResultSet resultSet) throws SQLException {
         List<Task> taskList = new LinkedList<>();
 
-        while (resultSet.next()) {
-            Task task = createEntity(resultSet);
-            taskList.add(task);
+        if (resultSet.next()) {
+            do {
+                Task task = createEntity(resultSet);
+                taskList.add(task);
+            } while (resultSet.next());
         }
 
         return taskList;
@@ -28,6 +30,8 @@ public class TaskCreator implements ICreator<Task> {
 
         task.setTaskId(resultSet.getInt(TaskColumnName.ID));
         task.setTitle(resultSet.getString(TaskColumnName.TITLE));
+        task.setCreationTime(resultSet.getInt(TaskColumnName.CREATION_TIME));
+        task.setDeadline(resultSet.getInt(TaskColumnName.DEADLINE));
         task.setDescription(resultSet.getString(TaskColumnName.DESCRIPTION));
         task.setAuthorId(resultSet.getInt(TaskColumnName.AUTHOR_ID));
 

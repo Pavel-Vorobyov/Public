@@ -39,7 +39,7 @@ public class GroupLine extends TagSupport {
             pageContext.getOut().write("<span class=\"group-name\">" + groupTitle + "</span>");
             pageContext.getOut().write("<span class=\"group-region\">" + courseLocation + "</span>");
             pageContext.getOut().write("<span class=\"group-course\">" + courseCourse + "</span>");
-            pageContext.getOut().write("<span class=\"group-lng\">" + courseDescription + "</span>");
+            pageContext.getOut().write("<span class=\"group-description\">" + courseDescription + "</span>");
         } catch (IOException e) {
             e.printStackTrace();
         }

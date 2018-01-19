@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="/WEB-INF/tag/CourseCard.tld" prefix="lnGroup"%>
+<%@ taglib uri="/WEB-INF/tag/CourseCard.tld" prefix="ln"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +7,7 @@
   <title>Group list</title>
   <link rel="stylesheet" type="text/css" href="../css/reset.css">
   <link rel="stylesheet" type="text/css" href="../css/default.css">
-  <link rel="stylesheet" type="text/css" href="../css/teaching-group-list.css">
+  <link rel="stylesheet" type="text/css" href="../css/training-group-list.css">
 
   <script type="text/javascript">
     var links = [];
@@ -27,7 +27,6 @@
         <div class="filters">
             <h1>Group list</h1>
             <div class="horizontal-group">
-              <a class="uui-button" href="#">Group</a>
               <a class="uui-button" href="#">Course</a>
               <a class="uui-button" href="#">Profile</a>
              </div>
@@ -39,11 +38,11 @@
                   <h2 class="name-item">Group name:</h2>
                   <h2 class="region-item">Place:</h2>
                   <h2 class="course-item">Course:</h2>
-                  <h2 class="ln-item">Description:</h2>
+                  <h2 class="description-item">Description:</h2>
                 </li>
 
                 <c:forEach var="teachingGroup" items="${requestScope.teachingGroupList}">
-                  <lnGroup:groupLine groupHerf="${teachingGroup.groupHerf}" groupTitle="${teachingGroup.workGroupTitle}" courseLocation="${teachingGroup.courseRegion}"
+                  <ln:groupLine groupHerf="${teachingGroup.groupHerf}" groupTitle="${teachingGroup.workGroupTitle}" courseLocation="${teachingGroup.courseRegion}"
                                      courseCourse="${teachingGroup.courseTitle}" courseDescription="${teachingGroup.courseDescription}"/>
                 </c:forEach>
 

@@ -7,7 +7,6 @@
   <title>Group</title>
   <link rel="stylesheet" type="text/css" href="../css/reset.css">
   <link rel="stylesheet" type="text/css" href="../css/default.css">
-  <link rel="stylesheet" type="text/css" href="../css/training-portal-student.css">
   <link rel="stylesheet" type="text/css" href="../css/teaching-group.css">
 
   <script type="text/javascript">
@@ -26,9 +25,9 @@
     <div class="td-main-content-wrapper">
       <div class="td-main-content-conteiner">
         <div class="filters">
-            <h1>Group name <--</h1>
+            <h1>${requestScope.workGroup.title}</h1>
             <div class="horizontal-group">
-              <a class="uui-button" href="#">Group list</a>
+              <a class="uui-button" href="command?command=training-group-list-page">Group list</a>
               <a class="uui-button" href="#">Course list</a>
               <a class="uui-button" href="#">Profile</a>
              </div>
@@ -40,18 +39,13 @@
                   <h2 class="task-item">Task name:</h2>
                   <h2 class="start-time-item">Start time:</h2>
                   <h2 class="deadline-item">Deadline:</h2>
-                  <h2 class="courseDescription-item">Description:</h2>
-                </li>
-                <li class="item-body">
-                  <a href="#">
-                  <span class="tk-task-name" title="Lolli">sss</span>
-                  <span class="tk-start-time" title="Lololol">s</span>
-                  <span class="tk-deadline" title="Lololol">ss</span>
-                  <span class="tk-courseDescription" title="Kffsdf">ss</span>
-                </a>
+                  <h2 class="description-ite">Description:</h2>
                 </li>
 
-                <lnTask:taskLine taskTitle="rr" startTime="rr" deadline="rr" description="rr"/>
+                <c:forEach var="groupTask" items="${requestScope.groupTaskList}">
+                  <lnTask:taskLine taskHerf="${groupTask.taskHerf}" taskTitle="${groupTask.title}"
+                                   startTime="${groupTask.creationTime}" deadline="${groupTask.deadline}" description="${groupTask.description}"/>
+                </c:forEach>
 
               </ul>
             </div>

@@ -19,10 +19,29 @@
                     <li><a href="command?command=training-portal-page">Training Portal</a></li>
                     <li><a href="command?command=news-page">News</a></li>
                     <li><a href="command?command=about-page">About</a></li>
-                    <li id="header-nav-left"><a href="/command?command=sing-in-page">Login</a></li>
+                    <li id="header-nav-left"><a href="#singIn">Login</a></li>
                     <li id="header-nav-left"><a href="/command?command=sing-up-page">Register</a></li>
                 </c:otherwise>
             </c:choose>
         </ul>
     </div>
+    <div id="singIn" class="singIn">
+      <div class="container">
+        <div class="login">
+          <a href="#close" title="Закрыть" class="close">X</a>
+          <h1>Login to your user</h1>
+          <form method="post" action="command">
+            <input type="hidden" name="command" value="sing-in"/>
+            <p><input type="text" name="login" required="true" id="login" value="" placeholder="Enter login" pattern="([\w]{3,16})"
+                      placeholder="Вевиде от 3 до 16 символов!"></p>
+            <p><input type="password" name="password" required="true" id="password" value="" placeholder="Enter password" pattern="([\w]{7,16})"
+                      placeholder="Вевиде от 3 до 16 символов!"></p>
+            <p class="submit">
+              <input class="sb-register" type="submit" name="register" value="Register">
+              <input type="submit" name="commit" value="Log in">
+            </p>
+          </form>
+        </div>
+    </div>
+  </div>
 </div>

@@ -81,6 +81,12 @@
         <body-content>empty</body-content>
 
         <attribute>
+            <name>taskHerf</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
             <name>taskTitle</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
@@ -100,6 +106,42 @@
 
         <attribute>
             <name>description</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>userTaskLine</name>
+        <tag-class>by.vorobyov.training.tag.UserTaskLine</tag-class>
+        <body-content>empty</body-content>
+
+        <attribute>
+            <name>name</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>creationTime</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>deadline</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>estimate</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>status</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>

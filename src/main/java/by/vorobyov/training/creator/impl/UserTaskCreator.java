@@ -6,6 +6,7 @@ import by.vorobyov.training.dto.entity.UserTask;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,9 +18,13 @@ public class UserTaskCreator  implements ICreator<UserTask> {
     public List<UserTask> createEntityList(ResultSet resultSet) throws SQLException {
         List<UserTask> userTaskList = new LinkedList<>();
 
-        while (resultSet.next()) {
-            UserTask userTask = createEntity(resultSet);
-            userTaskList.add(userTask);
+        if (resultSet.next()) {
+            do {
+                UserTask userTask = createEntity(resultSet);
+                userTaskList.add(userTask);
+            } while (resultSet.next());
+        } else {
+            return Collections.emptyList();
         }
 
         return userTaskList;

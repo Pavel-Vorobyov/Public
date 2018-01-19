@@ -1,0 +1,219 @@
+div {
+    font-family: 'Oswald Regular',Tahoma,sans-serif;
+}
+
+html, body {
+    cursor: default !important;
+}
+
+.td-main-content-conteiner {
+    width: 1250px;
+    min-height: 900px;
+
+    background-color: #fcfcfc;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+.td-main-content-conteiner h1 {
+    text-align: left;
+    padding: 30px;
+    float: left;
+}
+
+.filters {
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.filters .horizontal-group {
+    vertical-align: top;
+    text-transform: none;
+    float: right;
+    padding: 30px;
+    padding-top: 50px;
+    margin-right: 100px;
+}
+
+.horizontal-group {
+    position: relative;
+    display: inline-block;
+}
+
+.filters .horizontal-group .uui-button {
+    margin-left: -1px;
+    color: #464547;
+    background-color: #fcfcfc;
+    text-decoration: none;
+    font-family: Source Sans Pro Regular;
+    font-size: 18px;
+}
+
+.horizontal-group .uui-button {
+    float: left;
+    position: relative;
+}
+
+.uui-button {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 20px;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid #999;
+    background-color: #999;
+    color: #fff;
+    border-radius: 0;
+    box-shadow: none;
+    height: 27px;
+}
+
+.form-filter {
+    padding-bottom: 22px;
+}
+
+.filters .horizontal-group .uui-button:hover {
+    background-color: #f0f2f4;
+}
+.filters .form-filter {
+    width: 100%;
+    float: right;
+}
+
+.td-group-wrapper {
+    height: 700px;
+    width: 100%;
+    float: right;
+}
+
+.td-group-conteiner {
+    /*border: 1px solid;*/
+    height: 100px;
+}
+
+.uui-item-list {
+    width: 100%;
+    height: 700px;
+    list-style: none;
+    margin: 0;
+    overflow: hidden;
+}
+
+.item-body-header {
+    width: 100%;
+    list-style: none;
+
+    position: relative;
+    font-family: 'Source Sans Pro Semibold',Tahoma,sans-serif;
+    color: #464547;
+    font-size: 16px;
+    text-transform: none;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+    left: -29px;
+}
+
+.uui-item-list .item-body-header .name-item {
+    width: 28.2%;
+    float: left;
+    text-align: left;
+    padding-left: 20px;
+}
+
+.uui-item-list .item-body-header .region-item {
+    width: 12.5%;
+    float: left;
+    text-align: left;
+}
+
+.uui-item-list .item-body-header .course-item {
+    width: 24.2%;
+    float: left;
+    text-align: left;
+}
+
+.uui-item-list .item-body-header .description-item {
+    float: left;
+    text-align: left;
+}
+
+.item-body {
+    padding: 0;
+    height: 60px;
+    table-layout: fixed;
+    border-left: none;
+    border-right: none;
+
+    margin: -1px 0 0 0;
+    position: relative;
+    left: -40px;
+    display: table;
+    width: 100%;
+    border: 1px solid #ccc;
+}
+
+.item-body a {
+    padding-top: 24px;
+    padding-bottom: 17px;
+    padding-right: 25px;
+
+    text-decoration: none;
+}
+
+.item-body a:hover {
+    background-color: #f8f8f8;
+}
+
+.group-name {
+    padding-left: 32px;
+    width: 27%;
+
+    margin-top: 20px;
+    font-size: 16px;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-right: 10px;
+}
+
+.group-region {
+    width: 12%;
+    position: relative;
+    left: -3px;
+
+    margin-top: 20px;
+    font-size: 16px;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-right: 10px;
+}
+
+.group-course {
+    width: 23%;
+
+    margin-top: 20px;
+    font-size: 16px;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-right: 10px;
+}
+
+.group-description {
+    width: 25%;
+
+    margin-top: 20px;
+    font-size: 16px;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-right: 10px;
+}

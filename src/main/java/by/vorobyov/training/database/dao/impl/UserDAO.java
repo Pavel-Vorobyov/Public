@@ -142,10 +142,8 @@ public class UserDAO extends AbstractDAO<User> {
 
             String login = String.valueOf(entity.getLogin());
             String password = String.valueOf(entity.getPassword());
-//            String email = String.valueOf(entity.getEmail());
             preparedStatement.setString(1, login);
-            preparedStatement.setString(2, password);
-//            preparedStatement.setString(3, email);
+            preparedStatement.setString(2, password);;
 
             preparedStatement.executeUpdate();
             connection.commit();

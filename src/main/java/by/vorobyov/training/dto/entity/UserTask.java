@@ -12,6 +12,7 @@ public class UserTask implements Serializable {
     private Integer status;
     private Integer commentId;
     private Integer workGroupId;
+    private boolean userTaskEmpty = false;
 
     public UserTask() {
     }
@@ -27,6 +28,20 @@ public class UserTask implements Serializable {
         this.status = status;
         this.commentId = commentId;
         this.workGroupId = workGroupId;
+    }
+
+    public static UserTask emptyEntity() {
+        UserTask userTask = new UserTask();
+        userTask.setUserTaskEmpty(true);
+        return userTask;
+    }
+
+    public boolean isUserTaskEmpty() {
+        return userTaskEmpty;
+    }
+
+    public void setUserTaskEmpty(boolean userTaskEmpty) {
+        this.userTaskEmpty = userTaskEmpty;
     }
 
     public Integer getUserTaskId() {

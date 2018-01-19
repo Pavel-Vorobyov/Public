@@ -1,6 +1,7 @@
 package by.vorobyov.training.controller.command.impl.page;
 
 import by.vorobyov.training.controller.command.ICommand;
+import by.vorobyov.training.controller.command.URLCommand;
 import by.vorobyov.training.dto.entity.User;
 import by.vorobyov.training.resource.AttributeName;
 import by.vorobyov.training.resource.JspPageName;
@@ -24,7 +25,7 @@ public class TrainingPage implements ICommand {
                 request.getRequestDispatcher(JspPageName.STUDENT_HOME_PAGE).forward(request, response);
                 break;
             case 1:
-                response.sendRedirect(TRAINING_GROUP);
+                response.sendRedirect(URLCommand.TRAINING_GROUP);
                 break;
             default:
 
