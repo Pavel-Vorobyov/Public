@@ -34,8 +34,8 @@ public class TeachingUserTaskCreator implements ICreator<TeachingUserTask> {
         String studentName = resultSet.getString(UserDataColumnName.NAME) + " "
                 + resultSet.getString(UserDataColumnName.SURNAME);
         teachingUserTask.setStudentName(studentName);
-        teachingUserTask.setStartTime(resultSet.getInt(UserTaskColumnName.CREATION_TIME));
-        teachingUserTask.setDeadline(resultSet.getInt(UserDataColumnName.DEADLINE));
+        teachingUserTask.setStartTime(resultSet.getString(UserTaskColumnName.CREATION_TIME));
+        teachingUserTask.setDeadline(resultSet.getString(UserDataColumnName.DEADLINE));
         teachingUserTask.setEstimate(resultSet.getInt(UserDataColumnName.ESTIMATE));
         teachingUserTask.setStatus(resultSet.getInt(UserDataColumnName.STATUS));
 

@@ -10,7 +10,6 @@ public class TaskQuery {
 
     public final static String DESCRIPTION_UPDATE = "UPDATE task SET description = ? WHERE id = ?";
 
-    public final static String TASK_INSERT = "INSERT INTO task (title, description, author_id) VALUES (?, ?, ?)";
 
     public final static String DELETE_TASK = "DELETE FROM task WHERE id = ?";
 }

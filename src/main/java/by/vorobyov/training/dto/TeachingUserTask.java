@@ -2,8 +2,8 @@ package by.vorobyov.training.dto;
 
 public class TeachingUserTask {
     private String studentName;
-    private Integer startTime;
-    private Integer deadline;
+    private String startTime;
+    private String deadline;
     private Integer estimate;
     private Integer status;
 
@@ -11,7 +11,7 @@ public class TeachingUserTask {
     public TeachingUserTask() {
     }
 
-    public TeachingUserTask(String studentName, Integer startTime, Integer deadline
+    public TeachingUserTask(String studentName, String startTime, String deadline
         , Integer estimate, Integer status) {
         this.studentName = studentName;
         this.startTime = startTime;
@@ -28,19 +28,19 @@ public class TeachingUserTask {
         this.studentName = studentName;
     }
 
-    public Integer getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Integer startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public Integer getDeadline() {
+    public String getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(Integer deadline) {
+    public void setDeadline(String deadline) {
         this.deadline = deadline;
     }
 

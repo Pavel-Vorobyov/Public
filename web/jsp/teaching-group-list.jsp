@@ -27,7 +27,7 @@
         <div class="filters">
             <h1>Group list</h1>
             <div class="horizontal-group">
-              <a class="uui-button" href="#">Course</a>
+              <a class="uui-button" href="#">Course list</a>
               <a class="uui-button" href="#">Profile</a>
              </div>
           </div>

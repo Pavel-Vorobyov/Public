@@ -5,13 +5,29 @@
     <meta charset="utf-8" http-equiv="content-type" content="text/html">
     <title>Error</title>
     <link rel="stylesheet" type="text/css" href="../css/error.css">
+      <script type="text/javascript">
+        function initUpdateBlock(taskModify){
+            taskModify.style.display = "none";
+        }
+        function showUpdateBlock(blockId) {
+          if (blockId.style.display == "none")
+             {
+               blockId.style.display = "block";
+             }
+          else
+             {
+               blockId.style.display = "none";
+             }
+        }
+      </script>
 </head>
 <body>
-    <a href="#taskModify">Открыть модальное окно</a>
+  <body onload="initUpdateBlock(taskModify)">
+    <a onclick="showUpdateBlock(taskModify)">taskModify</a>
     <div id="taskModify" class="taskModify">
       <div class="container">
               <div class="mofidy">
-                <a href="#close" title="Закрыть" class="close">X</a>
+                <a onclick="showUpdateBlock(taskModify)" title="Закрыть" class="close">X</a>
                 <h1>User task modify...</h1>
                 <form method="post" action="command">
                   <input type="hidden" name="command" value="teacher-user-task-modify"/>
@@ -25,44 +41,39 @@
               </div>
     </div>
   </div>
+</body>
 
-  <a href="#singIn">Открыть модальное окно</a>
-  <div id="singIn" class="singIn">
+<a href="#studentTaskUpdate">StudentTaskUpdate</a>
+<div id="studentTaskUpdate" class="studentTaskUpdate">
     <div class="container">
-      <div class="login">
+      <div class="taskUpdate">
         <a href="#close" title="Закрыть" class="close">X</a>
-        <h1>Login to your user</h1>
+        <h1>Registration</h1>
         <form method="post" action="command">
-          <input type="hidden" name="command" value="sing-in"/>
-          <p><input type="text" name="login" required="true" id="login" value="" placeholder="Enter login" pattern="([\w]{3,16})"
-                    placeholder="Вевиде от 3 до 16 символов!"></p>
-          <p><input type="password" name="password" required="true" id="password" value="" placeholder="Enter password" pattern="([\w]{7,16})"
-                    placeholder="Вевиде от 3 до 16 символов!"></p>
-          <p class="submit">
-            <input class="sb-register" type="submit" name="register" value="Register">
-            <input type="submit" name="commit" value="Log in">
+          <input type="hidden" name="command" value="add-user"/>
+          <p>
+            Enter estimate:
+            <input style="float:right" type="number" min="0" max="10">
+            </p>
+          <p>
+            Enter deadline:
+            <input type="date" style="float:right" name="deadline" id="deadline" value=""
+            placeholder="Time when a task should be done">
           </p>
+          <p>
+            Select task status:
+            <select name="taskStatus" style="float:right">
+              <option selected value="3">Revision</option>
+              <option value="1">Complite</option>
+            </select>
+          </p>
+          <p>
+            <textarea maxlength="1000" rows="12" cols="45" name="taskDescription" id="taskDescription"></textarea>
+          </p>
+          <p class="submit"><input type="submit" name="commit" value="Update"></p>
         </form>
       </div>
   </div>
-</div>
-
-<a href="#singOut">Открыть модальное окно</a>
-<div id="singOut" class="singOut">
-  <div class="container">
-    <div class="register">
-      <a href="#close" title="Закрыть" class="close">X</a>
-      <h1>Registration</h1>
-      <form method="post" action="command">
-        <input type="hidden" name="command" value="add-user"/>
-        <p><input type="text" name="login" required="true" value="" placeholder="Enter login"></p>
-        <p><input type="password" name="password" required="true" value="" placeholder="Enter password"></p>
-        <p><input type="password" name="password2" required="true" value="" placeholder="Confirm password"></p>
-        <p><input type="text" name="email" required="true" value="" placeholder="Enter email"></p>
-        <p class="submit"><input type="submit" name="commit" value="Register"></p>
-      </form>
-    </div>
-</div>
 </div>
 
 </body>

@@ -3,6 +3,7 @@ package by.vorobyov.training.controller.command;
 import by.vorobyov.training.controller.command.impl.Common.AddUser;
 import by.vorobyov.training.controller.command.impl.Common.SingIn;
 import by.vorobyov.training.controller.command.impl.Common.SingOut;
+import by.vorobyov.training.controller.command.impl.Common.TeacherCreateTask;
 import by.vorobyov.training.controller.command.impl.page.*;
 import by.vorobyov.training.resource.CommandName;
 
@@ -28,8 +29,9 @@ public class CommandStorage {
         commandStorage.put(CommandName.SING_OUT, new SingOut());
         commandStorage.put(CommandName.ADD_USER, new AddUser());
         commandStorage.put(CommandName.TRAINING_GROUP_LIST_PAGE, new TrainingGroupListPage());
-        commandStorage.put(CommandName.TRAINING_GROUP_PAGE, new TeachingGroupPage());
+        commandStorage.put(CommandName.TRAINING_GROUP_PAGE, new TrainingGroupPage());
         commandStorage.put(CommandName.GROUP_TASK_PAGE, new TrainingGroupTaskPage());
+        commandStorage.put(CommandName.TEACHER_CREATE_TASK, new TeacherCreateTask());
     }
 
     public ICommand getCommand(String commandName) {

@@ -6,6 +6,8 @@ import by.vorobyov.training.dto.entity.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 public class UserCreator implements ICreator<User> {
@@ -14,7 +16,18 @@ public class UserCreator implements ICreator<User> {
 
     @Override
     public List<User> createEntityList(ResultSet resultSet) throws SQLException {
-        return null;
+        List<User> userList = new LinkedList<>();
+
+        if (resultSet.next()) {
+            do {
+                User user = createEntity(resultSet);
+                userList.add(user);
+            } while (resultSet.next());
+            return userList;
+        } else {
+            return Collections.emptyList();
+        }
+
     }
 
     @Override

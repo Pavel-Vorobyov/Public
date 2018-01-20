@@ -20,11 +20,12 @@
                     <li><a href="command?command=news-page">News</a></li>
                     <li><a href="command?command=about-page">About</a></li>
                     <li id="header-nav-left"><a href="#singIn">Login</a></li>
-                    <li id="header-nav-left"><a href="/command?command=sing-up-page">Register</a></li>
+                    <li id="header-nav-left"><a href="#singOn">Register</a></li>
                 </c:otherwise>
             </c:choose>
         </ul>
     </div>
+
     <div id="singIn" class="singIn">
       <div class="container">
         <div class="login">
@@ -37,11 +38,32 @@
             <p><input type="password" name="password" required="true" id="password" value="" placeholder="Enter password" pattern="([\w]{7,16})"
                       placeholder="Вевиде от 3 до 16 символов!"></p>
             <p class="submit">
-              <input class="sb-register" type="submit" name="register" value="Register">
+              <a href="#singOn" class="sb-register">Register</a>
               <input type="submit" name="commit" value="Log in">
             </p>
           </form>
         </div>
     </div>
   </div>
+
+    <div id="singOn" class="singOn">
+        <div class="container">
+            <div class="register">
+                <a href="#close" title="Закрыть" class="close">X</a>
+                <h1>Registration</h1>
+                <form method="post" action="command">
+                    <input type="hidden" name="command" value="add-user"/>
+                    <p><input type="text" name="login" required="true" value="" placeholder="Enter login"></p>
+                    <p><input type="password" name="password" required="true" value="" placeholder="Enter password"></p>
+                    <p><input type="password" name="password2" required="true" value="" placeholder="Confirm password"></p>
+                    <p><input type="text" name="email" required="true" value="" placeholder="Enter email"></p>
+                    <p class="submit">
+                        <a href="#singIn" class="sb-register">Login</a>
+                        <input type="submit" name="commit" value="Register">
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </div>

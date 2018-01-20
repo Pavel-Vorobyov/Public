@@ -4,7 +4,7 @@ public class UserData {
     private Integer userId;
     private String name;
     private String surname;
-    private Integer creationTime;
+    private String creationTime;
     private String description;
     private boolean userDataEmpty = false;
 
@@ -12,7 +12,7 @@ public class UserData {
     }
 
     public UserData(Integer userId, String name, String surname
-            , Integer creationTime, String description) {
+            , String creationTime, String description) {
         this.userId = userId;
         this.name = name;
         this.surname = surname;
@@ -59,11 +59,11 @@ public class UserData {
         this.surname = surname;
     }
 
-    public Integer getCreationTime() {
+    public String getCreationTime() {
         return creationTime;
     }
 
-    public void setCreationTime(Integer creationTime) {
+    public void setCreationTime(String creationTime) {
         this.creationTime = creationTime;
     }
 

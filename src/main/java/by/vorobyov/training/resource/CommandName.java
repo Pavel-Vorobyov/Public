@@ -16,4 +16,5 @@ public class CommandName {
     public static final String SING_IN = "sing-in";
     public static final String SING_OUT = "sing-out";
     public static final String ADD_USER = "add-user";
+    public static final String TEACHER_CREATE_TASK = "teacher-create-task";
 }

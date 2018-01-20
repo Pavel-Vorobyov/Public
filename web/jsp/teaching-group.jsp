@@ -27,8 +27,8 @@
         <div class="filters">
             <h1>${requestScope.workGroup.title}</h1>
             <div class="horizontal-group">
+              <a class="uui-button" href="#createTask">Create a task</a>
               <a class="uui-button" href="command?command=training-group-list-page">Group list</a>
-              <a class="uui-button" href="#">Course list</a>
               <a class="uui-button" href="#">Profile</a>
              </div>
           </div>
@@ -49,9 +49,31 @@
 
               </ul>
             </div>
-            <div class="td-group-conteiner">
+            <%--<div class="td-group-conteiner">--%>
 
+          <%--</div>--%>
+          <div id="createTask" class="createTask">
+            <div class="container">
+              <div class="creation">
+                <a href="#close" title="Close" class="close">X</a>
+                <h1>Creation task for your group...</h1>
+                <form method="post" action="command">
+                  <input type="hidden" name="command" value="teacher-create-task"/>
+                  <input type="hidden" name="group-id" value="1"/>
+                  <p><input type="text" name="title" required id="title" value=""
+                    pattern="^.{1,44}$" placeholder="Enter task title">
+                    <input type="date" name="deadline" required="true" id="deadline" value=""
+                      placeholder="Time when a task should be done"></p>
+                  <p><textarea required maxlength="1000" rows="12" cols="42" name="description"
+                               id="description" placeholder="Enter task description"></textarea></p>
+                  <p class="submit">
+                    <input type="submit" name="modify" value="Create task">
+                  </p>
+                </form>
+              </div>
+            </div>
           </div>
+
         </div>
       </div>
     </div>

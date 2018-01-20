@@ -13,6 +13,20 @@
     var links = [];
       links['tests'] = 'questions.php/?id=5';
       links['tests2'] = 'questions.php/?id=8';
+
+    function initUpdateBlock(taskModify){
+        taskModify.style.display = "none";
+    }
+    function showUpdateBlock(blockId) {
+        if (blockId.style.display == "none")
+        {
+            blockId.style.display = "block";
+        }
+        else
+        {
+            blockId.style.display = "none";
+        }
+    }
     </script>
 
 </head>
@@ -45,12 +59,12 @@
                 <c:forEach var="userTask" items="${requestScope.teachingUserTask}">
                   <lnUserTask:userTaskLine name="${userTask.studentName}" creationTime="${userTask.startTime}"
                                            deadline="" estimate="" status=""/>
+                  <lnUserTask:usTaskUpd studentName="${userTask.studentName}" userTaskId="1" updateBlockId="studentTaskUpdate"/>
                 </c:forEach>
 
               </ul>
             </div>
             <div class="td-group-conteiner">
-
           </div>
         </div>
       </div>

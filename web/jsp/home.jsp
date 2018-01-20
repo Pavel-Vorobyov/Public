@@ -1,7 +1,6 @@
-<video autoplay loop muted preload class="td-bg-video" id="bgVideo">
+<video autoplay loop muted preload class="td-bg-video" id="bgVideo" onload="init(bgVideo)">
     <source src="background/background-banner-move.mov"></source>
 </video>
-<script type="application/javascript" src="js/index.js"></script>
 <img class="td-bg-img" alt="BgVidio" src="background/background_img_600px.png">
 
 <div class="td-main-content-banner" align="right">

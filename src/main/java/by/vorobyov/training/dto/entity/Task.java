@@ -8,15 +8,15 @@ public class Task implements Serializable {
     private String title;
     private String description;
     private Integer authorId;
-    private Integer creationTime;
-    private Integer deadline;
+    private String creationTime;
+    private String deadline;
     private boolean taskEmpty = false;
 
     public Task() {
     }
 
     public Task(String taskHerf, Integer taskId, String title, String description, Integer authorId
-        , Integer creationTime, Integer deadline) {
+        , String creationTime, String deadline) {
         this.taskHerf = taskHerf;
         this.taskId = taskId;
         this.title = title;
@@ -30,14 +30,6 @@ public class Task implements Serializable {
         Task task = new Task();
         task.taskEmpty = true;
         return task;
-    }
-
-    public boolean isTaskEmpty() {
-        return taskEmpty;
-    }
-
-    public void setTaskEmpty(boolean taskEmpty) {
-        this.taskEmpty = taskEmpty;
     }
 
     public String getTaskHerf() {
@@ -80,20 +72,28 @@ public class Task implements Serializable {
         this.authorId = authorId;
     }
 
-    public Integer getCreationTime() {
+    public String getCreationTime() {
         return creationTime;
     }
 
-    public void setCreationTime(Integer creationTime) {
+    public void setCreationTime(String creationTime) {
         this.creationTime = creationTime;
     }
 
-    public Integer getDeadline() {
+    public String getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(Integer deadline) {
+    public void setDeadline(String deadline) {
         this.deadline = deadline;
+    }
+
+    public boolean isTaskEmpty() {
+        return taskEmpty;
+    }
+
+    public void setTaskEmpty(boolean taskEmpty) {
+        this.taskEmpty = taskEmpty;
     }
 
     @Override
@@ -103,6 +103,8 @@ public class Task implements Serializable {
 
         Task task = (Task) o;
 
+        if (taskEmpty != task.taskEmpty) return false;
+        if (!taskHerf.equals(task.taskHerf)) return false;
         if (!taskId.equals(task.taskId)) return false;
         if (!title.equals(task.title)) return false;
         if (!description.equals(task.description)) return false;
@@ -113,24 +115,28 @@ public class Task implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = taskId.hashCode();
+        int result = taskHerf.hashCode();
+        result = 31 * result + taskId.hashCode();
         result = 31 * result + title.hashCode();
         result = 31 * result + description.hashCode();
         result = 31 * result + authorId.hashCode();
         result = 31 * result + creationTime.hashCode();
         result = 31 * result + deadline.hashCode();
+        result = 31 * result + (taskEmpty ? 1 : 0);
         return result;
     }
 
     @Override
     public String toString() {
         return "Task{" +
-                "taskId=" + taskId +
+                "taskHerf='" + taskHerf + '\'' +
+                ", taskId=" + taskId +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", authorId=" + authorId +
-                ", creationTime=" + creationTime +
-                ", deadline=" + deadline +
+                ", creationTime='" + creationTime + '\'' +
+                ", deadline='" + deadline + '\'' +
+                ", taskEmpty=" + taskEmpty +
                 '}';
     }
 }

@@ -13,6 +13,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class UserTaskDAO extends AbstractDAO<UserTask> {
+    public static final String INSERT_USER_TASK = "INSERT INTO user_task (user_id, creationtime, deadline, " +
+            " work_group_id, task_id) VALUES ( ?, ?, ?, ?, ? )";
+
     @Override
     public List<UserTask> getAll() throws DAOException, SQLException {
         return null;
@@ -27,13 +30,12 @@ public class UserTaskDAO extends AbstractDAO<UserTask> {
         connection.setAutoCommit(false);
 
         try {
-            preparedStatement = connection.prepareStatement(UserTaskQuery.UPDATE_USER_TASK_BY_ID);
-            preparedStatement.setInt(1, entity.getDeadLine());
-            preparedStatement.setInt(2, entity.getEstimate());
-            preparedStatement.setInt(3, entity.getStatus());
-            preparedStatement.setInt(4, entity.getCommentId());
-            preparedStatement.setInt(5, entity.getWorkGroupId());
-            preparedStatement.setInt(6, entity.getUserTaskId());
+            preparedStatement = connection.prepareStatement(INSERT_USER_TASK);
+            preparedStatement.setInt(1, entity.getUserId());
+            preparedStatement.setString(2, entity.getCreationTime());
+            preparedStatement.setString(3, entity.getDeadLine());
+            preparedStatement.setInt(4, entity.getWorkGroupId());
+            preparedStatement.setInt(5, entity.getTaskId());
 
             preparedStatement.executeUpdate();
             connection.commit();
@@ -112,14 +114,12 @@ public class UserTaskDAO extends AbstractDAO<UserTask> {
         connection.setAutoCommit(false);
 
         try {
-            preparedStatement = connection.prepareStatement(UserTaskQuery.INSERT_USER_TASK);
-            preparedStatement.setInt(1, entity.getCreationTime());
-            preparedStatement.setInt(2, entity.getDeadLine());
-            preparedStatement.setInt(3, entity.getEstimate());
-            preparedStatement.setInt(4, entity.getCommentId());
-            preparedStatement.setInt(5, entity.getUserId());
-            preparedStatement.setInt(6, entity.getTaskId());
-            preparedStatement.setInt(7, entity.getWorkGroupId());
+            preparedStatement = connection.prepareStatement(INSERT_USER_TASK);
+            preparedStatement.setInt(1, entity.getUserId());
+            preparedStatement.setString(2, entity.getCreationTime());
+            preparedStatement.setString(3, entity.getDeadLine());
+            preparedStatement.setInt(4, entity.getWorkGroupId());
+            preparedStatement.setInt(5, entity.getTaskId());
 
             preparedStatement.executeUpdate();
             connection.commit();

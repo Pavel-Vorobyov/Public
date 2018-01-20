@@ -29,7 +29,7 @@ public class UserDataCreator implements ICreator<UserData> {
         userData.setUserId(resultSet.getInt(UserDataColumnName.USER_ID));
         userData.setName(resultSet.getString(UserDataColumnName.NAME));
         userData.setSurname(resultSet.getString(UserDataColumnName.SURNAME));
-        userData.setCreationTime(resultSet.getInt(UserDataColumnName.CREATION_TIME));
+        userData.setCreationTime(resultSet.getString(UserDataColumnName.CREATION_TIME));
         userData.setDescription(resultSet.getString(UserDataColumnName.DESCRIPTION));
 
         return userData;

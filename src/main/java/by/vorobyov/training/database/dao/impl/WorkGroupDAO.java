@@ -1,8 +1,11 @@
 package by.vorobyov.training.database.dao.impl;
 
+import by.vorobyov.training.creator.impl.UserCreator;
 import by.vorobyov.training.creator.impl.WorkGroupCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
 import by.vorobyov.training.database.dao.preparedquery.WorkGroupQuery;
+import by.vorobyov.training.dto.entity.User;
+import by.vorobyov.training.dto.entity.UserTask;
 import by.vorobyov.training.dto.entity.WorkGroup;
 import by.vorobyov.training.exception.DAOException;
 
@@ -10,6 +13,10 @@ import java.sql.*;
 import java.util.List;
 
 public class WorkGroupDAO extends AbstractDAO<WorkGroup> {
+    public static final String SELECT_USER_ID_BY_GROUP_ID = "SELECT user.id, user.login, user.password, user.email, user.status" +
+            " FROM user_has_work_group, user" +
+            " WHERE user.id = user_has_work_group.user_id AND user_has_work_group.work_group_id = ?";
+
     @Override
     public List<WorkGroup> getAll() throws DAOException, SQLException {
         Connection connection = getConnection();
@@ -116,7 +123,33 @@ public class WorkGroupDAO extends AbstractDAO<WorkGroup> {
             preparedStatement.setInt(1, leadId);
 
             resultSet = preparedStatement.executeQuery();
+            connection.commit();
             return workGroupCreator.createEntityList(resultSet);
+        } catch (SQLException e) {
+            rollback(connection);
+            throw new DAOException(e);
+        } finally {
+            closePreparedStatement(preparedStatement);
+            closeConnection(connection);
+        }
+    }
+
+    public List<User> getUserListByGroupId(Integer groupId) throws DAOException, SQLException {
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet;
+        UserCreator userCreator = new UserCreator();
+
+        connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        connection.setAutoCommit(false);
+
+        try {
+            preparedStatement = connection.prepareStatement(SELECT_USER_ID_BY_GROUP_ID);
+            preparedStatement.setInt(1, groupId);
+
+            resultSet = preparedStatement.executeQuery();
+            connection.commit();
+            return userCreator.createEntityList(resultSet);
         } catch (SQLException e) {
             rollback(connection);
             throw new DAOException(e);

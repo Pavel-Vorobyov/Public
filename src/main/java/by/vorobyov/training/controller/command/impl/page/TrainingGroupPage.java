@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class TeachingGroupPage implements ICommand {
+public class TrainingGroupPage implements ICommand {
     public static final String  WORK_GROUP_ID = "group-id";
 
     @Override
@@ -34,7 +34,7 @@ public class TeachingGroupPage implements ICommand {
             if (!groupTask.isEmpty()) {
 
                 for (int i=0; i<groupTask.size(); i++) {
-                    String taskHerf = URLCommand.TEACHING_TASK_PAGE + groupTask.get(i).getTaskId()
+                    String taskHerf = URLCommand.TRAINING_TASK_PAGE + groupTask.get(i).getTaskId()
                             + "&" + WORK_GROUP_ID + "=" + workGroupId;
                     groupTask.get(i).setTaskHerf(taskHerf);
                 }

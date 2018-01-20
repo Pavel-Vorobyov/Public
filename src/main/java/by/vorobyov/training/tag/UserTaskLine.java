@@ -6,8 +6,8 @@ import java.io.IOException;
 
 public class UserTaskLine extends TagSupport {
     private String name;
-    private Integer creationTime;
-    private Integer deadline;
+    private String creationTime;
+    private String deadline;
     private Integer estimate;
     private Integer status;
 
@@ -15,11 +15,11 @@ public class UserTaskLine extends TagSupport {
         this.name = name;
     }
 
-    public void setCreationTime(Integer creationTime) {
+    public void setCreationTime(String creationTime) {
         this.creationTime = creationTime;
     }
 
-    public void setDeadline(Integer deadline) {
+    public void setDeadline(String deadline) {
         this.deadline = deadline;
     }
 
@@ -35,12 +35,12 @@ public class UserTaskLine extends TagSupport {
     public int doStartTag() throws JspException {
         try {
             pageContext.getOut().write("<li class=\"item-body\">");
-            pageContext.getOut().write("<a href=\"#\">");
-            pageContext.getOut().write("<span class=\"tk-student-name\" title=\"Lolli\">" + name + "</span>");
-            pageContext.getOut().write("<span class=\"tk-start-time\" title=\"Lololol\">" + creationTime +"</span>");
-            pageContext.getOut().write("<span class=\"tk-deadline\" title=\"Lololol\">" + deadline +"</span>");
-            pageContext.getOut().write("<span class=\"tk-estimate\" title=\"Kffsdf\">" + estimate +"</span>");
-            pageContext.getOut().write("<span class=\"tk-status\" title=\"Kffsdf\">" + status +"</span>");
+            pageContext.getOut().write("<a onclick=\"showUpdateBlock(studentTaskUpdate)\">");
+            pageContext.getOut().write("<span class=\"tk-student-name\" title=\"Student name\">" + name + "</span>");
+            pageContext.getOut().write("<span class=\"tk-start-time\" title=\"Time when a task was created\">" + creationTime +"</span>");
+            pageContext.getOut().write("<span class=\"tk-deadline\" title=\"Time when a task should be done\">" + deadline +"</span>");
+            pageContext.getOut().write("<span class=\"tk-estimate\" title=\"A task estimate\">" + estimate +"</span>");
+            pageContext.getOut().write("<span class=\"tk-status\" title=\"Status of a task (done/in process...)\">" + status +"</span>");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -41,7 +41,7 @@ public class UserDataDAO extends AbstractDAO<UserData> {
             preparedStatement = connection.prepareStatement(UserDataQuery.UPDATE_USER_DATA_BY_USER_ID);
             preparedStatement.setString(1, entity.getName());
             preparedStatement.setString(2, entity.getSurname());
-            preparedStatement.setInt(3, entity.getCreationTime());
+            preparedStatement.setString(3, entity.getCreationTime());
             preparedStatement.setString(4, entity.getDescription());
             preparedStatement.setInt(5, entity.getUserId());
 
@@ -127,7 +127,7 @@ public class UserDataDAO extends AbstractDAO<UserData> {
             preparedStatement.setInt(1, entity.getUserId());
             preparedStatement.setString(2, entity.getName());
             preparedStatement.setString(3, entity.getSurname());
-            preparedStatement.setInt(4, entity.getCreationTime());
+            preparedStatement.setString(4, entity.getCreationTime());
             preparedStatement.setString(5, entity.getDescription());
 
             preparedStatement.executeUpdate();

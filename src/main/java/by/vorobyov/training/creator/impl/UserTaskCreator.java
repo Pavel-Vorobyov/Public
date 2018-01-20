@@ -37,8 +37,8 @@ public class UserTaskCreator  implements ICreator<UserTask> {
         userTask.setUserTaskId(resultSet.getInt(UserTaskColumnName.ID));
         userTask.setUserId(resultSet.getInt(UserTaskColumnName.USER_ID));
         userTask.setTaskId(resultSet.getInt(UserTaskColumnName.TASK_ID));
-        userTask.setCreationTime(resultSet.getInt(UserTaskColumnName.CREATION_TIME));
-        userTask.setDeadLine(resultSet.getInt(UserTaskColumnName.DEADLINE));
+        userTask.setCreationTime(resultSet.getString(UserTaskColumnName.CREATION_TIME));
+        userTask.setDeadLine(resultSet.getString(UserTaskColumnName.DEADLINE));
         userTask.setStatus(resultSet.getInt(UserTaskColumnName.STATUS));
         userTask.setWorkGroupId(resultSet.getInt(UserTaskColumnName.WORK_GROUP_ID));
 
