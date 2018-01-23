@@ -1,12 +1,15 @@
 package by.vorobyov.training.dto;
 
 public class TeachingUserTask {
+    private Integer userTaskId;
     private String studentName;
     private String startTime;
     private String deadline;
     private Integer estimate;
     private Integer status;
-
+    private Integer groupId;
+    private Integer taskId;
+    private boolean teachingUserTaskEmpty = false;
 
     public TeachingUserTask() {
     }
@@ -18,6 +21,44 @@ public class TeachingUserTask {
         this.deadline = deadline;
         this.estimate = estimate;
         this.status = status;
+    }
+
+    public TeachingUserTask emptyTeacherUserTask() {
+        TeachingUserTask teachingUserTask = new TeachingUserTask();
+        teachingUserTask.setTeachingUserTaskEmpty(true);
+        return teachingUserTask;
+    }
+
+    public Integer getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(Integer groupId) {
+        this.groupId = groupId;
+    }
+
+    public Integer getTaskId() {
+        return taskId;
+    }
+
+    public void setTaskId(Integer taskId) {
+        this.taskId = taskId;
+    }
+
+    public boolean isTeachingUserTaskEmpty() {
+        return teachingUserTaskEmpty;
+    }
+
+    public void setTeachingUserTaskEmpty(boolean teachingUserTaskEmpty) {
+        this.teachingUserTaskEmpty = teachingUserTaskEmpty;
+    }
+
+    public Integer getUserTaskId() {
+        return userTaskId;
+    }
+
+    public void setUserTaskId(Integer userTaskId) {
+        this.userTaskId = userTaskId;
     }
 
     public String getStudentName() {

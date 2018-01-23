@@ -1,12 +1,10 @@
 package by.vorobyov.training.database.dao.impl;
 
-import by.vorobyov.training.creator.impl.TaskCreator;
+import by.vorobyov.training.creator.impl.entitycreator.TaskCreator;
 import by.vorobyov.training.creator.impl.TeachingUserTaskCreator;
-import by.vorobyov.training.creator.impl.UserTaskCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
 import by.vorobyov.training.database.dao.preparedquery.TaskQuery;
 import by.vorobyov.training.dto.TeachingUserTask;
-import by.vorobyov.training.dto.entity.UserTask;
 import by.vorobyov.training.exception.DAOException;
 import by.vorobyov.training.dto.entity.Task;
 
@@ -24,7 +22,7 @@ public class TaskDAO extends AbstractDAO<Task> {
             "             WHERE work_group_id = ?" +
             "             GROUP BY task_id)";
 
-    public static final String SELECT_USER_TASK_BY_TASK_ID = "SELECT user_data.name, user_data.surname, user_task.creationtime, user_task.deadline" +
+    public static final String SELECT_USER_TASK_BY_TASK_ID = "SELECT user_task.id, user_data.name, user_data.surname, user_task.creationtime, user_task.deadline" +
             ", user_task.estimate, user_task.status" +
             " FROM user_task, user_data" +
             " WHERE user_data.user_id = user_task.user_id AND task_id =? AND work_group_id = ?";

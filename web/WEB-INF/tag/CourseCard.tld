@@ -15,6 +15,12 @@
         <body-content>empty</body-content>
 
         <attribute>
+            <name>href</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
             <name>cardTitle</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
@@ -117,6 +123,12 @@
         <body-content>empty</body-content>
 
         <attribute>
+            <name>blockUpdateId</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
             <name>name</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
@@ -170,6 +182,96 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
 
+        <attribute>
+            <name>taskId</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>groupId</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+    </tag>
+
+    <tag>
+        <name>studentTaskLine</name>
+        <tag-class>by.vorobyov.training.tag.StudentTaskLine</tag-class>
+        <body-content>empty</body-content>
+
+        <attribute>
+            <name>href</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>taskTitle</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>taskCreationTime</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>deadline</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>comment</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>estimate</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>status</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>stGpMember</name>
+        <tag-class>by.vorobyov.training.tag.StudentGroupMember</tag-class>
+        <body-content>empty</body-content>
+
+        <attribute>
+            <name>name</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>surname</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>creationTime</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>description</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
     </tag>
 
 </taglib>

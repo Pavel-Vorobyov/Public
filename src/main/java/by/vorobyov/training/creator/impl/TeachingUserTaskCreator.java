@@ -4,6 +4,7 @@ import by.vorobyov.training.creator.ICreator;
 import by.vorobyov.training.database.dao.util.columnname.UserDataColumnName;
 import by.vorobyov.training.database.dao.util.columnname.UserTaskColumnName;
 import by.vorobyov.training.dto.TeachingUserTask;
+import by.vorobyov.training.dto.entity.UserTask;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,6 +35,7 @@ public class TeachingUserTaskCreator implements ICreator<TeachingUserTask> {
         String studentName = resultSet.getString(UserDataColumnName.NAME) + " "
                 + resultSet.getString(UserDataColumnName.SURNAME);
         teachingUserTask.setStudentName(studentName);
+        teachingUserTask.setUserTaskId(resultSet.getInt(UserTaskColumnName.ID));
         teachingUserTask.setStartTime(resultSet.getString(UserTaskColumnName.CREATION_TIME));
         teachingUserTask.setDeadline(resultSet.getString(UserDataColumnName.DEADLINE));
         teachingUserTask.setEstimate(resultSet.getInt(UserDataColumnName.ESTIMATE));

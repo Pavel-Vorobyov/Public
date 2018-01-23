@@ -151,6 +151,16 @@ public class CommonService {
         }
     }
 
+    public UserTask takeUserTaskById(Integer userTaskId) throws ServiceException {
+        UserTaskDAO userTaskDAO = new UserTaskDAO();
+
+        try {
+            return userTaskDAO.getEntityById(userTaskId);
+        } catch (DAOException | SQLException e) {
+            throw new ServiceException(e);
+        }
+    }
+
     public List<UserTask> takeUserTaskListByUserId(Integer userId) throws ServiceException{
         return null;
     }

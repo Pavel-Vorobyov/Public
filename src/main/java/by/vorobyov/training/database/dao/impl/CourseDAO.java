@@ -1,6 +1,6 @@
 package by.vorobyov.training.database.dao.impl;
 
-import by.vorobyov.training.creator.impl.CourseCreator;
+import by.vorobyov.training.creator.impl.entitycreator.CourseCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
 import by.vorobyov.training.database.dao.preparedquery.CourseQuery;
 import by.vorobyov.training.exception.DAOException;
@@ -11,6 +11,9 @@ import java.util.List;
 
 public class CourseDAO extends AbstractDAO<Course> {
     public static final String SELECT_COURSE_BY_STATUS = "SELECT * FROM course WHERE status = ?";
+    public static final String SELECT_COURSE_BY_STATUS_REGION_TYPE = "SELECT *" +
+            " FROM course" +
+            " WHERE status = 0 AND course.region = 'Minsk, Belarus' AND course.type = 'Java'";
 
     @Override
     public List<Course> getAll() throws DAOException, SQLException {
@@ -195,6 +198,29 @@ public class CourseDAO extends AbstractDAO<Course> {
             return courseCreator.createEntityList(resultSet);
         } catch (SQLException e) {
             rollback(connection);
+            throw new DAOException(e);
+        } finally {
+            closePreparedStatement(preparedStatement);
+            closeConnection(connection);
+        }
+    }
+
+    public List<Course> getCourseListBySQLRequest(String sqlRequest) throws SQLException, DAOException {
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet;
+        CourseCreator courseCreator = new CourseCreator();
+
+        connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        connection.setAutoCommit(false);
+
+        try {
+            preparedStatement = connection.prepareStatement(sqlRequest);
+
+            resultSet = preparedStatement.executeQuery();
+            connection.commit();
+            return courseCreator.createEntityList(resultSet);
+        } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
             closePreparedStatement(preparedStatement);

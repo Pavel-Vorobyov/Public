@@ -1,6 +1,6 @@
 package by.vorobyov.training.database.dao.impl;
 
-import by.vorobyov.training.creator.impl.UserCreator;
+import by.vorobyov.training.creator.impl.entitycreator.UserCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
 import by.vorobyov.training.database.dao.preparedquery.UserQuery;
 import by.vorobyov.training.exception.DAOException;
@@ -89,11 +89,7 @@ public class UserDAO extends AbstractDAO<User> {
 
             resultSet = preparedStatement.executeQuery();
             connection.commit();
-            if (resultSet != null) {
-                return userCreator.createEntity(resultSet);
-            } else {
-                throw new DAOException("ResultSet is null! -> UserQuery.SELECT_USER_BY_ID ");
-            }
+            return resultSet.next() ? userCreator.createEntity(resultSet) : User.emptyUser();
         } catch (SQLException e) {
             rollback(connection);
             throw new DAOException(e);
@@ -209,11 +205,7 @@ public class UserDAO extends AbstractDAO<User> {
             preparedStatement.setString(2, user.getPassword());
 
             resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                return userCreator.createEntity(resultSet);
-            } else {
-                return User.emptyUser();
-            }
+            return resultSet.next() ? userCreator.createEntity(resultSet) : User.emptyUser();
         } catch (SQLException e) {
             rollback(connection);
             throw new DAOException(e);

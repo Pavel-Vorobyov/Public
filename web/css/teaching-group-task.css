@@ -316,7 +316,7 @@ height: 27px;
 }
 .taskUpdate h1 {
   margin: -20px -20px 21px;
-  line-height: 40px;
+  width: 310px;
   font-size: 15px;
   font-weight: bold;
   color: #555;

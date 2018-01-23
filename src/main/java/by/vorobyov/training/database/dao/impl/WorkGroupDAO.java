@@ -1,11 +1,10 @@
 package by.vorobyov.training.database.dao.impl;
 
-import by.vorobyov.training.creator.impl.UserCreator;
-import by.vorobyov.training.creator.impl.WorkGroupCreator;
+import by.vorobyov.training.creator.impl.entitycreator.UserCreator;
+import by.vorobyov.training.creator.impl.entitycreator.WorkGroupCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
 import by.vorobyov.training.database.dao.preparedquery.WorkGroupQuery;
 import by.vorobyov.training.dto.entity.User;
-import by.vorobyov.training.dto.entity.UserTask;
 import by.vorobyov.training.dto.entity.WorkGroup;
 import by.vorobyov.training.exception.DAOException;
 
@@ -17,6 +16,9 @@ public class WorkGroupDAO extends AbstractDAO<WorkGroup> {
             " FROM user_has_work_group, user" +
             " WHERE user.id = user_has_work_group.user_id AND user_has_work_group.work_group_id = ?";
 
+    public static final String SELECT_WORK_GROUP_BY_USER_ID = "SELECT work_group.id, work_group.title, work_group.description, work_group.course_id, work_group.lead_id" +
+            " FROM work_group, user_has_work_group" +
+            " WHERE work_group.id = user_has_work_group.work_group_id AND user_has_work_group.user_id = ?";
     @Override
     public List<WorkGroup> getAll() throws DAOException, SQLException {
         Connection connection = getConnection();
@@ -152,6 +154,30 @@ public class WorkGroupDAO extends AbstractDAO<WorkGroup> {
             return userCreator.createEntityList(resultSet);
         } catch (SQLException e) {
             rollback(connection);
+            throw new DAOException(e);
+        } finally {
+            closePreparedStatement(preparedStatement);
+            closeConnection(connection);
+        }
+    }
+
+    public List<WorkGroup> getWorkGroupByUserId(Integer userId) throws SQLException, DAOException {
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet;
+        WorkGroupCreator workGroupCreator = new WorkGroupCreator();
+
+        connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        connection.setAutoCommit(false);
+
+        try {
+            preparedStatement = connection.prepareStatement(SELECT_WORK_GROUP_BY_USER_ID);
+            preparedStatement.setInt(1, userId);
+
+            resultSet = preparedStatement.executeQuery();
+            connection.commit();
+            return workGroupCreator.createEntityList(resultSet);
+        } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
             closePreparedStatement(preparedStatement);

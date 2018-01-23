@@ -5,20 +5,35 @@ import java.io.Serializable;
 public class Comment implements Serializable {
     private Integer commentId;
     private Integer status;
-    private Integer creationTime;
+    private String creationTime;
     private String text;
     private Integer authorId;
+    private boolean emptyComment = false;
 
     public Comment() {
     }
 
-    public Comment(Integer commentId, Integer status, Integer creationTime
+    public Comment(Integer commentId, Integer status, String creationTime
         , String text, Integer authorId) {
         this.commentId = commentId;
         this.status = status;
         this.creationTime = creationTime;
         this.text = text;
         this.authorId = authorId;
+    }
+
+    public static Comment emptyComment() {
+        Comment comment = new Comment();
+        comment.setEmptyComment(true);
+        return comment;
+    }
+
+    public boolean isEmptyComment() {
+        return emptyComment;
+    }
+
+    public void setEmptyComment(boolean emptyComment) {
+        this.emptyComment = emptyComment;
     }
 
     public Integer getCommentId() {
@@ -29,7 +44,7 @@ public class Comment implements Serializable {
         return status;
     }
 
-    public Integer getCreationTime() {
+    public String getCreationTime() {
         return creationTime;
     }
 
@@ -45,7 +60,7 @@ public class Comment implements Serializable {
         this.status = status;
     }
 
-    public void setCreationTime(Integer creationTime) {
+    public void setCreationTime(String creationTime) {
         this.creationTime = creationTime;
     }
 

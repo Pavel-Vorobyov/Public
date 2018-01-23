@@ -5,11 +5,15 @@ import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 
 public class CourseCard extends TagSupport {
+    private String href;
     private String cardTitle = null;
     private String location = null;
     private String status = null;
     private String buttonName = null;
 
+    public void setHref(String href) {
+        this.href = href;
+    }
 
     public void setCardTitle(String cardTitle) {
         this.cardTitle = cardTitle;
@@ -45,7 +49,7 @@ public class CourseCard extends TagSupport {
             pageContext.getOut().write("<div class=\"status\">");
             pageContext.getOut().write("<span>" + status + "</span>");
             pageContext.getOut().write("</div>");
-            pageContext.getOut().write("<a class=\"course-registration\" href=\"#\">" + buttonName + "</a>");
+            pageContext.getOut().write("<a class=\"course-registration\" href=\"" + href + "\">" + buttonName + "</a>");
 
         } catch (IOException e) {
             throw new JspException(e);

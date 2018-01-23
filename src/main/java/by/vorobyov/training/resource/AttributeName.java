@@ -13,4 +13,6 @@ public class AttributeName {
     public static final String WORK_GROUP = "workGroup";
     public static final String GROUP_TASK_LIST = "groupTaskList";
     public static final String TEACHING_USER_TASK = "teachingUserTask";
+    public static final String STUDENT_USER_TASK_LIST = "studentUserTaskList";
+    public static final String STUDENT_GROUP_LIST = "studentGroupList";
 }

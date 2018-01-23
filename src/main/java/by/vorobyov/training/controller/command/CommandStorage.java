@@ -3,9 +3,17 @@ package by.vorobyov.training.controller.command;
 import by.vorobyov.training.controller.command.impl.Common.AddUser;
 import by.vorobyov.training.controller.command.impl.Common.SingIn;
 import by.vorobyov.training.controller.command.impl.Common.SingOut;
-import by.vorobyov.training.controller.command.impl.Common.TeacherCreateTask;
-import by.vorobyov.training.controller.command.impl.page.*;
-import by.vorobyov.training.resource.CommandName;
+import by.vorobyov.training.controller.command.impl.page.admin.AdminHomePage;
+import by.vorobyov.training.controller.command.impl.student.StudentUserDataModify;
+import by.vorobyov.training.controller.command.impl.teacher.TeacherCreateTask;
+import by.vorobyov.training.controller.command.impl.page.common.*;
+import by.vorobyov.training.controller.command.impl.page.student.StudentGroupListPage;
+import by.vorobyov.training.controller.command.impl.page.student.StudentHomePage;
+import by.vorobyov.training.controller.command.impl.page.student.StudentTaskPage;
+import by.vorobyov.training.controller.command.impl.page.teacher.TeacherGroupListPage;
+import by.vorobyov.training.controller.command.impl.page.teacher.TeacherGroupPage;
+import by.vorobyov.training.controller.command.impl.page.teacher.TeacherGroupTaskPage;
+import by.vorobyov.training.controller.command.impl.teacher.TeacherUserTaskUpdate;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,10 +36,16 @@ public class CommandStorage {
         commandStorage.put(CommandName.TRAINING_PAGE, new TrainingPage());
         commandStorage.put(CommandName.SING_OUT, new SingOut());
         commandStorage.put(CommandName.ADD_USER, new AddUser());
-        commandStorage.put(CommandName.TRAINING_GROUP_LIST_PAGE, new TrainingGroupListPage());
-        commandStorage.put(CommandName.TRAINING_GROUP_PAGE, new TrainingGroupPage());
-        commandStorage.put(CommandName.GROUP_TASK_PAGE, new TrainingGroupTaskPage());
+        commandStorage.put(CommandName.TRAINING_GROUP_LIST_PAGE, new TeacherGroupListPage());
+        commandStorage.put(CommandName.TRAINING_GROUP_PAGE, new TeacherGroupPage());
+        commandStorage.put(CommandName.GROUP_TASK_PAGE, new TeacherGroupTaskPage());
         commandStorage.put(CommandName.TEACHER_CREATE_TASK, new TeacherCreateTask());
+        commandStorage.put(CommandName.TEACHER_USER_TASK_UPDATE, new TeacherUserTaskUpdate());
+        commandStorage.put(CommandName.STUDENT_HOME_PAGE, new StudentHomePage());
+        commandStorage.put(CommandName.STUDENT_TASK_LIST_PAGE, new StudentTaskPage());
+        commandStorage.put(CommandName.STUDENT_GROUP_LIST_PAGE, new StudentGroupListPage());
+        commandStorage.put(CommandName.STUDENT_USER_DATA_MODIFY, new StudentUserDataModify());
+        commandStorage.put(CommandName.ADMIN_HOME_PAGE, new AdminHomePage());
     }
 
     public ICommand getCommand(String commandName) {

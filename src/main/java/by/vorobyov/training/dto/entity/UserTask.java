@@ -6,27 +6,29 @@ public class UserTask implements Serializable {
     private Integer userTaskId;
     private Integer userId;
     private Integer taskId;
+    private String taskTitle;
     private String creationTime;
-    private String deadLine;
+    private String deadline;
     private Integer estimate;
     private Integer status;
-    private Integer commentId;
+    private String comment;
     private Integer workGroupId;
     private boolean userTaskEmpty = false;
 
     public UserTask() {
     }
 
-    public UserTask(Integer userTaskId, Integer userId, Integer taskId, String creationTime
-        , String deadLine, Integer estimate, Integer status, Integer commentId, Integer workGroupId) {
+    public UserTask(Integer userTaskId, Integer userId, Integer taskId, String taskTitle, String creationTime
+        , String deadline, Integer estimate, Integer status, String comment, Integer workGroupId) {
         this.userTaskId = userTaskId;
         this.userId = userId;
         this.taskId = taskId;
+        this.taskTitle = taskTitle;
         this.creationTime = creationTime;
-        this.deadLine = deadLine;
+        this.deadline = deadline;
         this.estimate = estimate;
         this.status = status;
-        this.commentId = commentId;
+        this.comment = comment;
         this.workGroupId = workGroupId;
     }
 
@@ -56,6 +58,14 @@ public class UserTask implements Serializable {
         return taskId;
     }
 
+    public String getTaskTitle() {
+        return taskTitle;
+    }
+
+    public void setTaskTitle(String taskTitle) {
+        this.taskTitle = taskTitle;
+    }
+
     public void setTaskId(Integer taskId) {
         this.taskId = taskId;
     }
@@ -68,12 +78,12 @@ public class UserTask implements Serializable {
         this.creationTime = creationTime;
     }
 
-    public String getDeadLine() {
-        return deadLine;
+    public String getDeadline() {
+        return deadline;
     }
 
-    public void setDeadLine(String deadLine) {
-        this.deadLine = deadLine;
+    public void setDeadline(String deadline) {
+        this.deadline = deadline;
     }
 
     public Integer getEstimate() {
@@ -92,12 +102,12 @@ public class UserTask implements Serializable {
         this.status = status;
     }
 
-    public Integer getCommentId() {
-        return commentId;
+    public String getComment() {
+        return comment;
     }
 
-    public void setCommentId(Integer commentId) {
-        this.commentId = commentId;
+    public void setComment(String commentId) {
+        this.comment = commentId;
     }
 
     public Integer getWorkGroupId() {
@@ -124,28 +134,31 @@ public class UserTask implements Serializable {
         UserTask userTask = (UserTask) o;
 
         if (userTaskEmpty != userTask.userTaskEmpty) return false;
-        if (!userTaskId.equals(userTask.userTaskId)) return false;
-        if (!userId.equals(userTask.userId)) return false;
-        if (!taskId.equals(userTask.taskId)) return false;
-        if (!creationTime.equals(userTask.creationTime)) return false;
-        if (!deadLine.equals(userTask.deadLine)) return false;
-        if (!estimate.equals(userTask.estimate)) return false;
-        if (!status.equals(userTask.status)) return false;
-        if (!commentId.equals(userTask.commentId)) return false;
-        return workGroupId.equals(userTask.workGroupId);
+        if (userTaskId != null ? !userTaskId.equals(userTask.userTaskId) : userTask.userTaskId != null) return false;
+        if (userId != null ? !userId.equals(userTask.userId) : userTask.userId != null) return false;
+        if (taskId != null ? !taskId.equals(userTask.taskId) : userTask.taskId != null) return false;
+        if (taskTitle != null ? !taskTitle.equals(userTask.taskTitle) : userTask.taskTitle != null) return false;
+        if (creationTime != null ? !creationTime.equals(userTask.creationTime) : userTask.creationTime != null)
+            return false;
+        if (deadline != null ? !deadline.equals(userTask.deadline) : userTask.deadline != null) return false;
+        if (estimate != null ? !estimate.equals(userTask.estimate) : userTask.estimate != null) return false;
+        if (status != null ? !status.equals(userTask.status) : userTask.status != null) return false;
+        if (comment != null ? !comment.equals(userTask.comment) : userTask.comment != null) return false;
+        return workGroupId != null ? workGroupId.equals(userTask.workGroupId) : userTask.workGroupId == null;
     }
 
     @Override
     public int hashCode() {
-        int result = userTaskId.hashCode();
-        result = 31 * result + userId.hashCode();
-        result = 31 * result + taskId.hashCode();
-        result = 31 * result + creationTime.hashCode();
-        result = 31 * result + deadLine.hashCode();
-        result = 31 * result + estimate.hashCode();
-        result = 31 * result + status.hashCode();
-        result = 31 * result + commentId.hashCode();
-        result = 31 * result + workGroupId.hashCode();
+        int result = userTaskId != null ? userTaskId.hashCode() : 0;
+        result = 31 * result + (userId != null ? userId.hashCode() : 0);
+        result = 31 * result + (taskId != null ? taskId.hashCode() : 0);
+        result = 31 * result + (taskTitle != null ? taskTitle.hashCode() : 0);
+        result = 31 * result + (creationTime != null ? creationTime.hashCode() : 0);
+        result = 31 * result + (deadline != null ? deadline.hashCode() : 0);
+        result = 31 * result + (estimate != null ? estimate.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + (comment != null ? comment.hashCode() : 0);
+        result = 31 * result + (workGroupId != null ? workGroupId.hashCode() : 0);
         result = 31 * result + (userTaskEmpty ? 1 : 0);
         return result;
     }
@@ -156,11 +169,12 @@ public class UserTask implements Serializable {
                 "userTaskId=" + userTaskId +
                 ", userId=" + userId +
                 ", taskId=" + taskId +
+                ", taskTitle='" + taskTitle + '\'' +
                 ", creationTime='" + creationTime + '\'' +
-                ", deadLine='" + deadLine + '\'' +
+                ", deadline='" + deadline + '\'' +
                 ", estimate=" + estimate +
                 ", status=" + status +
-                ", commentId=" + commentId +
+                ", comment='" + comment + '\'' +
                 ", workGroupId=" + workGroupId +
                 ", userTaskEmpty=" + userTaskEmpty +
                 '}';

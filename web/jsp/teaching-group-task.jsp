@@ -14,6 +14,11 @@
       links['tests'] = 'questions.php/?id=5';
       links['tests2'] = 'questions.php/?id=8';
 
+    var blockUpdateIdCount = 0;
+    function getBlockUpdateId() {
+        return blockUpdateIdCount++;
+    }
+
     function initUpdateBlock(taskModify){
         taskModify.style.display = "none";
     }
@@ -39,10 +44,9 @@
     <div class="td-main-content-wrapper">
       <div class="td-main-content-conteiner">
         <div class="filters">
-            <h1>Task name <--</h1>
+            <h1>${requestScope.workGroup.title}</h1>
             <div class="horizontal-group">
-              <a class="uui-button" href="#">Group</a>
-              <a class="uui-button" href="#">Course</a>
+              <a class="uui-button" href="command?command=training-group-page&group-id=${requestScope.workGroup.workGroupId}">Group task</a>
               <a class="uui-button" href="#">Profile</a>
              </div>
           </div>
@@ -58,8 +62,9 @@
                 </li>
                 <c:forEach var="userTask" items="${requestScope.teachingUserTask}">
                   <lnUserTask:userTaskLine name="${userTask.studentName}" creationTime="${userTask.startTime}"
-                                           deadline="" estimate="" status=""/>
-                  <lnUserTask:usTaskUpd studentName="${userTask.studentName}" userTaskId="1" updateBlockId="studentTaskUpdate"/>
+                                           deadline="${userTask.deadline}" estimate="${userTask.estimate}" status="${userTask.status}" blockUpdateId="studentTaskUpdate${userTask.userTaskId}"/>
+                  <lnUserTask:usTaskUpd studentName="${userTask.studentName}" userTaskId="${userTask.userTaskId}"
+                                        updateBlockId="studentTaskUpdate${userTask.userTaskId}" groupId="${userTask.groupId}" taskId="${userTask.taskId}"/>
                 </c:forEach>
 
               </ul>

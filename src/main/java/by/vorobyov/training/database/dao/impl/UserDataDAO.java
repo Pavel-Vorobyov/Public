@@ -1,6 +1,6 @@
 package by.vorobyov.training.database.dao.impl;
 
-import by.vorobyov.training.creator.impl.UserDataCreator;
+import by.vorobyov.training.creator.impl.entitycreator.UserDataCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
 import by.vorobyov.training.database.dao.preparedquery.UserDataQuery;
 import by.vorobyov.training.exception.DAOException;
@@ -13,6 +13,15 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class UserDataDAO extends AbstractDAO<UserData> {
+
+    public static final String SELECT_USER_DATA_BY_GROUP_ID = "SELECT user_data.user_id,user_data.name, user_data.surname,user_data.creationtime, user_data.description" +
+            " FROM user_data, user_has_work_group, work_group" +
+            " WHERE user_data.user_id = user_has_work_group.user_id AND user_has_work_group.work_group_id = ? GROUP BY user_data.user_id";
+
+    public static final String SELECT_USER_DATA_BY_USER_ID = "SELECT *" +
+            " FROM user_data" +
+            " WHERE user_id = ?";
+
     @Override
     public List<UserData> getAll() throws DAOException, SQLException {
 //        Connection connection = getConnection();
@@ -136,6 +145,54 @@ public class UserDataDAO extends AbstractDAO<UserData> {
 
         } catch (SQLException e) {
             rollback(connection);
+            throw new DAOException(e);
+        } finally {
+            closePreparedStatement(preparedStatement);
+            closeConnection(connection);
+        }
+    }
+
+    public List<UserData> getUserDataByWorkGroupId(Integer workGroupId) throws SQLException, DAOException {
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet;
+        UserDataCreator userDataCreator = new UserDataCreator();
+
+        connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        connection.setAutoCommit(false);
+
+        try {
+            preparedStatement = connection.prepareStatement(SELECT_USER_DATA_BY_GROUP_ID);
+            preparedStatement.setInt(1, workGroupId);
+
+            resultSet = preparedStatement.executeQuery();
+            connection.commit();
+            return userDataCreator.createEntityList(resultSet);
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            closePreparedStatement(preparedStatement);
+            closeConnection(connection);
+        }
+    }
+
+    public UserData getUserDataByUserId(Integer userId) throws DAOException, SQLException {
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet;
+        UserDataCreator userDataCreator = new UserDataCreator();
+
+        connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        connection.setAutoCommit(false);
+
+        try {
+            preparedStatement = connection.prepareStatement(SELECT_USER_DATA_BY_USER_ID);
+            preparedStatement.setInt(1, userId);
+
+            resultSet = preparedStatement.executeQuery();
+            connection.commit();
+            return resultSet.next() ? userDataCreator.createEntity(resultSet) : UserData.emptyUserData();
+        } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
             closePreparedStatement(preparedStatement);

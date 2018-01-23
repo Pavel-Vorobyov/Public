@@ -59,7 +59,7 @@
                 <h1>Creation task for your group...</h1>
                 <form method="post" action="command">
                   <input type="hidden" name="command" value="teacher-create-task"/>
-                  <input type="hidden" name="group-id" value="1"/>
+                  <input type="hidden" name="group-id" value="${requestScope.workGroup.workGroupId}"/>
                   <p><input type="text" name="title" required id="title" value=""
                     pattern="^.{1,44}$" placeholder="Enter task title">
                     <input type="date" name="deadline" required="true" id="deadline" value=""
