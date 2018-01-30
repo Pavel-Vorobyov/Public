@@ -31,6 +31,7 @@ public class CourseCreator implements ICreator<Course> {
         course.setCourseId(resultSet.getInt(CourseColumnName.ID));
         course.setTitle(resultSet.getString(CourseColumnName.TITLE));
         course.setRegion(resultSet.getString(CourseColumnName.REGION));
+        course.setType(resultSet.getString(CourseColumnName.TYPE));
         course.setDescription(resultSet.getString(CourseColumnName.DESCRIPTION));
         course.setLeadId(resultSet.getInt(CourseColumnName.LEAD_ID));
         course.setStatus(resultSet.getInt(CourseColumnName.STATUS) );

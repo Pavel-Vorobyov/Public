@@ -63,3 +63,32 @@
 
 </body>
 </html>
+
+
+<li class="item-body">
+  <a href="#">
+    <span class="tk-group-title">sssssssssssssssssssssssssssssssssssssssssssssssssssssssss</span>
+    <span class="tk-group-type">sssssssssssssssssssssssssssssssssssssssssssssssssssssss</span>
+    <span class="tk-group-region">sssssssssssssssssssssssssssssssssssssssssssssssssssssssn:</span>
+    <span class="tk-group-status">Grsssssssssssssssssssssssssssssssssssssssssssssssssssssssoup status:</span>
+  </a>
+  <a onclick="showUpdateBlock(groupUpdateBlock1)" style="text-align: center;">
+    <span class="tk-group-modify">Modify</span>
+  </a>
+</li>
+
+<li class="item-body">
+  <a>
+    <span class="tk-user-name"></span>
+    <span class="tk-user-surname"></span>
+    <span class="tk-user-creation-time"></span>
+    <span class="tk-user-email"></span>
+    <span class="tk-user-status"></span>
+  </a>
+  <a onclick="showUpdateBlock(userCreateBlock)" style="text-align: center;">
+    <span class="tk-group-modify">Modify</span>
+  </a>
+</li>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="/WEB-INF/tag/CourseCard.tld" prefix="gpLine"%>

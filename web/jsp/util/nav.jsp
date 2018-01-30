@@ -66,4 +66,14 @@
         </div>
     </div>
 
+    <script type="text/javascript" src="../../js/nav.js"></script>
+    <c:choose>
+        <c:when test="${requestScope.statusMessage != null}">
+            <div class="statusMessage" id="statusMessage" onclick="showMessage(statusMessage)">
+                    ${requestScope.statusMessage}
+                <br> Tap to close it!
+            </div>
+        </c:when>
+    </c:choose>
+
 </div>

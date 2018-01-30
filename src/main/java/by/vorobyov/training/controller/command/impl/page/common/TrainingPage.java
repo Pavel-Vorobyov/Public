@@ -28,7 +28,7 @@ public class TrainingPage implements ICommand {
                 response.sendRedirect(URLCommand.TRAINING_GROUP_LIST);
                 break;
             case 2:
-                response.sendRedirect(URLCommand.ADMIN_HOME_PAGE);
+                response.sendRedirect(URLCommand.ADMIN_COURSE_MODIFY_PAGE);
                 break;
             default:
                 request.getRequestDispatcher(JspPageName.ERROR_PAGE).forward(request, response);

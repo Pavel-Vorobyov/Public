@@ -19,7 +19,6 @@ public class TrainingPortalPage implements ICommand {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String pagePath = JspPageName.TRAINING_PORTAL_PAGE;
         CommonService commonService = new CommonService();
         List<Course> courseList;
         Integer courseStatus;
@@ -40,7 +39,7 @@ public class TrainingPortalPage implements ICommand {
                 request.getSession().setAttribute(AttributeName.COURSE_STATUS, COURSE_STATUS_VALUE_ALL);
                 request.getSession().setAttribute(AttributeName.COURSE_LIST, courseList);
             }
-            request.getRequestDispatcher(pagePath).include(request, response);
+            request.getRequestDispatcher(JspPageName.TRAINING_PORTAL_PAGE).include(request, response);
         } catch (ServiceException e) {
             e.printStackTrace();
         }

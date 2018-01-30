@@ -5,6 +5,7 @@ import by.vorobyov.training.database.dao.impl.UserDataDAO;
 import by.vorobyov.training.dto.entity.User;
 import by.vorobyov.training.dto.entity.UserData;
 import by.vorobyov.training.exception.ServiceException;
+import by.vorobyov.training.resource.JspPageName;
 import by.vorobyov.training.service.CommonService;
 import by.vorobyov.training.resource.AttributeName;
 import by.vorobyov.training.resource.parametername.AccountParameterName;
@@ -25,6 +26,7 @@ public class SingIn implements ICommand{
 
         CommonService commonService = new CommonService();
         UserDataDAO userDataDAO = new UserDataDAO();
+        String loginSuccess;
 
             try {
                 User checkedUser = commonService.checkUser(user);
@@ -36,7 +38,11 @@ public class SingIn implements ICommand{
 
                     response.sendRedirect(TRAINING_PAGE);
                 } else {
-                    response.sendError(403);
+                    loginSuccess = "false";
+                    String statusMessage = "Invalid login or password!";
+                    request.setAttribute(AttributeName.LOGIN_SUCCESS, loginSuccess);
+                    request.setAttribute(AttributeName.STATUS_MESSAGE, statusMessage);
+                    request.getRequestDispatcher(JspPageName.HOME_PAGE).forward(request, response);
                 }
             } catch (ServiceException e) {
                 System.out.println(e);

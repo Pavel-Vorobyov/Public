@@ -1,8 +1,11 @@
 package by.vorobyov.training.database.dao.impl;
 
+import by.vorobyov.training.creator.impl.UserForAdminCreator;
+import by.vorobyov.training.creator.impl.entitycreator.UserCreator;
 import by.vorobyov.training.creator.impl.entitycreator.UserDataCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
 import by.vorobyov.training.database.dao.preparedquery.UserDataQuery;
+import by.vorobyov.training.dto.UserForAdmin;
 import by.vorobyov.training.exception.DAOException;
 import by.vorobyov.training.dto.entity.UserData;
 
@@ -21,6 +24,10 @@ public class UserDataDAO extends AbstractDAO<UserData> {
     public static final String SELECT_USER_DATA_BY_USER_ID = "SELECT *" +
             " FROM user_data" +
             " WHERE user_id = ?";
+
+    public static final String SELECT_USER_DATA_BY_STATUS = "SELECT user.id, user.email, user.status, user_data.name, user_data.surname, user_data.creationtime" +
+            " FROM user, user_data" +
+            " WHERE user_data.user_id = user.id AND user.status = ?";
 
     @Override
     public List<UserData> getAll() throws DAOException, SQLException {
@@ -192,6 +199,30 @@ public class UserDataDAO extends AbstractDAO<UserData> {
             resultSet = preparedStatement.executeQuery();
             connection.commit();
             return resultSet.next() ? userDataCreator.createEntity(resultSet) : UserData.emptyUserData();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            closePreparedStatement(preparedStatement);
+            closeConnection(connection);
+        }
+    }
+
+    public List<UserForAdmin> getUserDataListByStatus(Integer userStatus) throws DAOException, SQLException {
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet;
+        UserForAdminCreator userForAdminCreator = new UserForAdminCreator();
+
+        connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        connection.setAutoCommit(false);
+
+        try {
+            preparedStatement = connection.prepareStatement(SELECT_USER_DATA_BY_STATUS);
+            preparedStatement.setInt(1, userStatus);
+
+            resultSet = preparedStatement.executeQuery();
+            connection.commit();
+            return userForAdminCreator.createEntityList(resultSet);
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {

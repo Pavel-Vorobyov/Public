@@ -3,7 +3,10 @@ package by.vorobyov.training.controller.command;
 import by.vorobyov.training.controller.command.impl.Common.AddUser;
 import by.vorobyov.training.controller.command.impl.Common.SingIn;
 import by.vorobyov.training.controller.command.impl.Common.SingOut;
-import by.vorobyov.training.controller.command.impl.page.admin.AdminHomePage;
+import by.vorobyov.training.controller.command.impl.admin.*;
+import by.vorobyov.training.controller.command.impl.page.admin.AdminCourseModifyPage;
+import by.vorobyov.training.controller.command.impl.page.admin.AdminGroupModifyPage;
+import by.vorobyov.training.controller.command.impl.page.admin.AdminUserModifyPage;
 import by.vorobyov.training.controller.command.impl.student.StudentUserDataModify;
 import by.vorobyov.training.controller.command.impl.teacher.TeacherCreateTask;
 import by.vorobyov.training.controller.command.impl.page.common.*;
@@ -28,8 +31,6 @@ public class CommandStorage {
 
     private CommandStorage() {
 
-        commandStorage.put(CommandName.SING_IN_PAGE, new SingInPage());
-        commandStorage.put(CommandName.SING_UP_PAGE, new SingUpPage());
         commandStorage.put(CommandName.HOME_PAGE, new HomePage());
         commandStorage.put(CommandName.TRAINING_PORTAL, new TrainingPortalPage());
         commandStorage.put(CommandName.SING_IN, new SingIn());
@@ -45,7 +46,17 @@ public class CommandStorage {
         commandStorage.put(CommandName.STUDENT_TASK_LIST_PAGE, new StudentTaskPage());
         commandStorage.put(CommandName.STUDENT_GROUP_LIST_PAGE, new StudentGroupListPage());
         commandStorage.put(CommandName.STUDENT_USER_DATA_MODIFY, new StudentUserDataModify());
-        commandStorage.put(CommandName.ADMIN_HOME_PAGE, new AdminHomePage());
+        commandStorage.put(CommandName.CREATE_COURSE, new CourseCreation());
+        commandStorage.put(CommandName.UPDATE_COURSE, new CourseUpdate());
+        commandStorage.put(CommandName.DELETE_COURSE, new CourseDelete());
+        commandStorage.put(CommandName.ADMIN_COURSE_MODIFY_PAGE, new AdminCourseModifyPage());
+        commandStorage.put(CommandName.ADMIN_GROUP_MODIFY_PAGE, new AdminGroupModifyPage());
+        commandStorage.put(CommandName.ADMIN_USER_MODIFY_PAGE, new AdminUserModifyPage());
+        commandStorage.put(CommandName.CREATE_GROUP, new GroupCreation());
+        commandStorage.put(CommandName.UPDATE_GROUP, new GroupUpdate());
+        commandStorage.put(CommandName.DELETE_GROUP, new GroupDelete());
+        commandStorage.put(CommandName.UPDATE_USER, new UserUpdate());
+
     }
 
     public ICommand getCommand(String commandName) {

@@ -13,7 +13,10 @@ public class CommandName {
     public static final String STUDENT_HOME_PAGE = "student-home-page";
     public static final String STUDENT_TASK_LIST_PAGE = "student-task-list-page";
     public static final String STUDENT_GROUP_LIST_PAGE = "student-group-page";
-    public static final String ADMIN_HOME_PAGE = "admin-home-page";
+    public static final String ADMIN_COURSE_MODIFY_PAGE = "admin-course-moderation-page";
+    public static final String ADMIN_GROUP_MODIFY_PAGE = "admin-group-moderation-page";
+    public static final String ADMIN_USER_MODIFY_PAGE = "admin-user-moderation-page";
+
 
 
     //common
@@ -27,4 +30,13 @@ public class CommandName {
 
     //student
     public static final String STUDENT_USER_DATA_MODIFY = "student-user-data-modify";
+
+    //admin
+    public static final String CREATE_COURSE = "create-course";
+    public static final String UPDATE_COURSE = "update-course";
+    public static final String DELETE_COURSE = "delete-course";
+    public static final String CREATE_GROUP = "create-group";
+    public static final String UPDATE_GROUP = "update-group";
+    public static final String DELETE_GROUP = "delete-group";
+    public static final String UPDATE_USER = "update-user";
 }

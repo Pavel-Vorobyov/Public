@@ -5,9 +5,9 @@
 <head>
   <meta charset="utf-8" http-equiv="content-type" content="text/html">
   <title>Group</title>
-  <link rel="stylesheet" type="text/css" href="../css/reset.css">
-  <link rel="stylesheet" type="text/css" href="../css/default.css">
-  <link rel="stylesheet" type="text/css" href="../css/teaching-group.css">
+  <link rel="stylesheet" type="text/css" href="../../css/util/reset.css">
+  <link rel="stylesheet" type="text/css" href="../../css/default.css">
+  <link rel="stylesheet" type="text/css" href="../../css/teacher/teaching-group.css">
 
   <script type="text/javascript">
     var links = [];
@@ -19,7 +19,7 @@
 <body>
   <div align="center">
 
-    <jsp:include page="util/nav.jsp"/>
+    <jsp:include page="../util/nav.jsp"/>
 
 
     <div class="td-main-content-wrapper">
@@ -78,7 +78,7 @@
       </div>
     </div>
 
-    <jsp:include page="util/footer.jsp"/>
+    <jsp:include page="../util/footer.jsp"/>
 
 
   </div>

@@ -4,9 +4,9 @@
 <head>
   <meta charset="utf-8" http-equiv="content-type" content="text/html">
   <title>Home</title>
-  <link rel="stylesheet" type="text/css" href="../../css/reset.css">
+  <link rel="stylesheet" type="text/css" href="../../css/util/reset.css">
   <link rel="stylesheet" type="text/css" href="../../css/default.css">
-  <link rel="stylesheet" type="text/css" href="../../css/student-home.css">
+  <link rel="stylesheet" type="text/css" href="../../css/student/student-home.css">
   <script type="text/javascript">
       function initUpdateBlock(blockId){
           blockId.style.display = "none";

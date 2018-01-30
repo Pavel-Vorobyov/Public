@@ -6,10 +6,15 @@ import java.io.IOException;
 
 public class CourseCard extends TagSupport {
     private String href;
+    private Integer courseId;
     private String cardTitle = null;
     private String location = null;
     private String status = null;
     private String buttonName = null;
+
+    public void setCourseId(Integer courseId) {
+        this.courseId = courseId;
+    }
 
     public void setHref(String href) {
         this.href = href;
@@ -49,8 +54,15 @@ public class CourseCard extends TagSupport {
             pageContext.getOut().write("<div class=\"status\">");
             pageContext.getOut().write("<span>" + status + "</span>");
             pageContext.getOut().write("</div>");
-            pageContext.getOut().write("<a class=\"course-registration\" href=\"" + href + "\">" + buttonName + "</a>");
 
+            switch (href) {
+                case "#":
+                    pageContext.getOut().write("<a onclick=\"showUpdateBlock(courseUpdateBlock" + courseId + ")\" class=\"course-registration\">" + buttonName + "</a>");
+                    break;
+                default:
+                    pageContext.getOut().write("<a onclick=\"showUpdateBlock(courseUpdateBlock" + courseId + ")\" class=\"course-registration\" href=\"" + href + "\">" + buttonName + "</a>");
+                    break;
+            }
         } catch (IOException e) {
             throw new JspException(e);
         }

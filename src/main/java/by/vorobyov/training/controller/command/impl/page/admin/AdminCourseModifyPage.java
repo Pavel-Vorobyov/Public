@@ -8,12 +8,13 @@ import by.vorobyov.training.resource.JspPageName;
 import by.vorobyov.training.service.impl.AdminService;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class AdminHomePage implements ICommand {
+public class AdminCourseModifyPage implements ICommand {
     public static final Integer COURSE_AVAILABLE = 0;
     public static final Integer COURSE_NOT_AVAILABLE = 1;
     public static final String ALL_VALUE = "All";
@@ -51,9 +52,10 @@ public class AdminHomePage implements ICommand {
 
             if (!courseList.isEmpty()) {
 
-                request.getRequestDispatcher(JspPageName.ADMIN_HOME_PAGE).forward(request, response);
+                request.getRequestDispatcher(JspPageName.ADMIN_COURSE_MODIFY_PAGE).forward(request, response);
+            } else {
+                request.getRequestDispatcher(JspPageName.ADMIN_COURSE_MODIFY_PAGE).forward(request, response);
             }
-            request.getRequestDispatcher(JspPageName.ADMIN_HOME_PAGE).forward(request, response);
 
         } catch (ServiceException e) {
             e.printStackTrace();

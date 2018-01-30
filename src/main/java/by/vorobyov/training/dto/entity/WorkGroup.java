@@ -8,24 +8,54 @@ public class WorkGroup implements Serializable {
     private String description;
     private Integer leadId;
     private Integer courseId;
+    private Integer status;
+    private String type;
+    private String region;
     private boolean groupEmpty = false;
 
     public WorkGroup() {
     }
 
     public WorkGroup(Integer workGroupId, String title, String description
-        , Integer leadId, Integer courseId) {
+        , Integer leadId, Integer courseId, Integer status, String type, String region) {
         this.workGroupId = workGroupId;
         this.title = title;
         this.description = description;
         this.leadId = leadId;
         this.courseId =courseId;
+        this.status = status;
+        this.type = type;
+        this.region = region;
     }
 
     public static WorkGroup emptyEntity() {
         WorkGroup workGroup = new WorkGroup();
         workGroup.setGroupEmpty(true);
         return workGroup;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
     }
 
     public boolean isGroupEmpty() {

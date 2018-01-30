@@ -3,6 +3,7 @@ package by.vorobyov.training.creator.impl.entitycreator;
 import by.vorobyov.training.creator.ICreator;
 import by.vorobyov.training.database.dao.util.columnname.WorkGroupColumnName;
 import by.vorobyov.training.dto.entity.WorkGroup;
+import by.vorobyov.training.resource.parametername.WorkGroupParameterName;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -39,6 +40,9 @@ public class WorkGroupCreator implements ICreator<WorkGroup> {
         workGroup.setDescription(resultSet.getString(WorkGroupColumnName.DESCRIPTION));
         workGroup.setLeadId(resultSet.getInt(WorkGroupColumnName.LEAD_ID));
         workGroup.setCourseId(resultSet.getInt(WorkGroupColumnName.COURSE_ID));
+        workGroup.setRegion(resultSet.getString(WorkGroupColumnName.REGION));
+        workGroup.setType(resultSet.getString(WorkGroupColumnName.TYPE));
+        workGroup.setStatus(resultSet.getInt(WorkGroupColumnName.STATUS));
 
         return workGroup;
     }

@@ -5,10 +5,10 @@
 <head>
   <meta charset="utf-8" http-equiv="content-type" content="text/html">
   <title>Training list</title>
-  <link rel="stylesheet" type="text/css" href="../css/reset.css">
-  <link rel="stylesheet" type="text/css" href="../css/default.css">
-  <link rel="stylesheet" type="text/css" href="../css/training-portal.css">
-  <link rel="stylesheet" type="text/css" href="../css/course-card.css">
+  <link rel="stylesheet" type="text/css" href="../../css/util/reset.css">
+  <link rel="stylesheet" type="text/css" href="../../css/default.css">
+  <link rel="stylesheet" type="text/css" href="../../css/common/training-portal.css">
+  <link rel="stylesheet" type="text/css" href="../../css/common/course-card.css">
 
   <script type="text/javascript">
     var links = [];
@@ -20,7 +20,7 @@
 <body>
   <div align="center">
 
-    <jsp:include page="util/nav.jsp"/>
+    <jsp:include page="../util/nav.jsp"/>
 
 
     <div class="td-main-content-wrapper">
@@ -74,11 +74,11 @@
                 <c:choose>
                   <c:when test="${course.status == 0}">
                     <crCard:courseCard cardTitle="${course.title}" location="${course.region}"
-                                       status="Avalible fo apply" buttonName="Apply"/>
+                                       status="Avalible fo apply" buttonName="Apply" href="#" courseId="${course.courseId}"/>
                   </c:when>
                   <c:otherwise>
                     <crCard:courseCard cardTitle="${course.title}" location="${course.region}"
-                                       status="Started" buttonName="Apply"/>
+                                       status="Started" buttonName="Apply" href="#" courseId="${course.courseId}"/>
                   </c:otherwise>
                 </c:choose>
             </c:forEach>
@@ -88,7 +88,7 @@
       </div>
     </div>
 
-    <jsp:include page="util/footer.jsp"/>
+    <jsp:include page="../util/footer.jsp"/>
 
 
   </div>

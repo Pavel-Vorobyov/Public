@@ -11,9 +11,18 @@ import java.util.List;
 
 public class CourseDAO extends AbstractDAO<Course> {
     public static final String SELECT_COURSE_BY_STATUS = "SELECT * FROM course WHERE status = ?";
+    public final static String INSERT_COURSE = "INSERT INTO course(title, region, description, type, status, lead_id) VALUES (?, ?, ?, ?, ?, ?)";
     public static final String SELECT_COURSE_BY_STATUS_REGION_TYPE = "SELECT *" +
             " FROM course" +
             " WHERE status = 0 AND course.region = 'Minsk, Belarus' AND course.type = 'Java'";
+
+    public static final String UPDATE_COURSE_BY_ID = "UPDATE course" +
+            " SET course.type = ?, course.status = ?, course.region = ?" +
+            "  , course.description = ?, course.title = ?, course.lead_id = ?" +
+            " WHERE course.id = ?;";
+
+    public final static String DELETE_COURSE = "DELETE FROM course" +
+            " WHERE course.id = ?";
 
     @Override
     public List<Course> getAll() throws DAOException, SQLException {
@@ -51,11 +60,14 @@ public class CourseDAO extends AbstractDAO<Course> {
         connection.setAutoCommit(false);
 
         try {
-            preparedStatement = connection.prepareStatement(CourseQuery.UPDATE_COURSE);
-            preparedStatement.setString(1, entity.getTitle());
-            preparedStatement.setString(2, entity.getRegion());
-            preparedStatement.setString(3, entity.getDescription());
-            preparedStatement.setInt(4, entity.getCourseId());
+            preparedStatement = connection.prepareStatement(UPDATE_COURSE_BY_ID);
+            preparedStatement.setString(1, entity.getType());
+            preparedStatement.setInt(2, entity.getStatus());
+            preparedStatement.setString(3, entity.getRegion());
+            preparedStatement.setString(4, entity.getDescription());
+            preparedStatement.setString(5, entity.getTitle());
+            preparedStatement.setInt(6, entity.getLeadId());
+            preparedStatement.setInt(7, entity.getCourseId());
 
             preparedStatement.executeUpdate();
             connection.commit();
@@ -98,14 +110,14 @@ public class CourseDAO extends AbstractDAO<Course> {
 
     @Override
     public boolean delete(Course entity) throws SQLException, DAOException {
-        Connection connection = null;
+        Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
 
         connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         connection.setAutoCommit(false);
 
         try {
-            preparedStatement = connection.prepareStatement(CourseQuery.DELETE_COURSE);
+            preparedStatement = connection.prepareStatement(DELETE_COURSE);
 
             preparedStatement.setInt(1, entity.getCourseId());
 
@@ -124,19 +136,21 @@ public class CourseDAO extends AbstractDAO<Course> {
 
     @Override
     public boolean create(Course entity) throws SQLException, DAOException {
-        Connection connection = null;
+        Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
 
         connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         connection.setAutoCommit(false);
 
         try {
-            preparedStatement = connection.prepareStatement(CourseQuery.COURSE_INSERT);
+            preparedStatement = connection.prepareStatement(INSERT_COURSE);
 
             preparedStatement.setString(1, entity.getTitle());
             preparedStatement.setString(2, entity.getRegion());
             preparedStatement.setString(3, entity.getDescription());
-            preparedStatement.setInt(4, entity.getLeadId());
+            preparedStatement.setString(4, entity.getType());
+            preparedStatement.setInt(5, entity.getStatus());
+            preparedStatement.setInt(6, entity.getLeadId());
 
             preparedStatement.executeUpdate();
             connection.commit();

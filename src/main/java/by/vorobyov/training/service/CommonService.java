@@ -7,18 +7,19 @@ import by.vorobyov.training.dto.entity.*;
 import by.vorobyov.training.exception.ServiceException;
 
 import java.sql.*;
-import java.util.LinkedList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class CommonService {
+    public static final String DESCRIPTION_STUDENT = "Student";
 
     public User checkUser(User user) throws ServiceException {
         UserDAO userDAO = new UserDAO();
 
         try {
 
-            User checkedUser = userDAO.getUserByLogPass(user);
-            return checkedUser;
+            return userDAO.getUserByLogPass(user);
 
         } catch (SQLException | DAOException e) {
             throw new ServiceException(e);
@@ -61,11 +62,42 @@ public class CommonService {
     }
 
 
-    public boolean addUser(User user) throws ServiceException {
+    public User addUser(User user) throws ServiceException {
+        UserDataDAO userDataDAO = new UserDataDAO();
         UserDAO userDAO = new UserDAO();
 
         try {
-            return userDAO.create(user);
+            User checkingUser = new User();
+
+            checkingUser.setLogin(user.getLogin());
+            checkingUser.setEmail(user.getEmail());
+
+            checkingUser = userDAO.getUserByLogEmail(checkingUser);
+
+            if (checkingUser.isEmpty()) {
+                User currentUser = new User();
+
+                currentUser.setLogin(user.getLogin());
+                currentUser.setPassword(user.getPassword());
+                currentUser.setEmail(user.getEmail());
+
+                boolean createUserSuccess = userDAO.create(currentUser);
+
+                if (createUserSuccess) {
+                    UserData currentUserData = new UserData();
+                    currentUser = userDAO.getUserByLogPass(user);
+
+                    String currentDate = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
+                    currentUserData.setUserId(currentUser.getUserId());
+                    currentUserData.setCreationTime(currentDate);
+                    currentUserData.setDescription(DESCRIPTION_STUDENT);
+
+                    return userDataDAO.create(currentUserData) ? currentUser : User.emptyUser();
+                }
+            }
+
+            return User.emptyUser();
+
         } catch (DAOException | SQLException e) {
             throw  new ServiceException(e);
         }
@@ -159,10 +191,6 @@ public class CommonService {
         } catch (DAOException | SQLException e) {
             throw new ServiceException(e);
         }
-    }
-
-    public List<UserTask> takeUserTaskListByUserId(Integer userId) throws ServiceException{
-        return null;
     }
 
 

@@ -7,6 +7,7 @@ public class Course implements Serializable {
     private String title;
     private String region;
     private String description;
+    private String type;
     private Integer leadId;
     private Integer status;
     private boolean courseEmpty = false;
@@ -15,11 +16,12 @@ public class Course implements Serializable {
     }
 
     public Course(Integer courseId, String title, String region
-            , String description, Integer leadId, Integer status) {
+            , String description,String type, Integer leadId, Integer status) {
         this.courseId = courseId;
         this.title = title;
         this.region = region;
         this.description = description;
+        this.type = type;
         this.leadId = leadId;
         this.status = status;
     }
@@ -28,6 +30,14 @@ public class Course implements Serializable {
         Course course = new Course();
         course.setCourseEmpty(true);
         return course;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public boolean isCourseEmpty() {

@@ -4,9 +4,9 @@
 <head>
   <meta charset="utf-8" http-equiv="content-type" content="text/html">
   <title>Welcome page!</title>
-  <link rel="stylesheet" type="text/css" href="../css/reset.css">
-  <link rel="stylesheet" type="text/css" href="../css/default.css">
-  <link rel="stylesheet" type="text/css" href="../css/sing-up-in.css">
+  <link rel="stylesheet" type="text/css" href="../../css/util/reset.css">
+  <link rel="stylesheet" type="text/css" href="../../css/default.css">
+  <link rel="stylesheet" type="text/css" href="../../css/common/sing-up-in.css">
 </head>
 <body>
   <div align="center">

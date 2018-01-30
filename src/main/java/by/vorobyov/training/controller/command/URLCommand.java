@@ -10,7 +10,9 @@ public class URLCommand {
     public static final String TRAINING_GROUP_PAGE = "command?command=training-group-page&group-id=";
     public static final String TRAINING_TASK_PAGE = "command?command=training-task-page&task-id=";
     public static final String TRAINING_GROUP_LIST = "command?command=training-group-list-page";
-    public static final String ADMIN_HOME_PAGE = "command?command=admin-home-page";
+    public static final String ADMIN_COURSE_MODIFY_PAGE = "command?command=admin-course-moderation-page";
+    public static final String ADMIN_GROUP_MODIFY_PAGE = "command?command=admin-group-moderation-page";
+    public static final String ADMIN_USER_MODIFY_PAGE = "command?command=admin-user-moderation-page";
 
 
 
