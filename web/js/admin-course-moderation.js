@@ -35,16 +35,3 @@ function handleSubmit(){
         + "&courseAvailability=" + courseAvailability;
     location.href = resultURL;
 }
-
-function createCourse() {
-    var title = courseCreation.title.value;
-    var courseComment = courseCreation.courseComment.value;
-    var availability = courseCreation.availability.value;
-    var type = courseCreation.type.value;
-    var region = courseCreation.region.value;
-    var teacherId = courseCreation.leadId.value;
-
-    if (title != null && courseComment != null) {
-
-    }
-}

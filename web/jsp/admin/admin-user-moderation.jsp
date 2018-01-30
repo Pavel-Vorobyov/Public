@@ -102,9 +102,9 @@
                               <p align="left">
                                 Enter status:
                                 <select style="float:right" name="userStatus">
-                                  <option value="0">Student</option>
+                                  <option selected value="0">Student</option>
                                   <option value="1">Teacher</option>
-                                  <option selected value="2">Admin</option>
+                                  <option value="2">Admin</option>
                                 </select>
                               </p>
                               <p class="submit">

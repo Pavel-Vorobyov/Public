@@ -111,7 +111,7 @@
             </p>
             <p align="left">
               Enter login:
-              <input style="float:right" id="login" name="login" type="text" value="${sessionScope.user.login}">
+              <input style="float:right" readonly id="login" name="login" type="text" value="${sessionScope.user.login}">
             </p>
             <p align="left">
               Enter password:

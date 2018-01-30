@@ -23,6 +23,11 @@ public class WorkGroupDAO extends AbstractDAO<WorkGroup> {
             " FROM work_group, user_has_work_group" +
             " WHERE work_group.id = user_has_work_group.work_group_id AND user_has_work_group.user_id = ?";
 
+    public static final String SELECT_WORK_GROUP_BY_LEAD_ID = "SELECT work_group.id, work_group.title, work_group.description, work_group.course_id, work_group.lead_id" +
+            " , work_group.status, work_group.type, work_group.region" +
+            " FROM work_group" +
+            " WHERE work_group.lead_id = ?";
+
     public static final String INSERT_WORK_GROUP = "INSERT INTO work_group (title, description, lead_id, course_id, " +
             " status, type, region) VALUES (?,?,?,?,?,?,?)";
 
@@ -256,6 +261,30 @@ public class WorkGroupDAO extends AbstractDAO<WorkGroup> {
 
         try {
             preparedStatement = connection.prepareStatement(sqlRequest);
+
+            resultSet = preparedStatement.executeQuery();
+            connection.commit();
+            return workGroupCreator.createEntityList(resultSet);
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            closePreparedStatement(preparedStatement);
+            closeConnection(connection);
+        }
+    }
+
+    public List<WorkGroup> getWorkGroupByLeadId(Integer leadId) throws SQLException, DAOException {
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet;
+        WorkGroupCreator workGroupCreator = new WorkGroupCreator();
+
+        connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        connection.setAutoCommit(false);
+
+        try {
+            preparedStatement = connection.prepareStatement(SELECT_WORK_GROUP_BY_LEAD_ID);
+            preparedStatement.setInt(1, leadId);
 
             resultSet = preparedStatement.executeQuery();
             connection.commit();

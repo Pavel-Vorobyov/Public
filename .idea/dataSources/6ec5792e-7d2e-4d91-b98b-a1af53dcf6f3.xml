@@ -295,11 +295,13 @@ work_group_id</ColNames>
       <Position>2</Position>
       <DataType>varchar(60)|0</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>&apos;none&apos;</DefaultExpression>
     </column>
     <column id="63" parent="11" name="surname">
       <Position>3</Position>
       <DataType>varchar(60)|0</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>&apos;none&apos;</DefaultExpression>
     </column>
     <column id="64" parent="11" name="creationtime">
       <Position>4</Position>
@@ -309,7 +311,6 @@ work_group_id</ColNames>
     <column id="65" parent="11" name="description">
       <Position>5</Position>
       <DataType>mediumtext|0</DataType>
-      <NotNull>1</NotNull>
     </column>
     <key id="66" parent="11" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>

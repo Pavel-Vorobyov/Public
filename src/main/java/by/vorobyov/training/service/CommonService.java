@@ -1,5 +1,6 @@
 package by.vorobyov.training.service;
 
+import by.vorobyov.training.controller.command.impl.page.admin.AdminCourseModifyPage;
 import by.vorobyov.training.database.dao.impl.*;
 import by.vorobyov.training.dto.TeachingUserTask;
 import by.vorobyov.training.exception.DAOException;
@@ -13,6 +14,14 @@ import java.util.List;
 
 public class CommonService {
     public static final String DESCRIPTION_STUDENT = "Student";
+    public static final String SELECT_COURSE_BY_STATUS_REGION_TYPE = "SELECT *" +
+            " FROM course" +
+            " WHERE ";
+    public static final String COURSE_STATUS = " course.status =";
+    public static final String COURSE_REGION = " course.region =";
+    public static final String COURSE_TYPE = " course.type =";
+
+    public static final String SQL_AND = " AND ";
 
     public User checkUser(User user) throws ServiceException {
         UserDAO userDAO = new UserDAO();
@@ -123,11 +132,19 @@ public class CommonService {
         }
     }
 
-    public List<Course> takeCourseListByStatus(Integer status) throws ServiceException {
+    public List<Course> takeCourseListByFilter(Integer courseStatus, String courseType, String courseRegion) throws ServiceException {
         CourseDAO courseDAO = new CourseDAO();
 
         try {
-            return courseDAO.getCourseListByStatus(status);
+            String sqlRequest = SELECT_COURSE_BY_STATUS_REGION_TYPE + COURSE_STATUS + courseStatus;
+            if (!courseType.equals(AdminCourseModifyPage.ALL_VALUE)) {
+                sqlRequest += SQL_AND + COURSE_TYPE + "'" + courseType + "'";
+            }
+            if (!courseRegion.equals(AdminCourseModifyPage.ALL_VALUE)) {
+                sqlRequest += SQL_AND + COURSE_REGION + "'" + courseRegion + "'";
+            }
+
+            return courseDAO.getCourseListBySQLRequest(sqlRequest);
         } catch (SQLException | DAOException e) {
             throw new ServiceException(e);
         }

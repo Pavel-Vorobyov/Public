@@ -29,6 +29,8 @@ public class UserDataDAO extends AbstractDAO<UserData> {
             " FROM user, user_data" +
             " WHERE user_data.user_id = user.id AND user.status = ?";
 
+    public static final String INSERT_USER_DATA = "INSERT INTO user_data (user_id, creationtime, description) VALUES (?,?,?)";
+
     @Override
     public List<UserData> getAll() throws DAOException, SQLException {
 //        Connection connection = getConnection();
@@ -139,12 +141,10 @@ public class UserDataDAO extends AbstractDAO<UserData> {
         connection.setAutoCommit(false);
 
         try {
-            preparedStatement = connection.prepareStatement(UserDataQuery.INSERT_USER_DATA);
+            preparedStatement = connection.prepareStatement(INSERT_USER_DATA);
             preparedStatement.setInt(1, entity.getUserId());
-            preparedStatement.setString(2, entity.getName());
-            preparedStatement.setString(3, entity.getSurname());
-            preparedStatement.setString(4, entity.getCreationTime());
-            preparedStatement.setString(5, entity.getDescription());
+            preparedStatement.setString(2, entity.getCreationTime());
+            preparedStatement.setString(3, entity.getDescription());
 
             preparedStatement.executeUpdate();
             connection.commit();

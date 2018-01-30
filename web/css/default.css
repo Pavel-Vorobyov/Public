@@ -158,6 +158,7 @@ html {
     padding-bottom: 50px;
     min-width: 100%;
     min-height: 300px;
+    max-height: 500px;
 
     background-color: #f0f2f4;
   }
