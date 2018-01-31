@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class    StudentTaskPage implements ICommand {
+public class StudentTaskListPage implements ICommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User currentUser = (User) request.getSession().getAttribute(AttributeName.USER);

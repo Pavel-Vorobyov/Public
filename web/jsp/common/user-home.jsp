@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +23,11 @@
           }
       }
   </script>
+
+  <fmt:setLocale value="${sessionScope.local}" scope="session"/>
+  <fmt:setBundle basename="local.local" var="loc"/>
+  <fmt:message bundle="${loc}" key="button.home" var="home"/>
+  <fmt:message bundle="${loc}" key="button.tasklist" var="task"/>
 </head>
 <body>
   <div align="center">
@@ -35,7 +41,7 @@
         <div class="filters">
             <h1>${requestScope.userData.name} ${requestScope.userData.surname} profile:</h1>
             <div class="horizontal-group">
-              <a class="uui-button" href="command?command=student-task-list-page">Task list</a>
+              <a class="uui-button" href="command?command=student-task-list-page">${task}</a>
               <a class="uui-button" href="command?command=student-group-page">Group list</a>
               <a class="uui-button" href="#">Home</a>
              </div>
@@ -76,7 +82,7 @@
               <a onclick="showUpdateBlock(userDataModify)">Personal data modify</a>
             </div>
             <div class="user-description-wrapper">
-              <h1>Student comment:</h1>
+              <h1>User comment:</h1>
               <span>
                 Adasdadsad!!!!!!!!!!!
                 adasdadsad!!!!!!!!!!!

@@ -13,6 +13,7 @@ public class URLCommand {
     public static final String ADMIN_COURSE_MODIFY_PAGE = "command?command=admin-course-moderation-page";
     public static final String ADMIN_GROUP_MODIFY_PAGE = "command?command=admin-group-moderation-page";
     public static final String ADMIN_USER_MODIFY_PAGE = "command?command=admin-user-moderation-page";
+    public static final String STUDENT_TASK_LIST_PAGE = "command?command=student-task-list-page";
 
 
 

@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="ftm" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +20,10 @@
           }
       }
   </script>
+  <div id="local" data-item="${sessionScope.local}"></div>
+  <fmt:setLocale value="${sessionScope.local}"/>
+  <fmt:setBundle basename="local.local" var="loc"/>
+  <fmt:message bundle="${loc}" key="button.home" var="home"/>
 </head>
 <body>
 

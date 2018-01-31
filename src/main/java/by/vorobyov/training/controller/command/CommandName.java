@@ -33,6 +33,7 @@ public class CommandName {
 
     //student
     public static final String STUDENT_USER_DATA_MODIFY = "student-user-data-modify";
+    public static final String STUDENT_SUBMIT_TASK = "student-submit-task";
 
     //admin
     public static final String CREATE_COURSE = "create-course";

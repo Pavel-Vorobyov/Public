@@ -16,6 +16,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class StudentService extends CommonService {
+    public static final Integer USER_TASK_STATUS_SUBMITTED = 2;
 
     public List<StudentUserTask> takeUserTaskByUserId(Integer userId) throws ServiceException {
         WorkGroupDAO workGroupDAO = new WorkGroupDAO();
@@ -98,6 +99,20 @@ public class StudentService extends CommonService {
 
             return userUpdateSuccess && userDataUpdateSuccess ? true : false;
 
+        } catch (DAOException | SQLException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    public boolean submitTask(Integer userTaskId) throws ServiceException {
+        UserTaskDAO userTaskDAO = new UserTaskDAO();
+
+        try {
+            UserTask currentUserTask = userTaskDAO.getEntityById(userTaskId);
+
+            currentUserTask.setStatus(USER_TASK_STATUS_SUBMITTED);
+
+            return userTaskDAO.update(currentUserTask);
         } catch (DAOException | SQLException e) {
             throw new ServiceException(e);
         }
