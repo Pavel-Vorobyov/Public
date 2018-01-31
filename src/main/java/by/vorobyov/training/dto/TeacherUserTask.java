@@ -1,20 +1,18 @@
 package by.vorobyov.training.dto;
 
-public class TeachingUserTask {
+public class TeacherUserTask {
     private Integer userTaskId;
     private String studentName;
     private String startTime;
     private String deadline;
     private Integer estimate;
     private Integer status;
-    private Integer groupId;
-    private Integer taskId;
     private boolean teachingUserTaskEmpty = false;
 
-    public TeachingUserTask() {
+    public TeacherUserTask() {
     }
 
-    public TeachingUserTask(String studentName, String startTime, String deadline
+    public TeacherUserTask(String studentName, String startTime, String deadline
         , Integer estimate, Integer status) {
         this.studentName = studentName;
         this.startTime = startTime;
@@ -23,26 +21,10 @@ public class TeachingUserTask {
         this.status = status;
     }
 
-    public TeachingUserTask emptyTeacherUserTask() {
-        TeachingUserTask teachingUserTask = new TeachingUserTask();
-        teachingUserTask.setTeachingUserTaskEmpty(true);
-        return teachingUserTask;
-    }
-
-    public Integer getGroupId() {
-        return groupId;
-    }
-
-    public void setGroupId(Integer groupId) {
-        this.groupId = groupId;
-    }
-
-    public Integer getTaskId() {
-        return taskId;
-    }
-
-    public void setTaskId(Integer taskId) {
-        this.taskId = taskId;
+    public TeacherUserTask emptyTeacherUserTask() {
+        TeacherUserTask teacherUserTask = new TeacherUserTask();
+        teacherUserTask.setTeachingUserTaskEmpty(true);
+        return teacherUserTask;
     }
 
     public boolean isTeachingUserTaskEmpty() {
@@ -106,7 +88,7 @@ public class TeachingUserTask {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        TeachingUserTask that = (TeachingUserTask) o;
+        TeacherUserTask that = (TeacherUserTask) o;
 
         if (!studentName.equals(that.studentName)) return false;
         if (!startTime.equals(that.startTime)) return false;
@@ -127,7 +109,7 @@ public class TeachingUserTask {
 
     @Override
     public String toString() {
-        return "TeachingUserTask{" +
+        return "TeacherUserTask{" +
                 "studentName='" + studentName + '\'' +
                 ", startTime=" + startTime +
                 ", deadline=" + deadline +

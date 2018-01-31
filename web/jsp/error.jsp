@@ -92,3 +92,16 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="/WEB-INF/tag/CourseCard.tld" prefix="gpLine"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="/WEB-INF/tag/CourseCard.tld" prefix="ln"%>
+
+<li class="item-body">
+  <a >
+    <span class="tk-student-name">${task.title}</span>
+    <span class="tk-task-creation-time">${task.creationTime}</span>
+    <span class="tk-task-deadline">${task.deadline}</span>
+    <span class="tk-task-estimate">${task.description}</span>
+    <span class="tk-task-status">${task.description}</span>
+  </a>
+</li>

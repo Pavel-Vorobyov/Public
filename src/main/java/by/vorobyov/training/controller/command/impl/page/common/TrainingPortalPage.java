@@ -6,7 +6,6 @@ import by.vorobyov.training.exception.ServiceException;
 import by.vorobyov.training.resource.AttributeName;
 import by.vorobyov.training.resource.JspPageName;
 import by.vorobyov.training.service.CommonService;
-import by.vorobyov.training.service.impl.AdminService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class TrainingPortalPage implements ICommand {
-    public static final Integer COURSE_PLAINING = 0;
+    public static final Integer COURSE_PLANING = 0;
     public static final String ALL_VALUE = "All";
     public static final String COURSE_REGION = "courseRegion";
     public static final String COURSE_TYPE = "courseType";
@@ -26,7 +25,7 @@ public class TrainingPortalPage implements ICommand {
         CommonService commonService = new CommonService();
         List<Course> courseList;
 
-        Integer courseStatus = COURSE_PLAINING;
+        Integer courseStatus = COURSE_PLANING;
         String courseType = ALL_VALUE;
         String courseRegion = ALL_VALUE;
 

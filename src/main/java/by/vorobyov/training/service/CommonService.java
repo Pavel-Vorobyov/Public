@@ -2,7 +2,7 @@ package by.vorobyov.training.service;
 
 import by.vorobyov.training.controller.command.impl.page.admin.AdminCourseModifyPage;
 import by.vorobyov.training.database.dao.impl.*;
-import by.vorobyov.training.dto.TeachingUserTask;
+import by.vorobyov.training.dto.TeacherUserTask;
 import by.vorobyov.training.exception.DAOException;
 import by.vorobyov.training.dto.entity.*;
 import by.vorobyov.training.exception.ServiceException;
@@ -60,7 +60,7 @@ public class CommonService {
         }
     }
 
-    public List<TeachingUserTask> takeTeacherUserTask(Integer taskId, Integer groupId) throws ServiceException {
+    public List<TeacherUserTask> takeTeacherUserTask(Integer taskId, Integer groupId) throws ServiceException {
         TaskDAO taskDAO = new TaskDAO();
 
         try {

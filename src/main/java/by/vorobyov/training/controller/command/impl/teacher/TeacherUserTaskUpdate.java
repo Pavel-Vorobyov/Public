@@ -13,11 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class TeacherUserTaskUpdate implements ICommand {
-    public static final String USER_TASK_ID = "user-task-id";
-    public static final String TASK_COMMENT = "task-comment";
-    public static final String USER_TASK_STATUS = "task-status";
-    public static final String GROUP_ID = "group-id";
-    public static final String TASK_ID = "task-id";
+    public static final String USER_TASK_ID = "userTaskId";
+    public static final String TASK_COMMENT = "taskComment";
+    public static final String USER_TASK_STATUS = "taskStatus";
+    public static final String GROUP_TITLE = "groupTitle";
+    public static final String TASK_TITLE = "taskTitle";
+    public static final String GROUP_ID = "groupId";
+    public static final String TASK_ID = "taskId";
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         TeacherService teacherService = new TeacherService();
@@ -25,6 +27,8 @@ public class TeacherUserTaskUpdate implements ICommand {
 
         Integer groupId = Integer.parseInt(request.getParameter(GROUP_ID));
         Integer taskId = Integer.parseInt(request.getParameter(TASK_ID));
+        String taskTitle = request.getParameter(TASK_TITLE);
+        String groupTitle = request.getParameter(GROUP_TITLE);
 
         try {
                 userTask.setUserTaskId(Integer.parseInt(request.getParameter(USER_TASK_ID)));
@@ -36,8 +40,9 @@ public class TeacherUserTaskUpdate implements ICommand {
                 boolean result = teacherService.userTaskUpdate(userTask);
 
                 if (result) {
-                    String resultURL = URLCommand.TRAINING_TASK_PAGE + taskId + "&"
-                            + GROUP_ID + "=" + groupId;
+                    String resultURL = URLCommand.TEACHER_USER_TASK_PAGE + taskId + "&"
+                            + GROUP_ID + "=" + groupId + "&" + GROUP_TITLE + "=" + groupTitle
+                            + "&" + TASK_TITLE + "=" + taskTitle;
                     response.sendRedirect(resultURL);
                 }
 

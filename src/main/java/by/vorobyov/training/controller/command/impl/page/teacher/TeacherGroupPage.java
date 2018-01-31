@@ -34,7 +34,7 @@ public class TeacherGroupPage implements ICommand {
             if (!groupTask.isEmpty()) {
 
                 for (int i=0; i<groupTask.size(); i++) {
-                    String taskHerf = URLCommand.TRAINING_TASK_PAGE + groupTask.get(i).getTaskId()
+                    String taskHerf = URLCommand.TEACHER_USER_TASK_PAGE + groupTask.get(i).getTaskId()
                             + "&" + WORK_GROUP_ID + "=" + workGroupId;
                     groupTask.get(i).setTaskHerf(taskHerf);
                 }

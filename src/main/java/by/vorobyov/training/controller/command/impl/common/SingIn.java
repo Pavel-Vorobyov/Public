@@ -1,4 +1,4 @@
-package by.vorobyov.training.controller.command.impl.Common;
+package by.vorobyov.training.controller.command.impl.common;
 
 import by.vorobyov.training.controller.command.ICommand;
 import by.vorobyov.training.database.dao.impl.UserDataDAO;

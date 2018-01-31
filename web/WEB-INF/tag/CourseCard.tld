@@ -129,7 +129,7 @@
         <body-content>empty</body-content>
 
         <attribute>
-            <name>blockUpdateId</name>
+            <name>userTaskId</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
@@ -171,6 +171,18 @@
         <body-content>empty</body-content>
 
         <attribute>
+            <name>groupTitle</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>taskTitle</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
             <name>studentName</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
@@ -178,12 +190,6 @@
 
         <attribute>
             <name>userTaskId</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-
-        <attribute>
-            <name>updateBlockId</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>

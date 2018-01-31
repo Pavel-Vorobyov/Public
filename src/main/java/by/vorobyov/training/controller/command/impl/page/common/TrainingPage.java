@@ -22,7 +22,7 @@ public class TrainingPage implements ICommand {
 
         switch (user.getStatus()) {
             case 0:
-                response.sendRedirect(URLCommand.STUDENT_HOME_PAGE);
+                response.sendRedirect(URLCommand.USER_HOME_PAGE);
                 break;
             case 1:
                 response.sendRedirect(URLCommand.TRAINING_GROUP_LIST);

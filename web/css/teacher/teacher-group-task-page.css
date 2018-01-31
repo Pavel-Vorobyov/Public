@@ -8,17 +8,29 @@ cursor: default !important;
 
 .td-main-content-conteiner {
 width: 1250px;
-min-height: 900px;
+min-height: 500px;
 
-background-color: #fcfcfc;
+/*background-color: #fcfcfc;
 border-radius: 3px;
 -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);*/
 }
 .td-main-content-conteiner h1 {
 text-align: left;
-padding: 30px;
+padding: 15px;
+padding-left: 67px;
 float: left;
+}
+
+.td-filters-wrapper {
+  height: 80px;
+  width: 1250px;
+
+
+  background-color: #fcfcfc;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .filters {
@@ -31,7 +43,7 @@ vertical-align: top;
 text-transform: none;
 float: right;
 padding: 30px;
-padding-top: 50px;
+padding-top: 20px;
 margin-right: 100px;
 }
 
@@ -47,6 +59,21 @@ background-color: #fcfcfc;
 text-decoration: none;
 font-family: Source Sans Pro Regular;
 font-size: 18px;
+}
+
+.group-task a {
+  float: right;
+  padding: 14px;
+  padding-bottom: 16px;
+  padding-right: 17px;
+  padding-left: 17px;
+  margin-right: 100px;
+  background-color: #f8f8f8;
+
+}
+
+.group-task a:hover {
+  background-color: #f0f2f4;
 }
 
 .horizontal-group .uui-button {
@@ -83,22 +110,50 @@ height: 27px;
 }
 
 .td-group-wrapper {
-  height: 700px;
   width: 100%;
   float: right;
+  margin-top: 0px;
+  margin-bottom: 30px;
+
+  background-color: #fcfcfc;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-.td-group-conteiner {
-  /*border: 1px solid;*/
-  height: 100px;
+.group-name-wrapper {
+  width: 100%;
+  float: right;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  background-color: #fcfcfc;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.group-name-wrapper h1 {
+  margin: 0;
+  padding: 10px;
+  padding-left: 66px;
+
+  text-transform: uppercase;
+  font-size: 1.5em;
+  font-family: 'Oswald Regular',Tahoma,sans-serif;
+  text-align: left;
+  float: left;
+
 }
 
 .uui-item-list {
   width: 100%;
-  height: 700px;
+  min-height: 200px;
   list-style: none;
   margin: 0;
   overflow: hidden;
+  position: relative;
+  /*top: -25px;*/
 }
 
 .item-body-header {
@@ -108,40 +163,35 @@ height: 27px;
   position: relative;
   font-family: 'Source Sans Pro Semibold',Tahoma,sans-serif;
   color: #464547;
-  font-size: 16px;
+  font-size: 14px;
   text-transform: none;
   white-space: nowrap;
   overflow: hidden;
   position: relative;
-  left: -29px;
+  /*left: -29px;*/
+  top:15px;
 }
 
-.uui-item-list .item-body-header .task-item {
-  width: 26.3%;
+.uui-item-list .item-body-header .task-title {
+  width: 25%;
   float: left;
   text-align: left;
-  padding-left: 20px;
+  padding-left: 60px;
 }
 
-.uui-item-list .item-body-header .start-time-item {
-  width: 16.5%;
+.uui-item-list .item-body-header .task-creation-time {
+  width: 17%;
   float: left;
-  text-align: left;
+    text-align: left;
 }
 
-.uui-item-list .item-body-header .deadline-item {
-  width: 16.1%;
-  float: left;
-  text-align: left;
-}
-
-.uui-item-list .item-body-header .estimate-item {
-  width: 16%;
+.uui-item-list .item-body-header .task-deadline {
+  width: 14%;
   float: left;
   text-align: left;
 }
 
-.uui-item-list .item-body-header .status-item {
+.uui-item-list .item-body-header .task-comment {
   float: left;
   text-align: left;
 }
@@ -158,13 +208,12 @@ height: 27px;
   left: -40px;
   display: table;
   width: 100%;
-  border: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
 }
 
 .item-body a {
-  padding-top: 24px;
+  padding-top: 22px;
   padding-bottom: 17px;
-  padding-right: 25px;
 
   text-decoration: none;
 }
@@ -173,9 +222,9 @@ height: 27px;
   background-color: #f8f8f8;
 }
 
-.tk-student-name {
-  padding-left: 32px;
-  width: 25.2%;
+.tk-task-title {
+  padding-left: 100px;
+  width: 24%;
 
   margin-top: 20px;
   font-size: 16px;
@@ -186,8 +235,8 @@ height: 27px;
   padding-right: 10px;
 }
 
-.tk-start-time {
-  width: 15%;
+.tk-task-creation-time {
+  width: 15.5%;
   position: relative;
   left: -3px;
 
@@ -200,8 +249,8 @@ height: 27px;
   padding-right: 10px;
 }
 
-.tk-deadline {
-  width: 15%;
+.tk-task-deadline {
+  width: 13%;
 
   margin-top: 20px;
   font-size: 16px;
@@ -212,10 +261,10 @@ height: 27px;
   padding-right: 10px;
 }
 
-.tk-estimate {
-  width: 15%;
+.tk-task-comment {
+  width: 23%;
 
-  margin-top: 20px;
+  height: 20px;
   font-size: 16px;
   display: inline-block;
   text-overflow: ellipsis;
@@ -224,19 +273,20 @@ height: 27px;
   padding-right: 10px;
 }
 
-.tk-status {
-  width: 19.45%;
+.tk-modify-button {
+  width: 10.9%;
 
   margin-top: 20px;
   font-size: 16px;
   display: inline-block;
+  text-align: center;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
   padding-right: 10px;
 }
 
-.studentTaskUpdate {
+.createTask {
   position: fixed;
   font-family: Arial, Helvetica, sans-serif;
   top: 0;
@@ -248,13 +298,14 @@ height: 27px;
   -webkit-transition: opacity 400ms ease-in;
   -moz-transition: opacity 400ms ease-in;
   transition: opacity 400ms ease-in;
+  display: none;
 }
 
-.studentTaskUpdate > div {
-  width: 350px;
+.createTask > div {
+  width: 330px;
   position: relative;
   margin: 10% auto;
-  /*padding: 5px 20px 13px 20px;*/
+
   border-radius: 10px;
 }
 
@@ -277,26 +328,28 @@ height: 27px;
   box-shadow: 1px 1px 3px #000;
 }
 
+.creation a:hover {
+  background-color: #f8f8f8;
+}
+
 .container {
   margin: 80px auto;
   width: 100%;
-  /*display: none;*/
-
 }
 
-.taskUpdate {
+.creation {
   position: relative;
-  margin: 0px auto 0 auto;
-  padding: 20px 20px 20px;
-  width: 330px;
-  left: -10px;
+  margin: 0 auto 0 auto;
+  padding: 15px 15px 15px;
+  width: 390px;
+  left: -80px;
   top: -20px;
   background: white;
   border-radius: 3px;
   -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
 }
-.taskUpdate:before {
+.creation:before {
   content: '';
   position: absolute;
   top: -8px;
@@ -307,9 +360,11 @@ height: 27px;
   background: rgba(0, 0, 0, 0.08);
   border-radius: 4px;
 }
-.taskUpdate h1 {
-  margin: -20px -20px 21px;
-  width: 290px;
+.creation h1 {
+  margin: -20px -15px 21px;
+  padding: 0px;
+  width: 420px;
+  line-height: 40px;
   font-size: 15px;
   font-weight: bold;
   color: #555;
@@ -325,22 +380,24 @@ height: 27px;
   -webkit-box-shadow: 0 1px whitesmoke;
   box-shadow: 0 1px whitesmoke;
 }
-.taskUpdate p {
-  margin: 20px 0 0;
+.creation p {
+  margin: 10px 0 0;
 }
-.taskUpdate p:first-child {
+.creation p:first-child {
   margin-top: 0;
 }
-.taskUpdate input[type=text], .taskUpdate input[type=password] {
-  width: 278px;
+.creation input[type=text], .login input[type=password] {
+  width: 212px;
+  margin-bottom: 10px;
+  float: left;
 }
-
-.taskUpdate input[type=number] {
-  width: 40px;
-}
-
-.taskUpdate p.submit {
+.creation p.submit {
   text-align: right;
+}
+
+.creation input[type=date] {
+  float: left;
+  margin: 10px;
 }
 
 :-moz-placeholder {
@@ -353,12 +410,12 @@ height: 27px;
   font-size: 13px;
 }
 
-.taskUpdate input {
+input {
   font-family: 'oswald-regular',helvetica,sans-serif,arial;
   font-size: 14px;
 }
 
-.taskUpdate input[type=text] {
+input[type=text] {
   margin: 5px;
   padding: 0 10px;
   width: 200px;
@@ -373,13 +430,13 @@ height: 27px;
   -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
 }
-.taskUpdate input[type=text]:focus {
+input[type=text]:focus {
   border-color: #7dc9e2;
   outline-color: #dceefc;
   outline-offset: 0;
 }
 
-.taskUpdate input[type=submit] {
+input[type=submit] {
   padding: 0 18px;
   height: 29px;
   font-size: 12px;
@@ -400,13 +457,9 @@ height: 27px;
   -webkit-box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
   box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
 }
-.taskUpdate input[type=submit]:active {
+input[type=submit]:active {
   background: #cde5ef;
   border-color: #9eb9c2 #b3c0c8 #b4ccce;
   -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
   box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
-}
-
-.lt-ie9 input[type=text] {
-  line-height: 34px;
 }

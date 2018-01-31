@@ -1,14 +1,11 @@
-package by.vorobyov.training.controller.command.impl.Common;
+package by.vorobyov.training.controller.command.impl.common;
 
 import by.vorobyov.training.controller.command.ICommand;
 import by.vorobyov.training.controller.command.URLCommand;
 import by.vorobyov.training.dto.entity.User;
 import by.vorobyov.training.exception.ServiceException;
 import by.vorobyov.training.resource.AttributeName;
-import by.vorobyov.training.resource.JspPageName;
-import by.vorobyov.training.resource.parametername.AccountParameterName;
 import by.vorobyov.training.service.CommonService;
-import by.vorobyov.training.validator.impl.UserValidator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

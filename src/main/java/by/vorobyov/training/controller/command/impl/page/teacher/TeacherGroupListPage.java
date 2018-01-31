@@ -31,7 +31,7 @@ public class TeacherGroupListPage implements ICommand {
             for (int i=0; i<workGroupList.size(); i++) {
                 Integer courseId = workGroupList.get(i).getCourseId();
                 Course course = commonService.takeCourseByCourseId(courseId);
-                String groupHerf = URLCommand.TRAINING_GROUP_PAGE + workGroupList.get(i).getWorkGroupId();
+                String groupHerf = URLCommand.TEACHER_GROUP_TASK_PAGE + workGroupList.get(i).getWorkGroupId();
 
                 TeachingGroup teachingGroup = new TeachingGroup(groupHerf, workGroupList.get(i).getTitle()
                     , course.getRegion(), course.getTitle(), course.getDescription());
@@ -39,7 +39,7 @@ public class TeacherGroupListPage implements ICommand {
             }
 
             request.setAttribute(AttributeName.TEACHING_GROUP_LIST, teachingGroupList);
-            request.getRequestDispatcher(JspPageName.TEACHING_GROUP_LIST_PAGE).forward(request, response);
+            request.getRequestDispatcher(JspPageName.TEACHER_GROUP_LIST_PAGE).forward(request, response);
         } catch (ServiceException e) {
             e.printStackTrace();
         }

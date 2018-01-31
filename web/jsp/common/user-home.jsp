@@ -6,7 +6,7 @@
   <title>Home</title>
   <link rel="stylesheet" type="text/css" href="../../css/util/reset.css">
   <link rel="stylesheet" type="text/css" href="../../css/default.css">
-  <link rel="stylesheet" type="text/css" href="../../css/student/student-home.css">
+  <link rel="stylesheet" type="text/css" href="../../css/common/user-home.css">
   <script type="text/javascript">
       function initUpdateBlock(blockId){
           blockId.style.display = "none";

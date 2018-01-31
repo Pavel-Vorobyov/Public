@@ -21,13 +21,19 @@ public class UserTaskDAO extends AbstractDAO<UserTask> {
     public static final String INSERT_USER_TASK = "INSERT INTO user_task (user_id, creationtime, deadline, " +
             " work_group_id, task_id) VALUES ( ?, ?, ?, ?, ? )";
 
-    public static final String UPDATE_USER_TASK_BY_ID = "UPDATE user_task SET deadline = ?, estimate = ?, status = ?, comment = ?" +
-            "WHERE id = ?";
+    public static final String UPDATE_USER_TASK_BY_ID = "UPDATE user_task" +
+            " SET user_task.deadline = ?, user_task.estimate = ?, user_task.status = ?, user_task.comment = ?" +
+            " WHERE user_task.id = ?";
 
     public static final String SELECT_USER_TASK_BY_GROUP_USER_ID = "SELECT user_task.id, user_task.user_id, user_task.work_group_id, user_task.status, user_task.estimate" +
             " , user_task.deadline, user_task.task_id, user_task.creationtime, user_task.comment, task.title" +
             " FROM user_task, task" +
             " WHERE task.id = user_task.task_id AND user_task.user_id = ? AND user_task.work_group_id = ?";
+
+    public static final String SELECT_USER_TASK_BY_GROUP_TASK_ID = "SELECT user_task.id, user_task.user_id, user_task.work_group_id, user_task.status, user_task.estimate" +
+            " , user_task.deadline, user_task.task_id, user_task.creationtime, user_task.comment, task.title" +
+            " FROM user_task, task" +
+            " WHERE task.id = user_task.task_id AND user_task.task_id = ? AND user_task.work_group_id = ?";
 
     @Override
     public List<UserTask> getAll() throws DAOException, SQLException {
@@ -153,6 +159,31 @@ public class UserTaskDAO extends AbstractDAO<UserTask> {
         try {
             preparedStatement = connection.prepareStatement(SELECT_USER_TASK_BY_GROUP_USER_ID);
             preparedStatement.setInt(1, userId);
+            preparedStatement.setInt(2, groupId);
+
+            resultSet = preparedStatement.executeQuery();
+            connection.commit();
+            return userTaskCreator.createEntityList(resultSet);
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            closePreparedStatement(preparedStatement);
+            closeConnection(connection);
+        }
+    }
+
+    public List<UserTask> getUserTaskByGroupLeadId(Integer taskId, Integer groupId) throws SQLException, DAOException {
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet;
+        UserTaskCreator userTaskCreator = new UserTaskCreator();
+
+        connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        connection.setAutoCommit(false);
+
+        try {
+            preparedStatement = connection.prepareStatement(SELECT_USER_TASK_BY_GROUP_TASK_ID);
+            preparedStatement.setInt(1, taskId);
             preparedStatement.setInt(2, groupId);
 
             resultSet = preparedStatement.executeQuery();

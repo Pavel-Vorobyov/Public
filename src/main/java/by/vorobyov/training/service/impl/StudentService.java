@@ -21,7 +21,6 @@ public class StudentService extends CommonService {
         WorkGroupDAO workGroupDAO = new WorkGroupDAO();
         UserTaskDAO userTaskDAO = new UserTaskDAO();
         UserDataDAO userDataDAO = new UserDataDAO();
-        TaskDAO taskDAO = new TaskDAO();
         List<StudentUserTask> studentUserTaskList = new LinkedList<>();
         List<WorkGroup> workGroupList;
         List<UserTask> userTaskList;

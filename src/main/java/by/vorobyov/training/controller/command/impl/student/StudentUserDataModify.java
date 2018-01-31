@@ -8,7 +8,6 @@ import by.vorobyov.training.exception.ServiceException;
 import by.vorobyov.training.resource.AttributeName;
 import by.vorobyov.training.service.CommonService;
 import by.vorobyov.training.service.impl.StudentService;
-import org.w3c.dom.Attr;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -48,7 +47,7 @@ public class StudentUserDataModify implements ICommand {
                 request.getSession().setAttribute(AttributeName.USER, modifyingUser);
                 request.getSession().setAttribute(AttributeName.USER_DATA, currentUserData);
 
-                response.sendRedirect(URLCommand.STUDENT_HOME_PAGE);
+                response.sendRedirect(URLCommand.USER_HOME_PAGE);
             }
 
         } catch (ServiceException e) {

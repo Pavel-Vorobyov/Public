@@ -38,21 +38,22 @@ public class AdminService extends CommonService {
     public static final String SQL_AND = " AND ";
 
     public List<Course> takeCourseListByFilter(Integer courseStatus, String courseType, String courseRegion) throws ServiceException {
-        CourseDAO courseDAO = new CourseDAO();
-
-        try {
-            String sqlRequest = SELECT_COURSE_BY_STATUS_REGION_TYPE + COURSE_STATUS + courseStatus;
-            if (!courseType.equals(AdminCourseModifyPage.ALL_VALUE)) {
-                sqlRequest += SQL_AND + COURSE_TYPE + "'" + courseType + "'";
-            }
-            if (!courseRegion.equals(AdminCourseModifyPage.ALL_VALUE)) {
-                sqlRequest += SQL_AND + COURSE_REGION + "'" + courseRegion + "'";
-            }
-
-            return courseDAO.getCourseListBySQLRequest(sqlRequest);
-        } catch (SQLException | DAOException e) {
-            throw new ServiceException(e);
-        }
+//        CourseDAO courseDAO = new CourseDAO();
+//
+//        try {
+//            String sqlRequest = SELECT_COURSE_BY_STATUS_REGION_TYPE + COURSE_STATUS + courseStatus;
+//            if (!courseType.equals(AdminCourseModifyPage.ALL_VALUE)) {
+//                sqlRequest += SQL_AND + COURSE_TYPE + "'" + courseType + "'";
+//            }
+//            if (!courseRegion.equals(AdminCourseModifyPage.ALL_VALUE)) {
+//                sqlRequest += SQL_AND + COURSE_REGION + "'" + courseRegion + "'";
+//            }
+//
+//            return courseDAO.getCourseListBySQLRequest(sqlRequest);
+//        } catch (SQLException | DAOException e) {
+//            throw new ServiceException(e);
+//        }
+       return super.takeCourseListByFilter(courseStatus, courseType, courseRegion);
     }
 
     public boolean createCourse(Course course) throws ServiceException {

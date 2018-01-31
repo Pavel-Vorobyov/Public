@@ -46,13 +46,10 @@ public class TeacherCreateTask implements ICommand {
             boolean result = teacherService.createTask(task, groupId);
 
             if (result) {
-                String url = URLCommand.TRAINING_GROUP_PAGE + groupId;
-                response.sendRedirect(url);
+                response.sendRedirect(URLCommand.TEACHER_GROUP_TASK_PAGE);
             }
         } catch (ServiceException e) {
             e.printStackTrace();
         }
-
-        request.getRequestDispatcher(JspPageName.TEACHING_GROUP_PAGE);
     }
 }

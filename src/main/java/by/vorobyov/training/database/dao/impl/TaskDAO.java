@@ -4,7 +4,7 @@ import by.vorobyov.training.creator.impl.entitycreator.TaskCreator;
 import by.vorobyov.training.creator.impl.TeachingUserTaskCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
 import by.vorobyov.training.database.dao.preparedquery.TaskQuery;
-import by.vorobyov.training.dto.TeachingUserTask;
+import by.vorobyov.training.dto.TeacherUserTask;
 import by.vorobyov.training.exception.DAOException;
 import by.vorobyov.training.dto.entity.Task;
 
@@ -33,6 +33,10 @@ public class TaskDAO extends AbstractDAO<Task> {
             " FROM task WHERE title = ? AND description = ? AND" +
             "                author_id = ? AND creationtime = ? AND deadline = ?";
 
+    public static final String UPDATE_TASK = "UPDATE task" +
+            " SET task.title = ?, task.deadline = ?, task.description = ?" +
+            "  WHERE task.id = ?";
+
 
     @Override
     public List<Task> getAll() throws DAOException, SQLException {
@@ -41,7 +45,28 @@ public class TaskDAO extends AbstractDAO<Task> {
 
     @Override
     public boolean update(Task entity) throws DAOException, SQLException {
-        return false;
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+
+        connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        connection.setAutoCommit(false);
+
+        try {
+            preparedStatement = connection.prepareStatement(UPDATE_TASK);
+            preparedStatement.setString(1, entity.getTitle());
+            preparedStatement.setString(2, entity.getDeadline());
+            preparedStatement.setString(3, entity.getDescription());
+            preparedStatement.setInt(4, entity.getTaskId());
+
+            preparedStatement.executeUpdate();
+            connection.commit();
+            return true;
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            closePreparedStatement(preparedStatement);
+            closeConnection(connection);
+        }
     }
 
     @Override
@@ -151,7 +176,7 @@ public class TaskDAO extends AbstractDAO<Task> {
         }
     }
 
-    public List<TeachingUserTask> getUserTaskListByTaskId(Integer taskId, Integer groupId) throws SQLException, DAOException {
+    public List<TeacherUserTask> getUserTaskListByTaskId(Integer taskId, Integer groupId) throws SQLException, DAOException {
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet;
