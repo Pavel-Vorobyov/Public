@@ -1,7 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ taglib prefix="ftm" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<fmt:requestEncoding value="UTF-8"/>
+<fmt:setLocale value="${sessionScope.local}"/>
+<fmt:setBundle basename="local"/>
 
 <div class="td-header-nav-wrap" align="center">
     <div class="td-header-nav">
@@ -10,17 +13,17 @@
         <ul align="right">
             <c:choose>
                 <c:when test="${sessionScope.user != null}">
-                    <li><a href="command?command=home-page">${home} 1</a></li>
-                    <li><a href="command?command=training-portal-page">Training Portal</a></li>
-                    <li><a href="command?command=training-page" >Training...</a></li>
-                    <li id="header-nav-left"><a href="/command?command=sing-out">Sing out</a></li>
-                    <li id="header-nav-left">Hello, ${sessionScope.userData.name} ${sessionScope.userData.surname} </li>
+                    <li><a href="command?command=home-page"><fmt:message key="button.home"/></a></li>
+                    <li><a href="command?command=training-portal-page"><fmt:message key="button.training-portal"/></a></li>
+                    <li><a href="command?command=training-page" ><fmt:message key="button.training"/></a></li>
+                    <li id="header-nav-left"><a href="/command?command=sing-out"><fmt:message key="button.logout"/></a></li>
+                    <li id="header-nav-left"><fmt:message key="title.welcome"/> ${sessionScope.userData.name} ${sessionScope.userData.surname}</li>
                 </c:when>
                 <c:otherwise>
-                    <li><a href="command?command=home-page">Home</a></li>
-                    <li><a href="command?command=training-portal-page">Training Portal</a></li>
-                    <li id="header-nav-left"><a href="#singIn">Login</a></li>
-                    <li id="header-nav-left"><a href="#singOn">Register</a></li>
+                    <li><a href="command?command=home-page"><fmt:message key="button.home"/></a></li>
+                    <li><a href="command?command=training-portal-page"><fmt:message key="button.training-portal"/></a></li>
+                    <li id="header-nav-left"><a href="#singIn"><fmt:message key="button.login"/></a></li>
+                    <li id="header-nav-left"><a href="#singOn"><fmt:message key="button.register"/></a></li>
                 </c:otherwise>
             </c:choose>
         </ul>
@@ -66,7 +69,7 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="../../js/nav.js"></script>
+    <script type="text/javascript" src="../../js/util/nav.js"></script>
     <c:choose>
         <c:when test="${requestScope.statusMessage != null}">
             <div class="statusMessage" id="statusMessage" onclick="showMessage(statusMessage)">

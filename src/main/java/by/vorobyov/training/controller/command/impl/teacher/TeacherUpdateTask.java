@@ -30,13 +30,14 @@ public class TeacherUpdateTask implements ICommand {
             boolean result = teacherService.updateTask(task);
 
             if (result) {
-                String url = URLCommand.TEACHER_GROUP_TASK_PAGE;
-                response.sendRedirect(url);
+//                String url = URLCommand.TEACHER_GROUP_TASK_PAGE;
+//                response.sendRedirect(url);
+                request.getRequestDispatcher(URLCommand.TEACHER_GROUP_TASK_PAGE).forward(request, response);
             }
         } catch (ServiceException e) {
             e.printStackTrace();
         }
 
-        request.getRequestDispatcher(JspPageName.TEACHING_GROUP_PAGE);
+        request.getRequestDispatcher(JspPageName.TEACHING_GROUP_PAGE).forward(request, response);
     }
 }

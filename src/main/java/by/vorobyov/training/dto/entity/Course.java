@@ -103,22 +103,26 @@ public class Course implements Serializable {
 
         Course course = (Course) o;
 
-        if (!courseId.equals(course.courseId)) return false;
-        if (!title.equals(course.title)) return false;
-        if (!region.equals(course.region)) return false;
-        if (!description.equals(course.description)) return false;
-        if (!leadId.equals(course.leadId)) return false;
+        if (courseEmpty != course.courseEmpty) return false;
+        if (courseId != null ? !courseId.equals(course.courseId) : course.courseId != null) return false;
+        if (title != null ? !title.equals(course.title) : course.title != null) return false;
+        if (region != null ? !region.equals(course.region) : course.region != null) return false;
+        if (description != null ? !description.equals(course.description) : course.description != null) return false;
+        if (type != null ? !type.equals(course.type) : course.type != null) return false;
+        if (leadId != null ? !leadId.equals(course.leadId) : course.leadId != null) return false;
         return status != null ? status.equals(course.status) : course.status == null;
     }
 
     @Override
     public int hashCode() {
-        int result = courseId.hashCode();
-        result = 31 * result + title.hashCode();
-        result = 31 * result + region.hashCode();
-        result = 31 * result + description.hashCode();
-        result = 31 * result + leadId.hashCode();
+        int result = courseId != null ? courseId.hashCode() : 0;
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (region != null ? region.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (leadId != null ? leadId.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + (courseEmpty ? 1 : 0);
         return result;
     }
 
@@ -129,8 +133,10 @@ public class Course implements Serializable {
                 ", title='" + title + '\'' +
                 ", region='" + region + '\'' +
                 ", description='" + description + '\'' +
+                ", type='" + type + '\'' +
                 ", leadId=" + leadId +
                 ", status=" + status +
+                ", courseEmpty=" + courseEmpty +
                 '}';
     }
 }

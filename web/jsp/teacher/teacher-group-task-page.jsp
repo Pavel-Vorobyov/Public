@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="/WEB-INF/tag/CourseCard.tld" prefix="ln"%>
 <!DOCTYPE html>
@@ -8,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/util/reset.css">
     <link rel="stylesheet" type="text/css" href="../../css/default.css">
     <link rel="stylesheet" type="text/css" href="../../css/teacher/teacher-group-task-page.css">
-    <script type="text/javascript" src="../../js/teacher/teacher-group-task-page.js"></script>
+    <script type="text/javascript" src="../../js/default.js"></script>
 
 </head>
 <body>

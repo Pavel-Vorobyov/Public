@@ -2,7 +2,7 @@ package by.vorobyov.training.controller.command.impl.teacher;
 
 import by.vorobyov.training.controller.command.ICommand;
 import by.vorobyov.training.controller.command.URLCommand;
-import by.vorobyov.training.database.dao.util.columnname.UserTaskColumnName;
+import by.vorobyov.training.database.dao.columnname.UserTaskColumnName;
 import by.vorobyov.training.dto.entity.UserTask;
 import by.vorobyov.training.exception.ServiceException;
 import by.vorobyov.training.service.impl.TeacherService;
@@ -41,7 +41,7 @@ public class TeacherUserTaskUpdate implements ICommand {
 
                 if (result) {
                     String resultURL = URLCommand.TEACHER_USER_TASK_PAGE + taskId + "&"
-                            + GROUP_ID + "=" + groupId + "&" + GROUP_TITLE + "=" + groupTitle
+                            + GROUP_ID + "=" + groupId + "&" + GROUP_TITLE + "=" + groupTitle //!!!! Исправить
                             + "&" + TASK_TITLE + "=" + taskTitle;
                     response.sendRedirect(resultURL);
                 }

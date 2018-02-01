@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -8,26 +9,12 @@
   <link rel="stylesheet" type="text/css" href="../../css/util/reset.css">
   <link rel="stylesheet" type="text/css" href="../../css/default.css">
   <link rel="stylesheet" type="text/css" href="../../css/common/user-home.css">
-  <script type="text/javascript">
-      function initUpdateBlock(blockId){
-          blockId.style.display = "none";
-      }
-      function showUpdateBlock(blockId) {
-          if (blockId.style.display == "none")
-          {
-              blockId.style.display = "block";
-          }
-          else
-          {
-              blockId.style.display = "none";
-          }
-      }
-  </script>
+  <script type="text/javascript" src="../../js/default.js"></script>
 
-  <fmt:setLocale value="${sessionScope.local}" scope="session"/>
-  <fmt:setBundle basename="local.local" var="loc"/>
-  <fmt:message bundle="${loc}" key="button.home" var="home"/>
-  <fmt:message bundle="${loc}" key="button.tasklist" var="task"/>
+  <fmt:requestEncoding value="UTF-8"/>
+  <fmt:setLocale value="${sessionScope.local}"/>
+  <fmt:setBundle basename="local"/>
+
 </head>
 <body>
   <div align="center">
@@ -41,8 +28,8 @@
         <div class="filters">
             <h1>${requestScope.userData.name} ${requestScope.userData.surname} profile:</h1>
             <div class="horizontal-group">
-              <a class="uui-button" href="command?command=student-task-list-page">${task}</a>
-              <a class="uui-button" href="command?command=student-group-page">Group list</a>
+              <a class="uui-button" href="command?command=student-task-list-page"><fmt:message key="button.taskList"/></a>
+              <a class="uui-button" href="command?command=student-group-page">Привет Group list</a>
               <a class="uui-button" href="#">Home</a>
              </div>
           </div>

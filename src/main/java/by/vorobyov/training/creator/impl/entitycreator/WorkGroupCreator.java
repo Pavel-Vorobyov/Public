@@ -1,9 +1,8 @@
 package by.vorobyov.training.creator.impl.entitycreator;
 
 import by.vorobyov.training.creator.ICreator;
-import by.vorobyov.training.database.dao.util.columnname.WorkGroupColumnName;
+import by.vorobyov.training.database.dao.columnname.WorkGroupColumnName;
 import by.vorobyov.training.dto.entity.WorkGroup;
-import by.vorobyov.training.resource.parametername.WorkGroupParameterName;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

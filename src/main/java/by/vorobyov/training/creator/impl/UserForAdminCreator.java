@@ -1,8 +1,8 @@
 package by.vorobyov.training.creator.impl;
 
 import by.vorobyov.training.creator.ICreator;
-import by.vorobyov.training.database.dao.util.columnname.UserColumnName;
-import by.vorobyov.training.database.dao.util.columnname.UserDataColumnName;
+import by.vorobyov.training.database.dao.columnname.UserColumnName;
+import by.vorobyov.training.database.dao.columnname.UserDataColumnName;
 import by.vorobyov.training.dto.UserForAdmin;
 
 import java.sql.ResultSet;

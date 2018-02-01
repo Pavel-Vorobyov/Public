@@ -43,7 +43,7 @@ public class UserUpdate implements ICommand {
                 request.setAttribute(AttributeName.STATUS_MESSAGE, statusMessage);
 
                 request.setAttribute(AdminUserModifyPage.FILTER_USER_STATUS, request.getParameter(AdminUserModifyPage.FILTER_USER_STATUS));
-                request.getRequestDispatcher(URLCommand.ADMIN_USER_MODIFY_PAGE).include(request, response);
+                request.getRequestDispatcher(URLCommand.ADMIN_USER_MODIFY_PAGE).forward(request, response);
             }
 
         } catch (ServiceException e) {

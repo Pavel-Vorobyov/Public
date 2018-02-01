@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="/WEB-INF/tag/CourseCard.tld" prefix="crCard"%>
 <!DOCTYPE html>
@@ -9,7 +10,7 @@
   <link rel="stylesheet" type="text/css" href="../../css/default.css">
   <link rel="stylesheet" type="text/css" href="../../css/common/training-portal.css">
   <link rel="stylesheet" type="text/css" href="../../css/common/course-card.css">
-  <script type="text/javascript" src="../../js/training-portal.js"></script>
+  <script type="text/javascript" src="../../js/common/training-portal.js"></script>
 
 </head>
 <body>

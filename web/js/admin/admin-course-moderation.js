@@ -22,7 +22,7 @@ function deleteCourse(courseId) {
 
     var resultURL = link + "&courseRegion=" + courseRegion + "&courseType=" + courseType
         + "&courseAvailability=" + courseAvailability + "&courseId=" + courseId;
-    location.href = resultURL;
+    window.location.href = resultURL;
 }
 
 function handleSubmit(){

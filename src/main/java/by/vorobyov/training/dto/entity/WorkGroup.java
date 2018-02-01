@@ -113,20 +113,30 @@ public class WorkGroup implements Serializable {
 
         WorkGroup workGroup = (WorkGroup) o;
 
-        if (!workGroupId.equals(workGroup.workGroupId)) return false;
-        if (!title.equals(workGroup.title)) return false;
-        if (!description.equals(workGroup.description)) return false;
-        if (!leadId.equals(workGroup.leadId)) return false;
-        return courseId.equals(workGroup.courseId);
+        if (groupEmpty != workGroup.groupEmpty) return false;
+        if (workGroupId != null ? !workGroupId.equals(workGroup.workGroupId) : workGroup.workGroupId != null)
+            return false;
+        if (title != null ? !title.equals(workGroup.title) : workGroup.title != null) return false;
+        if (description != null ? !description.equals(workGroup.description) : workGroup.description != null)
+            return false;
+        if (leadId != null ? !leadId.equals(workGroup.leadId) : workGroup.leadId != null) return false;
+        if (courseId != null ? !courseId.equals(workGroup.courseId) : workGroup.courseId != null) return false;
+        if (status != null ? !status.equals(workGroup.status) : workGroup.status != null) return false;
+        if (type != null ? !type.equals(workGroup.type) : workGroup.type != null) return false;
+        return region != null ? region.equals(workGroup.region) : workGroup.region == null;
     }
 
     @Override
     public int hashCode() {
-        int result = workGroupId.hashCode();
-        result = 31 * result + title.hashCode();
-        result = 31 * result + description.hashCode();
-        result = 31 * result + leadId.hashCode();
-        result = 31 * result + courseId.hashCode();
+        int result = workGroupId != null ? workGroupId.hashCode() : 0;
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (leadId != null ? leadId.hashCode() : 0);
+        result = 31 * result + (courseId != null ? courseId.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (region != null ? region.hashCode() : 0);
+        result = 31 * result + (groupEmpty ? 1 : 0);
         return result;
     }
 
@@ -138,6 +148,10 @@ public class WorkGroup implements Serializable {
                 ", description='" + description + '\'' +
                 ", leadId=" + leadId +
                 ", courseId=" + courseId +
+                ", status=" + status +
+                ", type='" + type + '\'' +
+                ", region='" + region + '\'' +
+                ", groupEmpty=" + groupEmpty +
                 '}';
     }
 }

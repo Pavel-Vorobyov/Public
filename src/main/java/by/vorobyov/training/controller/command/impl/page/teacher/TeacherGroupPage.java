@@ -41,7 +41,7 @@ public class TeacherGroupPage implements ICommand {
                 request.setAttribute(AttributeName.GROUP_TASK_LIST, groupTask);
             }
 
-            request.getRequestDispatcher(JspPageName.TEACHING_GROUP_PAGE).include(request, response);
+            request.getRequestDispatcher(JspPageName.TEACHING_GROUP_PAGE).forward(request, response);
         } catch (ServiceException e) {
             e.printStackTrace();
         }

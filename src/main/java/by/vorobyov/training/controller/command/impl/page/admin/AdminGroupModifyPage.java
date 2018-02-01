@@ -51,7 +51,7 @@ public class AdminGroupModifyPage implements ICommand {
 
             if (!workGroupList.isEmpty()) {
 
-                request.getRequestDispatcher(JspPageName.ADMIN_GROUP_MODIFY_PAGE).include(request, response);
+                request.getRequestDispatcher(JspPageName.ADMIN_GROUP_MODIFY_PAGE).forward(request, response);
 
             } else {
                 String statusMessage = "Sorry, coincidence has been found!";

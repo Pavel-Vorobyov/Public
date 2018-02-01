@@ -104,24 +104,24 @@ public class Task implements Serializable {
         Task task = (Task) o;
 
         if (taskEmpty != task.taskEmpty) return false;
-        if (!taskHerf.equals(task.taskHerf)) return false;
-        if (!taskId.equals(task.taskId)) return false;
-        if (!title.equals(task.title)) return false;
-        if (!description.equals(task.description)) return false;
-        if (!authorId.equals(task.authorId)) return false;
-        if (!creationTime.equals(task.creationTime)) return false;
-        return deadline.equals(task.deadline);
+        if (taskHerf != null ? !taskHerf.equals(task.taskHerf) : task.taskHerf != null) return false;
+        if (taskId != null ? !taskId.equals(task.taskId) : task.taskId != null) return false;
+        if (title != null ? !title.equals(task.title) : task.title != null) return false;
+        if (description != null ? !description.equals(task.description) : task.description != null) return false;
+        if (authorId != null ? !authorId.equals(task.authorId) : task.authorId != null) return false;
+        if (creationTime != null ? !creationTime.equals(task.creationTime) : task.creationTime != null) return false;
+        return deadline != null ? deadline.equals(task.deadline) : task.deadline == null;
     }
 
     @Override
     public int hashCode() {
-        int result = taskHerf.hashCode();
-        result = 31 * result + taskId.hashCode();
-        result = 31 * result + title.hashCode();
-        result = 31 * result + description.hashCode();
-        result = 31 * result + authorId.hashCode();
-        result = 31 * result + creationTime.hashCode();
-        result = 31 * result + deadline.hashCode();
+        int result = taskHerf != null ? taskHerf.hashCode() : 0;
+        result = 31 * result + (taskId != null ? taskId.hashCode() : 0);
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (authorId != null ? authorId.hashCode() : 0);
+        result = 31 * result + (creationTime != null ? creationTime.hashCode() : 0);
+        result = 31 * result + (deadline != null ? deadline.hashCode() : 0);
         result = 31 * result + (taskEmpty ? 1 : 0);
         return result;
     }

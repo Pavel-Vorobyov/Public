@@ -1,7 +1,7 @@
 package by.vorobyov.training.creator.impl.entitycreator;
 
 import by.vorobyov.training.creator.ICreator;
-import by.vorobyov.training.database.dao.util.columnname.UserColumnName;
+import by.vorobyov.training.database.dao.columnname.UserColumnName;
 import by.vorobyov.training.dto.entity.User;
 
 import java.sql.ResultSet;

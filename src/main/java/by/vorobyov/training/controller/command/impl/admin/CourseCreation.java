@@ -44,7 +44,7 @@ public class CourseCreation implements ICommand {
                 request.setAttribute(AdminCourseModifyPage.COURSE_REGION, course.getRegion());
                 request.setAttribute(AttributeName.STATUS_MESSAGE, "Course has been created successful!");
 
-                request.getRequestDispatcher(URLCommand.ADMIN_COURSE_MODIFY_PAGE).include(request, response);
+                request.getRequestDispatcher(URLCommand.ADMIN_COURSE_MODIFY_PAGE).forward(request, response);
             }
         } catch (ServiceException e) {
             e.printStackTrace();

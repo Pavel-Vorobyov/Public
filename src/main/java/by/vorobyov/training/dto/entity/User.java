@@ -88,20 +88,20 @@ public class User implements Serializable {
         User user = (User) o;
 
         if (userEmpty != user.userEmpty) return false;
-        if (!userId.equals(user.userId)) return false;
-        if (!login.equals(user.login)) return false;
-        if (!password.equals(user.password)) return false;
-        if (!email.equals(user.email)) return false;
-        return status.equals(user.status);
+        if (userId != null ? !userId.equals(user.userId) : user.userId != null) return false;
+        if (login != null ? !login.equals(user.login) : user.login != null) return false;
+        if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        if (email != null ? !email.equals(user.email) : user.email != null) return false;
+        return status != null ? status.equals(user.status) : user.status == null;
     }
 
     @Override
     public int hashCode() {
-        int result = userId.hashCode();
-        result = 31 * result + login.hashCode();
-        result = 31 * result + password.hashCode();
-        result = 31 * result + email.hashCode();
-        result = 31 * result + status.hashCode();
+        int result = userId != null ? userId.hashCode() : 0;
+        result = 31 * result + (login != null ? login.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
         result = 31 * result + (userEmpty ? 1 : 0);
         return result;
     }

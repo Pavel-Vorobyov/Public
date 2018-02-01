@@ -40,7 +40,7 @@ public class GroupUpdate implements ICommand {
                 request.setAttribute(AdminGroupModifyPage.GROUP_TYPE, workGroup.getType());
                 request.setAttribute(AdminGroupModifyPage.GROUP_REGION, workGroup.getRegion());
 
-                request.getRequestDispatcher(URLCommand.ADMIN_GROUP_MODIFY_PAGE).include(request, response);
+                request.getRequestDispatcher(URLCommand.ADMIN_GROUP_MODIFY_PAGE).forward(request, response);
             }
 
         } catch (ServiceException e) {

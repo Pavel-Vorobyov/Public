@@ -28,7 +28,7 @@ public class CourseDelete implements ICommand {
             if (result) {
                 request.setAttribute(AttributeName.STATUS_MESSAGE, DELETE_SUCCESS);
 
-                request.getRequestDispatcher(URLCommand.ADMIN_COURSE_MODIFY_PAGE).include(request, response);
+                request.getRequestDispatcher(URLCommand.ADMIN_COURSE_MODIFY_PAGE).forward(request, response);
             }
 
         } catch (ServiceException e) {

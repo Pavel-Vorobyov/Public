@@ -36,12 +36,12 @@ public class AdminUserModifyPage implements ICommand {
                 request.setAttribute(AttributeName.USER_FOR_ADMIN_LIST, userForAdminList);
                 request.setAttribute(FILTER_USER_STATUS, userStatus);
 
-                request.getRequestDispatcher(JspPageName.ADMIN_USER_MODIFY_PAGE).include(request, response);
+                request.getRequestDispatcher(JspPageName.ADMIN_USER_MODIFY_PAGE).forward(request, response);
             } else {
                 String statusMessage = "Sorry, coincidence has been found!";
                 request.setAttribute(AttributeName.STATUS_MESSAGE, statusMessage);
 
-                request.getRequestDispatcher(JspPageName.ADMIN_USER_MODIFY_PAGE).include(request, response);
+                request.getRequestDispatcher(JspPageName.ADMIN_USER_MODIFY_PAGE).forward(request, response);
             }
 
 

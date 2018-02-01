@@ -47,7 +47,7 @@ public class GroupCreation implements ICommand {
                 request.setAttribute(AdminGroupModifyPage.GROUP_REGION, workGroup.getRegion());
                 request.setAttribute(AttributeName.STATUS_MESSAGE, "Group has been created successful!");
 
-                request.getRequestDispatcher(URLCommand.ADMIN_GROUP_MODIFY_PAGE).include(request, response);
+                request.getRequestDispatcher(URLCommand.ADMIN_GROUP_MODIFY_PAGE).forward(request, response);
             }
 
         } catch (ServiceException e) {

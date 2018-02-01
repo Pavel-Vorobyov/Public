@@ -35,7 +35,7 @@ public class CourseUpdate implements ICommand {
                 request.setAttribute(AdminCourseModifyPage.COURSE_AVAILABILITY, course.getStatus());
                 request.setAttribute(AdminCourseModifyPage.COURSE_REGION, course.getRegion());
 
-                request.getRequestDispatcher(URLCommand.ADMIN_COURSE_MODIFY_PAGE).include(request, response);
+                request.getRequestDispatcher(URLCommand.ADMIN_COURSE_MODIFY_PAGE).forward(request, response);
             }
 
         } catch (ServiceException e) {

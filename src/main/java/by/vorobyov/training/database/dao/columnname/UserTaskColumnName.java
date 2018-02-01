@@ -1,4 +1,4 @@
-package by.vorobyov.training.database.dao.util.columnname;
+package by.vorobyov.training.database.dao.columnname;
 
 public class UserTaskColumnName {
     private UserTaskColumnName() {

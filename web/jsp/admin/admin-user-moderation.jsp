@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="/WEB-INF/tag/adminTag/UserDataLine.tld" prefix="usLine"%>
 <!DOCTYPE html>
@@ -8,7 +9,7 @@
   <link rel="stylesheet" type="text/css" href="../../css/util/reset.css">
   <link rel="stylesheet" type="text/css" href="../../css/default.css">
   <link rel="stylesheet" type="text/css" href="../../css/admin/admin-user-moderation.css">
-  <script type="text/javascript" src="../../js/admin-user-moderation.js"></script>
+  <script type="text/javascript" src="../../js/admin/admin-user-moderation.js"></script>
 
 </head>
 <body>

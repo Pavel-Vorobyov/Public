@@ -21,23 +21,13 @@ public abstract class AbstractDAO<E> {
         try {
             connection.rollback();
         } catch (SQLException e) {
-            throw new DAOException("Transaction hasn't benn rolled back!");
+            throw new DAOException("Transaction hasn't been rolled back!");
         }
     }
 
     public Connection getConnection() throws DAOException {
         Connection connection = ConnectionPool.getInstance().getConnection();
         return connection;
-    }
-
-    public Statement getStatement(Connection connection) throws SQLException {
-        Statement statement = connection.createStatement();
-        return statement;
-    }
-
-    public PreparedStatement getPreparedStatement(Connection connection, String sqlRequest) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement(sqlRequest);
-        return preparedStatement;
     }
 
     public void closeConnection(Connection connection) throws DAOException {

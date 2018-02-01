@@ -1,5 +1,6 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="ftm" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,23 +8,12 @@
   <title>Welcome page!</title>
   <link rel="stylesheet" type="text/css" href="css/util/reset.css">
   <link rel="stylesheet" type="text/css" href="css/index.css">
-  <script type="text/javascript" src="js/index.js"></script>
-  <script type="text/javascript">
-      function showMessage(blockId) {
-          if (blockId.style.display == "none")
-          {
-              blockId.style.display = "block";
-          }
-          else
-          {
-              blockId.style.display = "none";
-          }
-      }
-  </script>
-  <div id="local" data-item="${sessionScope.local}"></div>
+  <script type="text/javascript" src="js/default.js"></script>
+
+  <fmt:requestEncoding value="UTF-8"/>
   <fmt:setLocale value="${sessionScope.local}"/>
-  <fmt:setBundle basename="local.local" var="loc"/>
-  <fmt:message bundle="${loc}" key="button.home" var="home"/>
+  <fmt:setBundle basename="local"/>
+
 </head>
 <body>
 

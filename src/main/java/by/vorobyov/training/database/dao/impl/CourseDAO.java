@@ -24,6 +24,15 @@ public class CourseDAO extends AbstractDAO<Course> {
     public final static String DELETE_COURSE = "DELETE FROM course" +
             " WHERE course.id = ?";
 
+    public final static String SELECT_ALL_COURSES = "SELECT * FROM course";
+
+    public final static String SELECT_COURSE_BY_ID = "SELECT * FROM course WHERE id = ?";
+
+    public static final String SELECT_COURSE_BY_USER_ID = "SELECT course.id, course.title, course.region, course.status, course.description, course.lead_id FROM course, user_has_course" +
+            " WHERE course.id = user_has_course.course_id AND user_has_course.user_id = ?";
+
+
+
     @Override
     public List<Course> getAll() throws DAOException, SQLException {
         Connection connection = getConnection();
@@ -36,7 +45,7 @@ public class CourseDAO extends AbstractDAO<Course> {
 
         try {
             statement = connection.createStatement();
-            resultSet = statement.executeQuery(CourseQuery.SELECT_ALL_COURSES);
+            resultSet = statement.executeQuery(SELECT_ALL_COURSES);
 
             connection.commit();
             return resultSet != null ? courseCreator.createEntityList(resultSet) : null; // resultSet != null ????????
@@ -92,7 +101,7 @@ public class CourseDAO extends AbstractDAO<Course> {
         connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         connection.setAutoCommit(false);
         try {
-            preparedStatement = connection.prepareStatement(CourseQuery.SELECT_COURSE_BY_ID);
+            preparedStatement = connection.prepareStatement(SELECT_COURSE_BY_ID);
             preparedStatement.setInt(1, entityId);
 
             resultSet = preparedStatement.executeQuery();
@@ -175,7 +184,7 @@ public class CourseDAO extends AbstractDAO<Course> {
         connection.setAutoCommit(false);
 
         try {
-            preparedStatement = connection.prepareStatement(CourseQuery.SELECT_COURSE_BY_USER_ID);
+            preparedStatement = connection.prepareStatement(SELECT_COURSE_BY_USER_ID);
             preparedStatement.setInt(1, userId);
 
             resultSet = preparedStatement.executeQuery();

@@ -35,6 +35,7 @@ public class SingIn implements ICommand{
 
                     request.getSession(true).setAttribute(AttributeName.USER, checkedUser);
                     request.getSession().setAttribute(AttributeName.USER_DATA, userData);
+                    request.getSession().setAttribute("local", request.getParameter("local"));
 
                     response.sendRedirect(TRAINING_PAGE);
                 } else {

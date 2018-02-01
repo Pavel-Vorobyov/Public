@@ -83,20 +83,21 @@ public class UserData {
         UserData userData = (UserData) o;
 
         if (userDataEmpty != userData.userDataEmpty) return false;
-        if (!userId.equals(userData.userId)) return false;
-        if (!name.equals(userData.name)) return false;
-        if (!surname.equals(userData.surname)) return false;
-        if (!creationTime.equals(userData.creationTime)) return false;
-        return description.equals(userData.description);
+        if (userId != null ? !userId.equals(userData.userId) : userData.userId != null) return false;
+        if (name != null ? !name.equals(userData.name) : userData.name != null) return false;
+        if (surname != null ? !surname.equals(userData.surname) : userData.surname != null) return false;
+        if (creationTime != null ? !creationTime.equals(userData.creationTime) : userData.creationTime != null)
+            return false;
+        return description != null ? description.equals(userData.description) : userData.description == null;
     }
 
     @Override
     public int hashCode() {
-        int result = userId.hashCode();
-        result = 31 * result + name.hashCode();
-        result = 31 * result + surname.hashCode();
-        result = 31 * result + creationTime.hashCode();
-        result = 31 * result + description.hashCode();
+        int result = userId != null ? userId.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        result = 31 * result + (creationTime != null ? creationTime.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (userDataEmpty ? 1 : 0);
         return result;
     }
@@ -107,7 +108,7 @@ public class UserData {
                 "userId=" + userId +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", creationTime=" + creationTime +
+                ", creationTime='" + creationTime + '\'' +
                 ", description='" + description + '\'' +
                 ", userDataEmpty=" + userDataEmpty +
                 '}';
