@@ -27,10 +27,10 @@
         <div class="filters">
             <h1>${sessionScope.userData.name} ${sessionScope.userData.surname} admin page:</h1>
             <div class="horizontal-group">
-              <a class="uui-button" href="command?command=admin-course-moderation-page">Course moderation</a>
-              <a class="uui-button" href="command?command=admin-group-moderation-page">Group moderation</a>
+              <a class="uui-button" href="command?command=admin_course_moderation_page">Course moderation</a>
+              <a class="uui-button" href="command?command=admin_group_moderation_page">Group moderation</a>
               <a class="uui-button" href="#">User moderation</a>
-              <a class="uui-button" href="command?command=user-home-page">User data</a>
+              <a class="uui-button" href="command?command=user_home_page">User data</a>
             </div>
           </div>
         </div>
@@ -89,7 +89,7 @@
                             <a onclick="showUpdateBlock(userUpdateBlock${userForAdmin.userId})" title="Close" class="close">X</a>
                             <h1>User updating...</h1>
                             <form name="userUpdate" method="post" action="command">
-                              <input type="hidden" name="command" value="update-user">
+                              <input type="hidden" name="command" value="update_user">
                               <input type="hidden" name="filterUserStatus" value="${requestScope.filterUserStatus}">
                               <input type="hidden" name="userId" value="${userForAdmin.userId}">
                               <p align="l1eft">

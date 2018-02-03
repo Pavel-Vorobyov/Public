@@ -62,12 +62,6 @@ input[type="checkbox"] {
     -moz-transition: opacity 400ms ease-in;
     transition: opacity 400ms ease-in;
     display: none;
-    pointer-events: none;
-}
-
-.singIn:target {
-    display: block;
-    pointer-events: auto;
 }
 
 .singIn > div {
@@ -254,12 +248,6 @@ input[type=submit]:active {
     -moz-transition: opacity 400ms ease-in;
     transition: opacity 400ms ease-in;
     display: none;
-    pointer-events: none;
-}
-
-.singOn:target {
-    display: block;
-    pointer-events: auto;
 }
 
 .singOn > div {

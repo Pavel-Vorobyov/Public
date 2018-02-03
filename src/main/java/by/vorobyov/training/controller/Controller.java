@@ -32,7 +32,7 @@ public class Controller extends HttpServlet{
         CommandStorage commandStorage = CommandStorage.getInstance();
 
         String commandName = request.getParameter(COMMAND);
-//
+
         ICommand command = commandStorage.getCommand(commandName);
 
         command.execute(request, response);

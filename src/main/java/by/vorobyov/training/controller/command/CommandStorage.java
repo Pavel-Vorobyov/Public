@@ -9,7 +9,7 @@ import by.vorobyov.training.controller.command.impl.page.admin.AdminGroupModifyP
 import by.vorobyov.training.controller.command.impl.page.admin.AdminUserModifyPage;
 import by.vorobyov.training.controller.command.impl.page.teacher.TeacherUserTaskPage;
 import by.vorobyov.training.controller.command.impl.student.StudentSubmitTask;
-import by.vorobyov.training.controller.command.impl.student.StudentUserDataModify;
+import by.vorobyov.training.controller.command.impl.common.UserDataModify;
 import by.vorobyov.training.controller.command.impl.teacher.TeacherCreateTask;
 import by.vorobyov.training.controller.command.impl.page.common.*;
 import by.vorobyov.training.controller.command.impl.page.student.StudentGroupListPage;
@@ -48,7 +48,7 @@ public class CommandStorage {
         commandStorage.put(CommandName.USER_HOME_PAGE, new UserHomePage());
         commandStorage.put(CommandName.STUDENT_TASK_LIST_PAGE, new StudentTaskListPage());
         commandStorage.put(CommandName.STUDENT_GROUP_LIST_PAGE, new StudentGroupListPage());
-        commandStorage.put(CommandName.STUDENT_USER_DATA_MODIFY, new StudentUserDataModify());
+        commandStorage.put(CommandName.STUDENT_USER_DATA_MODIFY, new UserDataModify());
         commandStorage.put(CommandName.STUDENT_SUBMIT_TASK, new StudentSubmitTask());
         commandStorage.put(CommandName.CREATE_COURSE, new CourseCreation());
         commandStorage.put(CommandName.UPDATE_COURSE, new CourseUpdate());

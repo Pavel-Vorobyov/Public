@@ -74,9 +74,9 @@ public class GroupTaskUpdate extends TagSupport {
             pageContext.getOut().write("                            <form method=\"post\" action=\"command\">");
 
             if (taskId != null) {
-                pageContext.getOut().write("                                <input type=\"hidden\" name=\"command\" value=\"teacher-update-task\"/>");
+                pageContext.getOut().write("                                <input type=\"hidden\" name=\"command\" value=\"teacher_update_task\"/>");
             } else {
-                pageContext.getOut().write("                                <input type=\"hidden\" name=\"command\" value=\"teacher-create-task\"/>");
+                pageContext.getOut().write("                                <input type=\"hidden\" name=\"command\" value=\"teacher_create_task\"/>");
             }
 
             if (groupId != null) {

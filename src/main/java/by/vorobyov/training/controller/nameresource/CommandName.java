@@ -3,38 +3,38 @@ package by.vorobyov.training.controller.nameresource;
 public class CommandName {
 
     //common
-    public static final String SING_IN = "sing-in";
-    public static final String SING_OUT = "sing-out";
-    public static final String ADD_USER = "add-user";
-    public static final String HOME_PAGE = "home-page";
-    public static final String TRAINING_PORTAL = "training-portal-page";
+    public static final String SING_IN = "sing_in";
+    public static final String SING_OUT = "sing_out";
+    public static final String ADD_USER = "add_user";
+    public static final String HOME_PAGE = "home_page";
+    public static final String TRAINING_PORTAL = "training_portal_page";
 
-    public static final String USER_HOME_PAGE = "user-home-page";
-    public static final String TRAINING_PAGE = "training-page";
+    public static final String USER_HOME_PAGE = "user_home_page";
+    public static final String TRAINING_PAGE = "training_page";
 
     //teacher
-    public static final String TEACHER_UPDATE_TASK = "teacher-update-task";
-    public static final String TEACHER_CREATE_TASK = "teacher-create-task";
-    public static final String TEACHER_USER_TASK_UPDATE = "teacher-user-task-update";
-    public static final String TEACHER_USER_TASK_PAGE = "teacher-user-task-page";
-    public static final String TRAINING_GROUP_LIST_PAGE = "training-group-list-page";
+    public static final String TEACHER_UPDATE_TASK = "teacher_update_task";
+    public static final String TEACHER_CREATE_TASK = "teacher_create_task";
+    public static final String TEACHER_USER_TASK_UPDATE = "teacher_user_task_update";
+    public static final String TEACHER_USER_TASK_PAGE = "teacher_user_task_page";
+    public static final String TRAINING_GROUP_LIST_PAGE = "training_group_list_page";
 
 
     //student
-    public static final String STUDENT_USER_DATA_MODIFY = "student-user-data-modify";
-    public static final String STUDENT_SUBMIT_TASK = "student-submit-task";
-    public static final String STUDENT_TASK_LIST_PAGE = "student-task-list-page";
-    public static final String STUDENT_GROUP_LIST_PAGE = "student-group-page";
+    public static final String STUDENT_USER_DATA_MODIFY = "student_user_data_modify";
+    public static final String STUDENT_SUBMIT_TASK = "student_submit_task";
+    public static final String STUDENT_TASK_LIST_PAGE = "student_task_list_page";
+    public static final String STUDENT_GROUP_LIST_PAGE = "student_group_page";
 
     //admin
-    public static final String CREATE_COURSE = "create-course";
-    public static final String UPDATE_COURSE = "update-course";
-    public static final String DELETE_COURSE = "delete-course";
-    public static final String CREATE_GROUP = "create-group";
-    public static final String UPDATE_GROUP = "update-group";
-    public static final String DELETE_GROUP = "delete-group";
-    public static final String UPDATE_USER = "update-user";
-    public static final String ADMIN_COURSE_MODIFY_PAGE = "admin-course-moderation-page";
-    public static final String ADMIN_GROUP_MODIFY_PAGE = "admin-group-moderation-page";
-    public static final String ADMIN_USER_MODIFY_PAGE = "admin-user-moderation-page";
+    public static final String CREATE_COURSE = "create_course";
+    public static final String UPDATE_COURSE = "update_course";
+    public static final String DELETE_COURSE = "delete_course";
+    public static final String CREATE_GROUP = "create_group";
+    public static final String UPDATE_GROUP = "update_group";
+    public static final String DELETE_GROUP = "delete_group";
+    public static final String UPDATE_USER = "update_user";
+    public static final String ADMIN_COURSE_MODIFY_PAGE = "admin_course_moderation_page";
+    public static final String ADMIN_GROUP_MODIFY_PAGE = "admin_group_moderation_page";
+    public static final String ADMIN_USER_MODIFY_PAGE = "admin_user_moderation_page";
 }

@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class SingIn implements ICommand{
     public static final Integer MAIL_STATUS_CONFIRMED = 1;
-    public static final String TRAINING_PAGE = "command?command=training-page";
+    public static final String TRAINING_PAGE = "command?command=training_page";
     public final static String LOGIN = "login";
     public final static String PASSWORD = "password";
 

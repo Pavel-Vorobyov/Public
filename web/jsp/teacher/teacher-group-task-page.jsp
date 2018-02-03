@@ -27,7 +27,7 @@
                     <h1>Group task list:</h1>
                     <div class="horizontal-group">
                         <a class="uui-button" href="#">Group task list</a>
-                        <a class="uui-button" href="command?command=user-home-page">User data</a>
+                        <a class="uui-button" href="command?command=user_home_page">User data</a>
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
 
                             <c:forEach var="task" items="${teacherGroupTask.taskList}">
                                 <li class="item-body">
-                                    <a href="command?command=teacher-user-task-page&taskId=${task.taskId}&groupId=${teacherGroupTask.groupId}&groupTitle=${teacherGroupTask.groupTitle}&taskTitle=${task.title}">
+                                    <a href="command?command=teacher_user_task_page&taskId=${task.taskId}&groupId=${teacherGroupTask.groupId}&groupTitle=${teacherGroupTask.groupTitle}&taskTitle=${task.title}">
                                         <span class="tk-task-title">${task.title}</span>
                                         <span class="tk-task-creation-time">${task.creationTime}</span>
                                         <span class="tk-task-deadline">${task.deadline}</span>

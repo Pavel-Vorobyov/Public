@@ -20,17 +20,17 @@
         <ul align="right">
             <c:choose>
                 <c:when test="${sessionScope.user != null}">
-                    <li><a href="command?command=home-page"><fmt:message key="button.home"/></a></li>
-                    <li><a href="command?command=training-portal-page"><fmt:message key="button.training-portal"/></a></li>
-                    <li><a href="command?command=training-page" ><fmt:message key="button.training"/></a></li>
-                    <li id="header-nav-left"><a href="/command?command=sing-out"><fmt:message key="button.logout"/></a></li>
+                    <li><a href="command?command=home_page"><fmt:message key="button.home"/></a></li>
+                    <li><a href="command?command=training_portal_page"><fmt:message key="button.training-portal"/></a></li>
+                    <li><a href="command?command=training_page" ><fmt:message key="button.training"/></a></li>
+                    <li id="header-nav-left"><a href="/command?command=sing_out"><fmt:message key="button.logout"/></a></li>
                     <li id="header-nav-left"><fmt:message key="title.welcome"/> ${sessionScope.userData.name} ${sessionScope.userData.surname}</li>
                 </c:when>
                 <c:otherwise>
-                    <li><a href="command?command=home-page"><fmt:message key="button.home"/></a></li>
-                    <li><a href="command?command=training-portal-page"><fmt:message key="button.training-portal"/></a></li>
-                    <li id="header-nav-left"><a href="#singIn"><fmt:message key="button.login"/></a></li>
-                    <li id="header-nav-left"><a href="#singOn"><fmt:message key="button.register"/></a></li>
+                    <li><a href="command?command=home_page"><fmt:message key="button.home"/></a></li>
+                    <li><a href="command?command=training_portal_page"><fmt:message key="button.training-portal"/></a></li>
+                    <li id="header-nav-left"><a onclick="showUpdateBlock(singIn)"><fmt:message key="button.login"/></a></li>
+                    <li id="header-nav-left"><a onclick="showUpdateBlock(singOn)"><fmt:message key="button.register"/></a></li>
                 </c:otherwise>
             </c:choose>
         </ul>
@@ -39,16 +39,15 @@
     <div id="singIn" class="singIn">
       <div class="container">
         <div class="login">
-          <a href="#close" title="Закрыть" class="close">X</a>
+          <a onclick="showUpdateBlock(singIn)" title="Закрыть" class="close">X</a>
           <h1>Login to your user</h1>
           <form method="post" action="command">
-            <input type="hidden" name="command" value="sing-in"/>
+            <input type="hidden" name="command" value="sing_in"/>
             <p><input type="text" name="login" required="true" id="login" value="" placeholder="Enter login" pattern="([\w]{3,16})"
                       placeholder="Вевиде от 3 до 16 символов!"></p>
             <p><input type="password" name="password" required="true" id="password" value="" placeholder="Enter password" pattern="([\w]{7,16})"
                       placeholder="Вевиде от 3 до 16 символов!"></p>
             <p class="submit">
-              <a href="#singOn" class="sb-register">Register</a>
               <input type="submit" name="commit" value="Log in">
             </p>
           </form>
@@ -59,15 +58,14 @@
     <div id="singOn" class="singOn">
         <div class="container">
             <div class="register">
-                <a href="#close" title="Закрыть" class="close">X</a>
+                <a onclick="showUpdateBlock(singOn)" title="Закрыть" class="close">X</a>
                 <h1>Registration</h1>
                 <form method="post" action="command">
-                    <input type="hidden" name="command" value="add-user"/>
+                    <input type="hidden" name="command" value="add_user"/>
                     <p><input type="text" name="login" required="true" value="" placeholder="Enter login"></p>
                     <p><input type="password" name="password" required="true" value="" placeholder="Enter password"></p>
                     <p><input type="text" name="email" required="true" value="" placeholder="Enter email"></p>
                     <p class="submit">
-                        <a href="#singIn" class="sb-register">Login</a>
                         <input type="submit" name="commit" value="Register">
                     </p>
                 </form>

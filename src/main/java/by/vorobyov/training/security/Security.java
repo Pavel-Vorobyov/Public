@@ -13,7 +13,7 @@ public class Security {
             }
         }
 
-        return isAllowed = Security.isAllowedToCommon(command);
+        return isAllowed ? true : Security.isAllowedToCommon(command);
     }
 
     public static boolean isAllowedToTeacher(String command) {
@@ -27,7 +27,7 @@ public class Security {
         }
 
 
-        return isAllowed = Security.isAllowedToCommon(command);
+        return isAllowed ? true : Security.isAllowedToCommon(command);
     }
 
     public static boolean isAllowedToStudent(String command) {
@@ -40,7 +40,7 @@ public class Security {
             }
         }
 
-        return isAllowed = Security.isAllowedToCommon(command);
+        return isAllowed ? true : Security.isAllowedToCommon(command);
     }
 
     public static boolean isAllowedToGuest(String command) {
@@ -66,6 +66,6 @@ public class Security {
             }
         }
 
-        return isAllowed = Security.isAllowedToGuest(command);
+        return isAllowed ? true : Security.isAllowedToGuest(command);
     }
 }

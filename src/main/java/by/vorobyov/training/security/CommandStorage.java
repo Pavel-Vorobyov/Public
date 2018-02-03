@@ -18,7 +18,6 @@ public class CommandStorage {
     }
 
     public enum StudentCommand {
-        STUDENT_USER_DATA_MODIFY,
         STUDENT_SUBMIT_TASK,
         STUDENT_TASK_LIST_PAGE,
         STUDENT_GROUP_PAGE
@@ -27,13 +26,15 @@ public class CommandStorage {
     public enum TeacherCommand {
         TEACHER_UPDATE_TASK,
         TEACHER_CREATE_TASK,
+        TEACHER_USER_TASK_PAGE,
         TEACHER_USER_TASK_UPDATE,
-        TEACHER_GROUP_LIST_PAGE,
+        TRAINING_GROUP_LIST_PAGE,
         TRAINING_TASK_LIST_PAGE
     }
 
     public enum CommonCommand {
         USER_HOME_PAGE,
+        STUDENT_USER_DATA_MODIFY,
         TRAINING_PAGE
     }
 

@@ -26,8 +26,8 @@
                 <div class="filters">
                     <h1>${requestScope.groupTitle}:</h1>
                     <div class="horizontal-group">
-                        <a class="uui-button" href="command?command=training-group-list-page">Group task list</a>
-                        <a class="uui-button" href="command?command=user-home-page">User data</a>
+                        <a class="uui-button" href="command?command=training_group_list_page">Group task list</a>
+                        <a class="uui-button" href="command?command=user_home_page">User data</a>
                     </div>
                 </div>
             </div>

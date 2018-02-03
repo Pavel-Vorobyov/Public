@@ -32,16 +32,16 @@
             <div class="horizontal-group">
               <c:choose>
                 <c:when test="${sessionScope.user.status eq 0}">
-                  <a class="uui-button" href="command?command=student-task-list-page"><fmt:message key="button.task-list"/></a>
-                  <a class="uui-button" href="command?command=student-group-page">Привет Group list</a>
+                  <a class="uui-button" href="command?command=student_task_list_page"><fmt:message key="button.task-list"/></a>
+                  <a class="uui-button" href="command?command=student_group_page">Привет Group list</a>
                 </c:when>
                 <c:when test="${sessionScope.user.status eq 1}">
-                  <a class="uui-button" href="command?command=training-group-list-page">Group task list</a>
+                  <a class="uui-button" href="command?command=training_group_list_page">Group task list</a>
                 </c:when>
                 <c:when test="${sessionScope.user.status eq 2}">
-                  <a class="uui-button" href="command?command=admin-course-moderation-page">Course moderation</a>
-                  <a class="uui-button" href="command?command=admin-group-moderation-page">Group moderation</a>
-                  <a class="uui-button" href="command?command=admin-user-moderation-page">User moderation</a>
+                  <a class="uui-button" href="command?command=admin_course_moderation_page">Course moderation</a>
+                  <a class="uui-button" href="command?command=admin_group_moderation_page">Group moderation</a>
+                  <a class="uui-button" href="command?command=admin_user_moderation_page">User moderation</a>
                 </c:when>
               </c:choose>
               <a class="uui-button" href="#">Home</a>
@@ -100,7 +100,7 @@
           <a onclick="showUpdateBlock(userDataModify)" title="Закрыть" class="close">X</a>
           <h1>User profile modify...</h1>
           <form method="post" action="command">
-            <input type="hidden" name="command" value="student-user-data-modify"/>
+            <input type="hidden" name="command" value="student_user_data_modify"/>
             <p align="left">
               Enter name:
               <input style="float:right" id="name" name="name" type="text" value="${requestScope.userData.name}">

@@ -45,7 +45,7 @@ public class UserTaskUpdate extends TagSupport {
             pageContext.getOut().write("            <a onclick=\"showUpdateBlock(studentTaskUpdate" + userTaskId + ")\" title=\"Close\" class=\"close\">X</a>");
             pageContext.getOut().write("            <h1>" + studentName + " task modifying...</h1>");
             pageContext.getOut().write("            <form method=\"post\" action=\"command\">");
-            pageContext.getOut().write("                <input type=\"hidden\" name=\"command\" value=\"teacher-user-task-update\"/>");
+            pageContext.getOut().write("                <input type=\"hidden\" name=\"command\" value=\"teacher_user_task_update\"/>");
             pageContext.getOut().write("                <input type=\"hidden\" name=\"userTaskId\" value=\"" + userTaskId + "\"/>");
             pageContext.getOut().write("                <input type=\"hidden\" name=\"groupId\" value=\"" + groupId + "\"/>");
             pageContext.getOut().write("                <input type=\"hidden\" name=\"taskId\" value=\"" + taskId + "\"/>");

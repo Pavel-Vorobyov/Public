@@ -1,4 +1,4 @@
-package by.vorobyov.training.controller.command.impl.student;
+package by.vorobyov.training.controller.command.impl.common;
 
 import by.vorobyov.training.controller.command.ICommand;
 import by.vorobyov.training.controller.nameresource.URLCommand;
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class StudentUserDataModify implements ICommand {
+public class UserDataModify implements ICommand {
     public static final String USER_NAME = "name";
     public static final String USER_SURNAME = "surname";
     public static final String USER_EMAIL = "email";
