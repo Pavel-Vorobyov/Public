@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="/WEB-INF/tag/adminTag/UserDataLine.tld" prefix="usLine"%>
+<%@ taglib uri="/WEB-INF/tag/Admin.tld" prefix="usLine"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +8,10 @@
   <title>Group list</title>
   <link rel="stylesheet" type="text/css" href="../../css/util/reset.css">
   <link rel="stylesheet" type="text/css" href="../../css/default.css">
+  <link rel="stylesheet" type="text/css" href="../../css/util/header.css">
+  <link rel="stylesheet" type="text/css" href="../../css/util/footer.css">
   <link rel="stylesheet" type="text/css" href="../../css/admin/admin-user-moderation.css">
+  <script type="text/javascript" src="../../js/default.js"></script>
   <script type="text/javascript" src="../../js/admin/admin-user-moderation.js"></script>
 
 </head>
@@ -27,7 +30,8 @@
               <a class="uui-button" href="command?command=admin-course-moderation-page">Course moderation</a>
               <a class="uui-button" href="command?command=admin-group-moderation-page">Group moderation</a>
               <a class="uui-button" href="#">User moderation</a>
-             </div>
+              <a class="uui-button" href="command?command=user-home-page">User data</a>
+            </div>
           </div>
         </div>
           <div style="height:20px">

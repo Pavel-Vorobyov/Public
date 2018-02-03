@@ -5,10 +5,9 @@ import by.vorobyov.training.database.dao.impl.UserDataDAO;
 import by.vorobyov.training.dto.entity.User;
 import by.vorobyov.training.dto.entity.UserData;
 import by.vorobyov.training.exception.ServiceException;
-import by.vorobyov.training.resource.JspPageName;
+import by.vorobyov.training.controller.nameresource.JspPageName;
 import by.vorobyov.training.service.CommonService;
-import by.vorobyov.training.resource.AttributeName;
-import by.vorobyov.training.resource.parametername.AccountParameterName;
+import by.vorobyov.training.controller.nameresource.AttributeName;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,17 +15,19 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class SingIn implements ICommand{
+    public static final Integer MAIL_STATUS_CONFIRMED = 1;
     public static final String TRAINING_PAGE = "command?command=training-page";
+    public final static String LOGIN = "login";
+    public final static String PASSWORD = "password";
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = new User();
 
-        user.setLogin(request.getParameter(AccountParameterName.LOGIN));
-        user.setPassword(request.getParameter(AccountParameterName.PASSWORD));
+        user.setLogin(request.getParameter(LOGIN));
+        user.setPassword(request.getParameter(PASSWORD));
 
         CommonService commonService = new CommonService();
-        UserDataDAO userDataDAO = new UserDataDAO();
-        String loginSuccess;
 
             try {
                 User checkedUser = commonService.checkUser(user);
@@ -35,13 +36,16 @@ public class SingIn implements ICommand{
 
                     request.getSession(true).setAttribute(AttributeName.USER, checkedUser);
                     request.getSession().setAttribute(AttributeName.USER_DATA, userData);
-                    request.getSession().setAttribute("local", request.getParameter("local"));
 
-                    response.sendRedirect(TRAINING_PAGE);
+                    if (checkedUser.getMailStatus() != MAIL_STATUS_CONFIRMED ) {
+                        String statusMessage = "Your mail is still not checked!\n" +
+                                "If you haven't got a verified mail yet, please con212 this link!";
+                        request.setAttribute(AttributeName.STATUS_MESSAGE, statusMessage);
+                    }
+
+                    request.getRequestDispatcher(TRAINING_PAGE).forward(request, response);
                 } else {
-                    loginSuccess = "false";
                     String statusMessage = "Invalid login or password!";
-                    request.setAttribute(AttributeName.LOGIN_SUCCESS, loginSuccess);
                     request.setAttribute(AttributeName.STATUS_MESSAGE, statusMessage);
                     request.getRequestDispatcher(JspPageName.HOME_PAGE).forward(request, response);
                 }

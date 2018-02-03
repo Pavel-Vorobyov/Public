@@ -1,19 +1,3 @@
-
-function initUpdateBlock(blockId){
-    blockId.style.display = "none";
-}
-
-function showUpdateBlock(blockId) {
-    if (blockId.style.display == "none")
-    {
-        blockId.style.display = "block";
-    }
-    else
-    {
-        blockId.style.display = "none";
-    }
-}
-
 function deleteCourse(courseId) {
     var link = "command?command=delete-course";
     var courseRegion = courseFilter.courseRegion.value;

@@ -7,6 +7,9 @@
   <meta charset="utf-8" http-equiv="content-type" content="text/html">
   <title>Welcome page!</title>
   <link rel="stylesheet" type="text/css" href="css/util/reset.css">
+  <link rel="stylesheet" type="text/css" href="../../css/default.css">
+  <link rel="stylesheet" type="text/css" href="../../css/util/header.css">
+  <link rel="stylesheet" type="text/css" href="../../css/util/footer.css">
   <link rel="stylesheet" type="text/css" href="css/index.css">
   <script type="text/javascript" src="js/default.js"></script>
 
@@ -16,7 +19,6 @@
 
 </head>
 <body>
-
 
   <div align="center">
 
@@ -34,15 +36,6 @@
       Try it yourself<br> and become successful! <br>
     </div>
   </div>
-
-    <c:choose>
-      <c:when test="${requestScope.loginSuccess eq 'false'}">
-        <div class="statusMessage" id="statusMessage" onclick="showMessage(statusMessage)">
-            ${requestScope.statusMessage}
-          <br> Tap to close it!
-        </div>
-      </c:when>
-    </c:choose>
 
     <jsp:include page="jsp/util/footer.jsp"></jsp:include>
 

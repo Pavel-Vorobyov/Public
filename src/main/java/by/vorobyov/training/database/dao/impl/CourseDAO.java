@@ -2,7 +2,6 @@ package by.vorobyov.training.database.dao.impl;
 
 import by.vorobyov.training.creator.impl.entitycreator.CourseCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
-import by.vorobyov.training.database.dao.preparedquery.CourseQuery;
 import by.vorobyov.training.exception.DAOException;
 import by.vorobyov.training.dto.entity.Course;
 
@@ -11,10 +10,8 @@ import java.util.List;
 
 public class CourseDAO extends AbstractDAO<Course> {
     public static final String SELECT_COURSE_BY_STATUS = "SELECT * FROM course WHERE status = ?";
+
     public final static String INSERT_COURSE = "INSERT INTO course(title, region, description, type, status, lead_id) VALUES (?, ?, ?, ?, ?, ?)";
-    public static final String SELECT_COURSE_BY_STATUS_REGION_TYPE = "SELECT *" +
-            " FROM course" +
-            " WHERE status = 0 AND course.region = 'Minsk, Belarus' AND course.type = 'Java'";
 
     public static final String UPDATE_COURSE_BY_ID = "UPDATE course" +
             " SET course.type = ?, course.status = ?, course.region = ?" +
@@ -34,32 +31,6 @@ public class CourseDAO extends AbstractDAO<Course> {
 
 
     @Override
-    public List<Course> getAll() throws DAOException, SQLException {
-        Connection connection = getConnection();
-        ResultSet resultSet;
-        Statement statement = null;
-        CourseCreator courseCreator = new CourseCreator();
-
-        connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
-        connection.setAutoCommit(false);
-
-        try {
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(SELECT_ALL_COURSES);
-
-            connection.commit();
-            return resultSet != null ? courseCreator.createEntityList(resultSet) : null; // resultSet != null ????????
-
-        } catch (SQLException e) {
-            rollback(connection);
-            throw new DAOException(e);
-        } finally {
-            closeStatement(statement);
-            closeConnection(connection);
-        }
-    }
-
-    @Override
     public boolean update(Course entity) throws DAOException, SQLException {
         Connection connection;
         connection = getConnection();
@@ -67,7 +38,6 @@ public class CourseDAO extends AbstractDAO<Course> {
 
         connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         connection.setAutoCommit(false);
-
         try {
             preparedStatement = connection.prepareStatement(UPDATE_COURSE_BY_ID);
             preparedStatement.setString(1, entity.getType());
@@ -106,7 +76,7 @@ public class CourseDAO extends AbstractDAO<Course> {
 
             resultSet = preparedStatement.executeQuery();
             connection.commit();
-            return resultSet.next() ? courseCreator.createEntity(resultSet) : Course.emptyEntity(); // resultSet != null ????????
+            return resultSet.next() ? courseCreator.createEntity(resultSet) : Course.emptyEntity();
 
         } catch (SQLException e) {
             rollback(connection);
@@ -124,10 +94,8 @@ public class CourseDAO extends AbstractDAO<Course> {
 
         connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         connection.setAutoCommit(false);
-
         try {
             preparedStatement = connection.prepareStatement(DELETE_COURSE);
-
             preparedStatement.setInt(1, entity.getCourseId());
 
             preparedStatement.executeUpdate();
@@ -150,10 +118,8 @@ public class CourseDAO extends AbstractDAO<Course> {
 
         connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         connection.setAutoCommit(false);
-
         try {
             preparedStatement = connection.prepareStatement(INSERT_COURSE);
-
             preparedStatement.setString(1, entity.getTitle());
             preparedStatement.setString(2, entity.getRegion());
             preparedStatement.setString(3, entity.getDescription());
@@ -175,57 +141,11 @@ public class CourseDAO extends AbstractDAO<Course> {
     }
 
     public List<Course> getCourseListByUserId(Integer userId) throws DAOException, SQLException {
-        Connection connection = getConnection();
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet;
-        CourseCreator courseCreator = new CourseCreator();
-
-        connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
-        connection.setAutoCommit(false);
-
-        try {
-            preparedStatement = connection.prepareStatement(SELECT_COURSE_BY_USER_ID);
-            preparedStatement.setInt(1, userId);
-
-            resultSet = preparedStatement.executeQuery();
-            connection.commit();
-            if (resultSet != null) {
-                return courseCreator.createEntityList(resultSet);
-            } else {
-                throw new DAOException("ResultSet is null! -> CourseQuery.SELECT_COURSE_BY_USER_ID ");
-            }
-        } catch (SQLException e) {
-            rollback(connection);
-            throw new DAOException(e);
-        } finally {
-            closePreparedStatement(preparedStatement);
-            closeConnection(connection);
-        }
+        return this.doRequestWithInteger(userId, SELECT_COURSE_BY_USER_ID);
     }
 
     public List<Course> getCourseListByStatus(Integer status) throws SQLException, DAOException {
-        Connection connection = getConnection();
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet;
-        CourseCreator courseCreator = new CourseCreator();
-
-        connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
-        connection.setAutoCommit(false);
-
-        try {
-            preparedStatement = connection.prepareStatement(SELECT_COURSE_BY_STATUS);
-            preparedStatement.setInt(1, status);
-
-            resultSet = preparedStatement.executeQuery();
-            connection.commit();
-            return courseCreator.createEntityList(resultSet);
-        } catch (SQLException e) {
-            rollback(connection);
-            throw new DAOException(e);
-        } finally {
-            closePreparedStatement(preparedStatement);
-            closeConnection(connection);
-        }
+       return this.doRequestWithInteger(status, SELECT_COURSE_BY_STATUS);
     }
 
     public List<Course> getCourseListBySQLRequest(String sqlRequest) throws SQLException, DAOException {
@@ -236,14 +156,39 @@ public class CourseDAO extends AbstractDAO<Course> {
 
         connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         connection.setAutoCommit(false);
-
         try {
             preparedStatement = connection.prepareStatement(sqlRequest);
 
             resultSet = preparedStatement.executeQuery();
             connection.commit();
             return courseCreator.createEntityList(resultSet);
+
         } catch (SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            closePreparedStatement(preparedStatement);
+            closeConnection(connection);
+        }
+    }
+
+    private List<Course> doRequestWithInteger(Integer intSqlValue, String sqlRequest) throws SQLException, DAOException {
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet;
+        CourseCreator courseCreator = new CourseCreator();
+
+        connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        connection.setAutoCommit(false);
+        try {
+            preparedStatement = connection.prepareStatement(sqlRequest);
+            preparedStatement.setInt(1, intSqlValue);
+
+            resultSet = preparedStatement.executeQuery();
+            connection.commit();
+            return courseCreator.createEntityList(resultSet);
+
+        } catch (SQLException e) {
+            rollback(connection);
             throw new DAOException(e);
         } finally {
             closePreparedStatement(preparedStatement);

@@ -3,6 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
-    <element id="extracted-dir" path="$PROJECT_DIR$/lib/mysql-connector-java-5.1.39.jar" path-in-jar="/" />
+
+    <filter>
+        <filter-name>SecurityFilter</filter-name>
+        <filter-class>by.vorobyov.training.filter.SecurityFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SecurityFilter</filter-name>
+        <url-pattern>/command</url-pattern>
+    </filter-mapping>
 
 </web-app>

@@ -2,10 +2,10 @@ package by.vorobyov.training.database.dao.impl;
 
 import by.vorobyov.training.creator.impl.entitycreator.UserCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
-import by.vorobyov.training.database.dao.preparedquery.UserQuery;
 import by.vorobyov.training.exception.DAOException;
 import by.vorobyov.training.dto.entity.User;
 
+import javax.smartcardio.CommandAPDU;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,37 +25,22 @@ public class UserDAO extends AbstractDAO<User> {
 
     public final static String SELECT_PASSWORD_BY_LOGIN = "SELECT * FROM user WHERE login = ? AND password = ?";
 
-    public static final String SELECT_USER_BY_LOGIN_EMAIL = "SELECT * FROM user WHERE login = ? AND email = ?";
+    public static final String SELECT_USER_BY_LOGIN = "SELECT * FROM user WHERE login = ?";
 
+    public static final String SELECT_USER_BY_EMAIL = "SELECT * FROM user WHERE email = ?";
 
-    @Override
-    public List<User> getAll() throws DAOException, SQLException {
-        Connection connection = getConnection();
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet;
-        UserCreator userCreator = new UserCreator();
+    public static final String SELECT_USER_STATUS_BETWEEN = "SELECT * FROM user WHERE status BETWEEN ? AND ?";
 
-        connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
-        connection.setAutoCommit(false);
+    public final static String UPDATE_USER_BY_ID = "UPDATE user SET login = ?, password = ?, status = ? WHERE id = ?";
 
-        try {
-            preparedStatement = connection.prepareStatement(UserQuery.SELECT_USER_STATUS_BETWEEN);
+    public static final String SELECT_USER_BY_ID = "SELECT * FROM user WHERE id = ?";
 
-            preparedStatement.setInt(1, START_STATUS_VALUE);
-            preparedStatement.setInt(2, END_STATUS_VALUE);
+    public final static String DELETE_USER_BY_ID = "DELETE FROM user WHERE id = ?";
 
-            resultSet = preparedStatement.executeQuery();
-            connection.commit();
-            return resultSet != null ? userCreator.createEntityList(resultSet) : null;
+    public static final String UPDATE_USER_MAIL_STATUS = "UPDATE user" +
+            " SET mail_status = ?" +
+            " WHERE user.id = ?";
 
-        } catch (SQLException  e) {
-            rollback(connection);
-            throw new DAOException(e);
-        } finally {
-            closePreparedStatement(preparedStatement);
-            closeConnection(connection);
-        }
-    }
 
     @Override
     public boolean update(User entity) throws DAOException, SQLException {
@@ -64,9 +49,8 @@ public class UserDAO extends AbstractDAO<User> {
 
         connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         connection.setAutoCommit(false);
-
         try {
-            preparedStatement = connection.prepareStatement(UserQuery.UPDATE_USER_BY_ID);
+            preparedStatement = connection.prepareStatement(UPDATE_USER_BY_ID);
             preparedStatement.setString(1, entity.getLogin());
             preparedStatement.setString(2, entity.getPassword());
             preparedStatement.setInt(3, entity.getStatus());
@@ -94,14 +78,14 @@ public class UserDAO extends AbstractDAO<User> {
 
         connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         connection.setAutoCommit(false);
-
         try {
-            preparedStatement = connection.prepareStatement(UserQuery.SELECT_USER_BY_ID);
+            preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID);
             preparedStatement.setInt(1, entityId);
 
             resultSet = preparedStatement.executeQuery();
             connection.commit();
             return resultSet.next() ? userCreator.createEntity(resultSet) : User.emptyUser();
+
         } catch (SQLException e) {
             rollback(connection);
             throw new DAOException(e);
@@ -118,10 +102,8 @@ public class UserDAO extends AbstractDAO<User> {
 
         connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         connection.setAutoCommit(false);
-
         try {
-            preparedStatement = connection.prepareStatement(UserQuery.DELETE_USER_BY_ID);
-
+            preparedStatement = connection.prepareStatement(DELETE_USER_BY_ID);
             preparedStatement.setInt(1, entity.getUserId());
 
             preparedStatement.executeUpdate();
@@ -144,10 +126,8 @@ public class UserDAO extends AbstractDAO<User> {
 
         connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         connection.setAutoCommit(false);
-
         try {
             preparedStatement = connection.prepareStatement(INSERT_USER);
-
             preparedStatement.setString(1, entity.getLogin());
             preparedStatement.setString(2, entity.getPassword());
             preparedStatement.setString(3, entity.getEmail());
@@ -179,20 +159,15 @@ public class UserDAO extends AbstractDAO<User> {
 
         connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         connection.setAutoCommit(false);
-
         try {
-            preparedStatement = connection.prepareStatement(UserQuery.SELECT_USER_STATUS_BETWEEN);
+            preparedStatement = connection.prepareStatement(SELECT_USER_STATUS_BETWEEN);
             preparedStatement.setInt(1, firstStatus);
             preparedStatement.setInt(2, secondStatus);
 
             resultSet = preparedStatement.executeQuery();
             connection.commit();
+            return userCreator.createEntityList(resultSet);
 
-            if (resultSet != null) {
-                return userCreator.createEntityList(resultSet);
-            } else {
-                throw new DAOException("ResultSet is null! -> UserQuery.SELECT_USER_BY_ID ");
-            }
         } catch (SQLException e) {
             rollback(connection);
             throw new DAOException(e);
@@ -210,7 +185,6 @@ public class UserDAO extends AbstractDAO<User> {
 
         connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         connection.setAutoCommit(false);
-
         try {
             preparedStatement = connection.prepareStatement(SELECT_PASSWORD_BY_LOGIN);
             preparedStatement.setString(1, user.getLogin());
@@ -218,6 +192,7 @@ public class UserDAO extends AbstractDAO<User> {
 
             resultSet = preparedStatement.executeQuery();
             return resultSet.next() ? userCreator.createEntity(resultSet) : User.emptyUser();
+
         } catch (SQLException e) {
             rollback(connection);
             throw new DAOException(e);
@@ -243,6 +218,7 @@ public class UserDAO extends AbstractDAO<User> {
             resultSet = preparedStatement.executeQuery();
             connection.commit();
             return userCreator.createEntityList(resultSet);
+
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
@@ -251,7 +227,7 @@ public class UserDAO extends AbstractDAO<User> {
         }
     }
 
-    public User getUserByLogEmail(User user) throws SQLException, DAOException {
+    public User getUserByLog(User user) throws SQLException, DAOException {
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet;
@@ -259,14 +235,37 @@ public class UserDAO extends AbstractDAO<User> {
 
         connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         connection.setAutoCommit(false);
-
         try {
-            preparedStatement = connection.prepareStatement(SELECT_USER_BY_LOGIN_EMAIL);
+            preparedStatement = connection.prepareStatement(SELECT_USER_BY_LOGIN);
             preparedStatement.setString(1, user.getLogin());
-            preparedStatement.setString(2, user.getEmail());
 
             resultSet = preparedStatement.executeQuery();
             return resultSet.next() ? userCreator.createEntity(resultSet) : User.emptyUser();
+
+        } catch (SQLException e) {
+            rollback(connection);
+            throw new DAOException(e);
+        } finally {
+            closePreparedStatement(preparedStatement);
+            closeConnection(connection);
+        }
+    }
+
+    public boolean updateUserMailStatus(Integer mailStatus, Integer userId) throws SQLException, DAOException {
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+
+        connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        connection.setAutoCommit(false);
+        try {
+            preparedStatement = connection.prepareStatement(UPDATE_USER_MAIL_STATUS);
+            preparedStatement.setInt(1, mailStatus);
+            preparedStatement.setInt(2, userId);
+
+            preparedStatement.executeUpdate();
+            connection.commit();
+            return true;
+
         } catch (SQLException e) {
             rollback(connection);
             throw new DAOException(e);

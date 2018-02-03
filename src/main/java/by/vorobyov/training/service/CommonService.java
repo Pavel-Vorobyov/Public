@@ -2,17 +2,28 @@ package by.vorobyov.training.service;
 
 import by.vorobyov.training.controller.command.impl.page.admin.AdminCourseModifyPage;
 import by.vorobyov.training.database.dao.impl.*;
-import by.vorobyov.training.dto.TeacherUserTask;
 import by.vorobyov.training.exception.DAOException;
 import by.vorobyov.training.dto.entity.*;
 import by.vorobyov.training.exception.ServiceException;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.io.IOException;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 public class CommonService {
+    public static final String SERVER_MAIL_ADDRESS = "pasha.vorobyov.by@gmail.com";
+    private static final String SERVER_MAIL_PASSWORD_PROP = "mail.user.password";
+    private static final String SERVER_MAIL_PROPERTIES = "mail.properties";
+
     public static final String DESCRIPTION_STUDENT = "Student";
     public static final String SELECT_COURSE_BY_STATUS_REGION_TYPE = "SELECT *" +
             " FROM course" +
@@ -35,18 +46,6 @@ public class CommonService {
         }
     }
 
-    public boolean addUserData(UserData userData) throws ServiceException {
-        UserDataDAO userDataDAO = new UserDataDAO();
-
-        try {
-
-            return userDataDAO.create(userData);
-
-        } catch (DAOException | SQLException e) {
-            throw new ServiceException(e);
-        }
-    }
-
     public UserData getUserDataById(Integer userId) throws ServiceException {
         UserDataDAO userDataDAO = new UserDataDAO();
 
@@ -60,17 +59,6 @@ public class CommonService {
         }
     }
 
-    public List<TeacherUserTask> takeTeacherUserTask(Integer taskId, Integer groupId) throws ServiceException {
-        TaskDAO taskDAO = new TaskDAO();
-
-        try {
-            return taskDAO.getUserTaskListByTaskId(taskId, groupId);
-        } catch (SQLException | DAOException e) {
-            throw new ServiceException(e);
-        }
-    }
-
-
     public User addUser(User user) throws ServiceException {
         UserDataDAO userDataDAO = new UserDataDAO();
         UserDAO userDAO = new UserDAO();
@@ -81,7 +69,7 @@ public class CommonService {
             checkingUser.setLogin(user.getLogin());
             checkingUser.setEmail(user.getEmail());
 
-            checkingUser = userDAO.getUserByLogEmail(checkingUser);
+            checkingUser = userDAO.getUserByLog(checkingUser);
 
             if (checkingUser.isEmpty()) {
                 User currentUser = new User();
@@ -107,26 +95,6 @@ public class CommonService {
 
             return User.emptyUser();
 
-        } catch (DAOException | SQLException e) {
-            throw  new ServiceException(e);
-        }
-    }
-
-    public boolean updateAccount(User user) throws ServiceException{
-        UserDAO userDAO = new UserDAO();
-
-        try {
-            return userDAO.update(user);
-        } catch (DAOException | SQLException e) {
-            throw  new ServiceException(e);
-        }
-    }
-
-    public List<Course> takeCourseList() throws ServiceException{
-        CourseDAO courseDAO = new CourseDAO();
-
-        try {
-            return courseDAO.getAll();
         } catch (DAOException | SQLException e) {
             throw  new ServiceException(e);
         }
@@ -165,7 +133,7 @@ public class CommonService {
 
         try {
             return courseDAO.getEntityById(courseId);
-        } catch (SQLException | DAOException e) {
+        } catch (DAOException | SQLException e) {
             throw new ServiceException(e);
         }
     }
@@ -200,15 +168,22 @@ public class CommonService {
         }
     }
 
-    public UserTask takeUserTaskById(Integer userTaskId) throws ServiceException {
-        UserTaskDAO userTaskDAO = new UserTaskDAO();
+    public boolean sendMail(String toMailAddress,String fromMailAddress, String subject, String text) throws IOException, MessagingException {
+        Properties properties = new Properties();
+        properties.load(CommonService.class.getClassLoader().getResourceAsStream(SERVER_MAIL_PROPERTIES));
 
-        try {
-            return userTaskDAO.getEntityById(userTaskId);
-        } catch (DAOException | SQLException e) {
-            throw new ServiceException(e);
-        }
+        Session mailSession = Session.getDefaultInstance(properties);
+        MimeMessage message = new MimeMessage(mailSession);
+        message.setFrom(new InternetAddress(fromMailAddress));
+        message.addRecipients(Message.RecipientType.TO, String.valueOf(new InternetAddress(toMailAddress)));
+        message.setSubject(subject);
+        message.setText(text);
+
+        Transport tr = mailSession.getTransport();
+        tr.connect(null, properties.getProperty(SERVER_MAIL_PASSWORD_PROP));
+        tr.sendMessage(message, message.getAllRecipients());
+        tr.close();
+
+        return true;
     }
-
-
 }

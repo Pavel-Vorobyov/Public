@@ -1,7 +1,7 @@
 package by.vorobyov.training.controller.command.impl.student;
 
 import by.vorobyov.training.controller.command.ICommand;
-import by.vorobyov.training.controller.command.URLCommand;
+import by.vorobyov.training.controller.nameresource.URLCommand;
 import by.vorobyov.training.exception.ServiceException;
 import by.vorobyov.training.service.impl.StudentService;
 
@@ -23,7 +23,8 @@ public class StudentSubmitTask implements ICommand {
             boolean taskSubmitSuccess = studentService.submitTask(userTaskId);
 
             if (taskSubmitSuccess) {
-                response.sendRedirect(URLCommand.STUDENT_TASK_LIST_PAGE);
+//                response.sendRedirect(URLCommand.STUDENT_TASK_LIST_PAGE);
+                request.getRequestDispatcher(URLCommand.STUDENT_TASK_LIST_PAGE).forward(request, response);
             }
         } catch (ServiceException e) {
             e.printStackTrace();

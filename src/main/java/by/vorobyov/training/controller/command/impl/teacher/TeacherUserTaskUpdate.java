@@ -1,7 +1,7 @@
 package by.vorobyov.training.controller.command.impl.teacher;
 
 import by.vorobyov.training.controller.command.ICommand;
-import by.vorobyov.training.controller.command.URLCommand;
+import by.vorobyov.training.controller.nameresource.URLCommand;
 import by.vorobyov.training.database.dao.columnname.UserTaskColumnName;
 import by.vorobyov.training.dto.entity.UserTask;
 import by.vorobyov.training.exception.ServiceException;

@@ -33,22 +33,18 @@ public class ConnectionPool {
     private BlockingQueue<Connection> availableConnections;
     private BlockingQueue<Connection> usedConnections;
 
-    private ConnectionPool() {
-        try {
-            ResourceBundle res = ResourceBundle.getBundle(DB_PROP_FILE_NAME);
-            this.driverName = res.getString(DB_DRIVER);
-            this.url = res.getString(DB_URL);
-            this.user = res.getString(DB_USER);
-            this.password = res.getString(DB_PASSWORD);
-            this.poolSize = Integer.parseInt(res.getString(DB_POOL_SIZE));
+    private ConnectionPool() throws DAOException {
+        ResourceBundle res = ResourceBundle.getBundle(DB_PROP_FILE_NAME);
+        this.driverName = res.getString(DB_DRIVER);
+        this.url = res.getString(DB_URL);
+        this.user = res.getString(DB_USER);
+        this.password = res.getString(DB_PASSWORD);
+        this.poolSize = Integer.parseInt(res.getString(DB_POOL_SIZE));
 
-            init();
-        } catch (DAOException e) {
-            e.printStackTrace();            // Залогировать!!
-        }
+        init();
     }
 
-    public static ConnectionPool getInstance() {
+    public static ConnectionPool getInstance() throws DAOException {
         if (INSTANCE == null) {
             INSTANCE = new ConnectionPool();
         }
@@ -61,11 +57,11 @@ public class ConnectionPool {
         usedConnections = new ArrayBlockingQueue<Connection>(poolSize);
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName(driverName);
             for (int i = 0; i < poolSize; i++) {
                 availableConnections.add(DriverManager.getConnection(url, user, password));
             }
-        } catch (SQLException |ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new DAOException("Connection hasn't been created!" + e);
         }
     }
@@ -76,14 +72,14 @@ public class ConnectionPool {
             connection = availableConnections.take();
             usedConnections.put(connection);
         } catch (InterruptedException e) {
-            throw new DAOException("Exception with connection monipulation!" + e);
+            throw new DAOException("Exception with connection manipulation!" + e);
         }
         return connection;
     }
 
     public void close(Connection connection) throws DAOException {
         if (connection == null) {
-            throw new DAOException("Null_Pointer connection from-> " + this.getClass().toString());
+            throw new DAOException("Connection is null!");
         }
         availableConnections.add(connection);
         usedConnections.remove(connection);
@@ -91,8 +87,8 @@ public class ConnectionPool {
 
     public void closeConnections() throws DAOException {
         try {
-            for (Connection connection : availableConnections) {  //Добавить метод аварийного закрытия всех коннектов
-                connection.close();                             //Сделать этот метод закрытия только AvailableConnections
+            for (Connection connection : availableConnections) {
+                connection.close();
             }
             for (Connection connection : usedConnections) {
                 connection.close();

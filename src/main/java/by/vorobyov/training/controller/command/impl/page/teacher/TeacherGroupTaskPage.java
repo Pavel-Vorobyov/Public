@@ -4,8 +4,8 @@ import by.vorobyov.training.controller.command.ICommand;
 import by.vorobyov.training.dto.TeacherGroupTask;
 import by.vorobyov.training.dto.entity.User;
 import by.vorobyov.training.exception.ServiceException;
-import by.vorobyov.training.resource.AttributeName;
-import by.vorobyov.training.resource.JspPageName;
+import by.vorobyov.training.controller.nameresource.AttributeName;
+import by.vorobyov.training.controller.nameresource.JspPageName;
 import by.vorobyov.training.service.impl.TeacherService;
 
 import javax.servlet.ServletException;

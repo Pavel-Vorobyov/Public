@@ -2,7 +2,6 @@ package by.vorobyov.training.controller;
 
 import by.vorobyov.training.controller.command.CommandStorage;
 import by.vorobyov.training.controller.command.ICommand;
-import by.vorobyov.training.resource.parametername.ControllerParameterName;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +15,7 @@ import java.io.IOException;
 )
 
 public class Controller extends HttpServlet{
+    public static final String COMMAND = "command";
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,7 +31,7 @@ public class Controller extends HttpServlet{
 
         CommandStorage commandStorage = CommandStorage.getInstance();
 
-        String commandName = request.getParameter(ControllerParameterName.COMMAND);
+        String commandName = request.getParameter(COMMAND);
 //
         ICommand command = commandStorage.getCommand(commandName);
 

@@ -1,10 +1,10 @@
 package by.vorobyov.training.controller.command.impl.teacher;
 
 import by.vorobyov.training.controller.command.ICommand;
-import by.vorobyov.training.controller.command.URLCommand;
+import by.vorobyov.training.controller.nameresource.URLCommand;
 import by.vorobyov.training.dto.entity.Task;
 import by.vorobyov.training.exception.ServiceException;
-import by.vorobyov.training.resource.JspPageName;
+import by.vorobyov.training.controller.nameresource.JspPageName;
 import by.vorobyov.training.service.impl.TeacherService;
 
 import javax.servlet.ServletException;
@@ -29,9 +29,7 @@ public class TeacherUpdateTask implements ICommand {
 
             boolean result = teacherService.updateTask(task);
 
-            if (result) {
-//                String url = URLCommand.TEACHER_GROUP_TASK_PAGE;
-//                response.sendRedirect(url);
+            if (result) { ;
                 request.getRequestDispatcher(URLCommand.TEACHER_GROUP_TASK_PAGE).forward(request, response);
             }
         } catch (ServiceException e) {

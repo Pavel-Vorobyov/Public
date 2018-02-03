@@ -63,20 +63,21 @@ public class TeachingGroup {
 
         TeachingGroup that = (TeachingGroup) o;
 
-        if (!groupHerf.equals(that.groupHerf)) return false;
-        if (!workGroupTitle.equals(that.workGroupTitle)) return false;
-        if (!courseRegion.equals(that.courseRegion)) return false;
-        if (!courseTitle.equals(that.courseTitle)) return false;
-        return courseDescription.equals(that.courseDescription);
+        if (groupHerf != null ? !groupHerf.equals(that.groupHerf) : that.groupHerf != null) return false;
+        if (workGroupTitle != null ? !workGroupTitle.equals(that.workGroupTitle) : that.workGroupTitle != null)
+            return false;
+        if (courseRegion != null ? !courseRegion.equals(that.courseRegion) : that.courseRegion != null) return false;
+        if (courseTitle != null ? !courseTitle.equals(that.courseTitle) : that.courseTitle != null) return false;
+        return courseDescription != null ? courseDescription.equals(that.courseDescription) : that.courseDescription == null;
     }
 
     @Override
     public int hashCode() {
-        int result = groupHerf.hashCode();
-        result = 31 * result + workGroupTitle.hashCode();
-        result = 31 * result + courseRegion.hashCode();
-        result = 31 * result + courseTitle.hashCode();
-        result = 31 * result + courseDescription.hashCode();
+        int result = groupHerf != null ? groupHerf.hashCode() : 0;
+        result = 31 * result + (workGroupTitle != null ? workGroupTitle.hashCode() : 0);
+        result = 31 * result + (courseRegion != null ? courseRegion.hashCode() : 0);
+        result = 31 * result + (courseTitle != null ? courseTitle.hashCode() : 0);
+        result = 31 * result + (courseDescription != null ? courseDescription.hashCode() : 0);
         return result;
     }
 

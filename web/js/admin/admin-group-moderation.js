@@ -9,17 +9,6 @@ function handleSubmit(){
     location.href = resultURL;
 }
 
-function showUpdateBlock(blockId) {
-    if (blockId.style.display == "none")
-    {
-        blockId.style.display = "block";
-    }
-    else
-    {
-        blockId.style.display = "none";
-    }
-}
-
 function deleteGroup(groupId) {
     var groupModerationPageURL = "command?command=delete-group";
     var groupRegion = groupFilter.groupRegion.value;

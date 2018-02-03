@@ -1,6 +1,6 @@
 package by.vorobyov.training.controller.command;
 
-import by.vorobyov.training.controller.command.impl.common.AddUser;
+import by.vorobyov.training.controller.command.impl.common.SingUp;
 import by.vorobyov.training.controller.command.impl.common.SingIn;
 import by.vorobyov.training.controller.command.impl.common.SingOut;
 import by.vorobyov.training.controller.command.impl.admin.*;
@@ -15,10 +15,10 @@ import by.vorobyov.training.controller.command.impl.page.common.*;
 import by.vorobyov.training.controller.command.impl.page.student.StudentGroupListPage;
 import by.vorobyov.training.controller.command.impl.page.common.UserHomePage;
 import by.vorobyov.training.controller.command.impl.page.student.StudentTaskListPage;
-import by.vorobyov.training.controller.command.impl.page.teacher.TeacherGroupPage;
 import by.vorobyov.training.controller.command.impl.page.teacher.TeacherGroupTaskPage;
 import by.vorobyov.training.controller.command.impl.teacher.TeacherUpdateTask;
 import by.vorobyov.training.controller.command.impl.teacher.TeacherUserTaskUpdate;
+import by.vorobyov.training.controller.nameresource.CommandName;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,12 +38,10 @@ public class CommandStorage {
         commandStorage.put(CommandName.SING_IN, new SingIn());
         commandStorage.put(CommandName.TRAINING_PAGE, new TrainingPage());
         commandStorage.put(CommandName.SING_OUT, new SingOut());
-        commandStorage.put(CommandName.ADD_USER, new AddUser());
-//        commandStorage.put(CommandName.TRAINING_GROUP_LIST_PAGE, new TeacherGroupListPage());
+        commandStorage.put(CommandName.ADD_USER, new SingUp());
         commandStorage.put(CommandName.TRAINING_GROUP_LIST_PAGE, new TeacherGroupTaskPage());
-        commandStorage.put(CommandName.TRAINING_GROUP_PAGE, new TeacherGroupPage());
         commandStorage.put(CommandName.TEACHER_USER_TASK_PAGE, new TeacherUserTaskPage());
-        commandStorage.put(CommandName.GROUP_TASK_PAGE, new TeacherGroupTaskPage());
+//        commandStorage.put(CommandName.GROUP_TASK_PAGE, new TeacherGroupTaskPage());
         commandStorage.put(CommandName.TEACHER_CREATE_TASK, new TeacherCreateTask());
         commandStorage.put(CommandName.TEACHER_UPDATE_TASK, new TeacherUpdateTask());
         commandStorage.put(CommandName.TEACHER_USER_TASK_UPDATE, new TeacherUserTaskUpdate());

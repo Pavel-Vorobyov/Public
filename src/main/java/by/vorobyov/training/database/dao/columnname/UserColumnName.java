@@ -8,6 +8,7 @@ public class UserColumnName {
     public final static String LOGIN = "login";
     public final static String PASSWORD = "password";
     public static final String EMAIL = "email";
+    public static final String MAIL_CONFIRMED = "mail_confirmed";
     public final static String STATUS = "status";
 
 }

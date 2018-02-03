@@ -11,7 +11,6 @@ import java.util.List;
 
 public abstract class AbstractDAO<E> {
 
-    public abstract List<E> getAll() throws DAOException, SQLException;
     public abstract boolean update(E entity) throws DAOException, SQLException;
     public abstract E getEntityById(Integer entityId) throws DAOException, SQLException;
     public abstract boolean delete(E entity) throws DAOException, SQLException;
@@ -21,7 +20,7 @@ public abstract class AbstractDAO<E> {
         try {
             connection.rollback();
         } catch (SQLException e) {
-            throw new DAOException("Transaction hasn't been rolled back!");
+            throw new DAOException("Transaction hasn't been rolled back!", e);
         }
     }
 
@@ -38,19 +37,27 @@ public abstract class AbstractDAO<E> {
         }
     }
 
-    public void closeStatement(Statement statement) throws DAOException, SQLException {
-        if (statement != null) {
-            statement.close();
-        } else {
-            throw new DAOException("Statement is null!");
+    public void closeStatement(Statement statement) throws DAOException {
+        try {
+            if (statement != null) {
+                statement.close();
+            } else {
+                throw new DAOException("Statement is null!");
+            }
+        } catch (SQLException e) {
+            throw new DAOException(e);
         }
     }
 
-    public void closePreparedStatement(PreparedStatement preparedStatement) throws SQLException, DAOException {
-        if (preparedStatement != null) {
-            preparedStatement.close();
-        } else {
-            throw new DAOException("PreparedStatement is null!");
+    public void closePreparedStatement(PreparedStatement preparedStatement) throws DAOException {
+        try {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            } else {
+                throw new DAOException("PreparedStatement is null!");
+            }
+        } catch (SQLException e) {
+            throw new DAOException(e);
         }
     }
 }

@@ -1,10 +1,10 @@
 package by.vorobyov.training.controller.command.impl.page.common;
 
 import by.vorobyov.training.controller.command.ICommand;
-import by.vorobyov.training.controller.command.URLCommand;
+import by.vorobyov.training.controller.nameresource.URLCommand;
 import by.vorobyov.training.dto.entity.User;
-import by.vorobyov.training.resource.AttributeName;
-import by.vorobyov.training.resource.JspPageName;
+import by.vorobyov.training.controller.nameresource.AttributeName;
+import by.vorobyov.training.controller.nameresource.JspPageName;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,13 +22,13 @@ public class TrainingPage implements ICommand {
 
         switch (user.getStatus()) {
             case 0:
-                response.sendRedirect(URLCommand.USER_HOME_PAGE);
+                request.getRequestDispatcher(URLCommand.USER_HOME_PAGE).forward(request, response);
                 break;
             case 1:
-                response.sendRedirect(URLCommand.TRAINING_GROUP_LIST);
+                request.getRequestDispatcher(URLCommand.TRAINING_GROUP_LIST).forward(request, response);
                 break;
             case 2:
-                response.sendRedirect(URLCommand.ADMIN_COURSE_MODIFY_PAGE);
+                request.getRequestDispatcher(URLCommand.ADMIN_COURSE_MODIFY_PAGE).forward(request, response);
                 break;
             default:
                 request.getRequestDispatcher(JspPageName.ERROR_PAGE).forward(request, response);

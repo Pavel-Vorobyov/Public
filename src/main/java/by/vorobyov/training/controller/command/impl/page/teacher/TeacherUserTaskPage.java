@@ -3,8 +3,8 @@ package by.vorobyov.training.controller.command.impl.page.teacher;
 import by.vorobyov.training.controller.command.ICommand;
 import by.vorobyov.training.dto.TeacherUserTask;
 import by.vorobyov.training.exception.DAOException;
-import by.vorobyov.training.resource.AttributeName;
-import by.vorobyov.training.resource.JspPageName;
+import by.vorobyov.training.controller.nameresource.AttributeName;
+import by.vorobyov.training.controller.nameresource.JspPageName;
 import by.vorobyov.training.service.impl.TeacherService;
 
 import javax.servlet.ServletException;

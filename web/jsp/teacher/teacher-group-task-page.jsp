@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="/WEB-INF/tag/CourseCard.tld" prefix="ln"%>
+<%@ taglib uri="/WEB-INF/tag/Teacher.tld" prefix="tr"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +8,8 @@
     <title>Task list</title>
     <link rel="stylesheet" type="text/css" href="../../css/util/reset.css">
     <link rel="stylesheet" type="text/css" href="../../css/default.css">
+    <link rel="stylesheet" type="text/css" href="../../css/util/header.css">
+    <link rel="stylesheet" type="text/css" href="../../css/util/footer.css">
     <link rel="stylesheet" type="text/css" href="../../css/teacher/teacher-group-task-page.css">
     <script type="text/javascript" src="../../js/default.js"></script>
 
@@ -36,31 +38,12 @@
                 <div class="group-name-wrapper">
                     <h1> ${teacherGroupTask.groupTitle} </h1>
                     <div class="group-task">
-                        <a onclick="showUpdateBlock(createTask${teacherGroupTask.groupId})">Create task</a>
+                        <a onclick="showUpdateBlock(createTask)">Create task</a>
                     </div>
                 </div>
 
-                <div id="createTask${teacherGroupTask.groupId}" class="createTask">
-                    <div class="container">
-                        <div class="creation">
-                            <a onclick="showUpdateBlock(createTask${teacherGroupTask.groupId})" title="Close" class="close">X</a>
-                            <h1>Creation task for group...</h1>
-                            <form method="post" action="command">
-                                <input type="hidden" name="command" value="teacher-create-task"/>
-                                <input type="hidden" name="group-id" value="${teacherGroupTask.groupId}"/>
-                                <p><input type="text" name="title" required id="title" value=""
-                                          pattern="^.{1,44}$" placeholder="Enter task title">
-                                    <input type="date" name="deadline" required="true" id="deadline" value=""
-                                           placeholder="Time when a task should be done"></p>
-                                <p><textarea required maxlength="1000" rows="9" cols="34" name="description"
-                                             id="description" placeholder="Enter task description"></textarea></p>
-                                <p class="submit">
-                                    <input type="submit" name="modify" value="Create task">
-                                </p>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                <tr:gpTkUpd groupId="${teacherGroupTask.groupId}" blockTitle="Creation task for group..." helpTaskTitle="Enter task title"
+                            helpTaskDescription="Enter task description" submitButtonTitle="Create task" helpButtonClose="Close"/>
 
                 <div class="td-group-wrapper">
                     <div class="group-header-wrapper">
@@ -85,27 +68,9 @@
                                     </a>
                                 </li>
 
-                                <div id="updateTask${task.taskId}" class="createTask">
-                                    <div class="container">
-                                        <div class="creation">
-                                            <a onclick="showUpdateBlock(updateTask${task.taskId})" title="Close" class="close">X</a>
-                                            <h1>Creation task for group...</h1>
-                                            <form method="post" action="command">
-                                                <input type="hidden" name="command" value="teacher-update-task"/>
-                                                <input type="hidden" name="task-id" value="${task.taskId}"/>
-                                                <p><input type="text" name="title" required id="title" value="${task.title}"
-                                                          pattern="^.{1,44}$" placeholder="Enter task title">
-                                                    <input type="date" name="deadline" required="true" id="deadline" value=""
-                                                           placeholder="Time when a task should be done"></p>
-                                                <p><textarea required maxlength="1000" rows="9" cols="34" name="description"
-                                                             id="description" placeholder="Enter task description">${task.description}</textarea></p>
-                                                <p class="submit">
-                                                    <input type="submit" name="modify" value="Update task">
-                                                </p>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                                <tr:gpTkUpd taskId="${task.taskId}" helpTaskTitle="Enter task title" helpTaskDescription="Enter task description" helpButtonClose="Close"
+                                            submitButtonTitle="Update task" blockTitle="Creation task for group...1"
+                                            taskTitle="${task.title}" taskDescription="${task.description}"/>
 
                             </c:forEach>
 

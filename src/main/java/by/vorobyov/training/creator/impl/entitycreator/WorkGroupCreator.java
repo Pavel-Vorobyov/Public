@@ -1,5 +1,6 @@
 package by.vorobyov.training.creator.impl.entitycreator;
 
+import by.vorobyov.training.creator.AbstractCreator;
 import by.vorobyov.training.creator.ICreator;
 import by.vorobyov.training.database.dao.columnname.WorkGroupColumnName;
 import by.vorobyov.training.dto.entity.WorkGroup;
@@ -10,26 +11,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-public class WorkGroupCreator implements ICreator<WorkGroup> {
-    public WorkGroupCreator() {
-    }
-
-    @Override
-    public List<WorkGroup> createEntityList(ResultSet resultSet) throws SQLException {
-        List<WorkGroup> workGroupList = new LinkedList<>();
-
-        if (resultSet.next()) {
-            do {
-                WorkGroup workGroup = createEntity(resultSet);
-                workGroupList.add(workGroup);
-            } while (resultSet.next());
-        } else {
-            return Collections.emptyList();
-        }
-
-        return workGroupList;
-    }
-
+public class WorkGroupCreator extends AbstractCreator<WorkGroup> implements ICreator<WorkGroup> {
     @Override
     public WorkGroup createEntity(ResultSet resultSet) throws SQLException {
         WorkGroup workGroup = new WorkGroup();

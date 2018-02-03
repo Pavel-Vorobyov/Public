@@ -2,13 +2,13 @@ package by.vorobyov.training.controller.command.impl.page.admin;
 
 import by.vorobyov.training.controller.command.ICommand;
 import by.vorobyov.training.dto.entity.Course;
+import by.vorobyov.training.dto.entity.User;
 import by.vorobyov.training.exception.ServiceException;
-import by.vorobyov.training.resource.AttributeName;
-import by.vorobyov.training.resource.JspPageName;
+import by.vorobyov.training.controller.nameresource.AttributeName;
+import by.vorobyov.training.controller.nameresource.JspPageName;
 import by.vorobyov.training.service.impl.AdminService;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -16,7 +16,7 @@ import java.util.List;
 
 public class AdminCourseModifyPage implements ICommand {
     public static final Integer COURSE_AVAILABLE = 0;
-    public static final Integer COURSE_NOT_AVAILABLE = 1;
+    public static final Integer USER_STATUS_ADMIN = 2;
     public static final String ALL_VALUE = "All";
     public static final String COURSE_REGION = "courseRegion";
     public static final String COURSE_TYPE = "courseType";

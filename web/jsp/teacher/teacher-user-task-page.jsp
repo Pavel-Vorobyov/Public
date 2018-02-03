@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="/WEB-INF/tag/CourseCard.tld" prefix="lnUserTask"%>
+<%@ taglib uri="/WEB-INF/tag/Teacher.tld" prefix="lnUserTask"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -8,6 +8,8 @@
     <title>User task list</title>
     <link rel="stylesheet" type="text/css" href="../../css/util/reset.css">
     <link rel="stylesheet" type="text/css" href="../../css/default.css">
+    <link rel="stylesheet" type="text/css" href="../../css/util/header.css">
+    <link rel="stylesheet" type="text/css" href="../../css/util/footer.css">
     <link rel="stylesheet" type="text/css" href="../../css/teacher/teacher-user-task-page.css">
     <script type="text/javascript" src="../../js/default.js"></script>
 
@@ -47,13 +49,13 @@
                             <h2 class="task-status">Status:</h2>
                         </li>
 
-                        <c:forEach var="userTask" items="${requestScope.teacherUserTaskList}">
+                        <c:forEach var="userTask" items="${requestScope.studentUserTaskList}">
 
-                            <lnUserTask:userTaskLine name="${userTask.studentName}" creationTime="${userTask.startTime}"
+                            <lnUserTask:usTkLn name="${userTask.studentName}" creationTime="${userTask.startTime}"
                                                      deadline="${userTask.deadline}" estimate="${userTask.estimate}"
                                                      status="${userTask.status}" userTaskId="${userTask.userTaskId}"/>
 
-                            <lnUserTask:usTaskUpd studentName="${userTask.studentName}" userTaskId="${userTask.userTaskId}"
+                            <lnUserTask:usTkUpd studentName="${userTask.studentName}" userTaskId="${userTask.userTaskId}"
                                                   groupId="${requestScope.groupId}" taskId="${requestScope.taskId}"
                                                   groupTitle="${requestScope.groupTitle}" taskTitle="${requestScope.taskTitle}"/>
 

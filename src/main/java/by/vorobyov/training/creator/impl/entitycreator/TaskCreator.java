@@ -1,5 +1,6 @@
 package by.vorobyov.training.creator.impl.entitycreator;
 
+import by.vorobyov.training.creator.AbstractCreator;
 import by.vorobyov.training.creator.ICreator;
 import by.vorobyov.training.database.dao.columnname.TaskColumnName;
 import by.vorobyov.training.dto.entity.Task;
@@ -9,21 +10,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class TaskCreator implements ICreator<Task> {
-    @Override
-    public List<Task> createEntityList(ResultSet resultSet) throws SQLException {
-        List<Task> taskList = new LinkedList<>();
-
-        if (resultSet.next()) {
-            do {
-                Task task = createEntity(resultSet);
-                taskList.add(task);
-            } while (resultSet.next());
-        }
-
-        return taskList;
-    }
-
+public class TaskCreator extends AbstractCreator<Task> implements ICreator<Task> {
     @Override
     public Task createEntity(ResultSet resultSet) throws SQLException {
         Task task = new Task();

@@ -90,31 +90,37 @@ public class TeacherUserTask {
 
         TeacherUserTask that = (TeacherUserTask) o;
 
-        if (!studentName.equals(that.studentName)) return false;
-        if (!startTime.equals(that.startTime)) return false;
-        if (!deadline.equals(that.deadline)) return false;
-        if (!estimate.equals(that.estimate)) return false;
-        return status.equals(that.status);
+        if (teachingUserTaskEmpty != that.teachingUserTaskEmpty) return false;
+        if (userTaskId != null ? !userTaskId.equals(that.userTaskId) : that.userTaskId != null) return false;
+        if (studentName != null ? !studentName.equals(that.studentName) : that.studentName != null) return false;
+        if (startTime != null ? !startTime.equals(that.startTime) : that.startTime != null) return false;
+        if (deadline != null ? !deadline.equals(that.deadline) : that.deadline != null) return false;
+        if (estimate != null ? !estimate.equals(that.estimate) : that.estimate != null) return false;
+        return status != null ? status.equals(that.status) : that.status == null;
     }
 
     @Override
     public int hashCode() {
-        int result = studentName.hashCode();
-        result = 31 * result + startTime.hashCode();
-        result = 31 * result + deadline.hashCode();
-        result = 31 * result + estimate.hashCode();
-        result = 31 * result + status.hashCode();
+        int result = userTaskId != null ? userTaskId.hashCode() : 0;
+        result = 31 * result + (studentName != null ? studentName.hashCode() : 0);
+        result = 31 * result + (startTime != null ? startTime.hashCode() : 0);
+        result = 31 * result + (deadline != null ? deadline.hashCode() : 0);
+        result = 31 * result + (estimate != null ? estimate.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + (teachingUserTaskEmpty ? 1 : 0);
         return result;
     }
 
     @Override
     public String toString() {
         return "TeacherUserTask{" +
-                "studentName='" + studentName + '\'' +
-                ", startTime=" + startTime +
-                ", deadline=" + deadline +
+                "userTaskId=" + userTaskId +
+                ", studentName='" + studentName + '\'' +
+                ", startTime='" + startTime + '\'' +
+                ", deadline='" + deadline + '\'' +
                 ", estimate=" + estimate +
                 ", status=" + status +
+                ", teachingUserTaskEmpty=" + teachingUserTaskEmpty +
                 '}';
     }
 }

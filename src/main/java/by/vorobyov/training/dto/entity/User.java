@@ -8,6 +8,7 @@ public class User implements Serializable {
     private String password;
     private String email;
     private Integer status;
+    private Integer mailStatus;
     private boolean userEmpty = false;
 
     public User() {
@@ -26,6 +27,14 @@ public class User implements Serializable {
         User user = new User();
         user.setUserEmpty(true);
         return user;
+    }
+
+    public Integer getMailStatus() {
+        return mailStatus;
+    }
+
+    public void setMailStatus(Integer mailStatus) {
+        this.mailStatus = mailStatus;
     }
 
     public String getEmail() {
@@ -92,7 +101,8 @@ public class User implements Serializable {
         if (login != null ? !login.equals(user.login) : user.login != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
-        return status != null ? status.equals(user.status) : user.status == null;
+        if (status != null ? !status.equals(user.status) : user.status != null) return false;
+        return mailStatus != null ? mailStatus.equals(user.mailStatus) : user.mailStatus == null;
     }
 
     @Override
@@ -102,6 +112,7 @@ public class User implements Serializable {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + (mailStatus != null ? mailStatus.hashCode() : 0);
         result = 31 * result + (userEmpty ? 1 : 0);
         return result;
     }
@@ -114,6 +125,7 @@ public class User implements Serializable {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", status=" + status +
+                ", mailStatus=" + mailStatus +
                 ", userEmpty=" + userEmpty +
                 '}';
     }

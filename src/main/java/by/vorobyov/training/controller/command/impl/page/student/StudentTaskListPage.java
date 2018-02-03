@@ -4,8 +4,8 @@ import by.vorobyov.training.controller.command.ICommand;
 import by.vorobyov.training.dto.StudentUserTask;
 import by.vorobyov.training.dto.entity.User;
 import by.vorobyov.training.exception.ServiceException;
-import by.vorobyov.training.resource.AttributeName;
-import by.vorobyov.training.resource.JspPageName;
+import by.vorobyov.training.controller.nameresource.AttributeName;
+import by.vorobyov.training.controller.nameresource.JspPageName;
 import by.vorobyov.training.service.impl.StudentService;
 
 import javax.servlet.ServletException;
@@ -21,18 +21,13 @@ public class StudentTaskListPage implements ICommand {
         StudentService studentService = new StudentService();
         List<StudentUserTask> studentUserTaskList;
 
-        if (0 == currentUser.getStatus()) {
-
-            try {
-                studentUserTaskList = studentService.takeUserTaskByUserId(currentUser.getUserId());
-                request.setAttribute(AttributeName.STUDENT_USER_TASK_LIST, studentUserTaskList);
-                request.getRequestDispatcher(JspPageName.STUDENT_TASK_LIST_PAGE).forward(request, response);
-            } catch (ServiceException e) {
-                e.printStackTrace();
-            }
-
-        } else {
-            request.getRequestDispatcher(JspPageName.ERROR_PAGE).forward(request, response);
+        try {
+            studentUserTaskList = studentService.takeUserTaskByUserId(currentUser.getUserId());
+            request.setAttribute(AttributeName.STUDENT_USER_TASK_LIST, studentUserTaskList);
+            request.getRequestDispatcher(JspPageName.STUDENT_TASK_LIST_PAGE).forward(request, response);
+        } catch (ServiceException e) {
+            e.printStackTrace();
         }
+
     }
 }

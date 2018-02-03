@@ -1,7 +1,7 @@
 package by.vorobyov.training.controller.command.impl.page.common;
 
 import by.vorobyov.training.controller.command.ICommand;
-import by.vorobyov.training.resource.JspPageName;
+import by.vorobyov.training.controller.nameresource.JspPageName;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

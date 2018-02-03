@@ -1,5 +1,6 @@
 package by.vorobyov.training.creator.impl.entitycreator;
 
+import by.vorobyov.training.creator.AbstractCreator;
 import by.vorobyov.training.creator.ICreator;
 import by.vorobyov.training.database.dao.columnname.UserColumnName;
 import by.vorobyov.training.dto.entity.User;
@@ -10,26 +11,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-public class UserCreator implements ICreator<User> {
-    public UserCreator() {
-    }
-
-    @Override
-    public List<User> createEntityList(ResultSet resultSet) throws SQLException {
-        List<User> userList = new LinkedList<>();
-
-        if (resultSet.next()) {
-            do {
-                User user = createEntity(resultSet);
-                userList.add(user);
-            } while (resultSet.next());
-            return userList;
-        } else {
-            return Collections.emptyList();
-        }
-
-    }
-
+public class UserCreator extends AbstractCreator<User> implements ICreator<User> {
     @Override
     public User createEntity(ResultSet resultSet) throws SQLException {
         User user = new User();
@@ -38,6 +20,7 @@ public class UserCreator implements ICreator<User> {
         user.setLogin(resultSet.getString(UserColumnName.LOGIN));
         user.setPassword(resultSet.getString(UserColumnName.PASSWORD));
         user.setEmail(resultSet.getString(UserColumnName.EMAIL));
+        user.setMailStatus(resultSet.getInt(UserColumnName.MAIL_CONFIRMED));
         user.setStatus(resultSet.getInt(UserColumnName.STATUS));
 
         return user;

@@ -8,6 +8,8 @@
   <title>Home</title>
   <link rel="stylesheet" type="text/css" href="../../css/util/reset.css">
   <link rel="stylesheet" type="text/css" href="../../css/default.css">
+  <link rel="stylesheet" type="text/css" href="../../css/util/header.css">
+  <link rel="stylesheet" type="text/css" href="../../css/util/footer.css">
   <link rel="stylesheet" type="text/css" href="../../css/common/user-home.css">
   <script type="text/javascript" src="../../js/default.js"></script>
 
@@ -28,8 +30,20 @@
         <div class="filters">
             <h1>${requestScope.userData.name} ${requestScope.userData.surname} profile:</h1>
             <div class="horizontal-group">
-              <a class="uui-button" href="command?command=student-task-list-page"><fmt:message key="button.taskList"/></a>
-              <a class="uui-button" href="command?command=student-group-page">Привет Group list</a>
+              <c:choose>
+                <c:when test="${sessionScope.user.status eq 0}">
+                  <a class="uui-button" href="command?command=student-task-list-page"><fmt:message key="button.task-list"/></a>
+                  <a class="uui-button" href="command?command=student-group-page">Привет Group list</a>
+                </c:when>
+                <c:when test="${sessionScope.user.status eq 1}">
+                  <a class="uui-button" href="command?command=training-group-list-page">Group task list</a>
+                </c:when>
+                <c:when test="${sessionScope.user.status eq 2}">
+                  <a class="uui-button" href="command?command=admin-course-moderation-page">Course moderation</a>
+                  <a class="uui-button" href="command?command=admin-group-moderation-page">Group moderation</a>
+                  <a class="uui-button" href="command?command=admin-user-moderation-page">User moderation</a>
+                </c:when>
+              </c:choose>
               <a class="uui-button" href="#">Home</a>
              </div>
           </div>
@@ -71,10 +85,7 @@
             <div class="user-description-wrapper">
               <h1>User comment:</h1>
               <span>
-                Adasdadsad!!!!!!!!!!!
-                adasdadsad!!!!!!!!!!!
-                adasdadsad!!!!!!!!!!!
-                adasdadsad!!!!!!!!!!!
+                ${sessionScope.userData.description}
               </span>
             </div>
           </dic>

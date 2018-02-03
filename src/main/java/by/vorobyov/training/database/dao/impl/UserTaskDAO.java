@@ -2,7 +2,6 @@ package by.vorobyov.training.database.dao.impl;
 
 import by.vorobyov.training.creator.impl.entitycreator.UserTaskCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
-import by.vorobyov.training.database.dao.preparedquery.UserTaskQuery;
 import by.vorobyov.training.exception.DAOException;
 import by.vorobyov.training.dto.entity.UserTask;
 
@@ -35,10 +34,8 @@ public class UserTaskDAO extends AbstractDAO<UserTask> {
             " FROM user_task, task" +
             " WHERE task.id = user_task.task_id AND user_task.task_id = ? AND user_task.work_group_id = ?";
 
-    @Override
-    public List<UserTask> getAll() throws DAOException, SQLException {
-        return null;
-    }
+    public final static String DELETE_USER_TASK_BY_ID = "DELETE FROM user_task WHERE id = ?";
+
 
     @Override
     public boolean update(UserTask entity) throws DAOException, SQLException {
@@ -47,7 +44,6 @@ public class UserTaskDAO extends AbstractDAO<UserTask> {
 
         connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         connection.setAutoCommit(false);
-
         try {
             preparedStatement = connection.prepareStatement(UPDATE_USER_TASK_BY_ID);
             preparedStatement.setString(1, entity.getDeadline());
@@ -78,15 +74,14 @@ public class UserTaskDAO extends AbstractDAO<UserTask> {
 
         connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         connection.setAutoCommit(false);
-
         try {
             preparedStatement = connection.prepareStatement(SELECT_USER_TASK_BY_ID);
             preparedStatement.setInt(1, entityId);
 
             resultSet = preparedStatement.executeQuery();
             connection.commit();
-
             return resultSet.next() ? userTaskCreator.createEntity(resultSet) : UserTask.emptyEntity();
+
         } catch (SQLException e) {
             rollback(connection);
             throw  new DAOException(e);
@@ -103,14 +98,14 @@ public class UserTaskDAO extends AbstractDAO<UserTask> {
 
         connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         connection.setAutoCommit(false);
-
         try {
-            preparedStatement = connection.prepareStatement(UserTaskQuery.DELETE_USER_TASK_BY_ID);
+            preparedStatement = connection.prepareStatement(DELETE_USER_TASK_BY_ID);
             preparedStatement.setInt(1, entity.getUserTaskId());
 
             preparedStatement.executeUpdate();
             connection.commit();
             return true;
+
         } catch (SQLException e) {
             rollback(connection);
             throw new DAOException(e);
@@ -127,7 +122,6 @@ public class UserTaskDAO extends AbstractDAO<UserTask> {
 
         connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         connection.setAutoCommit(false);
-
         try {
             preparedStatement = connection.prepareStatement(INSERT_USER_TASK);
             preparedStatement.setInt(1, entity.getUserId());
@@ -139,6 +133,7 @@ public class UserTaskDAO extends AbstractDAO<UserTask> {
             preparedStatement.executeUpdate();
             connection.commit();
             return true;
+
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
@@ -155,7 +150,6 @@ public class UserTaskDAO extends AbstractDAO<UserTask> {
 
         connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         connection.setAutoCommit(false);
-
         try {
             preparedStatement = connection.prepareStatement(SELECT_USER_TASK_BY_GROUP_USER_ID);
             preparedStatement.setInt(1, userId);
@@ -164,6 +158,7 @@ public class UserTaskDAO extends AbstractDAO<UserTask> {
             resultSet = preparedStatement.executeQuery();
             connection.commit();
             return userTaskCreator.createEntityList(resultSet);
+
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
@@ -180,7 +175,6 @@ public class UserTaskDAO extends AbstractDAO<UserTask> {
 
         connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         connection.setAutoCommit(false);
-
         try {
             preparedStatement = connection.prepareStatement(SELECT_USER_TASK_BY_GROUP_TASK_ID);
             preparedStatement.setInt(1, taskId);
@@ -189,6 +183,7 @@ public class UserTaskDAO extends AbstractDAO<UserTask> {
             resultSet = preparedStatement.executeQuery();
             connection.commit();
             return userTaskCreator.createEntityList(resultSet);
+
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {

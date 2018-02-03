@@ -83,7 +83,7 @@ public class AdminService extends CommonService {
 
         try {
             return courseDAO.delete(course);
-        } catch (SQLException | DAOException e) {
+        } catch (DAOException | SQLException e) {
             throw new ServiceException(e);
         }
     }

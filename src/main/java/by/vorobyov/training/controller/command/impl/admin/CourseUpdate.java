@@ -1,7 +1,7 @@
 package by.vorobyov.training.controller.command.impl.admin;
 
 import by.vorobyov.training.controller.command.ICommand;
-import by.vorobyov.training.controller.command.URLCommand;
+import by.vorobyov.training.controller.nameresource.URLCommand;
 import by.vorobyov.training.controller.command.impl.page.admin.AdminCourseModifyPage;
 import by.vorobyov.training.dto.entity.Course;
 import by.vorobyov.training.exception.ServiceException;

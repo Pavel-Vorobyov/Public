@@ -6,6 +6,13 @@
 <fmt:setLocale value="${sessionScope.local}"/>
 <fmt:setBundle basename="local"/>
 
+<c:if test="${requestScope.statusMessage != null}">
+    <div class="statusMessage" id="statusMessage" onclick="showMessage(statusMessage)">
+            ${requestScope.statusMessage}
+        <br> Tap to close it!
+    </div>
+</c:if>
+
 <div class="td-header-nav-wrap" align="center">
     <div class="td-header-nav">
         <input type="checkbox" name="Menu" id="btn-nav" />
@@ -58,7 +65,6 @@
                     <input type="hidden" name="command" value="add-user"/>
                     <p><input type="text" name="login" required="true" value="" placeholder="Enter login"></p>
                     <p><input type="password" name="password" required="true" value="" placeholder="Enter password"></p>
-                    <p><input type="password" name="password2" required="true" value="" placeholder="Confirm password"></p>
                     <p><input type="text" name="email" required="true" value="" placeholder="Enter email"></p>
                     <p class="submit">
                         <a href="#singIn" class="sb-register">Login</a>
@@ -68,15 +74,5 @@
             </div>
         </div>
     </div>
-
-    <script type="text/javascript" src="../../js/util/nav.js"></script>
-    <c:choose>
-        <c:when test="${requestScope.statusMessage != null}">
-            <div class="statusMessage" id="statusMessage" onclick="showMessage(statusMessage)">
-                    ${requestScope.statusMessage}
-                <br> Tap to close it!
-            </div>
-        </c:when>
-    </c:choose>
 
 </div>
