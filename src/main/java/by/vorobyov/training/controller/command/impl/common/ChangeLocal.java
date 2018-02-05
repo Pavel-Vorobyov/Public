@@ -1,7 +1,7 @@
 package by.vorobyov.training.controller.command.impl.common;
 
 import by.vorobyov.training.controller.command.ICommand;
-import by.vorobyov.training.nameresource.AttributeName;
+import by.vorobyov.training.resource.AttributeName;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

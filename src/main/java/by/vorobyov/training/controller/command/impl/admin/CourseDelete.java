@@ -1,10 +1,10 @@
 package by.vorobyov.training.controller.command.impl.admin;
 
 import by.vorobyov.training.controller.command.ICommand;
-import by.vorobyov.training.nameresource.URLCommand;
+import by.vorobyov.training.resource.URLCommand;
 import by.vorobyov.training.exception.ServiceException;
-import by.vorobyov.training.nameresource.AttributeName;
-import by.vorobyov.training.service.impl.AdminService;
+import by.vorobyov.training.resource.AttributeName;
+import by.vorobyov.training.service.impl.AdminServiceImplImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,12 +22,12 @@ public class CourseDelete implements ICommand {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        AdminService adminService = new AdminService();
+        AdminServiceImplImpl adminServiceImpl = new AdminServiceImplImpl();
 
         Integer courseId = Integer.parseInt(request.getParameter(COURSE_ID));
 
         try {
-            boolean result = adminService.deleteCourse(courseId);
+            boolean result = adminServiceImpl.deleteCourse(courseId);
 
             if (result) {
                 request.setAttribute(AttributeName.STATUS_MESSAGE, DELETE_SUCCESS);

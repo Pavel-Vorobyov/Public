@@ -3,9 +3,9 @@ package by.vorobyov.training.controller.command.impl.page.admin;
 import by.vorobyov.training.controller.command.ICommand;
 import by.vorobyov.training.dto.UserForAdmin;
 import by.vorobyov.training.exception.ServiceException;
-import by.vorobyov.training.nameresource.AttributeName;
-import by.vorobyov.training.nameresource.JspPageName;
-import by.vorobyov.training.service.impl.AdminService;
+import by.vorobyov.training.resource.AttributeName;
+import by.vorobyov.training.resource.JspPageName;
+import by.vorobyov.training.service.impl.AdminServiceImplImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,7 +25,7 @@ public class AdminUserModifyPage implements ICommand {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        AdminService adminService = new AdminService();
+        AdminServiceImplImpl adminServiceImpl = new AdminServiceImplImpl();
         List<UserForAdmin> userForAdminList;
 
         Integer userStatus = USER_STATUS_STUDENT;
@@ -35,7 +35,7 @@ public class AdminUserModifyPage implements ICommand {
                 userStatus = Integer.parseInt(request.getParameter(FILTER_USER_STATUS));
             }
 
-            userForAdminList = adminService.takeUserListByFilter(userStatus);
+            userForAdminList = adminServiceImpl.takeUserListByFilter(userStatus);
 
             if (!userForAdminList.isEmpty()) {
                 request.setAttribute(AttributeName.USER_FOR_ADMIN_LIST, userForAdminList);

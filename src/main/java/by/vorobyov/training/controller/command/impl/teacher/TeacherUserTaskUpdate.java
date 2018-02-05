@@ -1,11 +1,11 @@
 package by.vorobyov.training.controller.command.impl.teacher;
 
 import by.vorobyov.training.controller.command.ICommand;
-import by.vorobyov.training.nameresource.URLCommand;
+import by.vorobyov.training.resource.URLCommand;
 import by.vorobyov.training.database.dao.columnname.UserTaskColumnName;
 import by.vorobyov.training.dto.entity.UserTask;
 import by.vorobyov.training.exception.ServiceException;
-import by.vorobyov.training.service.impl.TeacherService;
+import by.vorobyov.training.service.impl.TeacherServiceImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,7 +27,7 @@ public class TeacherUserTaskUpdate implements ICommand {
     public static final String TASK_ID = "taskId";
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        TeacherService teacherService = new TeacherService();
+        TeacherServiceImpl teacherService = new TeacherServiceImpl();
         UserTask userTask = new UserTask();
 
         Integer groupId = Integer.parseInt(request.getParameter(GROUP_ID));

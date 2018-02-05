@@ -4,9 +4,9 @@ import by.vorobyov.training.controller.command.ICommand;
 import by.vorobyov.training.dto.entity.User;
 import by.vorobyov.training.dto.entity.UserData;
 import by.vorobyov.training.exception.ServiceException;
-import by.vorobyov.training.nameresource.JspPageName;
-import by.vorobyov.training.service.CommonService;
-import by.vorobyov.training.nameresource.AttributeName;
+import by.vorobyov.training.resource.JspPageName;
+import by.vorobyov.training.service.impl.CommonServiceImpl;
+import by.vorobyov.training.resource.AttributeName;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,12 +31,12 @@ public class SingIn implements ICommand{
         user.setLogin(request.getParameter(LOGIN));
         user.setPassword(request.getParameter(PASSWORD));
 
-        CommonService commonService = new CommonService();
+        CommonServiceImpl commonServiceImpl = new CommonServiceImpl();
 
             try {
-                User checkedUser = commonService.checkUser(user);
+                User checkedUser = commonServiceImpl.checkUser(user);
                 if (!checkedUser.isEmpty()) {
-                    UserData userData = commonService.getUserDataById(checkedUser.getUserId());
+                    UserData userData = commonServiceImpl.getUserDataById(checkedUser.getUserId());
 
                     request.getSession(true).setAttribute(AttributeName.USER, checkedUser);
                     request.getSession().setAttribute(AttributeName.USER_DATA, userData);

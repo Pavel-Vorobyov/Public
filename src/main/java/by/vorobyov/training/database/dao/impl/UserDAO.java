@@ -1,12 +1,11 @@
 package by.vorobyov.training.database.dao.impl;
 
-import by.vorobyov.training.creator.impl.entitycreator.UserCreator;
+import by.vorobyov.training.service.creator.impl.entitycreator.UserCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
 import by.vorobyov.training.database.dao.IDAO;
 import by.vorobyov.training.exception.DAOException;
 import by.vorobyov.training.dto.entity.User;
 
-import javax.smartcardio.CommandAPDU;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

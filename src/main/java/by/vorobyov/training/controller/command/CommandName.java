@@ -27,6 +27,7 @@ public class CommandName {
     public static final String STUDENT_TASK_LIST_PAGE = "student_task_list_page";
     public static final String STUDENT_GROUP_LIST_PAGE = "student_group_page";
     public static final String STUDENT_APPLY_FOR_COURSE = "student_apply_for_course";
+    public static final String STUDENT_COURSE_LIST_PAGE = "student_course_list_page";
 
     //admin
     public static final String CREATE_COURSE = "create_course";

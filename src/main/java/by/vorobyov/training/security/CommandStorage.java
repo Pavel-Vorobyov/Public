@@ -20,7 +20,8 @@ public class CommandStorage {
     public enum StudentCommand {
         STUDENT_SUBMIT_TASK,
         STUDENT_TASK_LIST_PAGE,
-        STUDENT_GROUP_PAGE
+        STUDENT_GROUP_PAGE,
+        STUDENT_COURSE_LIST_PAGE
     }
 
     public enum TeacherCommand {

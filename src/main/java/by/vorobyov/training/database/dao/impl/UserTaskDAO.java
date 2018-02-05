@@ -1,6 +1,6 @@
 package by.vorobyov.training.database.dao.impl;
 
-import by.vorobyov.training.creator.impl.entitycreator.UserTaskCreator;
+import by.vorobyov.training.service.creator.impl.entitycreator.UserTaskCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
 import by.vorobyov.training.database.dao.IDAO;
 import by.vorobyov.training.exception.DAOException;

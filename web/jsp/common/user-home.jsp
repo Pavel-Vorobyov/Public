@@ -37,6 +37,7 @@
                 <c:when test="${sessionScope.user.status eq 0}">
                   <a class="uui-button" href="command?command=student_task_list_page"><fmt:message key="button.task-list"/></a>
                   <a class="uui-button" href="command?command=student_group_page"><fmt:message key="title.group-list"/></a>
+                  <a class="uui-button" href="command?command=student_course_list_page"><fmt:message key="title.current-courses"/></a>
                 </c:when>
                 <c:when test="${sessionScope.user.status eq 1}">
                   <a class="uui-button" href="command?command=training_group_list_page"><fmt:message key="button.group-task-list"/></a>
@@ -100,7 +101,7 @@
       <div class="container">
         <div class="modify">
           <a onclick="showUpdateBlock(userDataModify)" title="${close}" class="close">X</a>
-          <h1><fmt:message key="button.personal-data-modidy"/>...</h1>
+          <h1><fmt:message key="button.personal-data-modify"/>...</h1>
           <form method="post" action="command">
             <input type="hidden" name="command" value="student_user_data_modify"/>
             <p align="left">

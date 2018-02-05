@@ -1,12 +1,11 @@
 package by.vorobyov.training.database.dao.impl;
 
-import by.vorobyov.training.creator.impl.entitycreator.UserHasCourseCreator;
+import by.vorobyov.training.service.creator.impl.entitycreator.UserHasCourseCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
 import by.vorobyov.training.database.dao.IDAO;
 import by.vorobyov.training.dto.entity.UserHasCourse;
 import by.vorobyov.training.exception.DAOException;
 
-import javax.naming.InsufficientResourcesException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

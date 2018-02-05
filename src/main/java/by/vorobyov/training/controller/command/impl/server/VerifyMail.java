@@ -1,10 +1,10 @@
 package by.vorobyov.training.controller.command.impl.server;
 
 import by.vorobyov.training.controller.command.ICommand;
-import by.vorobyov.training.nameresource.AttributeName;
-import by.vorobyov.training.nameresource.JspPageName;
+import by.vorobyov.training.resource.AttributeName;
+import by.vorobyov.training.resource.JspPageName;
 import by.vorobyov.training.exception.DAOException;
-import by.vorobyov.training.service.ServerService;
+import by.vorobyov.training.service.impl.ServerServiceImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,13 +20,13 @@ public class VerifyMail implements ICommand {
     public static final String USER_ID = "userId";
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ServerService serverService = new ServerService();
+        ServerServiceImpl serverServiceImpl = new ServerServiceImpl();
         String statusMessage;
 
         Integer userId = Integer.parseInt(request.getParameter(USER_ID));
 
         try {
-            boolean mailStatusUpdateSuccess = serverService.updateUserMailStatus(ServerService.MAIL_STATUS_CHECKED, userId);
+            boolean mailStatusUpdateSuccess = serverServiceImpl.updateUserMailStatus(ServerServiceImpl.MAIL_STATUS_CHECKED, userId);
 
             statusMessage = mailStatusUpdateSuccess ? "Your mail has been verified"
                     : "Happened some problem with varifying your mail...";

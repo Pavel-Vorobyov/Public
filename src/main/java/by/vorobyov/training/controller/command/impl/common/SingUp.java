@@ -1,14 +1,14 @@
 package by.vorobyov.training.controller.command.impl.common;
 
 import by.vorobyov.training.controller.command.ICommand;
-import by.vorobyov.training.nameresource.JspPageName;
-import by.vorobyov.training.nameresource.URLCommand;
+import by.vorobyov.training.resource.JspPageName;
+import by.vorobyov.training.resource.URLCommand;
 import by.vorobyov.training.dto.entity.User;
 import by.vorobyov.training.exception.DAOException;
 import by.vorobyov.training.exception.ServiceException;
-import by.vorobyov.training.nameresource.AttributeName;
-import by.vorobyov.training.service.CommonService;
-import by.vorobyov.training.service.ServerService;
+import by.vorobyov.training.resource.AttributeName;
+import by.vorobyov.training.service.impl.CommonServiceImpl;
+import by.vorobyov.training.service.impl.ServerServiceImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,8 +27,8 @@ public class SingUp implements ICommand {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        CommonService commonService = new CommonService();
-        ServerService serverService = new ServerService();
+        CommonServiceImpl commonServiceImpl = new CommonServiceImpl();
+        ServerServiceImpl serverServiceImpl = new ServerServiceImpl();
 
         try {
             User currentUser = new User();
@@ -37,12 +37,12 @@ public class SingUp implements ICommand {
             currentUser.setPassword(request.getParameter(USER_PASSWORD));
 
 
-            currentUser = commonService.addUser(currentUser);
+            currentUser = commonServiceImpl.addUser(currentUser);
 
             if (!currentUser.isEmpty()) {
 
                 try {
-                    serverService.sendVerifyingLetter(currentUser.getEmail(), currentUser);
+                    serverServiceImpl.sendVerifyingLetter(currentUser.getEmail(), currentUser);
                 } catch (DAOException e) {
                     e.printStackTrace();
                 }

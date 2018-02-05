@@ -4,9 +4,9 @@ import by.vorobyov.training.controller.command.ICommand;
 import by.vorobyov.training.dto.StudentGroup;
 import by.vorobyov.training.dto.entity.User;
 import by.vorobyov.training.exception.ServiceException;
-import by.vorobyov.training.nameresource.AttributeName;
-import by.vorobyov.training.nameresource.JspPageName;
-import by.vorobyov.training.service.impl.StudentService;
+import by.vorobyov.training.resource.AttributeName;
+import by.vorobyov.training.resource.JspPageName;
+import by.vorobyov.training.service.impl.StudentServiceImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,7 +23,7 @@ public class StudentGroupListPage implements ICommand {
     public static final Integer USER_STATUS_STUDENT = 0;
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        StudentService studentService = new StudentService();
+        StudentServiceImpl studentService = new StudentServiceImpl();
         User currentUser = (User) request.getSession().getAttribute(AttributeName.USER);
         List<StudentGroup> studentGroupList;
 

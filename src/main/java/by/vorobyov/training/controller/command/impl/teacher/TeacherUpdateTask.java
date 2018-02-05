@@ -1,11 +1,11 @@
 package by.vorobyov.training.controller.command.impl.teacher;
 
 import by.vorobyov.training.controller.command.ICommand;
-import by.vorobyov.training.nameresource.URLCommand;
+import by.vorobyov.training.resource.URLCommand;
 import by.vorobyov.training.dto.entity.Task;
 import by.vorobyov.training.exception.ServiceException;
-import by.vorobyov.training.nameresource.JspPageName;
-import by.vorobyov.training.service.impl.TeacherService;
+import by.vorobyov.training.resource.JspPageName;
+import by.vorobyov.training.service.impl.TeacherServiceImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,7 +22,7 @@ public class TeacherUpdateTask implements ICommand {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        TeacherService teacherService = new TeacherService();
+        TeacherServiceImpl teacherService = new TeacherServiceImpl();
 
         try {
             Task task = new Task();

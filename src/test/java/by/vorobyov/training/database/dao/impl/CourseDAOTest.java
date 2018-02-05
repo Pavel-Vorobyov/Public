@@ -1,18 +1,16 @@
 package by.vorobyov.training.database.dao.impl;
 
-import by.vorobyov.training.database.dao.FactoryDAO;
+import by.vorobyov.training.database.dao.DAOFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import static org.testng.Assert.*;
 
 public class CourseDAOTest {
     CourseDAO courseDAO;
 
     @BeforeMethod
     public void setUp() throws Exception {
-        courseDAO = FactoryDAO.getINSTANCE().getCourseDAO();
+        courseDAO = DAOFactory.getINSTANCE().getCourseDAO();
     }
 
     @AfterMethod

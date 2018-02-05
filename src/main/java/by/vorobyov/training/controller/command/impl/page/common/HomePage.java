@@ -1,7 +1,7 @@
 package by.vorobyov.training.controller.command.impl.page.common;
 
 import by.vorobyov.training.controller.command.ICommand;
-import by.vorobyov.training.nameresource.JspPageName;
+import by.vorobyov.training.resource.JspPageName;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

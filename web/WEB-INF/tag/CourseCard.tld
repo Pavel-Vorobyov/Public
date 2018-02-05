@@ -11,7 +11,7 @@
 
     <tag>
         <name>courseCard</name>
-        <tag-class>by.vorobyov.training.tag.CourseCard</tag-class>
+        <tag-class>by.vorobyov.training.tag.utill.CourseCard</tag-class>
         <body-content>empty</body-content>
 
         <attribute>

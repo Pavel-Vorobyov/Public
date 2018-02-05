@@ -1,6 +1,6 @@
 package by.vorobyov.training.database.dao.impl;
 
-import by.vorobyov.training.creator.impl.entitycreator.CourseCreator;
+import by.vorobyov.training.service.creator.impl.entitycreator.CourseCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
 import by.vorobyov.training.database.dao.IDAO;
 import by.vorobyov.training.exception.DAOException;
@@ -26,7 +26,7 @@ public class CourseDAO extends AbstractDAO<Course> implements IDAO<Course> {
 
     public final static String SELECT_COURSE_BY_ID = "SELECT * FROM course WHERE id = ?";
 
-    public static final String SELECT_COURSE_BY_USER_ID = "SELECT course.id, course.title, course.region, course.status, course.description, course.lead_id FROM course, user_has_course" +
+    public static final String SELECT_COURSE_BY_USER_ID = "SELECT course.id, course.title, course.region, course.type, course.status, course.description, course.lead_id FROM course, user_has_course" +
             " WHERE course.id = user_has_course.course_id AND user_has_course.user_id = ?";
 
 

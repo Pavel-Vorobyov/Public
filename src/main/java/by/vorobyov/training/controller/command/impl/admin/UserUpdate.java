@@ -1,13 +1,13 @@
 package by.vorobyov.training.controller.command.impl.admin;
 
 import by.vorobyov.training.controller.command.ICommand;
-import by.vorobyov.training.nameresource.URLCommand;
+import by.vorobyov.training.resource.URLCommand;
 import by.vorobyov.training.controller.command.impl.page.admin.AdminUserModifyPage;
 import by.vorobyov.training.dto.entity.User;
 import by.vorobyov.training.dto.entity.UserData;
 import by.vorobyov.training.exception.ServiceException;
-import by.vorobyov.training.nameresource.AttributeName;
-import by.vorobyov.training.service.impl.AdminService;
+import by.vorobyov.training.resource.AttributeName;
+import by.vorobyov.training.service.impl.AdminServiceImplImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,7 +29,7 @@ public class UserUpdate implements ICommand {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        AdminService adminService = new AdminService();
+        AdminServiceImplImpl adminServiceImpl = new AdminServiceImplImpl();
 
         UserData userData = new UserData();
         User user = new User();
@@ -41,7 +41,7 @@ public class UserUpdate implements ICommand {
             userData.setName(request.getParameter(USER_NAME));
             userData.setSurname(request.getParameter(USER_SURNAME));
 
-            boolean updateSuccess = adminService.updateUser(user, userData);
+            boolean updateSuccess = adminServiceImpl.updateUser(user, userData);
 
             if (updateSuccess) {
                 String statusMessage = "Work group has been updated successful!";

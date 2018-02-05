@@ -5,7 +5,7 @@
          version="3.1">
 
     <listener>
-        <listener-class>by.vorobyov.training.listener.ServletStateListener</listener-class>
+        <listener-class>by.vorobyov.training.listener.WebContextListener</listener-class>
     </listener>
 
     <filter>

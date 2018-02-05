@@ -1,7 +1,7 @@
 package by.vorobyov.training.database.dao.impl;
 
-import by.vorobyov.training.creator.impl.UserForAdminCreator;
-import by.vorobyov.training.creator.impl.entitycreator.UserDataCreator;
+import by.vorobyov.training.service.creator.impl.UserForAdminCreator;
+import by.vorobyov.training.service.creator.impl.entitycreator.UserDataCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
 import by.vorobyov.training.database.dao.IDAO;
 import by.vorobyov.training.dto.UserForAdmin;

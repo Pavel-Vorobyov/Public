@@ -3,9 +3,9 @@ package by.vorobyov.training.controller.command.impl.page.common;
 import by.vorobyov.training.controller.command.ICommand;
 import by.vorobyov.training.dto.entity.Course;
 import by.vorobyov.training.exception.ServiceException;
-import by.vorobyov.training.nameresource.AttributeName;
-import by.vorobyov.training.nameresource.JspPageName;
-import by.vorobyov.training.service.CommonService;
+import by.vorobyov.training.resource.AttributeName;
+import by.vorobyov.training.resource.JspPageName;
+import by.vorobyov.training.service.impl.CommonServiceImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,7 +27,7 @@ public class TrainingPortalPage implements ICommand {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        CommonService commonService = new CommonService();
+        CommonServiceImpl commonServiceImpl = new CommonServiceImpl();
         List<Course> courseList;
 
         Integer courseStatus = COURSE_PLANING;
@@ -46,7 +46,7 @@ public class TrainingPortalPage implements ICommand {
                 courseRegion = request.getParameter(COURSE_REGION);
             }
 
-            courseList = commonService.takeCourseListByFilter(courseStatus, courseType, courseRegion);
+            courseList = commonServiceImpl.takeCourseListByFilter(courseStatus, courseType, courseRegion);
             request.setAttribute(COURSE_STATUS, courseStatus);
             request.setAttribute(COURSE_TYPE, courseType);
             request.setAttribute(COURSE_REGION, courseRegion);

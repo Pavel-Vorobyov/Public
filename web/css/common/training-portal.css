@@ -44,7 +44,7 @@ html, body {
     float: right;
     padding: 30px;
     padding-top: 20px;
-    margin-right: 100px;
+    /*margin-right: 100px;*/
 }
 
 .horizontal-group {
@@ -438,7 +438,7 @@ input[type=submit] {
     height: 29px;
     font-size: 15px;
     position: relative;
-    right: -90px;
+    /*right: -90px;*/
     font-weight: bold;
     color: #527881;
     text-shadow: 0 1px #e3f1f1;

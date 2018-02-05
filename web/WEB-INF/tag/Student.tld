@@ -11,7 +11,7 @@
 
     <tag>
         <name>stGpMember</name>
-        <tag-class>by.vorobyov.training.tag.StudentGroupMember</tag-class>
+        <tag-class>by.vorobyov.training.tag.student.StudentGroupMember</tag-class>
         <body-content>empty</body-content>
 
         <attribute>
@@ -41,7 +41,7 @@
 
     <tag>
         <name>studentTaskLine</name>
-        <tag-class>by.vorobyov.training.tag.StudentTaskLine</tag-class>
+        <tag-class>by.vorobyov.training.tag.student.StudentTaskLine</tag-class>
         <body-content>empty</body-content>
 
         <attribute>

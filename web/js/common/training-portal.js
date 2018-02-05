@@ -23,6 +23,6 @@ function applyForCourse(courseId) {
     var currentUrl = window.location;
     var applyForCourseUrl = "command?command=student_apply_for_course&courseId=" + courseId
         + "&currentUrl=" + currentUrl;
-alert("lol");
+
     window.location = applyForCourseUrl;
 }

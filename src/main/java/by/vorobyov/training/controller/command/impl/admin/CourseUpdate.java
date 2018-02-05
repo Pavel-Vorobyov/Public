@@ -1,11 +1,11 @@
 package by.vorobyov.training.controller.command.impl.admin;
 
 import by.vorobyov.training.controller.command.ICommand;
-import by.vorobyov.training.nameresource.URLCommand;
+import by.vorobyov.training.resource.URLCommand;
 import by.vorobyov.training.controller.command.impl.page.admin.AdminCourseModifyPage;
 import by.vorobyov.training.dto.entity.Course;
 import by.vorobyov.training.exception.ServiceException;
-import by.vorobyov.training.service.impl.AdminService;
+import by.vorobyov.training.service.impl.AdminServiceImplImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,7 +21,7 @@ public class CourseUpdate implements ICommand {
     public static final String COURSE_ID = "courseId";
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        AdminService adminService = new AdminService();
+        AdminServiceImplImpl adminServiceImpl = new AdminServiceImplImpl();
         Course course = new Course();
 
         try {
@@ -33,7 +33,7 @@ public class CourseUpdate implements ICommand {
             course.setStatus(Integer.parseInt(request.getParameter(CourseCreation.COURSE_AVAILABILITY)));
             course.setCourseId(Integer.parseInt(request.getParameter(COURSE_ID)));
 
-            boolean updateSuccess = adminService.updateCourse(course);
+            boolean updateSuccess = adminServiceImpl.updateCourse(course);
 
             if (updateSuccess) {
                 request.setAttribute(AdminCourseModifyPage.COURSE_TYPE, course.getType());

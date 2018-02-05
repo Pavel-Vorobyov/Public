@@ -113,7 +113,7 @@
 
     <tag>
         <name>usTkLn</name>
-        <tag-class>by.vorobyov.training.tag.UserTaskLine</tag-class>
+        <tag-class>by.vorobyov.training.tag.teacher.UserTaskLine</tag-class>
         <body-content>empty</body-content>
 
         <attribute>

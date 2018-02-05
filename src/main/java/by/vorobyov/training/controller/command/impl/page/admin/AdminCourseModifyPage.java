@@ -3,9 +3,9 @@ package by.vorobyov.training.controller.command.impl.page.admin;
 import by.vorobyov.training.controller.command.ICommand;
 import by.vorobyov.training.dto.entity.Course;
 import by.vorobyov.training.exception.ServiceException;
-import by.vorobyov.training.nameresource.AttributeName;
-import by.vorobyov.training.nameresource.JspPageName;
-import by.vorobyov.training.service.impl.AdminService;
+import by.vorobyov.training.resource.AttributeName;
+import by.vorobyov.training.resource.JspPageName;
+import by.vorobyov.training.service.impl.AdminServiceImplImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,7 +28,7 @@ public class AdminCourseModifyPage implements ICommand {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        AdminService adminService = new AdminService();
+        AdminServiceImplImpl adminServiceImpl = new AdminServiceImplImpl();
         List<Course> courseList;
 
         Integer courseAvailability = COURSE_AVAILABLE;
@@ -47,7 +47,7 @@ public class AdminCourseModifyPage implements ICommand {
                     courseRegion = request.getParameter(COURSE_REGION);
             }
 
-            courseList = adminService.takeCourseListByFilter(courseAvailability, courseType, courseRegion);
+            courseList = adminServiceImpl.takeCourseListByFilter(courseAvailability, courseType, courseRegion);
 
             request.setAttribute(AttributeName.COURSE_LIST, courseList);
             request.setAttribute(COURSE_AVAILABILITY, courseAvailability);

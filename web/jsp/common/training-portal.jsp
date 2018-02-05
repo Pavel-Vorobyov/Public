@@ -35,7 +35,7 @@
     <div class="td-main-content-conteiner">
       <div class="td-filters-wrapper">
         <div class="filters">
-          <h1><fmt:message key="title.training-portal"/>:</h1>
+          <h1><fmt:message key="title.course-list"/></h1>
           <div class="horizontal-group">
             <c:choose>
               <c:when test="${requestScope.courseStatus eq 1}">
@@ -54,7 +54,6 @@
       </div>
 
       <div class="group-name-wrapper">
-        <h1> course list </h1>
         <div class="form-filter">
           <form name="courseFilter">
             <input type="hidden" name="courseStatus" value="${requestScope.courseStatus}">

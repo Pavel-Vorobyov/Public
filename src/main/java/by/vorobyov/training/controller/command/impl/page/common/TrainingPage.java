@@ -1,10 +1,10 @@
 package by.vorobyov.training.controller.command.impl.page.common;
 
 import by.vorobyov.training.controller.command.ICommand;
-import by.vorobyov.training.nameresource.URLCommand;
+import by.vorobyov.training.resource.URLCommand;
 import by.vorobyov.training.dto.entity.User;
-import by.vorobyov.training.nameresource.AttributeName;
-import by.vorobyov.training.nameresource.JspPageName;
+import by.vorobyov.training.resource.AttributeName;
+import by.vorobyov.training.resource.JspPageName;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

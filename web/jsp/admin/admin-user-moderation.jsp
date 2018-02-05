@@ -32,7 +32,7 @@
       <div class="td-main-content-conteiner">
         <div class="td-filters-wrapper">
         <div class="filters">
-            <h1>${sessionScope.userData.name} ${sessionScope.userData.surname} <fmt:message key="title.admin-page"/>:</h1>
+            <h1><fmt:message key="title.admin-page"/>:</h1>
             <div class="horizontal-group">
               <a class="uui-button" href="command?command=admin_course_moderation_page"><fmt:message key="button.course-moderation"/></a>
               <a class="uui-button" href="command?command=admin_group_moderation_page"><fmt:message key="button.group-moderation"/></a>
