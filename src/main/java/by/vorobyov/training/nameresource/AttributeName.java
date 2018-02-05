@@ -1,4 +1,4 @@
-package by.vorobyov.training.controller.nameresource;
+package by.vorobyov.training.nameresource;
 
 public class AttributeName {
     private AttributeName() {
@@ -17,4 +17,6 @@ public class AttributeName {
     public static final String STATUS_MESSAGE = "statusMessage";
     public static final String USER_FOR_ADMIN_LIST = "userForAdminList";
     public static final String TEACHER_GROUP_TASK_LIST = "teacherGroupTaskList";
+    public static final String CURRENT_URL = "currentUrl";
+
 }

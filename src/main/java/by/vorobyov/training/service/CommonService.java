@@ -118,6 +118,34 @@ public class CommonService {
         }
     }
 
+    public boolean userDataUpdate(User user, UserData userData) throws ServiceException {
+        UserDataDAO userDataDAO = new UserDataDAO();
+        UserDAO userDAO = new UserDAO();
+
+        try {
+            User modifyingUser = userDAO.getEntityById(user.getUserId());
+            UserData modifyingUserData = userDataDAO.getUserDataByUserId(user.getUserId());
+
+            modifyingUserData.setName(userData.getName());
+            modifyingUserData.setSurname(userData.getSurname());
+
+            modifyingUser.setLogin(user.getLogin());
+            modifyingUser.setPassword(user.getPassword());
+            modifyingUser.setEmail(user.getEmail());
+
+            modifyingUserData.setName(userData.getName());
+            modifyingUserData.setSurname(userData.getSurname());
+
+            boolean userUpdateSuccess = userDAO.update(modifyingUser);
+            boolean userDataUpdateSuccess = userDataDAO.update(modifyingUserData);
+
+            return userUpdateSuccess && userDataUpdateSuccess;
+
+        } catch (DAOException | SQLException e) {
+            throw new ServiceException(e);
+        }
+    }
+
     public List<Course> takeCourseListByUserId(Integer userId) throws ServiceException{
         CourseDAO courseDAO = new CourseDAO();
 

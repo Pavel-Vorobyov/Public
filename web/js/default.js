@@ -8,7 +8,3 @@ function showUpdateBlock(blockId) {
         blockId.style.display = "none";
     }
 }
-
-function showMessage(blockId) {
-    showUpdateBlock(blockId);
-}

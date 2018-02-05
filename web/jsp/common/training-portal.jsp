@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="/WEB-INF/tag/CourseCard.tld" prefix="crCard"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,16 @@
   <link rel="stylesheet" type="text/css" href="../../css/util/footer.css">
   <link rel="stylesheet" type="text/css" href="../../css/common/training-portal.css">
   <link rel="stylesheet" type="text/css" href="../../css/util/course-card.css">
+  <script type="text/javascript" src="../../js/default.js"></script>
   <script type="text/javascript" src="../../js/common/training-portal.js"></script>
+
+  <fmt:requestEncoding value="UTF-8"/>
+  <fmt:setLocale value="${sessionScope.local}"/>
+  <fmt:setBundle basename="local"/>
+
+  <fmt:message key="title.available-for-apply" var="availForAply"/>
+  <fmt:message key="title.started" var="started"/>
+  <fmt:message key="title.apply" var="apply"/>
 
 </head>
 <body>
@@ -25,16 +35,16 @@
     <div class="td-main-content-conteiner">
       <div class="td-filters-wrapper">
         <div class="filters">
-          <h1>Training portal </h1>
+          <h1><fmt:message key="title.training-portal"/>:</h1>
           <div class="horizontal-group">
             <c:choose>
               <c:when test="${requestScope.courseStatus eq 1}">
-                <a class="uui-button" onclick="changeCourseStatus(0)">Planing</a>
-                <a class="uui-button">Started</a>
+                <a class="uui-button" onclick="changeCourseStatus(0)"><fmt:message key="title.planing"/></a>
+                <a class="uui-button"><fmt:message key="title.started"/></a>
               </c:when>
               <c:otherwise>
-                <a class="uui-button">Planing</a>
-                <a class="uui-button" onclick="changeCourseStatus(1)">Started</a>
+                <a class="uui-button"><fmt:message key="title.planing"/></a>
+                <a class="uui-button" onclick="changeCourseStatus(1)"><fmt:message key="title.started"/></a>
               </c:otherwise>
             </c:choose>
           </div>
@@ -53,28 +63,28 @@
               <select id="course-region" name="courseRegion" onchange="handleSubmit()">
                 <c:choose>
                   <c:when test="${requestScope.courseRegion eq 'Gomel, Belarus'}">
-                    <option value="All">All</option>
-                    <option value="Minsk, Belarus">Minsk, Belarus</option>
-                    <option value="Brest, Belarus">Brest, Belarus</option>
-                    <option selected value="Gomel, Belarus">Gomel, Belarus</option>
+                    <option value="All"><fmt:message key="option.all"/></option>
+                    <option value="Minsk, Belarus"><fmt:message key="option.minsk-belarus"/></option>
+                    <option value="Brest, Belarus"><fmt:message key="option.brest-belarus"/></option>
+                    <option selected value="Gomel, Belarus"><fmt:message key="option.gomel-belarus"/></option>
                   </c:when>
                   <c:when test="${requestScope.courseRegion eq 'Minsk, Belarus'}">
-                    <option value="All">All</option>
-                    <option selected value="Minsk, Belarus">Minsk, Belarus</option>
-                    <option value="Brest, Belarus">Brest, Belarus</option>
-                    <option value="Gomel, Belarus">Gomel, Belarus</option>
+                    <option value="All"><fmt:message key="option.all"/></option>
+                    <option selected value="Minsk, Belarus"><fmt:message key="option.minsk-belarus"/></option>
+                    <option value="Brest, Belarus"><fmt:message key="option.brest-belarus"/></option>
+                    <option value="Gomel, Belarus"><fmt:message key="option.gomel-belarus"/></option>
                   </c:when>
                   <c:when test="${requestScope.courseRegion eq 'Brest, Belarus'}">
-                    <option value="All">All</option>
-                    <option value="Minsk, Belarus">Minsk, Belarus</option>
-                    <option selected value="Brest, Belarus">Brest, Belarus</option>
-                    <option value="Gomel, Belarus">Gomel, Belarus</option>
+                    <option value="All"><fmt:message key="option.all"/></option>
+                    <option value="Minsk, Belarus"><fmt:message key="option.minsk-belarus"/></option>
+                    <option selected value="Brest, Belarus"><fmt:message key="option.brest-belarus"/></option>
+                    <option value="Gomel, Belarus"><fmt:message key="option.gomel-belarus"/></option>
                   </c:when>
                   <c:otherwise>
-                    <option selected value="All">All</option>
-                    <option value="Minsk, Belarus">Minsk, Belarus</option>
-                    <option value="Brest, Belarus">Brest, Belarus</option>
-                    <option value="Gomel, Belarus">Gomel, Belarus</option>
+                    <option selected value="All"><fmt:message key="option.all"/></option>
+                    <option value="Minsk, Belarus"><fmt:message key="option.minsk-belarus"/></option>
+                    <option value="Brest, Belarus"><fmt:message key="option.brest-belarus"/></option>
+                    <option value="Gomel, Belarus"><fmt:message key="option.gomel-belarus"/></option>
                   </c:otherwise>
                 </c:choose>
               </select>
@@ -83,28 +93,28 @@
               <select id="course-type" name="courseType" onchange="handleSubmit()">
                 <c:choose>
                   <c:when test="${requestScope.courseType eq 'Testing'}">
-                    <option value="All">All</option>
-                    <option value="Java">Java</option>
-                    <option value="PHP">PHP</option>
-                    <option selected value="Testing">Testing</option>
+                    <option value="All"><fmt:message key="option.all"/></option>
+                    <option value="Java"><fmt:message key="option.java"/></option>
+                    <option value="PHP"><fmt:message key="option.php"/></option>
+                    <option selected value="Testing"><fmt:message key="option.testing"/></option>
                   </c:when>
                   <c:when test="${requestScope.courseType eq 'Java'}">
-                    <option value="All">All</option>
-                    <option selected value="Java">Java</option>
-                    <option value="PHP">PHP</option>
-                    <option value="Testing">Testing</option>
+                    <option value="All"><fmt:message key="option.all"/></option>
+                    <option selected value="Java"><fmt:message key="option.java"/></option>
+                    <option value="PHP"><fmt:message key="option.php"/></option>
+                    <option value="Testing"><fmt:message key="option.testing"/></option>
                   </c:when>
                   <c:when test="${requestScope.courseType eq 'PHP'}">
-                    <option value="All">All</option>
-                    <option value="Java">Java</option>
-                    <option selected value="PHP">PHP</option>
-                    <option value="Testing">Testing</option>
+                    <option value="All"><fmt:message key="option.all"/></option>
+                    <option value="Java"><fmt:message key="option.java"/></option>
+                    <option selected value="PHP"><fmt:message key="option.php"/></option>
+                    <option value="Testing"><fmt:message key="option.testing"/></option>
                   </c:when>
                   <c:otherwise>
-                    <option selected value="All">All</option>
-                    <option value="Java">Java</option>
-                    <option value="PHP">PHP</option>
-                    <option value="Testing">Testing</option>
+                    <option selected value="All"><fmt:message key="option.all"/></option>
+                    <option value="Java"><fmt:message key="option.java"/></option>
+                    <option value="PHP"><fmt:message key="option.php"/></option>
+                    <option value="Testing"><fmt:message key="option.testing"/></option>
                   </c:otherwise>
                 </c:choose>
               </select>
@@ -118,11 +128,11 @@
             <c:choose>
               <c:when test="${course.status == 0}">
                 <crCard:courseCard cardTitle="${course.title}" location="${course.region}"
-                                   status="Avalible fo apply" buttonName="Apply" href="#" courseId="${course.courseId}"/>
+                                   status="${availForAply}" buttonName="${apply}" courseId="${course.courseId}" onClick="applyForCourse(${course.courseId})"/>
               </c:when>
               <c:otherwise>
                 <crCard:courseCard cardTitle="${course.title}" location="${course.region}"
-                                   status="Started" buttonName="Apply" href="#" courseId="${course.courseId}"/>
+                                   status="${started}" buttonName="${apply}" courseId="${course.courseId}" onClick="applyForCourse(${course.courseId})"/>
               </c:otherwise>
             </c:choose>
 

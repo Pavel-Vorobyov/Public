@@ -1,10 +1,12 @@
 package by.vorobyov.training.controller.command.impl.page.common;
 
 import by.vorobyov.training.controller.command.ICommand;
-import by.vorobyov.training.controller.nameresource.URLCommand;
+import by.vorobyov.training.nameresource.URLCommand;
 import by.vorobyov.training.dto.entity.User;
-import by.vorobyov.training.controller.nameresource.AttributeName;
-import by.vorobyov.training.controller.nameresource.JspPageName;
+import by.vorobyov.training.nameresource.AttributeName;
+import by.vorobyov.training.nameresource.JspPageName;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class TrainingPage implements ICommand {
+    private static final Logger LOGGER = LogManager.getLogger();
+
     public static final String TRAINING_GROUP = "command?command=training-group-list-page";
     public static final Integer STATUS_STUDENT = 0;
     public static final Integer STATUS_TEACHER = 1;

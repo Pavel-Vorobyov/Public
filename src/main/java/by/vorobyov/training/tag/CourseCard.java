@@ -5,7 +5,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 
 public class CourseCard extends TagSupport {
-    private String href;
+    private String onClick;
     private Integer courseId;
     private String cardTitle = null;
     private String location = null;
@@ -16,8 +16,8 @@ public class CourseCard extends TagSupport {
         this.courseId = courseId;
     }
 
-    public void setHref(String href) {
-        this.href = href;
+    public void setOnClick(String onClick) {
+        this.onClick = onClick;
     }
 
     public void setCardTitle(String cardTitle) {
@@ -55,14 +55,12 @@ public class CourseCard extends TagSupport {
             pageContext.getOut().write("<span>" + status + "</span>");
             pageContext.getOut().write("</div>");
 
-            switch (href) {
-                case "#":
-                    pageContext.getOut().write("<a onclick=\"showUpdateBlock(courseUpdateBlock" + courseId + ")\" class=\"course-registration\">" + buttonName + "</a>");
-                    break;
-                default:
-                    pageContext.getOut().write("<a onclick=\"showUpdateBlock(courseUpdateBlock" + courseId + ")\" class=\"course-registration\" href=\"" + href + "\">" + buttonName + "</a>");
-                    break;
+            if (onClick != "#") {
+                pageContext.getOut().write("<a onClick=\"" + onClick + "\" class=\"course-registration\">" + buttonName + "</a>");
+            } else {
+                pageContext.getOut().write("<a onClick=\"showUpdateBlock(courseUpdateBlock" + courseId + ")\" class=\"course-registration\">" + buttonName + "</a>");
             }
+
         } catch (IOException e) {
             throw new JspException(e);
         }

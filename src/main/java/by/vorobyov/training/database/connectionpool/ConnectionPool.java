@@ -40,8 +40,6 @@ public class ConnectionPool {
         this.user = res.getString(DB_USER);
         this.password = res.getString(DB_PASSWORD);
         this.poolSize = Integer.parseInt(res.getString(DB_POOL_SIZE));
-
-        init();
     }
 
     public static ConnectionPool getInstance() throws DAOException {

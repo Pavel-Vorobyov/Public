@@ -1,15 +1,13 @@
 package by.vorobyov.training.controller.command;
 
-import by.vorobyov.training.controller.command.impl.common.SingUp;
-import by.vorobyov.training.controller.command.impl.common.SingIn;
-import by.vorobyov.training.controller.command.impl.common.SingOut;
+import by.vorobyov.training.controller.command.impl.common.*;
 import by.vorobyov.training.controller.command.impl.admin.*;
 import by.vorobyov.training.controller.command.impl.page.admin.AdminCourseModifyPage;
 import by.vorobyov.training.controller.command.impl.page.admin.AdminGroupModifyPage;
 import by.vorobyov.training.controller.command.impl.page.admin.AdminUserModifyPage;
 import by.vorobyov.training.controller.command.impl.page.teacher.TeacherUserTaskPage;
+import by.vorobyov.training.controller.command.impl.student.ApplyForCourse;
 import by.vorobyov.training.controller.command.impl.student.StudentSubmitTask;
-import by.vorobyov.training.controller.command.impl.common.UserDataModify;
 import by.vorobyov.training.controller.command.impl.teacher.TeacherCreateTask;
 import by.vorobyov.training.controller.command.impl.page.common.*;
 import by.vorobyov.training.controller.command.impl.page.student.StudentGroupListPage;
@@ -18,8 +16,8 @@ import by.vorobyov.training.controller.command.impl.page.student.StudentTaskList
 import by.vorobyov.training.controller.command.impl.page.teacher.TeacherGroupTaskPage;
 import by.vorobyov.training.controller.command.impl.teacher.TeacherUpdateTask;
 import by.vorobyov.training.controller.command.impl.teacher.TeacherUserTaskUpdate;
-import by.vorobyov.training.controller.nameresource.CommandName;
 
+import javax.smartcardio.CommandAPDU;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,10 +44,13 @@ public class CommandStorage {
         commandStorage.put(CommandName.TEACHER_UPDATE_TASK, new TeacherUpdateTask());
         commandStorage.put(CommandName.TEACHER_USER_TASK_UPDATE, new TeacherUserTaskUpdate());
         commandStorage.put(CommandName.USER_HOME_PAGE, new UserHomePage());
+
         commandStorage.put(CommandName.STUDENT_TASK_LIST_PAGE, new StudentTaskListPage());
         commandStorage.put(CommandName.STUDENT_GROUP_LIST_PAGE, new StudentGroupListPage());
         commandStorage.put(CommandName.STUDENT_USER_DATA_MODIFY, new UserDataModify());
         commandStorage.put(CommandName.STUDENT_SUBMIT_TASK, new StudentSubmitTask());
+        commandStorage.put(CommandName.STUDENT_APPLY_FOR_COURSE, new ApplyForCourse());
+
         commandStorage.put(CommandName.CREATE_COURSE, new CourseCreation());
         commandStorage.put(CommandName.UPDATE_COURSE, new CourseUpdate());
         commandStorage.put(CommandName.DELETE_COURSE, new CourseDelete());
@@ -60,6 +61,7 @@ public class CommandStorage {
         commandStorage.put(CommandName.UPDATE_GROUP, new GroupUpdate());
         commandStorage.put(CommandName.DELETE_GROUP, new GroupDelete());
         commandStorage.put(CommandName.UPDATE_USER, new UserUpdate());
+        commandStorage.put(CommandName.CHANGE_LOCAL, new ChangeLocal());
 
     }
 

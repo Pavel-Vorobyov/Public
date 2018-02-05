@@ -1,13 +1,15 @@
 package by.vorobyov.training.controller.command.impl.common;
 
 import by.vorobyov.training.controller.command.ICommand;
-import by.vorobyov.training.controller.nameresource.URLCommand;
+import by.vorobyov.training.nameresource.URLCommand;
 import by.vorobyov.training.dto.entity.User;
 import by.vorobyov.training.dto.entity.UserData;
 import by.vorobyov.training.exception.ServiceException;
-import by.vorobyov.training.controller.nameresource.AttributeName;
+import by.vorobyov.training.nameresource.AttributeName;
 import by.vorobyov.training.service.CommonService;
-import by.vorobyov.training.service.impl.StudentService;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class UserDataModify implements ICommand {
+    private static final Logger LOGGER = LogManager.getLogger();
+
     public static final String USER_NAME = "name";
     public static final String USER_SURNAME = "surname";
     public static final String USER_EMAIL = "email";
@@ -22,7 +26,6 @@ public class UserDataModify implements ICommand {
     public static final String USER_PASSWORD = "password";
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        StudentService studentService = new StudentService();
         CommonService commonService = new CommonService();
 
         User modifyingUser = (User) request.getSession().getAttribute(AttributeName.USER);
@@ -37,7 +40,7 @@ public class UserDataModify implements ICommand {
             modifyingUser.setPassword(request.getParameter(USER_PASSWORD));
             modifyingUser.setEmail(request.getParameter(USER_EMAIL));
 
-            boolean userDataUpdateSuccess = studentService.userDataUpdate(modifyingUser, modifyingUserData);
+            boolean userDataUpdateSuccess = commonService.userDataUpdate(modifyingUser, modifyingUserData);
             UserData currentUserData = commonService.getUserDataById(modifyingUser.getUserId());
 
             if (userDataUpdateSuccess) {
@@ -51,7 +54,7 @@ public class UserDataModify implements ICommand {
             }
 
         } catch (ServiceException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.ERROR, e);
         }
     }
 }

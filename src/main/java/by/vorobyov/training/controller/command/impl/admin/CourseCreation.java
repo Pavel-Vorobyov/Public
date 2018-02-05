@@ -1,12 +1,15 @@
 package by.vorobyov.training.controller.command.impl.admin;
 
 import by.vorobyov.training.controller.command.ICommand;
-import by.vorobyov.training.controller.nameresource.URLCommand;
+import by.vorobyov.training.nameresource.URLCommand;
 import by.vorobyov.training.controller.command.impl.page.admin.AdminCourseModifyPage;
 import by.vorobyov.training.dto.entity.Course;
 import by.vorobyov.training.exception.ServiceException;
-import by.vorobyov.training.controller.nameresource.AttributeName;
+import by.vorobyov.training.nameresource.AttributeName;
 import by.vorobyov.training.service.impl.AdminService;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class CourseCreation implements ICommand {
+    private static final Logger LOGGER = LogManager.getLogger();
+
     public static final String COURSE_TITLE = "title";
     public static final String COURSE_AVAILABILITY = "availability";
     public static final String COURSE_TYPE = "type";
@@ -46,7 +51,7 @@ public class CourseCreation implements ICommand {
                 request.getRequestDispatcher(URLCommand.ADMIN_COURSE_MODIFY_PAGE).forward(request, response);
             }
         } catch (ServiceException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.ERROR, e);
         }
     }
 }

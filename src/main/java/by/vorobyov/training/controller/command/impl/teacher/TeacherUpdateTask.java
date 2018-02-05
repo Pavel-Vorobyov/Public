@@ -1,11 +1,14 @@
 package by.vorobyov.training.controller.command.impl.teacher;
 
 import by.vorobyov.training.controller.command.ICommand;
-import by.vorobyov.training.controller.nameresource.URLCommand;
+import by.vorobyov.training.nameresource.URLCommand;
 import by.vorobyov.training.dto.entity.Task;
 import by.vorobyov.training.exception.ServiceException;
-import by.vorobyov.training.controller.nameresource.JspPageName;
+import by.vorobyov.training.nameresource.JspPageName;
 import by.vorobyov.training.service.impl.TeacherService;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class TeacherUpdateTask implements ICommand {
+    private static final Logger LOGGER = LogManager.getLogger();
+
     public static final String TASK_ID = "task-id";
 
     @Override
@@ -33,7 +38,7 @@ public class TeacherUpdateTask implements ICommand {
                 request.getRequestDispatcher(URLCommand.TEACHER_GROUP_TASK_PAGE).forward(request, response);
             }
         } catch (ServiceException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.ERROR, e);
         }
 
         request.getRequestDispatcher(JspPageName.TEACHING_GROUP_PAGE).forward(request, response);

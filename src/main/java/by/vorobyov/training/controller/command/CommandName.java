@@ -1,4 +1,4 @@
-package by.vorobyov.training.controller.nameresource;
+package by.vorobyov.training.controller.command;
 
 public class CommandName {
 
@@ -8,6 +8,7 @@ public class CommandName {
     public static final String ADD_USER = "add_user";
     public static final String HOME_PAGE = "home_page";
     public static final String TRAINING_PORTAL = "training_portal_page";
+    public static final String CHANGE_LOCAL = "change_local";
 
     public static final String USER_HOME_PAGE = "user_home_page";
     public static final String TRAINING_PAGE = "training_page";
@@ -25,6 +26,7 @@ public class CommandName {
     public static final String STUDENT_SUBMIT_TASK = "student_submit_task";
     public static final String STUDENT_TASK_LIST_PAGE = "student_task_list_page";
     public static final String STUDENT_GROUP_LIST_PAGE = "student_group_page";
+    public static final String STUDENT_APPLY_FOR_COURSE = "student_apply_for_course";
 
     //admin
     public static final String CREATE_COURSE = "create_course";

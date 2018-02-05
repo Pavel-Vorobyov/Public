@@ -43,6 +43,8 @@ public class CommandStorage {
         SING_OUT,
         ADD_USER,
         HOME_PAGE,
-        TRAINING_PORTAL_PAGE
+        TRAINING_PORTAL_PAGE,
+        CHANGE_LOCAL,
+        STUDENT_APPLY_FOR_COURSE
     }
 }

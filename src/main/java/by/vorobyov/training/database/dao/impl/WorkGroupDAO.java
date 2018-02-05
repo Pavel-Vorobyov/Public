@@ -3,6 +3,7 @@ package by.vorobyov.training.database.dao.impl;
 import by.vorobyov.training.creator.impl.entitycreator.UserCreator;
 import by.vorobyov.training.creator.impl.entitycreator.WorkGroupCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
+import by.vorobyov.training.database.dao.IDAO;
 import by.vorobyov.training.dto.entity.User;
 import by.vorobyov.training.dto.entity.WorkGroup;
 import by.vorobyov.training.exception.DAOException;
@@ -10,7 +11,7 @@ import by.vorobyov.training.exception.DAOException;
 import java.sql.*;
 import java.util.List;
 
-public class WorkGroupDAO extends AbstractDAO<WorkGroup> {
+public class WorkGroupDAO extends AbstractDAO<WorkGroup> implements IDAO<WorkGroup> {
     public static final String SELECT_USER_ID_BY_GROUP_ID = "SELECT user.id, user.login, user.password, user.email, user.mail_confirmed, user.status" +
             " FROM user_has_work_group, user" +
             " WHERE user.id = user_has_work_group.user_id AND user_has_work_group.work_group_id = ?";
@@ -18,12 +19,7 @@ public class WorkGroupDAO extends AbstractDAO<WorkGroup> {
     public static final String SELECT_WORK_GROUP_BY_USER_ID = "SELECT work_group.id, work_group.title, work_group.description, work_group.course_id, work_group.lead_id" +
             " , work_group.status, work_group.type, work_group.region" +
             " FROM work_group, user_has_work_group" +
-            " WHERE work_group.id = user_has_work_group.work_group_id AND user_has_work_group.user_id = ?";
-
-//    public static final String SELECT_WORK_GROUP_BY_LEAD_ID = "SELECT work_group.id, work_group.title, work_group.description, work_group.course_id, work_group.lead_id" +
-//            " , work_group.status, work_group.type, work_group.region" +
-//            " FROM work_group" +
-//            " WHERE work_group.lead_id = ?";
+            " WHERE work_group.id = user_has_work_group.work_group_id AND user_has_work_group.user_id = ?";;
 
     public static final String INSERT_WORK_GROUP = "INSERT INTO work_group (title, description, lead_id, course_id, " +
             " status, type, region) VALUES (?,?,?,?,?,?,?)";
@@ -34,8 +30,6 @@ public class WorkGroupDAO extends AbstractDAO<WorkGroup> {
             " WHERE work_group.id = ?";
 
     public final static String DELETE_WORK_GROUP_BY_ID = "DELETE FROM work_group WHERE id = ?";
-
-    public static final String SELECT_ALL_WORK_GROUPS = "SELECT * FROM work_group";
 
     public final static String SELECT_WORK_GROUP_BY_ID = "SELECT * FROM work_group WHERE id = ?";
 

@@ -1,13 +1,15 @@
 package by.vorobyov.training.controller.command.impl.common;
 
 import by.vorobyov.training.controller.command.ICommand;
-import by.vorobyov.training.database.dao.impl.UserDataDAO;
 import by.vorobyov.training.dto.entity.User;
 import by.vorobyov.training.dto.entity.UserData;
 import by.vorobyov.training.exception.ServiceException;
-import by.vorobyov.training.controller.nameresource.JspPageName;
+import by.vorobyov.training.nameresource.JspPageName;
 import by.vorobyov.training.service.CommonService;
-import by.vorobyov.training.controller.nameresource.AttributeName;
+import by.vorobyov.training.nameresource.AttributeName;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class SingIn implements ICommand{
+    private static final Logger LOGGER = LogManager.getLogger();
+
     public static final Integer MAIL_STATUS_CONFIRMED = 1;
     public static final String TRAINING_PAGE = "command?command=training_page";
     public final static String LOGIN = "login";
@@ -43,14 +47,14 @@ public class SingIn implements ICommand{
                         request.setAttribute(AttributeName.STATUS_MESSAGE, statusMessage);
                     }
 
-                    request.getRequestDispatcher(TRAINING_PAGE).forward(request, response);
+                    response.sendRedirect(TRAINING_PAGE);
                 } else {
                     String statusMessage = "Invalid login or password!";
                     request.setAttribute(AttributeName.STATUS_MESSAGE, statusMessage);
                     request.getRequestDispatcher(JspPageName.HOME_PAGE).forward(request, response);
                 }
             } catch (ServiceException e) {
-                System.out.println(e);
+                LOGGER.log(Level.ERROR, e);
             }
     }
 }

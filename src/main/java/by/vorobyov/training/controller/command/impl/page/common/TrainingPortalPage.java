@@ -3,9 +3,12 @@ package by.vorobyov.training.controller.command.impl.page.common;
 import by.vorobyov.training.controller.command.ICommand;
 import by.vorobyov.training.dto.entity.Course;
 import by.vorobyov.training.exception.ServiceException;
-import by.vorobyov.training.controller.nameresource.AttributeName;
-import by.vorobyov.training.controller.nameresource.JspPageName;
+import by.vorobyov.training.nameresource.AttributeName;
+import by.vorobyov.training.nameresource.JspPageName;
 import by.vorobyov.training.service.CommonService;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +17,8 @@ import java.io.IOException;
 import java.util.List;
 
 public class TrainingPortalPage implements ICommand {
+    private static final Logger LOGGER = LogManager.getLogger();
+
     public static final Integer COURSE_PLANING = 0;
     public static final String ALL_VALUE = "All";
     public static final String COURSE_REGION = "courseRegion";
@@ -55,7 +60,7 @@ public class TrainingPortalPage implements ICommand {
             }
 
         } catch (ServiceException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.ERROR, e);
         }
     }
 

@@ -1,4 +1,4 @@
-package by.vorobyov.training.controller.nameresource;
+package by.vorobyov.training.nameresource;
 
 public class URLCommand {
     private URLCommand() {

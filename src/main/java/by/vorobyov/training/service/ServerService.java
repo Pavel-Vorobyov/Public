@@ -1,15 +1,10 @@
 package by.vorobyov.training.service;
 
-import by.vorobyov.training.controller.nameresource.AttributeName;
-import by.vorobyov.training.controller.nameresource.JspPageName;
 import by.vorobyov.training.database.dao.impl.UserDAO;
 import by.vorobyov.training.dto.entity.User;
 import by.vorobyov.training.exception.DAOException;
 
 import javax.mail.MessagingException;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 

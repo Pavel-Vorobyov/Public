@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<script type="text/javascript" src="../../js/utill/header.js"></script>
 
 <fmt:requestEncoding value="UTF-8"/>
 <fmt:setLocale value="${sessionScope.local}"/>
@@ -15,22 +16,31 @@
 
 <div class="td-header-nav-wrap" align="center">
     <div class="td-header-nav">
-        <input type="checkbox" name="Menu" id="btn-nav" />
-        <label for="btn-nav">Menu</label>
-        <ul align="right">
+        <ul class="menu" align="right">
+
+            <li><a href="command?command=home_page"><fmt:message key="button.home"/></a></li>
+            <li><a href="command?command=training_portal_page"><fmt:message key="button.training-portal"/></a></li>
+            <li id="header-nav-left"><a href=#>Language</a>
+                <ul class="submenu">
+                    <li><a href=# onclick="enLocal()">English</a></li>
+                    <li><a href=# onclick="ruLocal()">Russian</a></li>
+                </ul>
+            </li>
             <c:choose>
                 <c:when test="${sessionScope.user != null}">
-                    <li><a href="command?command=home_page"><fmt:message key="button.home"/></a></li>
-                    <li><a href="command?command=training_portal_page"><fmt:message key="button.training-portal"/></a></li>
                     <li><a href="command?command=training_page" ><fmt:message key="button.training"/></a></li>
-                    <li id="header-nav-left"><a href="/command?command=sing_out"><fmt:message key="button.logout"/></a></li>
-                    <li id="header-nav-left"><fmt:message key="title.welcome"/> ${sessionScope.userData.name} ${sessionScope.userData.surname}</li>
+                    <li id="header-nav-left"><a href=#>${sessionScope.userData.name} ${sessionScope.userData.surname}</a>
+                        <ul class="submenu">
+                            <li><a href="command?command=user_home_page">Profile</a></li>
+                            <li><a href="/command?command=sing_out"><fmt:message key="button.logout"/></a></li>
+                        </ul>
+                    </li>
+                    <li id="header-nav-left"><fmt:message key="title.welcome"/></li>
+
                 </c:when>
                 <c:otherwise>
-                    <li><a href="command?command=home_page"><fmt:message key="button.home"/></a></li>
-                    <li><a href="command?command=training_portal_page"><fmt:message key="button.training-portal"/></a></li>
-                    <li id="header-nav-left"><a onclick="showUpdateBlock(singIn)"><fmt:message key="button.login"/></a></li>
-                    <li id="header-nav-left"><a onclick="showUpdateBlock(singOn)"><fmt:message key="button.register"/></a></li>
+                    <li id="header-nav-left"><a href=# onclick="showUpdateBlock(singIn)"><fmt:message key="button.login"/></a></li>
+                    <li id="header-nav-left"><a href=# onclick="showUpdateBlock(singOn)"><fmt:message key="button.register"/></a></li>
                 </c:otherwise>
             </c:choose>
         </ul>

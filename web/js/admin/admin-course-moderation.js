@@ -1,5 +1,5 @@
 function deleteCourse(courseId) {
-    var link = "command?command=delete-course";
+    var link = "command?command=delete_course";
     var courseRegion = courseFilter.courseRegion.value;
     var courseType = courseFilter.courseType.value;
     var courseAvailability = courseFilter.courseAvailability.value;
@@ -10,7 +10,7 @@ function deleteCourse(courseId) {
 }
 
 function handleSubmit(){
-    var courseModerationPageURL = "command?command=admin-course-moderation-page";
+    var courseModerationPageURL = "command?command=admin_course_moderation_page";
     var courseRegion = courseFilter.courseRegion.value;
     var courseType = courseFilter.courseType.value;
     var courseAvailability = courseFilter.courseAvailability.value;

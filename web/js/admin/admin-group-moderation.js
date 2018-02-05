@@ -1,5 +1,5 @@
 function handleSubmit(){
-    var groupModerationPageURL = "command?command=admin-group-moderation-page";
+    var groupModerationPageURL = "command?command=admin_group_moderation_page";
     var groupRegion = groupFilter.groupRegion.value;
     var groupType = groupFilter.groupType.value;
     var groupStatus = groupFilter.groupStatus.value;

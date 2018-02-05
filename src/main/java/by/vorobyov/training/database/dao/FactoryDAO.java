@@ -38,4 +38,5 @@ public class FactoryDAO {
     public WorkGroupDAO getWorkGroupDAO() {
         return workGroupDAO;
     }
+
 }

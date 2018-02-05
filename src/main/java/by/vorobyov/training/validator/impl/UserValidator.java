@@ -12,17 +12,17 @@ public class UserValidator implements IValidator<User> {
 
     @Override
     public boolean checkEntity(User entity) {
-        Pattern pattern = Pattern.compile(USER_LOG_PASS_MATCHER);
-
         String login = entity.getLogin();
-        Matcher matcher = pattern.matcher(login);
 
-        if (matcher.matches()) {
+        Pattern pattern = Pattern.compile(USER_LOG_PASS_MATCHER);
+        Matcher loginMatcher = pattern.matcher(login);
+
+        if (loginMatcher.matches()) {
 
             String password = entity.getPassword();
-            matcher = pattern.matcher(password);
+            loginMatcher = pattern.matcher(password);
 
-            return matcher.matches() ? checkEmail(entity.getEmail()) : false;
+            return loginMatcher.matches() ? checkEmail(entity.getEmail()) : false;
         } else {
             return false;
         }
@@ -31,8 +31,8 @@ public class UserValidator implements IValidator<User> {
 
     public boolean checkEmail(String email) {
         Pattern pattern = Pattern.compile(USER_EMAIL_MATCHER);
-        Matcher matcher = pattern.matcher(email);
+        Matcher mailMatcher = pattern.matcher(email);
 
-        return matcher.matches();
+        return mailMatcher.matches();
     }
 }

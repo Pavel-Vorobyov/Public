@@ -1,14 +1,17 @@
 package by.vorobyov.training.controller.command.impl.common;
 
 import by.vorobyov.training.controller.command.ICommand;
-import by.vorobyov.training.controller.nameresource.JspPageName;
-import by.vorobyov.training.controller.nameresource.URLCommand;
+import by.vorobyov.training.nameresource.JspPageName;
+import by.vorobyov.training.nameresource.URLCommand;
 import by.vorobyov.training.dto.entity.User;
 import by.vorobyov.training.exception.DAOException;
 import by.vorobyov.training.exception.ServiceException;
-import by.vorobyov.training.controller.nameresource.AttributeName;
+import by.vorobyov.training.nameresource.AttributeName;
 import by.vorobyov.training.service.CommonService;
 import by.vorobyov.training.service.ServerService;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class SingUp implements ICommand {
+    private static final Logger LOGGER = LogManager.getLogger();
+
     public static final String USER_LOGIN = "login";
     public static final String USER_PASSWORD = "password";
     public static final String USER_EMAIL = "email";
@@ -51,7 +56,7 @@ public class SingUp implements ICommand {
             }
 
         } catch (ServiceException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.ERROR, e);
         }
     }
 }

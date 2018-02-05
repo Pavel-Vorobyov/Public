@@ -1,11 +1,14 @@
 package by.vorobyov.training.controller.command.impl.teacher;
 
 import by.vorobyov.training.controller.command.ICommand;
-import by.vorobyov.training.controller.nameresource.URLCommand;
+import by.vorobyov.training.nameresource.URLCommand;
 import by.vorobyov.training.database.dao.columnname.UserTaskColumnName;
 import by.vorobyov.training.dto.entity.UserTask;
 import by.vorobyov.training.exception.ServiceException;
 import by.vorobyov.training.service.impl.TeacherService;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class TeacherUserTaskUpdate implements ICommand {
+    private static final Logger LOGGER = LogManager.getLogger();
+
     public static final String USER_TASK_ID = "userTaskId";
     public static final String TASK_COMMENT = "taskComment";
     public static final String USER_TASK_STATUS = "taskStatus";
@@ -47,7 +52,7 @@ public class TeacherUserTaskUpdate implements ICommand {
                 }
 
         } catch (ServiceException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.ERROR, e);
         }
 
 

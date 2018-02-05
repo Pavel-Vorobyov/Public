@@ -2,6 +2,7 @@ package by.vorobyov.training.database.dao.impl;
 
 import by.vorobyov.training.creator.impl.entitycreator.UserTaskCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
+import by.vorobyov.training.database.dao.IDAO;
 import by.vorobyov.training.exception.DAOException;
 import by.vorobyov.training.dto.entity.UserTask;
 
@@ -11,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class UserTaskDAO extends AbstractDAO<UserTask> {
+public class UserTaskDAO extends AbstractDAO<UserTask> implements IDAO<UserTask> {
     public final static String SELECT_USER_TASK_BY_ID = "SELECT user_task.id, user_task.user_id, user_task.work_group_id, user_task.status, user_task.estimate" +
             " , user_task.deadline, user_task.task_id, user_task.creationtime, user_task.comment, task.title" +
             " FROM user_task, task" +

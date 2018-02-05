@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="/WEB-INF/tag/Admin.tld" prefix="usLine"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +15,12 @@
   <script type="text/javascript" src="../../js/default.js"></script>
   <script type="text/javascript" src="../../js/admin/admin-user-moderation.js"></script>
 
+  <fmt:requestEncoding value="UTF-8"/>
+  <fmt:setLocale value="${sessionScope.local}"/>
+  <fmt:setBundle basename="local"/>
+
+  <fmt:message key="button.update" var="btUpd"/>
+
 </head>
 <body>
   <div align="center">
@@ -25,12 +32,11 @@
       <div class="td-main-content-conteiner">
         <div class="td-filters-wrapper">
         <div class="filters">
-            <h1>${sessionScope.userData.name} ${sessionScope.userData.surname} admin page:</h1>
+            <h1>${sessionScope.userData.name} ${sessionScope.userData.surname} <fmt:message key="title.admin-page"/>:</h1>
             <div class="horizontal-group">
-              <a class="uui-button" href="command?command=admin_course_moderation_page">Course moderation</a>
-              <a class="uui-button" href="command?command=admin_group_moderation_page">Group moderation</a>
-              <a class="uui-button" href="#">User moderation</a>
-              <a class="uui-button" href="command?command=user_home_page">User data</a>
+              <a class="uui-button" href="command?command=admin_course_moderation_page"><fmt:message key="button.course-moderation"/></a>
+              <a class="uui-button" href="command?command=admin_group_moderation_page"><fmt:message key="button.group-moderation"/></a>
+              <a class="uui-button" href="#"><fmt:message key="button.user-moderation"/></a>
             </div>
           </div>
         </div>
@@ -38,26 +44,26 @@
           </div>
 
           <div class="group-name-wrapper">
-            <h1> Group list </h1>
+            <h1><fmt:message key="title.user-list"/></h1>
             <div class="form-filter">
               <form name="userFilter" action="#">
                 <div class="select-group">
                     <select name="filterUserStatus" onchange="handleSubmit()">
                       <c:choose>
                         <c:when test="${requestScope.filterUserStatus eq 1}">
-                          <option value="0">Student</option>
-                          <option selected value="1">Teacher</option>
-                          <option value="2">Admin</option>
+                          <option value="0"><fmt:message key="option.student"/></option>
+                          <option selected value="1"><fmt:message key="option.teacher"/></option>
+                          <option value="2"><fmt:message key="option.admin"/></option>
                         </c:when>
                         <c:when test="${requestScope.filterUserStatus eq 2}">
-                          <option value="0">Student</option>
-                          <option value="1">Teacher</option>
-                          <option selected value="2">Admin</option>
+                          <option value="0"><fmt:message key="option.student"/></option>
+                          <option value="1"><fmt:message key="option.teacher"/></option>
+                          <option selected value="2"><fmt:message key="option.admin"/></option>
                         </c:when>
                         <c:otherwise>
-                          <option selected value="0">Student</option>
-                          <option value="1">Teacher</option>
-                          <option value="2">Admin</option>
+                          <option selected value="0"><fmt:message key="option.student"/></option>
+                          <option value="1"><fmt:message key="option.teacher"/></option>
+                          <option value="2"><fmt:message key="option.admin"/></option>
                         </c:otherwise>
                       </c:choose>
                     </select>
@@ -70,11 +76,11 @@
 
                   <ul class="uui-item-list">
                     <li class="item-body-header">
-                      <h2 class="user-name">Name:</h2>
-                      <h2 class="user-surname">Surname:</h2>
-                      <h2 class="user-creation-time">Creation time:</h2>
-                      <h2 class="user-email">Email:</h2>
-                      <h2 class="user-status">Status:</h2>
+                      <h2 class="user-name"><fmt:message key="title.name"/>:</h2>
+                      <h2 class="user-surname"><fmt:message key="title.surname"/>:</h2>
+                      <h2 class="user-creation-time"><fmt:message key="title.creation-time"/>:</h2>
+                      <h2 class="user-email"><fmt:message key="title.email"/>:</h2>
+                      <h2 class="user-status"><fmt:message key="title.status"/>:</h2>
                     </li>
 
 
@@ -87,33 +93,33 @@
                         <div class="container">
                           <div class="modify">
                             <a onclick="showUpdateBlock(userUpdateBlock${userForAdmin.userId})" title="Close" class="close">X</a>
-                            <h1>User updating...</h1>
+                            <h1><fmt:message key="title.user-updating"/>...</h1>
                             <form name="userUpdate" method="post" action="command">
                               <input type="hidden" name="command" value="update_user">
                               <input type="hidden" name="filterUserStatus" value="${requestScope.filterUserStatus}">
                               <input type="hidden" name="userId" value="${userForAdmin.userId}">
                               <p align="l1eft">
-                                Enter name:
+                                <fmt:message key="title.enter-name"/>:
                                 <input style="float:right" id="name" name="name" type="text" value="${userForAdmin.name}">
                               </p>
                               <p align="left">
-                                Enter surname:
+                                <fmt:message key="title.enter-surname"/>:
                                 <input style="float:right" id="surname" name="surname" type="text" value="${userForAdmin.surname}">
                               </p>
                               <p align="left">
-                                Enter email:
+                                <fmt:message key="title.email"/>:
                                 <input style="float:right" id="email" name="email" type="text" value="${userForAdmin.email}">
                               </p>
                               <p align="left">
-                                Enter status:
+                                <fmt:message key="title.status"/>:
                                 <select style="float:right" name="userStatus">
-                                  <option selected value="0">Student</option>
-                                  <option value="1">Teacher</option>
-                                  <option value="2">Admin</option>
+                                  <option selected value="0"><fmt:message key="option.student"/></option>
+                                  <option value="1"><fmt:message key="option.teacher"/></option>
+                                  <option value="2"><fmt:message key="option.admin"/></option>
                                 </select>
                               </p>
                               <p class="submit">
-                                <input type="submit" name="commit" value="Update">
+                                <input type="submit" name="commit" value="${btUpd}">
                               </p>
                             </form>
                           </div>

@@ -3,9 +3,12 @@ package by.vorobyov.training.controller.command.impl.page.teacher;
 import by.vorobyov.training.controller.command.ICommand;
 import by.vorobyov.training.dto.TeacherUserTask;
 import by.vorobyov.training.exception.DAOException;
-import by.vorobyov.training.controller.nameresource.AttributeName;
-import by.vorobyov.training.controller.nameresource.JspPageName;
+import by.vorobyov.training.nameresource.AttributeName;
+import by.vorobyov.training.nameresource.JspPageName;
 import by.vorobyov.training.service.impl.TeacherService;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +17,8 @@ import java.io.IOException;
 import java.util.List;
 
 public class TeacherUserTaskPage implements ICommand {
+    private static final Logger LOGGER = LogManager.getLogger();
+
     public static final String TASK_ID = "taskId";
     public static final String GROUP_ID = "groupId";
     public static final String GROUP_TITLE = "groupTitle";
@@ -42,9 +47,7 @@ public class TeacherUserTaskPage implements ICommand {
                 request.getRequestDispatcher(JspPageName.TEACHER_USER_TASK_LIST_PAGE).forward(request, response);
             }
         } catch (DAOException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.ERROR, e);
         }
-
-
     }
 }

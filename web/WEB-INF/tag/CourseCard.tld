@@ -21,7 +21,7 @@
         </attribute>
 
         <attribute>
-            <name>href</name>
+            <name>onClick</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>

@@ -2,6 +2,7 @@ package by.vorobyov.training.database.dao.impl;
 
 import by.vorobyov.training.creator.impl.entitycreator.UserCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
+import by.vorobyov.training.database.dao.IDAO;
 import by.vorobyov.training.exception.DAOException;
 import by.vorobyov.training.dto.entity.User;
 
@@ -12,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class UserDAO extends AbstractDAO<User> {
+public class UserDAO extends AbstractDAO<User> implements IDAO<User> {
     public static final Integer START_STATUS_VALUE = 0;
     public static final Integer END_STATUS_VALUE = 1;
     public static final Integer STATUS_STUDENT = 0;

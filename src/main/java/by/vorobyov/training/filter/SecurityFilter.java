@@ -1,7 +1,8 @@
 package by.vorobyov.training.filter;
 
-import by.vorobyov.training.controller.nameresource.AttributeName;
-import by.vorobyov.training.controller.nameresource.JspPageName;
+import by.vorobyov.training.controller.command.CommandName;
+import by.vorobyov.training.nameresource.AttributeName;
+import by.vorobyov.training.nameresource.JspPageName;
 import by.vorobyov.training.dto.entity.User;
 import by.vorobyov.training.security.Security;
 

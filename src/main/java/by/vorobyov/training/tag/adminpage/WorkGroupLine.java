@@ -9,7 +9,12 @@ public class WorkGroupLine extends TagSupport {
     private String groupTitle;
     private String groupType;
     private String groupRegion;
+    private String buttonModify;
     private Integer groupStatus;
+
+    public void setButtonModify(String buttonModify) {
+        this.buttonModify = buttonModify;
+    }
 
     public void setGroupId(Integer groupId) {
         this.groupId = groupId;
@@ -54,7 +59,7 @@ public class WorkGroupLine extends TagSupport {
 
             pageContext.getOut().write("</a>");
             pageContext.getOut().write(" <a onclick=\"showUpdateBlock(groupUpdateBlock" + groupId + ")\" style=\"text-align: center;\">");
-            pageContext.getOut().write("     <span class=\"tk-group-modify\">Modify</span>");
+            pageContext.getOut().write("     <span class=\"tk-group-modify\">" + buttonModify + "</span>");
         } catch (IOException e) {
             e.printStackTrace();
         }

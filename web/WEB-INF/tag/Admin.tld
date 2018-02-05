@@ -57,6 +57,12 @@
         <body-content>empty</body-content>
 
         <attribute>
+            <name>buttonModify</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
             <name>groupId</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>

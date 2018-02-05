@@ -3,10 +3,7 @@ package by.vorobyov.training.service.impl;
 import by.vorobyov.training.database.dao.impl.*;
 import by.vorobyov.training.dto.StudentGroup;
 import by.vorobyov.training.dto.StudentUserTask;
-import by.vorobyov.training.dto.entity.User;
-import by.vorobyov.training.dto.entity.UserData;
-import by.vorobyov.training.dto.entity.UserTask;
-import by.vorobyov.training.dto.entity.WorkGroup;
+import by.vorobyov.training.dto.entity.*;
 import by.vorobyov.training.exception.DAOException;
 import by.vorobyov.training.exception.ServiceException;
 import by.vorobyov.training.service.CommonService;
@@ -76,29 +73,20 @@ public class StudentService extends CommonService {
         }
     }
 
-    public boolean userDataUpdate(User user, UserData userData) throws ServiceException {
-        UserDataDAO userDataDAO = new UserDataDAO();
-        UserDAO userDAO = new UserDAO();
+    public boolean applyForCourse(User student, Integer courseId) throws ServiceException {
+        UserHasCourseDAO userHasCourseDAO = new UserHasCourseDAO();
 
         try {
-            User modifyingUser = userDAO.getEntityById(user.getUserId());
-            UserData modifyingUserData = userDataDAO.getUserDataByUserId(user.getUserId());
+            UserHasCourse checkingUserHasCourse = userHasCourseDAO.getUerHasCourseById(student.getUserId(), courseId);
 
-            modifyingUserData.setName(userData.getName());
-            modifyingUserData.setSurname(userData.getSurname());
+            if (!checkingUserHasCourse.isEmpty()) {
+                checkingUserHasCourse.setUserId(student.getUserId());
+                checkingUserHasCourse.setCourseId(courseId);
 
-            modifyingUser.setLogin(user.getLogin());
-            modifyingUser.setPassword(user.getPassword());
-            modifyingUser.setEmail(user.getEmail());
-
-            modifyingUserData.setName(userData.getName());
-            modifyingUserData.setSurname(userData.getSurname());
-
-            boolean userUpdateSuccess = userDAO.update(modifyingUser);
-            boolean userDataUpdateSuccess = userDataDAO.update(modifyingUserData);
-
-            return userUpdateSuccess && userDataUpdateSuccess ? true : false;
-
+                return userHasCourseDAO.create(checkingUserHasCourse);
+            } else {
+                return false;
+            }
         } catch (DAOException | SQLException e) {
             throw new ServiceException(e);
         }
