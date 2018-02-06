@@ -9,6 +9,8 @@ import by.vorobyov.training.exception.ServiceException;
 import by.vorobyov.training.resource.AttributeName;
 import by.vorobyov.training.service.impl.CommonServiceImpl;
 import by.vorobyov.training.service.impl.ServerServiceImpl;
+import by.vorobyov.training.service.validator.IValidator;
+import by.vorobyov.training.service.validator.impl.UserValidator;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -50,6 +52,7 @@ public class SingUp implements ICommand {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CommonServiceImpl commonServiceImpl = new CommonServiceImpl();
         ServerServiceImpl serverServiceImpl = new ServerServiceImpl();
+        IValidator<User> userValidator = new UserValidator();
 
         try {
             User currentUser = new User();
@@ -57,20 +60,30 @@ public class SingUp implements ICommand {
             currentUser.setLogin(request.getParameter(USER_LOGIN));
             currentUser.setPassword(request.getParameter(USER_PASSWORD));
 
+            boolean userCheck = userValidator.checkEntity(currentUser);
 
-            currentUser = commonServiceImpl.addUser(currentUser);
+            if (userCheck) {
+                currentUser = commonServiceImpl.addUser(currentUser);
 
-            if (!currentUser.isEmpty()) {
+                if (!currentUser.isEmpty()) {
 
-                serverServiceImpl.sendVerifyingLetter(currentUser.getEmail(), currentUser);
+                    serverServiceImpl.sendVerifyingLetter(currentUser.getEmail(), currentUser);
 
-                request.getSession(true).setAttribute(AttributeName.USER, currentUser);
-                request.getRequestDispatcher(URLCommand.TRAINING_PAGE).forward(request, response);
+                    request.getSession(true).setAttribute(AttributeName.USER, currentUser);
+                    request.getRequestDispatcher(URLCommand.TRAINING_PAGE).forward(request, response);
+
+                } else {
+                    String statusMessage = "Sorry, this member is already registered!";
+                    request.setAttribute(AttributeName.STATUS_MESSAGE, statusMessage);
+                    request.getRequestDispatcher(JspPageName.HOME_PAGE).forward(request, response);
+                }
+
             } else {
-                String statusMessage = "Sorry, this member is already registered!";
+                String statusMessage = "Please enter correct parameters!";
                 request.setAttribute(AttributeName.STATUS_MESSAGE, statusMessage);
                 request.getRequestDispatcher(JspPageName.HOME_PAGE).forward(request, response);
             }
+
 
         } catch (ServiceException e) {
             LOGGER.log(Level.ERROR, e);

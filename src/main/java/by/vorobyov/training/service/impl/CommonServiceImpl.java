@@ -158,46 +158,6 @@ public class CommonServiceImpl implements CommonService {
         }
     }
 
-    public Course takeCourseByCourseId(Integer courseId) throws ServiceException {
-        CourseDAO courseDAO = DAOFactory.getINSTANCE().getCourseDAO();
-
-        try {
-            return courseDAO.getEntityById(courseId);
-        } catch (DAOException | SQLException e) {
-            throw new ServiceException(e);
-        }
-    }
-
-    public List<WorkGroup> takeWorkGroupListByLeadId(Integer userId) throws ServiceException {
-        WorkGroupDAO workGroupDAO = DAOFactory.getINSTANCE().getWorkGroupDAO();
-
-        try {
-            return workGroupDAO.getWorkGroupListByLeadId(userId);
-        } catch (SQLException |DAOException e) {
-            throw new ServiceException(e);
-        }
-    }
-
-    public WorkGroup takeWorkGroupById(Integer workGroupId) throws ServiceException {
-        WorkGroupDAO workGroupDAO = DAOFactory.getINSTANCE().getWorkGroupDAO();
-
-        try {
-            return workGroupDAO.getEntityById(workGroupId);
-        } catch (DAOException | SQLException e) {
-            throw new ServiceException(e);
-        }
-    }
-
-    public List<Task> takeGroupTaskListByGroupId(Integer groupId) throws ServiceException {
-        TaskDAO taskDAO = DAOFactory.getINSTANCE().getTaskDAO();
-
-        try {
-            return taskDAO.getGroupTaskByGroupId(groupId);
-        } catch (SQLException | DAOException e) {
-            throw new ServiceException(e);
-        }
-    }
-
     public boolean sendMail(String toMailAddress,String fromMailAddress, String subject, String text) throws IOException, MessagingException {
         Properties properties = new Properties();
         properties.load(CommonServiceImpl.class.getClassLoader().getResourceAsStream(SERVER_MAIL_PROPERTIES));

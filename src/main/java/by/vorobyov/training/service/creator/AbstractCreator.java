@@ -29,6 +29,7 @@ public abstract class AbstractCreator<E> implements ICreator<E> {
                 return Collections.emptyList();
             }
             return entityList;
+
         } catch (SQLException e) {
             throw new DAOException(e);
         }

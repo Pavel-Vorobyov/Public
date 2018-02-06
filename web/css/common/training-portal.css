@@ -414,7 +414,6 @@ input {
 
 input[type=text] {
     position: relative;
-    top: -9px;
     margin: 5px;
     padding: 0 10px;
     height: 25px;

@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
  * @see by.vorobyov.training.controller.Controller
  */
 public class WrongRequestFilter extends AbstractFilter implements Filter {
-    private final static String viewRegExp = "^/(js|css|img).+$";
+    private final static String viewRegExp = "^/(js|css|img|).+$";
     private final static String servletRegExp = "^/command.*$";
 
     @Override

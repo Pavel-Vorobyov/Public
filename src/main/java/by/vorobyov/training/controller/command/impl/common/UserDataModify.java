@@ -7,6 +7,9 @@ import by.vorobyov.training.dto.entity.UserData;
 import by.vorobyov.training.exception.ServiceException;
 import by.vorobyov.training.resource.AttributeName;
 import by.vorobyov.training.service.impl.CommonServiceImpl;
+import by.vorobyov.training.service.validator.IValidator;
+import by.vorobyov.training.service.validator.impl.UserDataValidator;
+import by.vorobyov.training.service.validator.impl.UserValidator;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -49,6 +52,8 @@ public class UserDataModify implements ICommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CommonServiceImpl commonServiceImpl = new CommonServiceImpl();
+        IValidator<User> userValidator = new UserValidator();
+        IValidator<UserData> userDataValidator = new UserDataValidator();
 
         User modifyingUser = (User) request.getSession().getAttribute(AttributeName.USER);
         UserData modifyingUserData = new UserData();
@@ -62,17 +67,26 @@ public class UserDataModify implements ICommand {
             modifyingUser.setPassword(request.getParameter(USER_PASSWORD));
             modifyingUser.setEmail(request.getParameter(USER_EMAIL));
 
-            boolean userDataUpdateSuccess = commonServiceImpl.userDataUpdate(modifyingUser, modifyingUserData);
-            UserData currentUserData = commonServiceImpl.getUserDataById(modifyingUser.getUserId());
+            boolean userIsValid = userValidator.checkEntity(modifyingUser);
+            boolean dataIsValidUser = userDataValidator.checkEntity(modifyingUserData);
 
-            if (userDataUpdateSuccess) {
+            if (userIsValid && dataIsValidUser) {
+                boolean userDataUpdateSuccess = commonServiceImpl.userDataUpdate(modifyingUser, modifyingUserData);
+                UserData currentUserData = commonServiceImpl.getUserDataById(modifyingUser.getUserId());
 
-                request.getSession().removeAttribute(AttributeName.USER);
-                request.getSession().removeAttribute(AttributeName.USER_DATA);
-                request.getSession().setAttribute(AttributeName.USER, modifyingUser);
-                request.getSession().setAttribute(AttributeName.USER_DATA, currentUserData);
+                if (userDataUpdateSuccess) {
 
-                response.sendRedirect(URLCommand.USER_HOME_PAGE);
+                    request.getSession().removeAttribute(AttributeName.USER);
+                    request.getSession().removeAttribute(AttributeName.USER_DATA);
+                    request.getSession().setAttribute(AttributeName.USER, modifyingUser);
+                    request.getSession().setAttribute(AttributeName.USER_DATA, currentUserData);
+
+                    response.sendRedirect(URLCommand.USER_HOME_PAGE);
+                }
+            } else {
+                String statusMessage = "Please enter correct parameters!";
+                request.setAttribute(AttributeName.STATUS_MESSAGE, statusMessage);
+                request.getRequestDispatcher(URLCommand.USER_HOME_PAGE).forward(request, response);
             }
 
         } catch (ServiceException e) {

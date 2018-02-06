@@ -17,7 +17,10 @@ public interface AdminService {
 
     /**
      * Method takes some filter parameters then selects list of course by
-     * {@link by.vorobyov.training.database.dao.impl.CourseDAO CourseDAO}.
+     * {@link by.vorobyov.training.database.dao.impl.CourseDAO CourseDAO}.<br>
+     * If an error occurred during the command execution,
+     * then the control is passed to the catch block of <tt>ServiceException</tt>
+     * and forwarding to the server error page.
      *
      * @param courseStatus status of the course
      * @param courseType type if the course
@@ -29,7 +32,10 @@ public interface AdminService {
 
     /**
      * Takes entity that contains course parameters then
-     * creates a new course by CourseDAO.
+     * creates a new course by CourseDAO.<br>
+     * If an error occurred during the command execution,
+     * then the control is passed to the catch block of <tt>ServiceException</tt>
+     * and forwarding to the server error page.
      *
      * @param course entity that contains {@link by.vorobyov.training.dto.entity.Course course} parameters.
      * @return true if course has been created successful.
@@ -39,7 +45,10 @@ public interface AdminService {
 
     /**
      * Takes entity that contains course parameters then
-     * updates a course by CourseDAO.
+     * updates a course by CourseDAO.<br>
+     * If an error occurred during the command execution,
+     * then the control is passed to the catch block of <tt>ServiceException</tt>
+     * and forwarding to the server error page.
      *
      * @param course entity that contains {@link by.vorobyov.training.dto.entity.Course course} parameters.
      * @return true if course has been updated successful.
@@ -49,7 +58,10 @@ public interface AdminService {
 
     /**
      * Takes entity that contains course parameters then
-     * deletes a course by CourseDAO.
+     * deletes a course by CourseDAO.<br>
+     * If an error occurred during the command execution,
+     * then the control is passed to the catch block of <tt>ServiceException</tt>
+     * and forwarding to the server error page.
      *
      * @param courseId ID of the course
      * @return true if course has been deleted successful.
@@ -60,7 +72,10 @@ public interface AdminService {
     /**
      *Takes some filter parameters and then selects list of
      * {@link by.vorobyov.training.dto.entity.WorkGroup WorkGroup} by
-     * {@link by.vorobyov.training.database.dao.impl.WorkGroupDAO WorkGroupDAO}.
+     * {@link by.vorobyov.training.database.dao.impl.WorkGroupDAO WorkGroupDAO}.<br>
+     * If an error occurred during the command execution,
+     * then the control is passed to the catch block of <tt>ServiceException</tt>
+     * and forwarding to the server error page.
      *
      * @param groupStatus status of the group.
      * @param groupType a programming language that group is teaching for (Java, PHP, ...).
@@ -72,7 +87,10 @@ public interface AdminService {
 
     /**
      * Takes entity that contains work group parameters then
-     * creates a new work group by {@link by.vorobyov.training.database.dao.impl.WorkGroupDAO WorkGroupDAO}.
+     * creates a new work group by {@link by.vorobyov.training.database.dao.impl.WorkGroupDAO WorkGroupDAO}.<br>
+     * If an error occurred during the command execution,
+     * then the control is passed to the catch block of <tt>ServiceException</tt>
+     * and forwarding to the server error page.
      *
      * @param workGroup entity that contains work group parameters.
      * @return true if work group has been created successful.
@@ -82,7 +100,10 @@ public interface AdminService {
 
     /**
      * Takes entity that contains work group parameters then
-     * updates a work group by {@link by.vorobyov.training.database.dao.impl.WorkGroupDAO WorkGroupDAO}.
+     * updates a work group by {@link by.vorobyov.training.database.dao.impl.WorkGroupDAO WorkGroupDAO}.<br>
+     * If an error occurred during the command execution,
+     * then the control is passed to the catch block of <tt>ServiceException</tt>
+     * and forwarding to the server error page.
      *
      * @param workGroup
      * @return true if work group has been updated successful.
@@ -92,7 +113,10 @@ public interface AdminService {
 
     /**
      * Takes work group ID and then deletes a work group by
-     * {@link by.vorobyov.training.database.dao.impl.WorkGroupDAO WorkGroupDAO}.
+     * {@link by.vorobyov.training.database.dao.impl.WorkGroupDAO WorkGroupDAO}.<br>
+     * If an error occurred during the command execution,
+     * then the control is passed to the catch block of <tt>ServiceException</tt>
+     * and forwarding to the server error page.
      *
      * @param groupId ID of the work group.
      * @return true if work group has been deleted successful.
@@ -102,7 +126,10 @@ public interface AdminService {
 
     /**
      * Takes user status and then selects a list of {@link by.vorobyov.training.dto.UserForAdmin UserForAdmin} by
-     * {@link by.vorobyov.training.database.dao.impl.UserDataDAO UserDataDAO}.
+     * {@link by.vorobyov.training.database.dao.impl.UserDataDAO UserDataDAO}.<br>
+     * If an error occurred during the command execution,
+     * then the control is passed to the catch block of <tt>ServiceException</tt>
+     * and forwarding to the server error page.
      *
      * @param userStatus status of user.
      * @return a list of UserForAdmin.
@@ -113,7 +140,10 @@ public interface AdminService {
     /**
      * Takes user {@link by.vorobyov.training.dto.entity.User User} and
      * {@link by.vorobyov.training.dto.entity.UserData UserData} then updates them by
-     * {@link by.vorobyov.training.database.dao.impl.UserDataDAO UserDataDAO}.
+     * {@link by.vorobyov.training.database.dao.impl.UserDataDAO UserDataDAO}.<br>
+     * If an error occurred during the command execution,
+     * then the control is passed to the catch block of <tt>ServiceException</tt>
+     * and forwarding to the server error page.
      *
      * @param user entity with User parameters.
      * @param userData entity with UserData parameters.

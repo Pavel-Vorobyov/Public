@@ -9,9 +9,9 @@
   <title>Training portal</title>
   <link rel="stylesheet" type="text/css" href="../../css/util/reset.css">
   <link rel="stylesheet" type="text/css" href="../../css/default.css">
-  <link rel="stylesheet" type="text/css" href="../../css/util/header.css">
   <link rel="stylesheet" type="text/css" href="../../css/util/footer.css">
   <link rel="stylesheet" type="text/css" href="../../css/common/training-portal.css">
+  <link rel="stylesheet" type="text/css" href="../../css/util/header.css">
   <link rel="stylesheet" type="text/css" href="../../css/util/course-card.css">
   <script type="text/javascript" src="../../js/default.js"></script>
   <script type="text/javascript" src="../../js/common/training-portal.js"></script>

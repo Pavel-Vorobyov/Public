@@ -25,7 +25,7 @@
     <jsp:include page="jsp/util/nav.jsp"></jsp:include>
 
   <video autoplay loop muted preload class="td-bg-video" id="bgVideo">
-    <source src="background/background-banner-move.mov"></source>
+    <source src="background/background-banner-move.mov">
   </video>
   <img class="td-bg-img" alt="BgVidio" src="background/background_img_600px.png">
 

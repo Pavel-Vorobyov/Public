@@ -35,14 +35,6 @@ public class Task implements Serializable {
         return task;
     }
 
-    public String getTaskHerf() {
-        return taskHerf;
-    }
-
-    public void setTaskHerf(String taskHerf) {
-        this.taskHerf = taskHerf;
-    }
-
     public Integer getTaskId() {
         return taskId;
     }
