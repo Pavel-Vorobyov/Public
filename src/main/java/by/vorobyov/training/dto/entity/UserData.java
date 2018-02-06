@@ -1,5 +1,12 @@
 package by.vorobyov.training.dto.entity;
 
+/**
+ * Class describing the transfer object for information about the
+ * user data: name, surname, time when user has been created, description of the user.<br>
+ * Has the link on user_id in class User
+ *
+ * @see by.vorobyov.training.dto.entity.User User
+ */
 public class UserData {
     private Integer userId;
     private String name;

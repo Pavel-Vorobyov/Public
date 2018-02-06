@@ -1,5 +1,8 @@
 package by.vorobyov.training.database.dao.columnname;
 
+/**
+ * The class contains work group table column names from database.
+ */
 public class WorkGroupColumnName {
     private WorkGroupColumnName() {
     }

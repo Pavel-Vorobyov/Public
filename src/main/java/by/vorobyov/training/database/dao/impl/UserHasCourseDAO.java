@@ -2,7 +2,7 @@ package by.vorobyov.training.database.dao.impl;
 
 import by.vorobyov.training.service.creator.impl.entitycreator.UserHasCourseCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
-import by.vorobyov.training.database.dao.IDAO;
+import by.vorobyov.training.database.dao.InterfaceDAO;
 import by.vorobyov.training.dto.entity.UserHasCourse;
 import by.vorobyov.training.exception.DAOException;
 
@@ -11,7 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserHasCourseDAO extends AbstractDAO<UserHasCourse> implements IDAO<UserHasCourse> {
+public class UserHasCourseDAO extends AbstractDAO<UserHasCourse> implements InterfaceDAO<UserHasCourse> {
     public static final String CREATE_USER_HAS_COURSE = "insert into user_has_course (user_id, course_id)" +
             " values (?, ?)";
 

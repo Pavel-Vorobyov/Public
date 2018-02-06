@@ -2,14 +2,14 @@ package by.vorobyov.training.database.dao.impl;
 
 import by.vorobyov.training.service.creator.impl.entitycreator.CourseCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
-import by.vorobyov.training.database.dao.IDAO;
+import by.vorobyov.training.database.dao.InterfaceDAO;
 import by.vorobyov.training.exception.DAOException;
 import by.vorobyov.training.dto.entity.Course;
 
 import java.sql.*;
 import java.util.List;
 
-public class CourseDAO extends AbstractDAO<Course> implements IDAO<Course> {
+public class CourseDAO extends AbstractDAO<Course> implements InterfaceDAO<Course> {
     public static final String SELECT_COURSE_BY_STATUS = "SELECT * FROM course WHERE status = ?";
 
     public final static String INSERT_COURSE = "INSERT INTO course(title, region, description, type, status, lead_id) VALUES (?, ?, ?, ?, ?, ?)";
@@ -21,8 +21,6 @@ public class CourseDAO extends AbstractDAO<Course> implements IDAO<Course> {
 
     public final static String DELETE_COURSE = "DELETE FROM course" +
             " WHERE course.id = ?";
-
-    public final static String SELECT_ALL_COURSES = "SELECT * FROM course";
 
     public final static String SELECT_COURSE_BY_ID = "SELECT * FROM course WHERE id = ?";
 

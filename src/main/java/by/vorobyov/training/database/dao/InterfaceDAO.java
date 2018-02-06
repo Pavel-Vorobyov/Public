@@ -1,6 +1,5 @@
 package by.vorobyov.training.database.dao;
 
-import by.vorobyov.training.database.connectionpool.ConnectionPool;
 import by.vorobyov.training.exception.DAOException;
 
 import java.sql.Connection;
@@ -8,7 +7,13 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public interface IDAO<E> {
+/**
+ * Interface for DAO classes. Lists a number of methods that provided
+ * an access to data in database.
+ *
+ * @param <E> Entity class containing all data from table in database.
+ */
+public interface InterfaceDAO<E> {
 
     boolean update(E entity) throws DAOException, SQLException;
 

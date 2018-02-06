@@ -1,5 +1,8 @@
 package by.vorobyov.training.controller.command;
 
+/**
+ * An class that contains a list of all available commands.
+ */
 public class CommandName {
 
     //common

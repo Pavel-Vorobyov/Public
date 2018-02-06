@@ -2,6 +2,15 @@ package by.vorobyov.training.dto.entity;
 
 import java.io.Serializable;
 
+/**
+ * Class describing the transfer object for information about the
+ * work group: work group ID, title of a group, description, group status,
+ * group type, region.<br>
+ * Has link on group teacher(leadId), group course(courseId).
+ *
+ * @see by.vorobyov.training.dto.entity.User User
+ * @see by.vorobyov.training.dto.entity.Course Course
+ */
 public class WorkGroup implements Serializable {
     private Integer workGroupId;
     private String title;

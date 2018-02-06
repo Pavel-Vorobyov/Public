@@ -3,7 +3,7 @@ package by.vorobyov.training.database.dao.impl;
 import by.vorobyov.training.service.creator.impl.entitycreator.UserCreator;
 import by.vorobyov.training.service.creator.impl.entitycreator.WorkGroupCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
-import by.vorobyov.training.database.dao.IDAO;
+import by.vorobyov.training.database.dao.InterfaceDAO;
 import by.vorobyov.training.dto.entity.User;
 import by.vorobyov.training.dto.entity.WorkGroup;
 import by.vorobyov.training.exception.DAOException;
@@ -11,7 +11,7 @@ import by.vorobyov.training.exception.DAOException;
 import java.sql.*;
 import java.util.List;
 
-public class WorkGroupDAO extends AbstractDAO<WorkGroup> implements IDAO<WorkGroup> {
+public class WorkGroupDAO extends AbstractDAO<WorkGroup> implements InterfaceDAO<WorkGroup> {
     public static final String SELECT_USER_ID_BY_GROUP_ID = "SELECT user.id, user.login, user.password, user.email, user.mail_confirmed, user.status" +
             " FROM user_has_work_group, user" +
             " WHERE user.id = user_has_work_group.user_id AND user_has_work_group.work_group_id = ?";

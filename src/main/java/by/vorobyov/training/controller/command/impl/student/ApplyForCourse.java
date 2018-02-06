@@ -17,16 +17,34 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Class describes object-command, which applied student for te course.
+ */
 public class ApplyForCourse implements ICommand {
     private static final Logger LOGGER = LogManager.getLogger();
 
+    /**
+     * Gets user id from session.
+     * If user id is null forwards to the training portal page with status message.
+     * If user id does not match the status of a student forwards to the
+     * training portal page with status message.
+     * Applies student for the course by
+     * {@link by.vorobyov.training.service.impl.StudentServiceImpl StudentServiceImpl}
+     * Checks in database if student applied for this course already.
+     * If student applied forwards to the training portal page with status message.
+     * If not Applied and than redirect to the training portal with status message.
+     *
+     * @param request  request object that contains the request the client has made of the servlet
+     * @param response response object that contains the response the servlet sends to the client
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         StudentServiceImpl studentService = new StudentServiceImpl();
 
         User student = (User) request.getSession().getAttribute(AttributeName.USER);
         Integer courseId = Integer.parseInt(request.getParameter(CourseUpdate.COURSE_ID));
-        String currentURL = request.getParameter(AttributeName.CURRENT_URL);
         String statusMessage;
 
         if (student == null) {

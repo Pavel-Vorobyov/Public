@@ -7,6 +7,12 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletContextEvent;
 
+/**
+ * Initializes the {@link by.vorobyov.training.database.connectionpool.ConnectionPool ConnectionPool}
+ * when the application starts and closes all connections when the application exits.
+ *
+ * @see javax.servlet.ServletContextListener
+ */
 public class WebContextListener implements javax.servlet.ServletContextListener {
     private static final Logger LOGGER = LogManager.getLogger(WebContextListener.class.getName());
 

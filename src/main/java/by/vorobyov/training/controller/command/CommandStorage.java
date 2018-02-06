@@ -22,6 +22,10 @@ import javax.smartcardio.CommandAPDU;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Contains a map that stores name/object-command pairs,
+ * and provides the corresponding object-command.
+ */
 public class CommandStorage {
     private final static CommandStorage INSTANCE = new CommandStorage();
     private final Map<String, ICommand> commandStorage = new HashMap<>();

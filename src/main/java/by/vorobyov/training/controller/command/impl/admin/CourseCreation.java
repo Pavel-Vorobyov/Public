@@ -6,7 +6,7 @@ import by.vorobyov.training.controller.command.impl.page.admin.AdminCourseModify
 import by.vorobyov.training.dto.entity.Course;
 import by.vorobyov.training.exception.ServiceException;
 import by.vorobyov.training.resource.AttributeName;
-import by.vorobyov.training.service.impl.AdminServiceImplImpl;
+import by.vorobyov.training.service.impl.AdminServiceImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,6 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Class describes the object-command, the execution of which
+ * adds a new course.
+ */
 public class CourseCreation implements ICommand {
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -27,9 +31,25 @@ public class CourseCreation implements ICommand {
     public static final String COURSE_DESCRIPTION = "courseDescription";
 
 
+    /**
+     * If the command is successful, then the page is updated
+     * and a new course record is displayed.
+     * The course parameters, extracted from request puts into transfer object {@link by.vorobyov.training.dto.entity.Course Course}.
+     * Then in service {@link AdminServiceImpl AdminServiceImpl} creates a new course.
+     * If course created successful some filter parameters ate puts into request and
+     * forwarding to the current page.<br>
+     * If an error occurred during the command execution,
+     * then the control is passed to the catch block of <tt>ServiceException</tt>
+     * and forwarding to the server error page.
+     *
+     * @param request  request object that contains the request the client has made of the servlet
+     * @param response response object that contains the response the servlet sends to the client
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        AdminServiceImplImpl adminServiceImpl = new AdminServiceImplImpl();
+        AdminServiceImpl adminServiceImpl = new AdminServiceImpl();
         Course course = new Course();
 
         try {

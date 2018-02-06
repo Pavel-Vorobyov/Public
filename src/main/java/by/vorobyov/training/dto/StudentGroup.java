@@ -4,6 +4,11 @@ import by.vorobyov.training.dto.entity.UserData;
 
 import java.util.List;
 
+/**
+ * Class describing the transfer object for information about the
+ * student group: work group title, student name, data about
+ * students in the group (userDataList)
+ */
 public class StudentGroup {
     private String workGroupTitle;
     private String studentName;

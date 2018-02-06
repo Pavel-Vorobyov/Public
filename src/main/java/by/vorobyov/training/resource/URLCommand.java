@@ -4,6 +4,7 @@ public class URLCommand {
     private URLCommand() {
     }
 
+    public static final String HOME_PAGE = "command?command=home_page";
     public final static String USER_HOME_PAGE = "command?command=user_home_page";
     public final static String TRAINING_PORTAL = "command?command=training_portal_page";
     public static final String TRAINING_PAGE = "command?command=training_page";

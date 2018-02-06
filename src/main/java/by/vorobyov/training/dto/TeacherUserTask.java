@@ -1,5 +1,14 @@
 package by.vorobyov.training.dto;
 
+/**
+ * Class describing the transfer object for information about the
+ * all students performing on of the group task.<br>
+ * There are student name, time when task was created, time when task
+ * should be done, estimate, status.<br>
+ * Has a link for user task id (UserTaskID)
+ *
+ * @see by.vorobyov.training.dto.entity.UserTask UserTask
+ */
 public class TeacherUserTask {
     private Integer userTaskId;
     private String studentName;

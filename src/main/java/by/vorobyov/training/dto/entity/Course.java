@@ -2,6 +2,13 @@ package by.vorobyov.training.dto.entity;
 
 import java.io.Serializable;
 
+/**
+ * Class describing the transfer object for information about the
+ * course: course title, description, type, status.<br>
+ * Has a link on course teacher(leadID)
+ *
+ * @see by.vorobyov.training.dto.entity.User User
+ */
 public class Course implements Serializable {
     private Integer courseId;
     private String title;

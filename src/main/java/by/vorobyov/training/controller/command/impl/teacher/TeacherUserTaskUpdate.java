@@ -15,6 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Class describes the object-command, the execution of which
+ * updates a task for student.
+ */
 public class TeacherUserTaskUpdate implements ICommand {
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -25,6 +29,22 @@ public class TeacherUserTaskUpdate implements ICommand {
     public static final String TASK_TITLE = "taskTitle";
     public static final String GROUP_ID = "groupId";
     public static final String TASK_ID = "taskId";
+
+    /**
+     * If the command is successful, then the page is updated
+     * and an updated task record is displayed.
+     * The task parameters, extracted from request puts into transfer object {@link by.vorobyov.training.dto.entity.Task Task}.
+     * Then updates in service {@link by.vorobyov.training.service.impl.TeacherServiceImpl TeacherServiceImpl}.
+     * If task updated successful forwards to the current page.<br>
+     * If an error occurred during the command execution,
+     * then the control is passed to the catch block of <tt>ServiceException</tt>
+     * and forwarding to the server error page.
+     *
+     * @param request  request object that contains the request the client has made of the servlet
+     * @param response response object that contains the response the servlet sends to the client
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         TeacherServiceImpl teacherService = new TeacherServiceImpl();

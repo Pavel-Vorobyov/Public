@@ -71,7 +71,7 @@
 
     <tag>
         <name>usTkUpd</name>
-        <tag-class>by.vorobyov.training.tag.UserTaskUpdate</tag-class>
+        <tag-class>by.vorobyov.training.tag.teacher.UserTaskUpdate</tag-class>
         <body-content>empty</body-content>
 
         <attribute>

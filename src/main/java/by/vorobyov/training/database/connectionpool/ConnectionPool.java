@@ -13,6 +13,10 @@ import java.util.ResourceBundle;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * Class contains connection pools to data base by properties
+ * in resources by name "db.properties"
+ */
 public class ConnectionPool {
     public static final String DB_DRIVER = "mysql.driver";
     public static final String DB_URL = "mysql.url";

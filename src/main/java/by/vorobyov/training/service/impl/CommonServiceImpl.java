@@ -6,7 +6,7 @@ import by.vorobyov.training.database.dao.impl.*;
 import by.vorobyov.training.exception.DAOException;
 import by.vorobyov.training.dto.entity.*;
 import by.vorobyov.training.exception.ServiceException;
-import by.vorobyov.training.service.validator.CommonService;
+import by.vorobyov.training.service.CommonService;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;

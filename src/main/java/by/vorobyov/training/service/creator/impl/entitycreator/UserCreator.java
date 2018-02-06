@@ -8,6 +8,13 @@ import by.vorobyov.training.dto.entity.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Crate an list of
+ * {@link by.vorobyov.training.dto.entity.User User} or just a User.
+ *
+ * @see by.vorobyov.training.service.creator.AbstractCreator AbstractEntityCreator
+ * @see by.vorobyov.training.service.creator.ICreator ICreator
+ */
 public class UserCreator extends AbstractCreator<User> implements ICreator<User> {
     @Override
     public User createEntity(ResultSet resultSet) throws SQLException {

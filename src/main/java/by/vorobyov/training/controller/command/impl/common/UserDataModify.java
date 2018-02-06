@@ -16,6 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Class describes the object-command, the execution of which
+ * updates a user data.
+ */
 public class UserDataModify implements ICommand {
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -24,6 +28,24 @@ public class UserDataModify implements ICommand {
     public static final String USER_EMAIL = "email";
     public static final String USER_LOGIN = "login";
     public static final String USER_PASSWORD = "password";
+
+    /**
+     * If the command is successful, then the page is updated
+     * and a new user data will be shown.<br>
+     * The user's parameters, extracted from the request are packed
+     * into a transfer object {@link User User} and
+     * validates on the service layer. If the data is not correct,
+     * validator returns "false" and request redirects to the current page
+     * with message.<br>
+     * If an error occurred during the command execution,
+     * then the control is passed to the catch block of <tt>ServiceException</tt>
+     * and forwarding to the server error page.
+     *
+     * @param request  request object that contains the request the client has made of the servlet
+     * @param response response object that contains the response the servlet sends to the client
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CommonServiceImpl commonServiceImpl = new CommonServiceImpl();

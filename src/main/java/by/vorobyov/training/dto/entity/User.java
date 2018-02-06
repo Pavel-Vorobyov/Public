@@ -2,6 +2,10 @@ package by.vorobyov.training.dto.entity;
 
 import java.io.Serializable;
 
+/**
+ * Class describing the transfer object for information about the
+ * user: user ID, login, password, email, mail status and user status.
+ */
 public class User implements Serializable {
     private Integer userId;
     private String login;

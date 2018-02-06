@@ -10,10 +10,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Class describes the object-command, the execution of which
+ * changes the language.
+ */
 public class ChangeLocal implements ICommand {
     private static final Logger LOGGER = LogManager.getLogger();
 
     public static final String LOCALE = "local";
+
+    /**
+     * If the command is successful, then the page is updated
+     * and a new language will be shown.<br>
+     * Puts a new local "ru" or "en" from request to session object.
+     *
+     * @param request  request object that contains the request the client has made of the servlet
+     * @param response response object that contains the response the servlet sends to the client
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String lng = request.getParameter(LOCALE);

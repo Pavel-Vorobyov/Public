@@ -1,4 +1,4 @@
-package by.vorobyov.training.tag;
+package by.vorobyov.training.tag.teacher;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;

@@ -4,6 +4,14 @@ import by.vorobyov.training.dto.entity.Task;
 
 import java.util.List;
 
+/**
+ * Class describing the transfer object for information about the
+ * all tasks in the group for teacher.<br>
+ * There are group title, group ID, list of group tasks.<br>
+ * Has a link on work group (groupId)
+ *
+ * @see by.vorobyov.training.dto.entity.WorkGroup WorkGroup
+ */
 public class TeacherGroupTask {
     private String groupTitle;
     private Integer groupId;

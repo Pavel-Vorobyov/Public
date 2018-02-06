@@ -15,6 +15,7 @@ import java.util.List;
 
 public class StudentServiceImpl extends CommonServiceImpl implements StudentService {
     public static final Integer USER_TASK_STATUS_SUBMITTED = 2;
+    public static final Integer USER_TASK_STATUS_NOT_READY = 0;
 
     public List<StudentUserTask> takeUserTaskByUserId(Integer userId) throws ServiceException {
         WorkGroupDAO workGroupDAO = DAOFactory.getINSTANCE().getWorkGroupDAO();
@@ -99,9 +100,15 @@ public class StudentServiceImpl extends CommonServiceImpl implements StudentServ
         try {
             UserTask currentUserTask = userTaskDAO.getEntityById(userTaskId);
 
-            currentUserTask.setStatus(USER_TASK_STATUS_SUBMITTED);
+            if (currentUserTask.getStatus() != USER_TASK_STATUS_NOT_READY) {
 
-            return userTaskDAO.update(currentUserTask);
+                currentUserTask.setStatus(USER_TASK_STATUS_SUBMITTED);
+                return userTaskDAO.update(currentUserTask);
+
+            } else {
+                return false;
+            }
+
         } catch (DAOException | SQLException e) {
             throw new ServiceException(e);
         }

@@ -8,6 +8,13 @@ import by.vorobyov.training.dto.entity.Task;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Crate an list of
+ * {@link by.vorobyov.training.dto.entity.Task Task} or just a Task.
+ *
+ * @see by.vorobyov.training.service.creator.AbstractCreator AbstractEntityCreator
+ * @see by.vorobyov.training.service.creator.ICreator ICreator
+ */
 public class TaskCreator extends AbstractCreator<Task> implements ICreator<Task> {
     @Override
     public Task createEntity(ResultSet resultSet) throws SQLException {

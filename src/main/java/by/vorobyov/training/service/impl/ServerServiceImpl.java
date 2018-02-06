@@ -4,6 +4,7 @@ import by.vorobyov.training.database.dao.DAOFactory;
 import by.vorobyov.training.database.dao.impl.UserDAO;
 import by.vorobyov.training.dto.entity.User;
 import by.vorobyov.training.exception.DAOException;
+import by.vorobyov.training.exception.ServiceException;
 import by.vorobyov.training.service.ServerService;
 
 import javax.mail.MessagingException;
@@ -14,7 +15,7 @@ public class ServerServiceImpl implements ServerService {
     public static final Integer MAIL_STATUS_UNCHECKED = 0;
     public static final Integer MAIL_STATUS_CHECKED = 1;
 
-    public boolean sendVerifyingLetter(String userMailAddress, User currentUser) throws DAOException {
+    public boolean sendVerifyingLetter(String userMailAddress, User currentUser) throws ServiceException {
         CommonServiceImpl commonServiceImpl = new CommonServiceImpl();
 
         String subject = "Verifying letter...";
@@ -25,19 +26,19 @@ public class ServerServiceImpl implements ServerService {
         try {
             commonServiceImpl.sendMail(userMailAddress, CommonServiceImpl.SERVER_MAIL_ADDRESS, subject, text);
         } catch (MessagingException | IOException e) {
-            throw new DAOException(e);
+            throw new ServiceException(e);
         }
 
         return true;
     }
 
-    public boolean updateUserMailStatus(Integer mailStatus, Integer userId) throws DAOException {
+    public boolean updateUserMailStatus(Integer mailStatus, Integer userId) throws ServiceException {
         UserDAO userDAO = DAOFactory.getINSTANCE().getUserDAO();
 
         try {
             return userDAO.updateUserMailStatus(mailStatus, userId);
         } catch (SQLException | DAOException e) {
-            throw new DAOException(e);
+            throw new ServiceException(e);
         }
     }
 }

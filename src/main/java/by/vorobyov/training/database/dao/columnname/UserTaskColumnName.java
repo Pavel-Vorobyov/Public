@@ -1,5 +1,8 @@
 package by.vorobyov.training.database.dao.columnname;
 
+/**
+ * The class contains user task table column names from database.
+ */
 public class UserTaskColumnName {
     private UserTaskColumnName() {
     }

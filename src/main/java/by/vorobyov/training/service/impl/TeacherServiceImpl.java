@@ -113,7 +113,7 @@ public class TeacherServiceImpl extends CommonServiceImpl implements TeacherServ
         }
     }
 
-    public List<TeacherUserTask> takeUserTaskList(Integer taskId, Integer groupId) throws DAOException {
+    public List<TeacherUserTask> takeUserTaskList(Integer taskId, Integer groupId) throws ServiceException {
         List<TeacherUserTask> teacherUserTaskList = new LinkedList<>();
         UserTaskDAO userTaskDAO = DAOFactory.getINSTANCE().getUserTaskDAO();
         UserDataDAO userDataDAO = DAOFactory.getINSTANCE().getUserDataDAO();
@@ -139,7 +139,7 @@ public class TeacherServiceImpl extends CommonServiceImpl implements TeacherServ
 
             return teacherUserTaskList;
         } catch (SQLException | DAOException e) {
-            throw new DAOException(e);
+            throw new ServiceException(e);
         }
     }
 }

@@ -2,6 +2,7 @@ package by.vorobyov.training.service.impl;
 
 import by.vorobyov.training.controller.command.impl.page.admin.AdminCourseModifyPage;
 import by.vorobyov.training.controller.command.impl.page.admin.AdminGroupModifyPage;
+import by.vorobyov.training.database.dao.DAOFactory;
 import by.vorobyov.training.database.dao.impl.CourseDAO;
 import by.vorobyov.training.database.dao.impl.UserDAO;
 import by.vorobyov.training.database.dao.impl.UserDataDAO;
@@ -13,12 +14,13 @@ import by.vorobyov.training.dto.entity.UserData;
 import by.vorobyov.training.dto.entity.WorkGroup;
 import by.vorobyov.training.exception.DAOException;
 import by.vorobyov.training.exception.ServiceException;
+import by.vorobyov.training.filter.impl.SecurityFilter;
 import by.vorobyov.training.service.AdminService;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class AdminServiceImplImpl extends CommonServiceImpl implements AdminService {
+public class AdminServiceImpl extends CommonServiceImpl implements AdminService {
     public static final String SELECT_COURSE_BY_STATUS_REGION_TYPE = "SELECT *" +
             " FROM course" +
             " WHERE ";
@@ -51,9 +53,16 @@ public class AdminServiceImplImpl extends CommonServiceImpl implements AdminServ
 
     public boolean updateCourse(Course course) throws ServiceException {
         CourseDAO courseDAO = new CourseDAO();
+        UserDAO userDAO = DAOFactory.getINSTANCE().getUserDAO();
 
         try {
-            return courseDAO.update(course);
+            User currentTeacher = userDAO.getEntityById(course.getLeadId());
+
+            if (currentTeacher.isEmpty() || currentTeacher.getStatus() != SecurityFilter.STATUS_TEACHER) {
+                return false;
+            } else {
+                return courseDAO.update(course);
+            }
         } catch (DAOException | SQLException e) {
             throw new ServiceException(e);
         }

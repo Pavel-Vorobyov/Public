@@ -9,6 +9,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+/**
+ * Provide a basic realization of some methods from {@link by.vorobyov.training.database.dao.InterfaceDAO InterfaceDAO}
+ * <br>
+ * Has methods for getting and closing databases connections and prepared statements.
+ *
+ * @param <E>
+ */
 public abstract class AbstractDAO<E> {
 
     public abstract boolean update(E entity) throws DAOException, SQLException;

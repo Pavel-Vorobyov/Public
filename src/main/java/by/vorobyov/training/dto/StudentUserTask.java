@@ -4,6 +4,11 @@ import by.vorobyov.training.dto.entity.UserTask;
 
 import java.util.List;
 
+/**
+ * Class describing the transfer object for information about the
+ * student task in a group: title of a group,  student name,
+ * list of student tasks.
+ */
 public class StudentUserTask {
     private String workGroupTitle;
     private String studentName;

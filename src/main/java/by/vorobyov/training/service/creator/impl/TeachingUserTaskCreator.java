@@ -9,6 +9,13 @@ import by.vorobyov.training.dto.TeacherUserTask;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Crate an list of
+ * {@link by.vorobyov.training.dto.TeacherUserTask TeacherUserTask} or just a TeacherUserTask.
+ *
+ * @see by.vorobyov.training.service.creator.AbstractCreator AbstractEntityCreator
+ * @see by.vorobyov.training.service.creator.ICreator ICreator
+ */
 public class TeachingUserTaskCreator extends AbstractCreator<TeacherUserTask> implements ICreator<TeacherUserTask> {
     @Override
     public TeacherUserTask createEntity(ResultSet resultSet) throws SQLException {

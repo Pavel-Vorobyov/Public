@@ -18,6 +18,10 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Class describes the object-command, the execution of which
+ * adds a new task for group.
+ */
 public class TeacherCreateTask implements ICommand {
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -26,6 +30,22 @@ public class TeacherCreateTask implements ICommand {
     public static final String TASK_DESCRIPTION = "description";
     public static final String GROUP_ID = "group-id";
 
+    /**
+     * If the command is successful, then the page is updated
+     * and a new task record is displayed.
+     * The task parameters, extracted from request puts into transfer object {@link by.vorobyov.training.dto.entity.Task Task}.
+     * Then in service {@link by.vorobyov.training.service.impl.TeacherServiceImpl TeacherServiceImpl}
+     * creates a new task for group.
+     * If task created successful forwards to the current page.<br>
+     * If an error occurred during the command execution,
+     * then the control is passed to the catch block of <tt>ServiceException</tt>
+     * and forwarding to the server error page.
+     *
+     * @param request  request object that contains the request the client has made of the servlet
+     * @param response response object that contains the response the servlet sends to the client
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String taskTitle = request.getParameter(TASK_TITLE);

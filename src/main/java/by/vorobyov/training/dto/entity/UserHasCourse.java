@@ -1,5 +1,9 @@
 package by.vorobyov.training.dto.entity;
 
+/**
+ * Class describing the transfer object for information about the
+ * course that user has been signed up for.
+ */
 public class UserHasCourse {
     private Integer userId;
     private Integer courseId;

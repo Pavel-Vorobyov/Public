@@ -2,6 +2,9 @@ package by.vorobyov.training.dto.entity;
 
 import java.io.Serializable;
 
+/**
+ * Class describing the transfer object for information about the assigned task for group.
+ */
 public class Task implements Serializable {
     private String taskHerf;
     private Integer taskId;

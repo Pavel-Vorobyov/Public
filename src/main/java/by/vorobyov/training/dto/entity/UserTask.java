@@ -2,6 +2,16 @@ package by.vorobyov.training.dto.entity;
 
 import java.io.Serializable;
 
+/**
+ * Class describing the transfer object for information about the
+ * user task: user task ID, time when task was created, time when
+ * task should be submit, teacher comment to the user task, estimate.<br>
+ * Has links to: user ID, task ID, user work group ID
+ *
+ * @see by.vorobyov.training.dto.entity.User User
+ * @see by.vorobyov.training.dto.entity.Task Task
+ * @see by.vorobyov.training.dto.entity.WorkGroup WorkGroup
+ */
 public class UserTask implements Serializable {
     private Integer userTaskId;
     private Integer userId;

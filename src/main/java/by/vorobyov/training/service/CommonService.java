@@ -1,4 +1,4 @@
-package by.vorobyov.training.service.validator;
+package by.vorobyov.training.service;
 
 import by.vorobyov.training.dto.entity.*;
 import by.vorobyov.training.exception.ServiceException;

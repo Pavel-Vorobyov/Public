@@ -1,5 +1,8 @@
 package by.vorobyov.training.database.dao.columnname;
 
+/**
+ * The class contains user has course table column names from database.
+ */
 public class UserHasCourseColumnName {
     private UserHasCourseColumnName() {
     }

@@ -3,7 +3,7 @@ package by.vorobyov.training.database.dao.impl;
 import by.vorobyov.training.service.creator.impl.UserForAdminCreator;
 import by.vorobyov.training.service.creator.impl.entitycreator.UserDataCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
-import by.vorobyov.training.database.dao.IDAO;
+import by.vorobyov.training.database.dao.InterfaceDAO;
 import by.vorobyov.training.dto.UserForAdmin;
 import by.vorobyov.training.exception.DAOException;
 import by.vorobyov.training.dto.entity.UserData;
@@ -14,7 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class UserDataDAO extends AbstractDAO<UserData> implements IDAO<UserData> {
+public class UserDataDAO extends AbstractDAO<UserData> implements InterfaceDAO<UserData> {
 
     public static final String SELECT_USER_DATA_BY_GROUP_ID = "SELECT user_data.user_id,user_data.name, user_data.surname,user_data.creationtime, user_data.description" +
             " FROM user_data, user_has_work_group, work_group" +

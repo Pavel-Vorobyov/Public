@@ -8,6 +8,12 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Makes a base realization of the method that
+ * creates a list of entity.
+ *
+ * @param <E> a type of some entity.
+ */
 public abstract class AbstractCreator<E> implements ICreator<E> {
     @Override
     public List<E> createEntityList(ResultSet resultSet) throws DAOException {

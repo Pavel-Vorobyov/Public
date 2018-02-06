@@ -1,5 +1,15 @@
 package by.vorobyov.training.dto;
 
+/**
+ * Class describing the transfer object for information about the
+ * user for admin page.<br>
+ * Includes name, surname, time when user has been created, email,
+ * user status.<br>
+ * Has a link for user and user data (userId)
+ *
+ * @see by.vorobyov.training.dto.entity.User User
+ * @see by.vorobyov.training.dto.entity.UserData UserData
+ */
 public class UserForAdmin {
     private Integer userId;
     private String name;

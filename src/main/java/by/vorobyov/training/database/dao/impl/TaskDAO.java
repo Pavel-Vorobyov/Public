@@ -3,7 +3,7 @@ package by.vorobyov.training.database.dao.impl;
 import by.vorobyov.training.service.creator.impl.entitycreator.TaskCreator;
 import by.vorobyov.training.service.creator.impl.TeachingUserTaskCreator;
 import by.vorobyov.training.database.dao.AbstractDAO;
-import by.vorobyov.training.database.dao.IDAO;
+import by.vorobyov.training.database.dao.InterfaceDAO;
 import by.vorobyov.training.dto.TeacherUserTask;
 import by.vorobyov.training.exception.DAOException;
 import by.vorobyov.training.dto.entity.Task;
@@ -14,7 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class TaskDAO extends AbstractDAO<Task> implements IDAO<Task> {
+public class TaskDAO extends AbstractDAO<Task> implements InterfaceDAO<Task> {
     public static final String SELECT_GROUP_TASK_BY_GROUP_ID = "SELECT *" +
             " FROM task" +
             " WHERE task.id IN (SELECT task_id" +

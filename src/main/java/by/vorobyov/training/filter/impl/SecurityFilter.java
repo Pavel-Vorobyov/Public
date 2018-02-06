@@ -1,37 +1,37 @@
-package by.vorobyov.training.filter;
+package by.vorobyov.training.filter.impl;
 
+import by.vorobyov.training.filter.AbstractFilter;
 import by.vorobyov.training.resource.AttributeName;
 import by.vorobyov.training.resource.JspPageName;
 import by.vorobyov.training.dto.entity.User;
+import by.vorobyov.training.resource.URLCommand;
 import by.vorobyov.training.security.Security;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-public class SecurityFilter implements Filter {
+/**
+ * This filter validate the user status to execution certain request,
+ * and if the request is forbidden, then forwarding to the page with error 403.
+ *
+ * @see by.vorobyov.training.filter.AbstractFilter
+ */
+public class SecurityFilter extends AbstractFilter implements Filter {
     public static final String PARAMETER_COMMAND = "command";
     public static Integer STATUS_STUDENT = 0;
     public static Integer STATUS_TEACHER = 1;
     public static Integer STATUS_ADMIN = 2;
 
-
-    private FilterConfig filterConfig;
-
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-        this.filterConfig = filterConfig;
-    }
+    public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException, ServletException {
 
-    @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-
-        HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
-        HttpSession session = httpServletRequest.getSession(true);
+        HttpSession session = request.getSession(true);
         User currentUser = (User) session.getAttribute(AttributeName.USER);
 
-        String command = httpServletRequest.getParameter(PARAMETER_COMMAND);
+        String command = request.getParameter(PARAMETER_COMMAND);
         String page = null;
 
         if (command != null && !command.isEmpty()) {
@@ -62,19 +62,16 @@ public class SecurityFilter implements Filter {
             }
 
             if (page != null) {
-                httpServletRequest.getRequestDispatcher(page).forward(servletRequest, servletResponse);
+                request.getRequestDispatcher(page).forward(request, response);
             } else {
-                filterChain.doFilter(servletRequest, servletResponse);
+                filterChain.doFilter(request, response);
             }
 
         } else {
-            filterChain.doFilter(servletRequest, servletResponse);
+            String statusMessage = "Sorry, something goes bad!";
+            String resultURL = URLCommand.HOME_PAGE + "&" +AttributeName.STATUS_MESSAGE + "=" + statusMessage;
+
+            response.sendRedirect(resultURL);
         }
-
-    }
-
-    @Override
-    public void destroy() {
-        this.filterConfig = null;
     }
 }

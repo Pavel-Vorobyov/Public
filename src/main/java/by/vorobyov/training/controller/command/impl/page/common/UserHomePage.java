@@ -16,9 +16,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Class describes object-command, which forwards to the user home page.
+ */
 public class UserHomePage implements ICommand{
     private static final Logger LOGGER = LogManager.getLogger();
 
+    /**
+     * Gets {@link by.vorobyov.training.dto.entity.User user} from session.
+     * Gets {@link by.vorobyov.training.dto.entity.UserData user data} by
+     * {@link by.vorobyov.training.service.impl.CommonServiceImpl CommonServiceImpl}
+     * puts them into request than forwards to the user home jsp.
+     *
+     *
+     * @param request  request object that contains the request the client has made of the servlet
+     * @param response response object that contains the response the servlet sends to the client
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User currentUser = (User) request.getSession().getAttribute(AttributeName.USER);

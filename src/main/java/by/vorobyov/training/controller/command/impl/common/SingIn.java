@@ -16,6 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Class describes the object-command, the execution of which
+ * puts transfer object {@link by.vorobyov.training.dto.entity.User User}
+ * into session.
+ */
 public class SingIn implements ICommand{
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -24,6 +29,23 @@ public class SingIn implements ICommand{
     public final static String LOGIN = "login";
     public final static String PASSWORD = "password";
 
+    /**
+     * If the command is successful, then the user will be redirect
+     * to the {@link by.vorobyov.training.controller.command.impl.page.common.TrainingPage TrainingPage}.<br>
+     * The user's parameters, extracted from the request are packed
+     * into a transfer object {@link User User} and
+     * validates on the service layer. If the data is not correct,
+     * then the control passed to the catch block of <tt>ValidatorException</tt>
+     * and forwarding to the home page with message.<br>
+     * If an error occurred during the command execution,
+     * then the control is passed to the catch block of <tt>ServiceException</tt>
+     * and forwarding to the server error page.
+     *
+     * @param request  request object that contains the request the client has made of the servlet
+     * @param response response object that contains the response the servlet sends to the client
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = new User();

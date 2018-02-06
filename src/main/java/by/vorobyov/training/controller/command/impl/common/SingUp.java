@@ -18,6 +18,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Class describes the object-command, the execution of which
+ * adds a new user.
+ */
 public class SingUp implements ICommand {
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -25,6 +29,23 @@ public class SingUp implements ICommand {
     public static final String USER_PASSWORD = "password";
     public static final String USER_EMAIL = "email";
 
+    /**
+     * If the command is successful, then the user wil be redirected
+     * to the {@link by.vorobyov.training.controller.command.impl.page.common.UserHomePage user home page}.<br>
+     * The user's parameters, extracted from the request are packed
+     * into a transfer object {@link User User} and
+     * validates on the service layer. If the data is not correct,
+     * then the control passed to the catch block of <tt>ValidatorException</tt>
+     * and forwarding to the bad request page.<br>
+     * If an error occurred during the command execution,
+     * then the control is passed to the catch block of <tt>ServiceException</tt>
+     * and forwarding to the server error page.
+     *
+     * @param request  request object that contains the request the client has made of the servlet
+     * @param response response object that contains the response the servlet sends to the client
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CommonServiceImpl commonServiceImpl = new CommonServiceImpl();
@@ -41,16 +62,12 @@ public class SingUp implements ICommand {
 
             if (!currentUser.isEmpty()) {
 
-                try {
-                    serverServiceImpl.sendVerifyingLetter(currentUser.getEmail(), currentUser);
-                } catch (DAOException e) {
-                    e.printStackTrace();
-                }
+                serverServiceImpl.sendVerifyingLetter(currentUser.getEmail(), currentUser);
 
                 request.getSession(true).setAttribute(AttributeName.USER, currentUser);
                 request.getRequestDispatcher(URLCommand.TRAINING_PAGE).forward(request, response);
             } else {
-                String statusMessage = "Sorry, this member is already regirsted!";
+                String statusMessage = "Sorry, this member is already registered!";
                 request.setAttribute(AttributeName.STATUS_MESSAGE, statusMessage);
                 request.getRequestDispatcher(JspPageName.HOME_PAGE).forward(request, response);
             }

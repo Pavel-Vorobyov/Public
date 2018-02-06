@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Class describes object-command, which forwards to the training portal page.
+ */
 public class TrainingPortalPage implements ICommand {
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -25,6 +28,16 @@ public class TrainingPortalPage implements ICommand {
     public static final String COURSE_TYPE = "courseType";
     public static final String COURSE_STATUS = "courseStatus";
 
+    /**
+     * Gets some filter parameters rom request. Gets {@link by.vorobyov.training.dto.entity.Course course} list
+     * from database by {@link by.vorobyov.training.service.impl.CommonServiceImpl CommonServiceImpl}.
+     * Puts filter parameters into request than forwards to the training portal jsp.
+     *
+     * @param request  request object that contains the request the client has made of the servlet
+     * @param response response object that contains the response the servlet sends to the client
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CommonServiceImpl commonServiceImpl = new CommonServiceImpl();
